@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reservation">
+
+  <select id="pet_list" parameterType="int" resultType="PetVO">
+    SELECT name FROM pet WHERE memberno = #{memberno}
+  </select>
+  
+  <select id="time_h_list" parameterType="String" resultType="Time_hVO">
+    SELECT restime FROM reservation WHERE restype = 1 AND resdate=#{resdate}
+  </select>
+  
+  <select id="time_b_list" parameterType="String" resultType="Time_bVO">
+    SELECT restime FROM reservation WHERE restype = 2 AND resdate=#{resdate}
+  </select>
+  
+  <select id="time_list" parameterType="String" resultType="TimeVO">
+    SELECT restime, restype FROM reservation WHERE resdate=#{resdate}
+  </select>
+  
+  <insert id="create" parameterType="ReservationVO">
+    INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
+    VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
+                #{title}, #{label}, #{resdate}, #{restime}, #{content}, #{restype}, #{name}, #{petno}, #{memberno}, sysdate)
+  </insert>
+  
+  <select id="my_list" parameterType="HashMap" resultType="ReservationVO">
+    SELECT r.reservationno, r.restype, r.title, r.resdate, r.restime, r.content, r.name, r.petno, r.rdate, r.memberno
+    FROM reservation r, member m
+    WHERE r.memberno = m.memberno AND r.memberno = #{memberno} AND substr(r.resdate, 1, 7) = #{date}
+    ORDER BY r.resdate asc, r.restime asc
+  </select>
+  
+  <select id="read" parameterType="int" resultType="ReservationVO">
+    SELECT reservationno, restype, title, label, resdate, restime, content, restype, petno, name, rdate
+    FROM reservation 
+    WHERE reservationno = #{reservationno}
+  </select>
+  
+  <update id="update" parameterType="ReservationVO">
+    UPDATE reservation 
+    SET title = #{title}, label = #{label}, resdate = #{resdate}, restime = #{restime}, content = #{content}, restype = #{restype}, name = #{name}, petno= #{petno}
+    WHERE reservationno= #{reservationno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM reservation WHERE reservationno = #{reservationno}
+  </delete>
+
+</mapper>

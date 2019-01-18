@@ -1,0 +1,40 @@
+*{
+  font-family: ∏º¿∫ ∞ÌµÒ;
+  font-size: 14px;
+}
+.container {
+    width: 100%;
+    margin: 5px auto;
+}
+  
+.content {
+  width: 80%;
+  margin: 0px auto;
+}
+
+.title_line {
+    color: #333333;
+    width: 20%;
+    margin: 20px auto;
+    padding: 3px;
+    border-bottom: solid 2px #555555;
+    text-align: center;
+  }
+/* ========================= */
+/* read css Ω√¿€ */
+/* ========================= */
+
+/* ========================= */
+/* read css ≥° */
+/* ========================= */
+/* ========================= */
+/* my_list css Ω√¿€ */
+/* ========================= */
+
+.dropdown-menu {
+  background-color : white !important;
+  color: black;
+}
+#mainNav .navbar-brand {
+  color: white !important;
+}

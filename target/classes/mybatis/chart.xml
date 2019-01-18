@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="chart">
+  <select id="list" resultType="ChartVO">
+    SELECT chartno, managerno, petno, petname, name, title, sick, medicine, stay, etc, substr(rdate, 1, 8) rdate
+    FROM chart 
+    ORDER BY petno 
+  </select>
+  
+  <select id="read" parameterType="int" resultType="ChartVO">
+    SELECT chartno, managerno, petno, petname, name, title, sick, medicine, stay, etc, substr(rdate, 1, 8) rdate
+    FROM chart 
+    WHERE chartno = #{chartno}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM chart 
+    WHERE chartno = #{chartno}
+  </delete>
+  
+  <insert id="">
+    select p.petno, p.name, p.age, m.name, m.phone from pet p, member m where p.petno = 2 AND m.memberno = 3
+  </insert>
+
+</mapper>
