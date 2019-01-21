@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="review">
+
+  <insert id="create" parameterType="ReviewVO">
+  INSERT INTO review(reviewno, name, title, contents, rdate, files, filesize, thumbs, num, score, categoryno, memberno)
+  VALUES((SELECT NVL(MAX(reviewno), 0)+1 as reviewno FROM review), #{name}, #{title}, #{contents}, sysdate,
+             #{files}, #{filesize}, #{thumbs} , #{num} , #{score}, #{categoryno} , #{memberno} )
+  </insert>
+  
+  <select id="list" resultType="ReviewVO">
+    SELECT reviewno, name, title, contents, rdate, files, filesize, thumbs, num, score, categoryno, memberno
+    FROM review
+    ORDER BY reviewno ASC
+  </select>
+  
+  <select id="read" resultType="ReviewVO" parameterType="int">
+    SELECT reviewno,
+              name, title, contents, rdate, files, filesize, thumbs, num, score, categoryno, memberno
+    FROM review
+    WHERE reviewno=#{reviewno}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM review
+    WHERE reviewno=#{reviewno}
+  </delete>
+  
+  <update id="update" parameterType="ReviewVO">
+    UPDATE review
+    SET title=#{title}, contents=#{contents}, name=#{name},
+          thumbs=#{thumbs}, files=#{files}, filesize=#{filesize}, score=#{score}
+    WHERE reviewno=#{reviewno}
+  </update>
+  
+   <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM review
+    WHERE categoryno=#{categoryno}
+    </select>
+    
+    <select id="search_word" resultType="ReviewVO" parameterType="HashMap">
+      SELECT reviewno,
+                categoryno, memberno, title, score, thumbs, files, filesize, num, rdate, 
+                word
+     FROM review
+     WHERE categoryno=#{categoryno} AND title LIKE '%' || #{title} || '%' 
+     ORDER BY reviewno ASC;
+    </select>
+     
+</mapper>
+
+
+
+
+
+
+
+
