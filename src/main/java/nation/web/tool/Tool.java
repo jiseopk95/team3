@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.PixelGrabber;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -283,6 +284,19 @@ public class Tool {
       }
     
     return ret;
+  }
+  
+  /**
+   * 2010-12-14 형식의 날짜를 리턴합니다.
+   * 
+   * @return 2010-12-14 형식의 문자열 리턴
+   */
+  public static String getDate(int year, int month, int day) {
+    SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+
+    String date = sd.format(new Date(year - 1900, month, day));
+
+    return date;
   }
   
 }
