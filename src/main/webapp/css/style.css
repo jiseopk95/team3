@@ -20,21 +20,48 @@
     border-bottom: solid 2px #555555;
     text-align: center;
   }
-/* ========================= */
-/* read css 시작 */
-/* ========================= */
-
-/* ========================= */
-/* read css 끝 */
-/* ========================= */
-/* ========================= */
-/* my_list css 시작 */
-/* ========================= */
-
+legend {
+  font-weight: bold;
+}
 .dropdown-menu {
   background-color : white !important;
   color: black;
 }
 #mainNav .navbar-brand {
-  color: white !important;
+  color: #2455c5 !important;
+}
+#mainNav {
+  background-color: white !important;
+  margin-bottom: 0px;
+}
+.top-li {
+  display:inline !important; 
+}
+.top-li a {
+  font-weight:bold;
+  color: white;
+  margin-right: 1%;
+}
+.top-container {
+  margin-top: 0%;
+}
+.small-top {
+  padding-top: 0.5%;
+  padding-right: 1%;
+  text-align: right;
+}
+#navbarResponsive ul li a {
+  color: black !important;
+}
+#navbarResponsive ul li {
+  margin-right: 8%;
+}
+#navbarResponsive {
+  margin-left: 7%;
+}
+#mainNav .navbar-brand {
+  font-size: 2.5em !important;
+}
+#etc {
+  color:#00006a;
 }
