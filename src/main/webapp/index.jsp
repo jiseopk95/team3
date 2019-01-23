@@ -37,7 +37,7 @@
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 
 <!-- Header ( index 파랑색 칸 부분 ) -->
-     <div class="masthead text-black text-center" style='width: 100%; background-color: rgba(0,0,0,.075); height:450px;'>
+     <div class="masthead text-black text-center" style='width: 100%; background-color: #eeece1a1; height:450px;'>
       <div class="container" style='margin:0px auto;' >
       <img class="img-fluid mb-5 d-block mx-auto" style='margin-top:5%; width: 20%; height: 20%;' src="./resources/img/dog1.png" >  <!-- 관련 이미지 넣거나 넣지 않음 -->
         <h1 class="text-uppercase mb-0" style='margin-top:5%; font-weight: bold; color:#2c3e50;' >Animal Total System</h1>
