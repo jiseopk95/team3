@@ -230,6 +230,7 @@ String today = year_list + "-" + month_list;
           // str = cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DATE);
           str = Tool.getDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
           list = dao.listLabel(str, memberno); 
+          
       
           if (list != null){ 
             sb = new StringBuffer();

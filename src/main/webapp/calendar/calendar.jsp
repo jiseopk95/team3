@@ -85,7 +85,7 @@ td{
   margin-top: 0px;
   padding-top: 0px; 
   border-width: 1.5px;    /* 태그의 위쪽선 두께*/ 
-  border-style:solid;    /* 실선*/
+  border-style:solid;    /* 실선*/ 
   border-color:#d9d9d9;  /* 선의 색깔 */
   color: #3e3e3e;        /* 제목*/ 
   height: 70px;
