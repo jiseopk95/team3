@@ -226,6 +226,32 @@ public class Tool {
 
     return date;
   }
+  
+  /**
+
+   * 문자열의 길이가 length 보다 크면 "..." 을 표시하는 메소드
+
+   * 
+
+   * @param str 문자열
+
+   * @param length 선별할 문자열 길이
+
+   * @return
+
+   */
+
+  public static synchronized String textLength(String str, int length) {
+
+    if (str != null) {
+      if (str.length() > length) {
+        str = str.substring(0, length) + "..."; // 범위: 0 ~ length - 1 산출
+      }
+    } else {
+      str = "";
+    }
+    return str;
+  }
 
 }
 
