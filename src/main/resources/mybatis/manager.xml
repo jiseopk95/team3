@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "manager">
+  <select id="checkId" resultType="int" parameterType="String">
+    SELECT COUNT(id) as cnt
+    FROM manager
+    WHERE id=#{id}
+  </select>
+
+  <insert id="create" parameterType="ManagerVO">
+    INSERT INTO manager(managerno,
+                                  id, passwd,kind, name, position, phone, email, zipcode, address1, address2, files,thumbs,filesizes, rdate)
+    VALUES ((SELECT NVL(MAX(managerno), 0)+1 as managerno FROM manager),
+                 #{id}, #{passwd}, #{kind}, #{name}, #{position}, #{phone}, #{email}, #{zipcode}, #{address1}, #{address2}, #{files}, #{thumbs}, #{filesizes}, sysdate)
+  </insert>
+  
+  <select id="list" resultType="ManagerVO">
+      SELECT managerno, id, passwd, kind, name, position, phone, zipcode, address1, address2, files,thumbs,filesizes, rdate
+      FROM manager
+      ORDER BY managerno ASC
+  </select>
+
+  <select id="read" resultType="ManagerVO" parameterType="int">
+    SELECT managerno, id, passwd,kind, name, position, phone, email, zipcode, address1, address2,files,thumbs,filesizes, rdate
+    FROM manager
+    WHERE managerno = #{managerno}
+  </select>
+  
+  <select id="kind_update" resultType="ManagerVO" parameterType="int">
+    SELECT managerno, id, passwd,kind, name, position, phone, email, zipcode, address1, address2,files,thumbs,filesizes, rdate
+    FROM manager
+    WHERE managerno = #{managerno}
+  </select>
+
+  <select id="readById" resultType="ManagerVO" parameterType="String">
+    SELECT managerno, id, passwd,kind, name,position, phone,email, zipcode, address1, address2,files,thumbs,filesizes, rdate
+    FROM manager
+    WHERE id = #{id}
+  </select>
+
+  <update id="update" parameterType="ManagerVO">
+    UPDATE manager
+    SET name=#{name}, position=#{position}, kind=#{kind}, phone=#{phone}, email=#{email}, zipcode=#{zipcode},
+          address1=#{address1}, address2=#{address2}, files=#{files}, thumbs=#{thumbs}, filesizes=#{filesizes}
+    WHERE managerno=#{managerno}
+  </update>  
+  
+  <update id="kind_update2" parameterType="ManagerVO">
+    UPDATE manager
+    SET kind=#{kind}
+    WHERE managerno=#{managerno}
+  </update>
+
+  <!-- 패스워드 변경 -->
+  <update id="passwd_update" parameterType="HashMap">
+    UPDATE manager
+    SET passwd=#{passwd}
+    WHERE managerno=#{managerno}    
+  </update> 
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM manager
+    WHERE managerno=#{managerno}
+  </delete>  
+
+  <select id="login" resultType="int" parameterType="Map">
+    SELECT COUNT(*) as cnt
+    FROM manager
+    WHERE id=#{id} AND passwd=#{passwd}
+  </select>
+  
+  <select id="idsearch" resultType="ManagerVO" parameterType="string">
+    SELECT id,name
+    FROM manager
+    WHERE email = #{email}
+  </select>
+  
+</mapper> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

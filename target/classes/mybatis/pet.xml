@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "pet">
+
+  <insert id="create" parameterType="PetVO">
+     INSERT INTO pet(petno,memberno,name, age, gender, pet_type, neutralization,weight,files,thumbs,filesizes)
+     VALUES ((SELECT NVL(MAX(petno), 0)+1 as petno FROM pet),
+     #{memberno},#{name}, #{age}, #{gender}, #{pet_type}, #{neutralization}, #{weight}, #{files}, #{thumbs}, #{filesizes})
+  </insert>
+  
+  <select id="list" resultType="PetVO">
+      SELECT petno,memberno,name, age, gender, pet_type, neutralization, weight,files,thumbs,filesizes
+      FROM pet
+      ORDER BY petno ASC
+  </select>
+
+  <select id="read" resultType="PetVO" parameterType="int">
+    SELECT petno,memberno,name, age, gender, pet_type, neutralization, weight,files,thumbs,filesizes
+    FROM pet
+    WHERE petno = #{petno}
+  </select>
+
+  <!-- <select id="readById" resultType="PetVO" parameterType="String">
+    SELECT memberno, id, passwd, name, phone, zipcode, address1, address2, rdate
+    FROM member
+    WHERE id = #{id}
+  </select> -->
+
+  <update id="update" parameterType="PetVO">
+    UPDATE pet 
+    SET memberno=#{memberno},name=#{name}, age=#{age}, gender=#{gender}, pet_type=#{pet_type}, neutralization=#{neutralization}, weight=#{weight},
+    files=#{files}, thumbs=#{thumbs}, filesizes=#{filesizes}
+    WHERE petno=#{petno}
+  </update>  
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM pet
+    WHERE petno=#{petno}
+  </delete>  
+
+  
+</mapper> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

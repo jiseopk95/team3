@@ -52,9 +52,6 @@
               <!-- <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Join</a> -->  <!-- 아래처럼 링크 넣으면 됌!  -->
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=' ${pageContext.request.contextPath}/member/create.do'>Join</a>
             </li>
-            <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
-            </li>
           </ul>
         </div>
       </div>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="categrp"> <!-- 테이블명 사용 -->
+  <!-- 
+  insert: INSERT SQL 실행
+  id: Spring에서 호출시 사용
+  parameterType: 전달받는 데이터 객체
+  return: 등록한 레코드 갯수 리턴
+  SQL선언시 ';'은 삭제
+  #{}: ? 동일
+  #{name}: public String getName(){...
+  -->
+  <insert id="create" parameterType="CategrpVO">
+    INSERT INTO categrp(categrpno, classification, name, seqno, visible, rdate)
+    VALUES((SELECT NVL(MAX(categrpno), 0) + 1 as categrpno FROM categrp),
+                #{classification}, #{name}, #{seqno}, #{visible}, sysdate)
+  </insert>  
+
+  <insert id="create_transaction_test" parameterType="CategrpVO">
+    INSERT INTO categrp(categrpno,classification ,name ,seqno ,visible ,rdate) <!-- ERROR 발생 지정 -->
+    VALUES((SELECT NVL(MAX(categrpno), 0) + 1 as categrpno FROM categrp),
+                #{classification}, #{name}, #{seqno}, #{visible}, sysdate)
+  </insert>  
+     
+  <!-- 
+  레코드 갯수 만큼 CategrpVO 객체를 만들어 ArrayList에 저장하여 리턴,
+  List<CategrpVO> list = new ArrayList<CategrpVO>(); 
+  -->
+  <select id="list" resultType="CategrpVO">
+    SELECT categrpno, classification, name, seqno, visible, rdate 
+    FROM categrp
+    ORDER BY seqno ASC
+  </select>
+  
+  <select id="read" resultType="CategrpVO" parameterType="int">
+    SELECT categrpno, classification, name, seqno, visible, rdate 
+    FROM categrp
+    WHERE categrpno = #{categrpno}
+  </select>
+  
+  <update id="update" parameterType="CategrpVO">
+    UPDATE categrp
+    SET classification=#{classification}, name=#{name}, seqno=#{seqno}, visible=#{visible}
+    WHERE categrpno=#{categrpno}
+  </update>
+   
+  <delete id="delete" parameterType="int">
+    DELETE FROM categrp
+    WHERE categrpno = #{categrpno}
+  </delete>
+
+  <!-- 우선순위 상향, 10 -> 1 -->
+  <update id="update_seqno_up" parameterType="int">
+    UPDATE categrp 
+    SET seqno = seqno - 1 
+    WHERE categrpno=#{categrpno}
+  </update>
+
+  <!-- 출력순서 하향, 1 -> 10 -->
+  <update id="update_seqno_down" parameterType="int">
+    UPDATE categrp 
+    SET seqno = seqno + 1 
+    WHERE categrpno=#{categrpno}
+  
+  </update>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
+
