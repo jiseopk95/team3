@@ -83,15 +83,15 @@
           <div class="col-md-4">
             <h4 class="text-uppercase mb-4">Call</h4> 
             <p class="lead mb-0"> 02.1234.5678 <BR> <!-- 전화번호 -->
-             <h5 class="text-uppercase mb-4"> 9AM~8PM </h5> <!-- 영업시간 -->
+             <h5 class="text-uppercase mb-4">월~토 10AM~7PM </h5> <!-- 영업시간 -->
           </div>
         </div>
       </div>
     </footer>
 
-    <div class="copyright py-4 text-center text-white" >
+    <div class="copyright py-4 text-center text-white" style="background-color:#2455c5 !important;">
       <div class="container">
-        <small>Copyright &copy; Your Website 2018</small>
+        <small>Copyright &copy; Animal Hospital Total System 2019 3조</small>
       </div>
     </div>
     
