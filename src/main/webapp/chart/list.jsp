@@ -15,8 +15,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+$(function() {
+  $('#tool-tip').hide();
+  $('#petname').on('click', function() {
+    $('#tool-tip').show();
+    $('#search').css('border', 'solid 2px orange')
+    							.css('border-radius', '10px');
+  });
+	$('#name').on('click', function() {
+	  $('#tool-tip').show();
+    $('#search').css('border', 'solid 2px orange')
+    							.css('border-radius', '10px');
+  });
+})
+
 function deleteOne(chartno) {
-  var chartno1 = chartno
+
   $.ajax({
     url: "./delete.do",
     type: "get",
@@ -66,13 +80,84 @@ function delete_proc(chartno) {
     }
   });
 }
+
+function update(chartno, petno) {
+  
+  var url = './update.do?chartno=' + chartno + '&petno=' + petno; 
+  var win = window.open(url, '차트 수정', 'width=1000px, height=1000px');
+  
+  var x = (screen.width - 500) / 2; // 1000 - 500 = 500 / 2 = 250
+  var y = (screen.height - 350) / 2; // 800 - 350 = 450 / 2 = 225
+  
+  win.moveTo(x, y); //  화면을 가운데로 이동
+}
+
+function check() {
+  if($('#petname').val() == "" || $('#name').val() == "") {
+    alert("보호자명과 동물이름을 모두 검색해주십시오.");
+  } else {
+    $('#frm').submit();
+  }
+}
 </script>
+<style type="text/css">
+/* 출력되는 A 태그 기본 모양 */
+.content a:link{ 
+  text-decoration: none !important; /* 밑줄 삭제 */
+  color: #000000;
+}
+/* A 태그에 마우스가 위치했을 때 */
+.content a:hover{
+  text-decoration: none !important;
+  color: #0080ff;
+  color: #000000;
+  font-weight: bold;
+}
+/* A 태그가 클릭된적이 있는 경우의 모양 */
+.content a:visited {
+  text-decoration: none !important;
+  color: #000000;
+}
+#month_table{
+  margin-top: 30px;
+  margin-bottom: 70px;
+  width: 50%; 
+  
+}
+#tool-tip {
+  font-weight: bold;
+  
+  margin-bottom: 5px;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' >
-<DIV class='content'  style='width: 80%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
+<DIV class='content'  style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
 <div class="title_line">${title }</div>
+<form name='frm' id='frm' method="get" action="./list.do">
+  <input type="hidden" name="managerno" value="${managerno}">
+  
+  <div style='float: right;'>
+  
+    <A href="javascript:location.reload();">새로고침</A>
+    <span class='menu_divide' >│</span> 
+    <c:choose>
+      <c:when test="${param.petname != '' && param.name != '' }">
+        <input type='text' name='petname' id='petname' value='${param.petname }' placeholder="동물 이름" style='width: 25%;'>
+        <input type='text' name='name' id='name' value='${param.name }' placeholder="보호자 성명" style='width: 25%;'>
+      </c:when>
+      <c:otherwise>
+        <input type='text' name='petname' id='petname' value='${param.petname }' placeholder="동물 이름" style='width: 25%;'>
+        <input type='text' name='name' id='name' value='${param.name }' placeholder="보호자 성명" style='width: 25%;'>
+      </c:otherwise>
+    </c:choose>
+    <button type='button' class='btn btn-primary btn-sm' onclick="check();">검색</button>
+    <button type='button' class='btn btn-primary btn-sm'
+                 onclick="location.href='./list.do?managerno=${managerno }'">전체 보기</button>
+  </div>
+</form>
   <TABLE class='table'>
     <colgroup>
       <col style='width: 10%;'/>
@@ -100,17 +185,20 @@ function delete_proc(chartno) {
           <td style='vertical-align: middle; text-align: center ;'>${chartVO.chartno }</td>
           <td style='vertical-align: middle; text-align: center ;'>${chartVO.petname }</td>
           <td style='vertical-align: middle; text-align: center ;'>${chartVO.name }</td>
-          <td style='vertical-align: middle; text-align: center ;'><%-- <a href="./read.do?reservationno=${chartVO.reservationno }"> --%>${chartVO.title }<!-- </a> --></td>
+          <td style='vertical-align: middle; text-align: center ;'><a href="./read.do?chartno=${chartVO.chartno }&petno=${chartVO.petno}&managerno=${managerno }">${chartVO.title }</a></td>
           <td style='vertical-align: middle; text-align: center ;'>${chartVO.sick }</td>
           <td style='vertical-align: middle; text-align: center ;'>${chartVO.rdate }</td>
           <td style='vertical-align: middle; text-align: center ;'>
-            <a href="javascript:update();"><img alt="수정이미지" src="./images/update.png" title="수정" style="width:20px; height:20px;"></a>
+            <a href="./create.do?petno=${chartVO.petno }&managerno=${managerno }"><img alt="등록이미지" src="./images/create.png" title="새로운 차트 등록" style="width:20px; height:20px;"></a>
+            <a href="javascript:update(${chartVO.chartno }, ${chartVO.petno });"><img alt="수정이미지" src="./images/update.png" title="수정" style="width:20px; height:20px;"></a>
             <a href="javascript:deleteOne(${chartVO.chartno })"><img alt="삭제이미지" src="./images/delete.png" title="삭제" style="width:20px; height:20px;"></a>
           </td>
         </tr>
       </c:forEach>
     </tbody>
   </TABLE>
+  <DIV class='bottom_menu'>${paging }</DIV>
+  <br><br>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
 <jsp:include page="/menu/bottom.jsp" flush='false' />

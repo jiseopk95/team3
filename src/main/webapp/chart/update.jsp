@@ -7,13 +7,11 @@
 <meta charset="UTF-8">
 <title>${title }</title>
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <script type="text/javascript">
 $(function() {
   var gender = "${petVO.gender}";
@@ -51,44 +49,43 @@ function check() {
 </script>
 </head>
 <body>
-<jsp:include page="/menu/top.jsp" flush='false' />
+
 <DIV class='container'>
-<DIV class='content' style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'>
+<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
 <div class="title_line">${title }</div>
 
-  <form name='frm' id='frm' method='POST' action='./create.do'>
+  <form name='frm' id='frm' method='POST' action='./update.do'>
+    <input type="hidden" name="chartno" value="${chartVO.chartno }">
     <input type="hidden" name="petno" value="${petVO.petno }">
-    <input type="hidden" name="memberno" value="${petVO.memberno }">
-    <input type="hidden" name="managerno" value="${managerno}">
     
     <fieldset id="info">
       <legend>기본사항</legend>
       <table class="chart_table">
         <tr>
-          <th>제목</th>
-          <td><input type='text' class='title' name='title' id="title" value=''></td>
-          <th>보호자명</th>
-          <td><input type='text' class='name' name='name' value='${memberVO.name }' ></td>
-          <th>보호자 전화번호</th>
-          <td><input type='text' class='phone' name='phone' value='${memberVO.phone }' ></td>
+          <td>제목</td>
+          <td><input type='text' class='title' name='title' value='${chartVO.title}'></td>
+          <td>보호자명</td>
+          <td><input type='text' class='name' name='name' value='${chartVO.name }' disabled></td>
+          <td>보호자 전화번호</td>
+          <td><input type='text' class='phone' name='phone' value='${chartVO.phone }' disabled></td>
         </tr>
         <tr>
-          <th>동물이름</th>
-          <td><input type='text' class='petname' name='petname' value='${petVO.name }' ></td>
-          <th>성별</th>
+          <td>동물이름</td>
+          <td><input type='text' class='petname' name='petname' value='${chartVO.name }' disabled></td>
+          <td>성별</td>
           <td>
             <input type='radio' class='gender' name='gender' id='gender_M' value='M' >남
-            <input type='radio' class='gender' name='gender' id='gender_F' value='F' >여  
+            <input type='radio' class='gender' name='gender' id='gender_F' value='F'>여  
           </td>
-          <th>나이</th>
-          <td><input type='text' class='age' name='age' id='age' value='${petVO.age }' ></td>
+          <td>나이</td>
+          <td><input type='text' class='age' name='age' value='${petVO.age }' disabled></td>
         </tr>
         <tr>
-          <th>품종</th>
-          <td><input type='text' class='pet_type' name='pet_type' value='${petVO.pet_type }' ></td>
-          <th>몸무게</th>
-          <td><input type='text' class='weight' name='weight' id='weight' value='${petVO.weight }'>kg</td>
-          <th>중성화</th>
+          <td>품종</td>
+          <td><input type='text' class='pet_type' name='pet_type' value='${petVO.pet_type }' disabled></td>
+          <td>몸무게</td>
+          <td><input type='text' class='weight' name='weight' value='${petVO.weight }'>kg</td>
+          <td>중성화</td>
           <td>
             <input type='radio' class='neutralization' id='neutralization_Y' name='neutralization' value='Y'>Y
             <input type='radio' class='neutralization' id='neutralization_N' name='neutralization' value='N' >N
@@ -101,19 +98,19 @@ function check() {
       <legend>진료내용</legend>
       <table class="chart_table">
         <tr>
-          <th>병명</th>
-          <td><input type='text' class='sick' id='sick' name='sick' value='감기' ></td>
+          <td>병명</td>
+          <td><input type='text' class='sick' id='sick' name='sick' value='${chartVO.sick }' ></td>
         </tr>
         <tr>
-          <th>입원</th>
+          <td>입원</td>
           <td>
             <input type='radio' class='stay' name='stay' value='Y'>Y
             <input type='radio' class='stay' name='stay' value='N' checked>N
           </td>
         </tr>
         <tr>
-          <th>약처방</th>
-          <td><input type='text' class='medicine' id='medicine' name='medicine' value='감기약'></td>
+          <td>약처방</td>
+          <td><input type='text' class='medicine' id='medicine' name='medicine' value='${chartVO.medicine }'></td>
         </tr>
       </table>
     </fieldset>
@@ -121,16 +118,17 @@ function check() {
     <fieldset id="etc">
       <legend>진료사항 기록</legend>
       <textarea rows="20" cols="100" class="etc" id='etc' name="etc" >
-      특별한 내용 없음
+      ${chartVO.etc }
       </textarea>
     </fieldset>
     <button type="button" class="btn btn-primary" onclick="location.href='./list.do?managerno=${managerno}'"  style="float: right;">취소</button>
-    <button type="button" class="btn btn-primary" onclick="check();" style="float: right; margin-right: 1%;">등록</button>
+    <button type="button" class="btn btn-primary" onclick="check();" style="float: right; margin-right: 1%;">수정</button>
   </form>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
+
 </body>
 </html>
+
 
 

@@ -22,6 +22,8 @@ public class ChartVO {
   private int chartno;
 //등록한 관계자번호
   private int managerno;
+//  주인 멤버 번호
+  private int memberno;
 //차트 대상인 반려동물 번호
   private int petno;
 //  동물이름 
@@ -38,6 +40,8 @@ public class ChartVO {
   private String etc;
 //  보호자 이름
   private String name;
+//  보호자 전화번호
+  private String phone;
 //  등록일
   private String rdate;
   
@@ -109,6 +113,14 @@ public class ChartVO {
     this.petno = petno;
   }
 
+  public int getMemberno() {
+    return memberno;
+  }
+
+  public void setMemberno(int memberno) {
+    this.memberno = memberno;
+  }
+
   public String getPetname() {
     return petname;
   }
@@ -123,6 +135,14 @@ public class ChartVO {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 
   public String getRdate() {
