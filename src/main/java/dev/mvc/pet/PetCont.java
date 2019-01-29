@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import dev.mvc.member.MemberVO;
 import dev.mvc.pet.PetVO;
 
 import nation.web.tool.Tool;
@@ -324,6 +326,98 @@ public class PetCont {
     
     mav.setViewName("redirect:/pet/delete_message.jsp");
    
+    return mav;
+  }
+  /**
+   * 검색 목록
+   * 
+   * @param categoryno
+   * @param word
+   * @return
+   */
+  @RequestMapping(value = "/pet/list_search.do", method = RequestMethod.GET)
+  public ModelAndView list_search(String name) {
+    // System.out.println("--> list_by_category(int categoryno, String
+    // word_find) GET called.");
+    ModelAndView mav = new ModelAndView();
+    // mav.setViewName("/contents/list_by_categoryno"); //
+    // webapp/contents/list_by_categoryno.jsp
+
+    // 검색 기능 추가, webapp/contents/list_by_category_search.jsp
+    mav.setViewName("/pet/list_search");
+
+    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("name", name); // #{word}
+
+    // System.out.println("categoryno: " + categoryno);
+    // System.out.println("word_find: " + word_find);
+
+    // 검색 목록
+    List<PetVO> list = petProc.list_search(hashMap);
+    mav.addObject("list", list);
+
+    // 검색된 레코드 갯수
+    int search_count = petProc.search_count(hashMap);
+    mav.addObject("search_count", search_count);
+
+    // mav.addObject("word", word);
+
+    return mav;
+  }
+  
+  /**
+   * 자신의 펫 리스트 뜨게
+   * @param memberno
+   * @return
+   */
+  /*@RequestMapping(value="/pet/pet_list.do", method=RequestMethod.GET)
+  public ModelAndView pet_list(int memberno){
+    // System.out.println("--> read(int memberno) GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/pet/pet_list"); // webapp/member/read.jsp
+    
+    PetVO petVO = petProc.pet_list(memberno);
+    mav.addObject("petVO", petVO);
+    
+    return mav;
+  }  */
+  
+  /**
+   * 검색 목록
+   * 
+   * @param categoryno
+   * @param word
+   * @return
+   */
+  @RequestMapping(value = "/pet/pet_list.do", method = RequestMethod.GET)
+  public ModelAndView pet_list(int memberno) {
+    // System.out.println("--> list_by_category(int categoryno, String
+    // word_find) GET called.");
+    ModelAndView mav = new ModelAndView();
+    // mav.setViewName("/contents/list_by_categoryno"); //
+    // webapp/contents/list_by_categoryno.jsp
+
+    // 검색 기능 추가, webapp/contents/list_by_category_search.jsp
+    mav.setViewName("/pet/pet_list");
+
+    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("memberno", memberno); // #{word}
+
+    // System.out.println("categoryno: " + categoryno);
+    // System.out.println("word_find: " + word_find);
+
+    // 검색 목록
+    List<PetVO> pet_list = petProc.pet_list(hashMap);
+    mav.addObject("pet_list", pet_list);
+
+    // 검색된 레코드 갯수
+    int search_count2 = petProc.search_count2(hashMap);
+    mav.addObject("search_count2", search_count2);
+
+    // mav.addObject("word", word);
+
     return mav;
   }
   

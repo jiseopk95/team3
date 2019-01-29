@@ -31,7 +31,7 @@
 <DIV class='container' style='width: 100%;'>
 
 <DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
-<DIV class='title_line' style='width: 20%;'>마이페이지</DIV>
+<DIV class='title_line' style='width: 20%;'>관리자 정보 조회</DIV>
   
    <ASIDE style='float: right;'>
    <A href="./passwd_update.do?managerno=${managerno}"><IMG src='./images/edit_info.png'  width="20" height="20" title='패스워드 변경' >&nbsp 패스워드 변경</A>

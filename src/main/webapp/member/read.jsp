@@ -30,19 +30,14 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
 <DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
-<DIV class='title_line' style='width: 20%;'>마이페이지</DIV>
+<DIV class='title_line' style='width: 20%;'>정보 조회</DIV>
   
-   <ASIDE style='float: right;'>
-   <A href="./passwd_update.do?memberno=${memberno}"><IMG src='./images/edit_info.png'  width="20" height="20" title='패스워드 변경' >&nbsp 패스워드 변경</A>
-    <span class='menu_divide' >│</span> 
+<!--    <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='../index.jsp'>HOME</A>
-  </ASIDE> 
-<br>
-  <div class='menu_line'></div>
+  </ASIDE>  -->
+<!--   <div class='menu_line'></div> -->
   <DIV id='main_panel'></DIV>
-
+<!--  -->
   <!-- Modal -->
   <div class="modal fade" id="modal_panel" role="dialog">
     <div class="modal-dialog">
@@ -81,6 +76,7 @@
 <br>
   <FORM name='frm' id='frm' method='POST' action='./update.do' 
               onsubmit="return send();" class="form-horizontal">
+    <img class="img-fluid mb-5 d-block mx-auto" style='margin-top:5%; width: 20%; height: 20%;' src="../resources/img/profile.png" > <br> 
     <input type='hidden' name='memberno' id='memberno' value='${memberVO.memberno }'>          
 
       <label for="id" >아이디</label> ${memberVO.id }    <br><br>    
@@ -96,6 +92,8 @@
       <label for="address1" >주소</label>    ${memberVO.address1 } <br><br>
 
       <label for="address2" >상세 주소</label>   ${memberVO.address2 }  <br><br>
+      
+      
     
 
 <!-- ----- DAUM 우편번호 API 시작 ----- -->
@@ -165,11 +163,11 @@
     }
 </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
-<br>
+<br><br>
     
         <!-- <button type="submit" class="btn btn-primary">수정</button> -->
-        <button type="button" onclick="location.href='./update.do?memberno=${memberno}'" class="btn btn-secondary">수정</button>
-
+        <button type="button" onclick="location.href='./update.do?memberno=${memberno}'" class="btn btn-primary">정보 수정</button>
+        <button type="button" onclick="./passwd_update.do?memberno=${memberno}" class="btn btn-secondary">패스워드 변경</button>
   </FORM>
 
 </DIV> <!-- content END -->

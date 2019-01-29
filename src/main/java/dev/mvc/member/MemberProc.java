@@ -27,6 +27,12 @@ public class MemberProc implements MemberProcInter {
     int cnt = memberDAO.checkId(id);
     return cnt;
   }
+  
+  @Override
+  public int checkemail(String email) {
+    int cnt = memberDAO.checkemail(email);
+    return cnt;
+  }
 
   @Override
   public int create(MemberVO memberVO) {
@@ -60,12 +66,7 @@ public class MemberProc implements MemberProcInter {
     return memberVO;
   }
   
-  @Override
-  public MemberVO idsearch(String email) {
-    MemberVO memberVO = memberDAO.idsearch(email);
-    
-    return memberVO;
-  }
+
 
 
   @Override
@@ -131,6 +132,52 @@ public class MemberProc implements MemberProcInter {
     return memberDAO.search_count(hashMap);
   }
   
+  @Override
+  public List<MemberVO> idsearch(HashMap hashMap) {
+    List<MemberVO> idsearch = memberDAO.idsearch(hashMap);
+    
+    int count = idsearch.size();
+    for (int i=0; i < count; i++) {
+      MemberVO memberVO = idsearch.get(i);
+    }
+    
+    return idsearch;
+  }
+  
+  @Override
+  public List<MemberVO> list_id() {
+    List<MemberVO> list_id = memberDAO.list_id();
+      
+    return list_id;
+  }
+  
+  @Override
+  public int search_count2(HashMap hashMap) {
+    return memberDAO.search_count2(hashMap);
+  }
+  
+  @Override
+  public List<MemberVO> passwdsearch(HashMap hashMap) {
+    List<MemberVO> passwdsearch = memberDAO.passwdsearch(hashMap);
+    
+    int count = passwdsearch.size();
+    for (int i=0; i < count; i++) {
+      MemberVO memberVO = passwdsearch.get(i);
+    }
+    
+    return passwdsearch;
+  }
+  @Override
+  public List<MemberVO> list_passwd() {
+    List<MemberVO> list_id = memberDAO.list_passwd();
+      
+    return list_id;
+  }
+  
+  @Override
+  public int search_count3(HashMap hashMap) {
+    return memberDAO.search_count3(hashMap);
+  }
 }
 
 

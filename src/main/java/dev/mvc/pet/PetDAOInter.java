@@ -1,7 +1,10 @@
 package dev.mvc.pet;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import dev.mvc.member.MemberVO;
 
 public interface PetDAOInter {
   /**
@@ -45,6 +48,27 @@ public interface PetDAOInter {
    */
   public int delete(int petno);
 
+  /**
+   * 검색 목록
+   * @param categoryno
+   * @return
+   */
+  public List<PetVO> list_search(HashMap hashMap);
+
+  /**
+   * category별 검색된 레코드 갯수
+   * @return
+   */
+  public int search_count(HashMap hashMap);
+  
+  /**
+   * 펫 조회
+   * @param mno
+   * @return
+   */
+  /*public PetVO pet_list(int memberno);*/
+  public List<PetVO> pet_list(HashMap hashMap);
+  public int search_count2(HashMap hashMap);
 }
 
 

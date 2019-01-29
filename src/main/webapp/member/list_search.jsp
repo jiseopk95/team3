@@ -27,22 +27,21 @@
 </head> 
 
 <body>
-<DIV class='container' style='width: 100%;'>
 <jsp:include page="/menu/top.jsp" flush='false' />
-<DIV class='content' style='width: 80%;'>
+<DIV class='container' style='width: 100%;'>
+
+<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
  <form name='frm' id='frm' method="get" action="./list_search.do">
   <DIV class='title_line' style='width: 20%;'>회원목록</DIV>
   
    <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='../index.jsp'>HOME</A>
+    <A href='../member/list.do'>전체 회원보기</A>
     
-    <A href='./list.do?memberno=${memberVO.memberno }'>${memberVO.name }</A>
+    <A href='./list_search.do?memberno=${memberVO.memberno }'>${memberVO.name }</A>
 
     <c:if test="${param.word.length() > 0}"> 
       >
-      [${param.name}] 검색 목록(${search_count } 건) 
+      [${param.name}] 검색 목록(${search_count2 } 건) 
     </c:if>
     
     <span class='menu_divide' >│</span> 
@@ -125,9 +124,13 @@
 </DIV>
 <br>
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
+
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
+
 </html>
+
+
   

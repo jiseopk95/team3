@@ -83,21 +83,21 @@
 
     <input type='hidden' name='memberno' id='memberno' value='${memberno }'>
 
-    <br><br> 
+    <br><br>  
       
-       <IMG style='border-radius: 50%' id='files' src='./storage/${petVO.files }'> <br> <br>
+       <IMG style='border-radius: 50%;width: 30%;height: 30%; ' id='files' src='./storage/${petVO.files }'> <br> <br><br>
        
-       <label for="name" >이름</label> ${petVO.name } <br>
+       <label for="name" >이름</label> ${petVO.name } <br><br>
        
-      <label for="age" >나이</label> ${petVO.age } <br>
+      <label for="age" >나이</label> ${petVO.age } <br><br>
 
-      <label for="gender" >성별</label> ${petVO.gender } <br>
+      <label for="gender" >성별</label> ${petVO.gender } <br><br>
                 
-      <label for="pet_type" >종류</label> ${petVO.pet_type } <br>
+      <label for="pet_type" >종류</label> ${petVO.pet_type } <br><br>
 
-      <label for="neutralization" >중성화 여부</label> ${petVO.neutralization } <br>
+      <label for="neutralization" >중성화 여부</label> ${petVO.neutralization } <br><br>
 
-      <label for="weight" >체중</label> ${petVO.weight }   <br>
+      <label for="weight" >체중</label> ${petVO.weight }   <br><br>
         
       
     <br><br>

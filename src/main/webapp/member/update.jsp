@@ -87,10 +87,8 @@
      <br><br>
     <%-- <input type='hidden' name='kind' id='kind' value='${memberVO.kind }'>   --%>             
 
-     <label for="name" >성명</label>    
+     <label for="name" >성명</label> ${memberVO.name }   
      
-        <input type='text' name='name' id='name' 
-                   value='${memberVO.name }'required="required" style='width: 20%;' placeholder="성명">  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
      <br><br>
     
       <label for="phone" >전화번호</label>    

@@ -16,6 +16,7 @@ public interface MemberProcInter {
    */
   public int checkId(String id);
   
+  public int checkemail(String email);
   /**
   회원 등록
   @param memberVO
@@ -42,7 +43,7 @@ public interface MemberProcInter {
    * @return
    */
   public MemberVO read(int memberno);
-  public MemberVO idsearch(String email);
+
 
   
   /**
@@ -95,6 +96,18 @@ public interface MemberProcInter {
    * @return
    */
   public int search_count(HashMap hashMap);
+  
+  public List<MemberVO> idsearch(HashMap hashMap);
+  
+  public List<MemberVO> list_id();
+  
+  public int search_count2(HashMap hashMap);
+  
+  public List<MemberVO> passwdsearch(HashMap hashMap);
+  
+  public List<MemberVO> list_passwd();
+  
+  public int search_count3(HashMap hashMap);
 }
 
 

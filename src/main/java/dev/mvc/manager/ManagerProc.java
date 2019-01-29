@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import dev.mvc.manager.File2VO;
 import dev.mvc.manager.ManagerVO;
+import dev.mvc.member.MemberVO;
 import nation.web.tool.Tool;
 
 @Component("dev.mvc.manager.ManagerProc")
@@ -155,6 +156,23 @@ public class ManagerProc implements ManagerProcInter {
     } 
 
     return file_list;
+  }
+  
+  @Override
+  public List<ManagerVO> list_search(HashMap hashMap) {
+    List<ManagerVO> list = managerDAO.list_search(hashMap);
+   
+    int count = list.size();
+    for (int i=0; i < count; i++) {
+      ManagerVO managerVO = list.get(i);
+    }
+    
+    return list;
+  }
+
+  @Override
+  public int search_count(HashMap hashMap) {
+    return managerDAO.search_count(hashMap);
   }
   
 }

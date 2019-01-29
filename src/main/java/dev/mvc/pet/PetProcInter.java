@@ -1,6 +1,7 @@
 package dev.mvc.pet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +57,28 @@ public interface PetProcInter {
   public int delete(int petno);
   
   ArrayList<FileVO> getThumbs(PetVO petVO);
+  
+  /**
+   * 검색 목록
+   * @param categoryno
+   * @return
+   */
+  public List<PetVO> list_search(HashMap hashMap);
+
+  /**
+   * category별 검색된 레코드 갯수
+   * @return
+   */
+  public int search_count(HashMap hashMap);
+  
+  /**
+   * 조회
+   * @param mno
+   * @return
+   */
+  /*public PetVO pet_list(int memberno);*/
+  public List<PetVO> pet_list(HashMap hashMap);
+  public int search_count2(HashMap hashMap);
 
 }
 

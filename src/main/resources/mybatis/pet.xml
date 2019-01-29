@@ -40,7 +40,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     DELETE FROM pet
     WHERE petno=#{petno}
   </delete>  
-
+  
+  <!-- category별 검색된 레코드 목록 -->
+  <select id="list_search" resultType="PetVO" parameterType="HashMap">
+    SELECT petno,memberno,name, age, gender, pet_type, neutralization,weight,files,thumbs,filesizes
+    FROM pet
+    WHERE name LIKE '%' || #{name} || '%'  
+    ORDER BY petno DESC
+  </select>
+  
+  <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM pet
+    WHERE name LIKE '%' || #{name} || '%'  
+  </select>
+  
+   <!-- <select id="pet_list" resultType="PetVO" parameterType="int">
+    SELECT petno,memberno,name, age, gender, pet_type, neutralization, weight,files,thumbs,filesizes
+    FROM pet
+    WHERE memberno = #{memberno}
+  </select> -->
+  
+  <!-- category별 검색된 레코드 목록 -->
+  <select id="pet_list" resultType="PetVO" parameterType="HashMap">
+    SELECT petno,memberno,name, age, gender, pet_type, neutralization,weight,files,thumbs,filesizes
+    FROM pet
+    WHERE memberno = #{memberno}
+    ORDER BY petno DESC
+  </select>
+  
+  <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count2" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM pet
+    WHERE memberno = #{memberno}
+  </select>
   
 </mapper> 
  

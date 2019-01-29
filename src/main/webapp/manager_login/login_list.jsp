@@ -30,12 +30,15 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
 <DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
-  <DIV class='title_line' style='width: 20%;'>로그인 기록</DIV>
+  <DIV class='title_line' style='width: 20%;'>관리자 로그인 기록</DIV>
   
    <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
     <A href='../index.jsp'>HOME</A>
+    
+    <A href='./list.do?manager_loginno=${manager_loginVO.manager_loginno }'>${manager_loginVO.manager_loginno }</A>
+    
   </ASIDE> 
 <br>
   <div class='menu_line'></div>
@@ -44,31 +47,31 @@
   <table class="table" style='width: 100%;'>
   <%-- <caption>회원 목록</caption> --%>
   <colgroup>
-    <col style='width: 15%;'/>
-    <col style='width: 15%;'/>
-    <col style='width: 30%;'/>
+    <col style='width: 20%;'/>
+    <col style='width: 20%;'/>
+    <col style='width: 20%;'/>
     <col style='width: 20%;'/>
     <col style='width: 20%;'/>
     
   </colgroup>
   <TR>
-    <TH class='th'>로그인번호</TH>
-    <TH class='th'>회원번호</TH>
-    <TH class='th'>IP 주소</TH>
-    <TH class='th'>날짜</TH>
-    <TH class='th'>기타</TH>
+    <TH class='th'style='text-align: center;'>&nbsp로그인번호</TH>
+    <TH class='th'style='text-align: center;'>회원번호</TH>
+    <TH class='th'style='text-align: center;'>IP 주소</TH>
+    <TH class='th'style='text-align: center;'>날짜</TH>
+    <TH class='th'style='text-align: center;'>기타</TH>
   </TR>
   
-  <c:forEach var="memberVO" items="${list }">
-    <c:set var="memberno" value ="${memberVO.memberno }" /> 
+  <c:forEach var="manager_loginVO" items="${list }">
+    <c:set var="manager_loginno" value ="${manager_loginVO.manager_loginno }" /> 
   <TR>
-    <TD class='td'>${memberno}</TD>
-    <TD class='td'>${sessionScope.id}"</TD>
-    <TD class='td'>${memberVO.name}</TD>
-    <TD class='td'>${memberVO.rdate.substring(0, 10)}</TD> <!-- 년월일 -->
-    <TD class='td'>
-      <IMG src='./images/update.png'  width="20" height="20"  title='수정'></A>
-      <IMG src='./images/delete.png'  width="20" height="20"  title='삭제'></A>
+    <TD class='td' style='text-align: center;'>${manager_loginno}</TD>
+    <%-- <TD class='td'style='text-align: center;'>${manager_loginVO.managerno}</TD> --%>
+    <TD class='td' style='text-align: center;'><A href="../manager/read.do?managerno= ${manager_loginVO.managerno}">${manager_loginVO.managerno}</A></TD>
+    <TD class='td'style='text-align: center;'>${manager_loginVO.ip}</TD>
+    <TD class='td'style='text-align: center;'>${manager_loginVO.rdate.substring(0, 10)}</TD> <!-- 년월일 -->
+    <TD class='td'style='text-align: center;'>
+    <A href="./delete.do?manager_loginno=${manager_loginno}"><IMG src='./images/delete.png'  width="20" height="20"  title='삭제'></A>
     </TD>
     
   </TR>
