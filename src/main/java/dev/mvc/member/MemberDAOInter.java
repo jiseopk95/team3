@@ -13,6 +13,7 @@ public interface MemberDAOInter {
    * @return 중복 아이디 갯수
    */
   public int checkId(String id);
+  public int checkemail(String email);
   
   /**
   회원 등록
@@ -33,7 +34,7 @@ public interface MemberDAOInter {
    * @return
    */
   public MemberVO read(int memberno);
-  public MemberVO idsearch(String email);
+
   
 
   /**
@@ -84,6 +85,19 @@ public interface MemberDAOInter {
    * @return
    */
   public int search_count(HashMap hashMap);
+  
+  public List<MemberVO> idsearch(HashMap hashMap);
+  
+  public List<MemberVO> list_id();
+  
+  public int search_count2(HashMap hashMap);
+  
+  public List<MemberVO> passwdsearch(HashMap hashMap);
+  
+  public List<MemberVO> list_passwd();
+  
+  public int search_count3(HashMap hashMap);
+  
   
 }
 

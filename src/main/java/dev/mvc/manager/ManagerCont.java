@@ -1,6 +1,7 @@
 package dev.mvc.manager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -21,13 +22,21 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dev.mvc.manager.ManagerVO;
+import dev.mvc.manager_login.Manager_loginProcInter;
+import dev.mvc.manager_login.Manager_loginVO;
 import dev.mvc.member.MemberVO;
+import dev.mvc.member_login.Member_loginProcInter;
+import dev.mvc.member_login.Member_loginVO;
 import dev.mvc.manager.File2VO;
 import nation.web.tool.Tool;
 import nation.web.tool.Upload;
 
 @Controller
 public class ManagerCont {
+  @Autowired
+  @Qualifier("dev.mvc.manager_login.Manager_loginProc")
+  private Manager_loginProcInter manager_loginProc = null;
+  
   @Autowired
   @Qualifier("dev.mvc.manager.ManagerProc")
   private ManagerProcInter managerProc = null;
@@ -571,6 +580,20 @@ public class ManagerCont {
       response.addCookie(ck_passwd_save);
       // -------------------------------------------------------------------
       
+     // 로그인 내역 추가
+
+      Manager_loginVO manager_loginVO=new Manager_loginVO();
+      
+      /**
+       * member_loginno,memberno,ip,rdate
+       */
+      
+      int managerno=old_managerVO.getManagerno();
+      manager_loginVO.setManagerno(managerno);
+      manager_loginVO.setIp(request.getRemoteAddr());
+      
+      int count=manager_loginProc.create(manager_loginVO);
+      
       mav.setViewName("redirect:/index.do"); // 확장자 명시 
       
     }
@@ -598,7 +621,44 @@ public class ManagerCont {
     
     return mav;
   }
+  
+  /**
+   * 검색
+   * 
+   * @param categoryno
+   * @param word
+   * @return
+   */
+  @RequestMapping(value = "/manager/list_search.do", method = RequestMethod.GET)
+  public ModelAndView list_search(String name) {
+    // System.out.println("--> list_by_category(int categoryno, String
+    // word_find) GET called.");
+    ModelAndView mav = new ModelAndView();
+    // mav.setViewName("/contents/list_by_categoryno"); //
+    // webapp/contents/list_by_categoryno.jsp
 
+    // 검색 기능 추가, webapp/contents/list_by_category_search.jsp
+    mav.setViewName("/manager/list_search");
+
+    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("name", name); // #{word}
+
+    // System.out.println("categoryno: " + categoryno);
+    // System.out.println("word_find: " + word_find);
+
+    // 검색 목록
+    List<ManagerVO> list = managerProc.list_search(hashMap);
+    mav.addObject("list", list);
+
+    // 검색된 레코드 갯수
+    int search_count = managerProc.search_count(hashMap);
+    mav.addObject("search_count", search_count);
+
+    // mav.addObject("word", word);
+
+    return mav;
+  }
   
 }
 

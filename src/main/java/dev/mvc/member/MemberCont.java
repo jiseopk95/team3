@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dev.mvc.member_login.Member_loginVO;
+import dev.mvc.member_login.Member_loginProcInter;
+/*import dev.mvc.member_login.Member_loginVO;*/
 import dev.mvc.pet.PetVO;
+/*import nation.web.login.LoginVO;*/
 import nation.web.tool.Tool;
 
 @Controller
@@ -26,6 +30,10 @@ public class MemberCont {
   @Autowired
   @Qualifier("dev.mvc.member.MemberProc")
   private MemberProcInter memberProc = null;
+  
+  @Autowired
+  @Qualifier("dev.mvc.member_login.Member_loginProc")
+  private Member_loginProcInter member_loginProc = null;
    
   public MemberCont(){
     System.out.println("--> MemberCont created.");
@@ -60,6 +68,25 @@ public class MemberCont {
   }
   
   /**
+   * 중복 이메일 검사
+   * http://localhost:9090/ojt/member/checkId.do?id=user1
+   * 결과: {"cnt":1}
+   * @param id
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/member/checkemail.do", 
+                           method = RequestMethod.GET, 
+                           produces = "text/plain;charset=UTF-8")
+  public String checkemail(String email) {
+    JSONObject json = new JSONObject();
+    int cnt = memberProc.checkemail(email);
+    
+    json.put("cnt", cnt);
+    return json.toString();
+  }
+  
+  /**
    * 회원 가입 처리
    * @param redirectAttributes
    * @param request
@@ -72,7 +99,7 @@ public class MemberCont {
                                         MemberVO memberVO){
     // System.out.println("--> update() POST called.");
     ModelAndView mav = new ModelAndView();
-    
+   
     int count = memberProc.checkId(memberVO.getId());
     
     if (count == 1) { // ID 중복시 메시지 출력
@@ -81,7 +108,7 @@ public class MemberCont {
       
     } else {
       count = memberProc.create(memberVO); // 등록
- 
+     
       redirectAttributes.addAttribute("sw", "create");
       redirectAttributes.addAttribute("count", count); // 1 or 0
     }
@@ -120,19 +147,6 @@ public class MemberCont {
     
     return mav;
   }  
-  
-  @RequestMapping(value="/member/idsearch.do", method=RequestMethod.GET)
-  public ModelAndView idsearch(String email){
-    // System.out.println("--> read(int memberno) GET called.");
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/member/idsearch"); // webapp/member/read.jsp
-    
-    MemberVO memberVO = memberProc.idsearch(email);
-    mav.addObject("memberVO", memberVO);
-      
-    return mav;
-  }  
-  
   
   @RequestMapping(value="/member/update.do", method=RequestMethod.GET)
   public ModelAndView update(int memberno){
@@ -340,7 +354,7 @@ public class MemberCont {
       
     } else { // 패스워드 일치하는 경우
       MemberVO old_memberVO = memberProc.readById(id);
-
+     
       session.setAttribute("memberno",  old_memberVO.getMemberno()); // session 내부 객체
       session.setAttribute("id", id);
       session.setAttribute("passwd", passwd);
@@ -382,6 +396,21 @@ public class MemberCont {
       response.addCookie(ck_passwd_save);
       // -------------------------------------------------------------------
       
+      
+      // 로그인 내역 추가
+
+      Member_loginVO member_loginVO=new Member_loginVO();
+      
+      /**
+       * member_loginno,memberno,ip,rdate
+       */
+      
+      int memberno=old_memberVO.getMemberno();
+      member_loginVO.setMemberno(memberno);
+      member_loginVO.setIp(request.getRemoteAddr());
+      
+      int count=member_loginProc.create(member_loginVO);
+      
       mav.setViewName("redirect:/index.do"); // 확장자 명시 
       
     }
@@ -417,7 +446,7 @@ public class MemberCont {
    * @return
    */
   @RequestMapping(value = "/member/list_search.do", method = RequestMethod.GET)
-  public ModelAndView list_search(int memberno, String name) {
+  public ModelAndView list_search(String name) {
     // System.out.println("--> list_by_category(int categoryno, String
     // word_find) GET called.");
     ModelAndView mav = new ModelAndView();
@@ -429,7 +458,6 @@ public class MemberCont {
 
     // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
-    hashMap.put("memberno", memberno); // #{categoryno}
     hashMap.put("name", name); // #{word}
 
     // System.out.println("categoryno: " + categoryno);
@@ -443,13 +471,93 @@ public class MemberCont {
     int search_count = memberProc.search_count(hashMap);
     mav.addObject("search_count", search_count);
 
-    MemberVO memberVO = memberProc.read(memberno);
-    mav.addObject("memberVO", memberVO);
-
     // mav.addObject("word", word);
 
     return mav;
   }
+  
+  @RequestMapping(value="/member/idsearch.do", method=RequestMethod.GET)
+  public ModelAndView idsearch(String name, String email){
+    // System.out.println("--> read(int memberno) GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/member/idsearch"); // webapp/member/read.jsp
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("name", name); // #{word}
+    hashMap.put("email", email); // #{word}
+    
+    List<MemberVO> idsearch = memberProc.idsearch(hashMap);
+    mav.addObject("idsearch", idsearch);
+   
+    
+    int search_count2 = memberProc.search_count2(hashMap);
+    System.out.println("search_count2: " + search_count2 );
+    mav.addObject("search_count2", search_count2);
+    
+   
+    
+   /* MemberVO memberVO = memberProc.idsearch(email);
+    mav.addObject("memberVO", memberVO);*/
+      
+    return mav;
+  }  
+  
+  /**
+   * 아이디 찾기에 쓸 리스트
+   * @param session
+   * @return
+   */
+  @RequestMapping(value="/member/list_id.do", method=RequestMethod.GET)
+  public ModelAndView list_id(HttpSession session){
+    // System.out.println("--> create() GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/member/list_id"); // webapp/member/list.jsp
+
+      List<MemberVO> list_id = memberProc.list_id();
+      mav.addObject("list_id", list_id);
+    
+    return mav;
+  }  
+  @RequestMapping(value="/member/passwdsearch.do", method=RequestMethod.GET)
+  public ModelAndView passwdsearch(String name, String id, String email){
+    // System.out.println("--> read(int memberno) GET called.");
+    ModelAndView mav = new ModelAndView();
+    MemberVO memberVO=new MemberVO();
+    mav.setViewName("/member/passwdsearch"); // webapp/member/read.jsp
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("name", name); // #{word}
+    hashMap.put("id", id); // #{word}
+    hashMap.put("email", email); // #{word}
+    
+    List<MemberVO> passwdsearch = memberProc.passwdsearch(hashMap);
+    mav.addObject("passwdsearch", passwdsearch);
+    
+    int search_count3 = memberProc.search_count3(hashMap);
+    mav.addObject("search_count3", search_count3);
+    
+   /* MemberVO memberVO = memberProc.idsearch(email);
+    mav.addObject("memberVO", memberVO);*/
+      
+    return mav;
+  }  
+  
+  /**
+   * 아이디 찾기에 쓸 리스트
+   * @param session
+   * @return
+   */
+  @RequestMapping(value="/member/list_passwd.do", method=RequestMethod.GET)
+  public ModelAndView list_passwd(HttpSession session){
+    // System.out.println("--> create() GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/member/list_passwd"); // webapp/member/list.jsp
+
+      List<MemberVO> list_passwd = memberProc.list_passwd();
+      mav.addObject("list_passwd", list_passwd);
+    
+    return mav;
+  }  
   
 }
 

@@ -23,7 +23,7 @@
                              dev.mvc.beauty,
                              dev.mvc.categrp,dev.mvc.category,dev.mvc.review
                              dev.mvc.choice,dev.mvc.survey,dev.mvc.surveyitem,dev.mvc.surveyparty,
-                             dev.mvc.manager,dev.mvc.member,dev.mvc.pet"/>
+                             dev.mvc.manager,dev.mvc.member,dev.mvc.pet,dev.mvc.manager_login,dev.mvc.member_login"/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
   

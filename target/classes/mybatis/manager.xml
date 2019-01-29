@@ -78,6 +78,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE email = #{email}
   </select>
   
+  <!-- category별 검색된 레코드 목록 -->
+  <select id="list_search" resultType="ManagerVO" parameterType="HashMap">
+    SELECT managerno, id, passwd,kind, name, position, phone, email, zipcode, address1, address2,files,thumbs,filesizes, rdate
+    FROM manager
+    WHERE name LIKE '%' || #{name} || '%'  
+    ORDER BY managerno DESC
+  </select>
+  
+  <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM manager
+    WHERE name LIKE '%' || #{name} || '%'  
+  </select>
+  
 </mapper> 
  
  

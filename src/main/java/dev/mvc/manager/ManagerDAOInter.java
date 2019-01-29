@@ -1,7 +1,10 @@
 package dev.mvc.manager;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import dev.mvc.member.MemberVO;
 
 public interface ManagerDAOInter {
   /**
@@ -74,6 +77,10 @@ public interface ManagerDAOInter {
    * @return
    */
   public int login(Map map);
+  
+  public int search_count(HashMap hashMap);
+  
+  public List<ManagerVO> list_search(HashMap hashMap);
 }
 
 

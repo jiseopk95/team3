@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "manager_login">
+  
+  <insert id="create" parameterType="Manager_loginVO">
+   INSERT INTO manager_login(manager_loginno,managerno,ip,rdate)
+  VALUES((SELECT NVL(MAX(manager_loginno), 0)+1 as manager_loginno FROM manager_login),
+              #{managerno},#{ip}, sysdate)
+  </insert>
+  
+  <select id="list" resultType="Manager_loginVO">
+      SELECT manager_loginno, managerno, ip, rdate
+      FROM manager_login
+      ORDER BY manager_loginno ASC
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM manager_login
+    WHERE manager_loginno=#{manager_loginno}
+  </delete> 
+  
+  <select id="read" resultType="Manager_loginVO" parameterType="int">
+    SELECT manager_loginno,managerno,ip,rdate
+    FROM manager_login
+    WHERE manager_loginno = #{manager_loginno}
+  </select>
+
+  
+</mapper> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

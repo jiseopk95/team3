@@ -39,12 +39,13 @@
         var msg = "";
 
         if (data.cnt > 0) {
-          $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
-          msg = "이미 사용중인 ID 입니다.";
+          /* $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
+          msg = "이미 사용중인 ID 입니다."; */
+          alert('이미 사용중인 ID 입니다.');
         } else {
-          $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
-          msg = "사용 가능한 ID 입니다.";
-          
+          /* $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
+          msg = "사용 가능한 ID 입니다."; */
+          alert('사용 가능한 ID 입니다.');
           $.cookie('checkID', 'TRUE'); // Cookie 값 변경
         }
 
@@ -79,12 +80,69 @@
 
   }
   
+  function checkemail(){
+    var frm = $('#frm');
+    var params = 'email='+$('#email', frm).val(); // #: id
+    // alert('params: ' + params);
+    
+    $.ajax({
+      url: "./checkemail.do",
+      type: "GET",
+      cache: false,
+      dataType: "json", // or html
+      data: params,
+      success: function(data){
+        var msg = "";
+
+        if (data.cnt > 0) {
+          /* $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
+          msg = "이미 사용중인 email 입니다."; */
+          alert('이미 사용중인 email 입니다.');
+        } else {
+          /* $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
+          msg = "사용 가능한 email 입니다."; */
+          alert('사용 가능한 email 입니다.');
+          $.cookie('checkemail', 'TRUE'); // Cookie 값 변경
+        }
+
+        $('#modal_title').html('email 중복 확인');
+        $('#modal_content').html(msg);
+        $('#modal_panel').modal(); // 다이얼로그 출력   
+      },
+      // 통신 에러, 요청 실패, 200 아닌 경우, dataType이 다른경우
+      error: function (request, status, error){  
+        var msg = "에러가 발생했습니다. <br><br>";
+        msg += "다시 시도해주세요.<br><br>";
+        msg += "request.status: " + request.status + "<br>";
+        msg += "request.responseText: " + request.responseText + "<br>";
+        msg += "status: " + status + "<br>";
+        msg += "error: " + error;
+
+        // var panel = "";
+        // panel += "<DIV id='panel' class='popup1' style='height: 350px;'>";
+        // panel += msg;
+        // panel += "<br>[<A href=\"javascript: $('#main_panel').hide()\">CLOSE</A>]";
+        // panel += "</DIV>";
+        
+        // $('#main_panel').html(panel);      
+        // $('#main_panel').show();
+            // id_span.html(msg);
+        $('#modal_title').html('email 중복 확인');
+        $('#modal_content').attr('class', 'alert alert-danger');
+        $('#modal_content').html(msg);
+        $('#modal_panel').modal(); // 다이얼로그 출력   
+      }
+    });
+
+  }
+  
   function send() {
     var check = $.cookie('checkID'); // 쿠키값
-    
+   
     if (check != 'TRUE') {
       var msg = "ID 중복확인이 되지 않았습니다.<br>";
       msg += "ID 중복확인을 해주세요.<br>";
+      alert('중복x.');
 
       $('#modal_title').html('ID 체크 확인');
       $('#modal_content').attr('class', 'alert alert-danger');
@@ -153,22 +211,23 @@
       
     </div>
   </div> <!-- Modal END -->
+  
 <DIV style='width: 80%; margin: 0px auto;'>
-  <FORM class="form-horizontal" name='frm' id='frm' method='POST' action='./create.do' 
+  <FORM name='frm' id='frm' method='POST' action='./create.do' 
               onsubmit="return send();" class="form-horizontal">
               
 <br>
       <IMG src='./images/member.jpg' style='width: 200px; height: 200px; border-radius: 50%'> <br><br><br>
  가입 유형    
-       <input type="radio" name="myname" OnClick="window.location.href='../member/create.do'" checked >&nbsp일반회원&nbsp
-       <input type="radio" name="myname" OnClick="window.location.href='../manager/create.do'">&nbsp직원&nbsp&nbsp&nbsp
+ 
+       <input type="radio" name="login1" OnClick="window.location.href='../member/create.do'" checked >&nbsp일반회원&nbsp
+       <input type="radio" name="login2" OnClick="window.location.href='../manager/create.do'">&nbsp직원&nbsp&nbsp&nbsp
    <br><br><br>
        <!-- <label class=fonts >아이디</label> -->
+       
        아이디
        <input type='text' name='id' id='id' value='' required="required" style='width: 20%;' placeholder="" autofocus="autofocus">
-       
-        <button type='button' class="btn btn-secondary" onclick="checkId()" >중복확인</button>
-   
+        <button type='button' onclick="checkId()" class="btn btn-secondary"  >중복확인</button>
         <SPAN id='id_span'></SPAN> <!-- ID 중복 관련 메시지 -->        
     <br>
    <br>             
@@ -202,7 +261,8 @@
       <!-- <label for="email" >이메일</label> -->
       이메일    
         <input type='text'  name='email' id='email'
-                   value='' required="required" style='width: 20%;' placeholder="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   value='' required="required" style='width: 20%;' placeholder=""> &nbsp
+      <button type='button' onclick="checkemail()" class="btn btn-secondary"  >중복확인</button>
       <br><br>
       
 

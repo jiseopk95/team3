@@ -1,6 +1,7 @@
 package dev.mvc.manager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import dev.mvc.manager.File2VO;
 import dev.mvc.manager.ManagerVO;
+import dev.mvc.member.MemberVO;
 
 public interface ManagerProcInter {
   /**
@@ -93,6 +95,19 @@ public interface ManagerProcInter {
   public int login(String id, String passwd);
   
   ArrayList<File2VO> getThumbs(ManagerVO managerVO);
+  
+  /**
+   * 검색 목록
+   * @param categoryno
+   * @return
+   */
+  public List<ManagerVO> list_search(HashMap hashMap);
+
+  /**
+   * category별 검색된 레코드 갯수
+   * @return
+   */
+  public int search_count(HashMap hashMap);
 }
 
 

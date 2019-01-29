@@ -24,6 +24,12 @@ public class MemberDAO implements MemberDAOInter {
     int cnt = sqlSessionTemplate.selectOne("member.checkId", id);
     return cnt;
   }
+  
+  @Override
+  public int checkemail(String email) {
+    int cnt = sqlSessionTemplate.selectOne("member.checkemail", email);
+    return cnt;
+  }
 
   @Override
   public int create(MemberVO memberVO) {
@@ -45,12 +51,7 @@ public class MemberDAO implements MemberDAOInter {
     return memberVO;
   }
   
-  @Override
-  public MemberVO idsearch(String email) {
-    MemberVO memberVO = sqlSessionTemplate.selectOne("member.idsearch", email);
-    
-    return memberVO;
-  }
+
   
 
   @Override
@@ -92,6 +93,40 @@ public class MemberDAO implements MemberDAOInter {
   @Override
   public int search_count(HashMap hashMap) {
     return sqlSessionTemplate.selectOne("member.search_count", hashMap);
+  }
+  
+  @Override
+  public List<MemberVO> idsearch(HashMap hashMap) {
+    return sqlSessionTemplate.selectList("member.idsearch", hashMap);
+  }
+  
+  @Override
+  public List<MemberVO> list_id() {
+    List<MemberVO> list_id = sqlSessionTemplate.selectList("member.list_id");
+    
+    return list_id;
+  }
+  
+  @Override
+  public int search_count2(HashMap hashMap) {
+    return sqlSessionTemplate.selectOne("member.search_count2", hashMap);
+  }
+  
+  @Override
+  public List<MemberVO> passwdsearch(HashMap hashMap) {
+    return sqlSessionTemplate.selectList("member.passwdsearch", hashMap);
+  }
+  
+  @Override
+  public List<MemberVO> list_passwd() {
+    List<MemberVO> list_passwd = sqlSessionTemplate.selectList("member.list_passwd");
+    
+    return list_passwd;
+  }
+  
+  @Override
+  public int search_count3(HashMap hashMap) {
+    return sqlSessionTemplate.selectOne("member.search_count3", hashMap);
   }
 }
 

@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import dev.mvc.pet.PetVO;
+import dev.mvc.member.MemberVO;
 import dev.mvc.pet.FileVO;
 import nation.web.tool.Tool;
 
@@ -107,6 +109,51 @@ public class PetProc implements PetProcInter {
 
     return file_list;
   }
+  
+  @Override
+  public List<PetVO> list_search(HashMap hashMap) {
+    List<PetVO> list = petDAO.list_search(hashMap);
+    
+    int count = list.size();
+    for (int i=0; i < count; i++) {
+      PetVO petVO = list.get(i);
+    }
+    
+    return list;
+  }
+
+  @Override
+  public int search_count(HashMap hashMap) {
+    return petDAO.search_count(hashMap);
+  }
+  
+  /*@Override
+  public PetVO pet_list(int memberno) {
+    PetVO petVO = petDAO.pet_list(memberno);
+    
+    return petVO;
+  }*/
+  
+  /**
+   * °³º° Æê Á¶È¸
+   */
+    @Override
+    public List<PetVO> pet_list(HashMap hashMap) {
+      List<PetVO> pet_list = petDAO.pet_list(hashMap);
+      
+      int count = pet_list.size();
+      for (int i=0; i < count; i++) {
+        PetVO petVO = pet_list.get(i);
+      }
+      
+      return pet_list;
+    }
+    
+    @Override
+    public int search_count2(HashMap hashMap) {
+      return petDAO.search_count2(hashMap);
+    }
+
 }
 
 

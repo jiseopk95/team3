@@ -30,13 +30,34 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
 <DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+  <form name='frm' id='frm' method="get" action="./list_search.do">
   <DIV class='title_line' style='width: 20%;'>등록 동물 목록</DIV>
   
    <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
     <A href='../index.jsp'>HOME</A>
+    
+    <A href='./list.do?petno=${petVO.petno }'>${petVO.name }</A>
+
+    <c:if test="${param.word.length() > 0}"> 
+      >
+      [${param.name}] 검색 목록(${search_count } 건) 
+    </c:if>
+    <input type='hidden' name='petno' id='petno' value='${petVO.petno }'>
+    <span class='menu_divide' >│</span> 
+    <c:choose>
+      <c:when test="${param.name != '' }">
+        <input type='text' name='name' id='name' value='${param.name }' style='width: 35%;'>
+      </c:when>
+      <c:otherwise>
+        <input type='text' name='name' id='name' value='' style='width: 35%;'>
+      </c:otherwise>
+    </c:choose>
+    <button type='submit'>검색</button>
+    
   </ASIDE> 
+  </form>
 <br>
   <div class='menu_line'></div>
 <DIV style='width: 100%; margin: 0px auto;'>
@@ -92,7 +113,7 @@
     <TD class='td' style='padding-top: 3%'>${petVO.weight}</TD>
     
     <TD class='td' style='padding-top: 3%'>
-      <A href="./chart/create.do?petno=${petno}"><IMG src='./images/upload.png'  width="20" height="20"  title='차트만들기'></A>
+      <A href="../chart/create.do?petno=${petno}&managerno=${managerno}"><IMG src='./images/upload.png'  width="20" height="20"  title='차트만들기'></A>
       <A href="./update.do?petno=${petno}"><IMG src='./images/update.png'  width="20" height="20"  title='수정'></A>
       <A href="./delete.do?petno=${petno}"><IMG src='./images/delete.png'  width="20" height="20"  title='삭제'></A>
     </TD>

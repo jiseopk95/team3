@@ -46,6 +46,8 @@
   <context:component-scan base-package="dev.mvc.manager" />
   <context:component-scan base-package="dev.mvc.member" />
   <context:component-scan base-package="dev.mvc.pet" />
+  <context:component-scan base-package="dev.mvc.manager_login" />
+  <context:component-scan base-package="dev.mvc.member_login" />
 	
 	<!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"

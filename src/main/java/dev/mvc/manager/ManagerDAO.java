@@ -1,11 +1,14 @@
 package dev.mvc.manager;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import dev.mvc.member.MemberVO;
 
 @Repository("dev.mvc.manager.ManagerDAO") // DBMS 저장소 접근 
 public class ManagerDAO implements ManagerDAOInter {
@@ -92,7 +95,16 @@ public class ManagerDAO implements ManagerDAOInter {
     int count = sqlSessionTemplate.selectOne("manager.login", map);
     return count;
   }
+  
+  @Override
+  public List<ManagerVO> list_search(HashMap hashMap) {
+    return sqlSessionTemplate.selectList("manager.list_search", hashMap);
+  }
 
+  @Override
+  public int search_count(HashMap hashMap) {
+    return sqlSessionTemplate.selectOne("manager.search_count", hashMap);
+  }
 }
 
 

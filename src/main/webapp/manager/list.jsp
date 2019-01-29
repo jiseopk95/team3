@@ -32,12 +32,28 @@
 
 <DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
   <DIV class='title_line' style='width: 20%;'>회원목록</DIV>
-  
+  <form name='frm' id='frm' method="get" action="./list_search.do">
    <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A>
+    <A href='../manager/list.do'>전체 직원보기</A>
+    <A href='./list_search.do?managerno=${managerVO.managerno }'>${managerVO.name }</A>
+
+    <c:if test="${param.word.length() > 0}"> 
+      >
+      [${param.name}] 검색 목록(${search_count } 건) 
+    </c:if>
+    
     <span class='menu_divide' >│</span> 
-    <A href='../index.jsp'>HOME</A>
+    <c:choose>
+      <c:when test="${param.name != '' }">
+        <input type='text' name='name' id='name' value='${param.name }' style='width: 35%;'>
+      </c:when>
+      <c:otherwise>
+        <input type='text' name='name' id='name' value='' style='width: 35%;'>
+      </c:otherwise>
+    </c:choose>
+    <button type='submit'>검색</button>
   </ASIDE> 
+  </form>
 <br>
   <div class='menu_line'></div>
 <DIV style='width: 100%; margin: 0px auto;'>
