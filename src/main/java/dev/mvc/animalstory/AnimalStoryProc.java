@@ -35,14 +35,25 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     AnimalStoryVO aniVO = null;
     String title = "";
     String date = "";
+    String anitype = "";
     
     int size = list.size();
     for(int i = 0; i < size; i++) {
       aniVO = list.get(i);
+
+      anitype = aniVO.getAnitype();
+      if(anitype.equals("1")) {
+        aniVO.setAnitype("강아지");
+      } else {
+        aniVO.setAnitype("고양이");
+      }
+      
       title = aniVO.getTitle();
       aniVO.setTitle(Tool.textLength(title, 10));
+      
       date = aniVO.getRdate();
       aniVO.setRdate(date.replace("/", "-"));
+      
       String thumbs = aniVO.getThumbs();
       if (thumbs.length() > 0) { // preview 이미지가 있는지 검사
         String thumb = (thumbs.split("/"))[0]; // 첫번째 파일명 추출
@@ -61,14 +72,25 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     AnimalStoryVO aniVO = null;
     String title = "";
     String date = "";
+    String anitype = "";
     
     int size = list.size();
     for(int i = 0; i < size; i++) {
       aniVO = list.get(i);
+      
+      anitype = aniVO.getAnitype();
+      if(anitype.equals("1")) {
+        aniVO.setAnitype("강아지");
+      } else {
+        aniVO.setAnitype("고양이");
+      }
+      
       title = aniVO.getTitle();
       aniVO.setTitle(Tool.textLength(title, 10));
+      
       date = aniVO.getRdate();
       aniVO.setRdate(date.replace("/", "-"));
+      
       String thumbs = aniVO.getThumbs();
       if (thumbs.length() > 0) { // preview 이미지가 있는지 검사
         String thumb = (thumbs.split("/"))[0]; // 첫번째 파일명 추출

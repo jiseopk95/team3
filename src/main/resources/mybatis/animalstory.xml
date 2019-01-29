@@ -14,14 +14,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list" resultType="AnimalStoryVO">
     SELECT anino, anitype, title, content, files, thumbs, sizes,managerno, substr(rdate, 1, 8) rdate
     FROM animalstory
-    ORDER BY anino
+    ORDER BY anino DESC
   </select>
   
   <select id="list_anitype" parameterType="int" resultType="AnimalStoryVO">
     SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
     FROM animalstory
     WHERE anitype=#{anitype}
-    ORDER BY anino
+    ORDER BY anino DESC
   </select>
   
   <select id="manager" parameterType="int" resultType="String">

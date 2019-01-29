@@ -149,7 +149,7 @@ public class AnimalStoryCont {
   }
   
   /**
-   * 전체 리스트
+   * 전체 리스트 - 검색 가능
    * http://localhost:9090/ahr/animalstory/list.do
    * @return
    */
@@ -179,6 +179,12 @@ public class AnimalStoryCont {
     return mav;
   }
   
+  /**
+   * 고양이 / 강아지별 분류 리스트 - 검색 가능
+   * @param anitype
+   * @param content
+   * @return
+   */
   @RequestMapping(value = "/animalstory/list_anitype.do", method = RequestMethod.GET)
   public ModelAndView list_anitype(int anitype, String content) {
     ModelAndView mav = new ModelAndView();
@@ -460,5 +466,44 @@ public class AnimalStoryCont {
 
     return mav;
 
+  }
+  
+  /**
+   * index페이지 작은 애니멀스토리
+   * http://localhost:9090/ahr/animalstory/index_animal.do
+   * @param request
+   * @return
+   */
+  @RequestMapping(value="/animalstory/index_animal.do", method = RequestMethod.GET)
+  public ModelAndView index_animal(HttpServletRequest request) {
+    ModelAndView mav = new ModelAndView();
+    String manager = "";
+    
+    List<AnimalStoryVO> list = aniProc.list();
+    
+    ArrayList<String> index_list = new ArrayList<String>();
+    
+    StringBuffer url = new StringBuffer();
+    
+    for(int index = 0; index < list.size(); index++) {
+      AnimalStoryVO aniVO = list.get(index);
+      manager = aniProc.manager(aniVO.getManagerno());
+
+      url.append("<LI class='category_title'>");
+      url.append("  <span style='font-size: 0.9em; color: #555555;'>"+ aniVO.getAnitype() +"</span>");
+      url.append("  <A href='" + request.getContextPath()+ "/animalstory/read.do?anino=" + aniVO.getAnino() + "'>");
+      url.append(aniVO.getTitle());
+      url.append("  </A>");
+      url.append("  <span style='font-size: 0.9em; color: #555555;'>("+manager+")</span>");
+      url.append("  <span style='font-size: 0.9em; color: #555555;'>"+aniVO.getRdate()+"</span>");
+      url.append("</LI>");
+      index_list.add(url.toString()); // 출력 목록에 하나의 category 추가 
+      
+      url.delete(0, url.toString().length()); // StringBuffer 문자열 삭제
+    }
+    mav.addObject("index_list", index_list);
+    mav.setViewName("/animalstory/index_animal");
+    
+    return mav;
   }
 }
