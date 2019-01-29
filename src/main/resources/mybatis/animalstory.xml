@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="animalstory">
+  <insert id="create" parameterType="AnimalStoryVO">
+    INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
+    VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
+    #{anitype}, #{title}, #{content}, #{files}, #{thumbs}, #{sizes}, #{managerno}, sysdate)
+  </insert>
+
+  <select id="list" resultType="AnimalStoryVO">
+    SELECT anino, anitype, title, content, files, thumbs, sizes,managerno, substr(rdate, 1, 8) rdate
+    FROM animalstory
+    ORDER BY anino
+  </select>
+  
+  <select id="list_anitype" parameterType="int" resultType="AnimalStoryVO">
+    SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
+    FROM animalstory
+    WHERE anitype=#{anitype}
+    ORDER BY anino
+  </select>
+  
+  <select id="manager" parameterType="int" resultType="String">
+    SELECT name
+    FROM manager
+    WHERE managerno = #{managerno}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM animalstory
+    WHERE anino = #{anino}
+  </delete>
+  
+  <select id="read" parameterType="int" resultType="AnimalStoryVO">
+    SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
+    FROM animalstory
+    WHERE anino = #{anino}
+  </select>
+  
+  <update id="update" parameterType="AnimalStoryVO">
+    UPDATE animalstory
+    SET thumbs=#{thumbs}, files=#{files}, sizes=#{sizes}, anitype = #{anitype}, title = #{title}, content = #{content}
+    WHERE anino = #{anino}
+  </update>
+  
+  <select id="list_by_search" parameterType="String" resultType="AnimalStoryVO">
+    SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
+    FROM animalstory
+    WHERE content LIKE '%' || #{content} || '%'
+    ORDER BY anino DESC
+  </select>
+  
+  <select id="list_by_search_anitype" parameterType="HashMap" resultType="AnimalStoryVO">
+    SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
+    FROM animalstory
+    WHERE content LIKE '%' || #{content} || '%' AND anitype = #{anitype}
+    ORDER BY anino DESC
+  </select>
+</mapper>

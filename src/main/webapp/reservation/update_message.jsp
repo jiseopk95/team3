@@ -25,7 +25,7 @@ function exit() {
       수정에 실패했습니다.
     </c:otherwise>
   </c:choose>
-  <button type="button" onclick="exit();">닫기</button>
+  <button type="button" class="btn btn-primary" onclick="exit();">닫기</button>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
 </body>

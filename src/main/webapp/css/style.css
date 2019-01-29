@@ -6,12 +6,10 @@
     width: 100%;
     margin: 5px auto;
 }
-  
-.content {
-  width: 80%;
-  margin: 0px auto;
+ul {
+   list-style:none !important;
+   padding-left:0px;
 }
-
 .title_line {
     color: #333333;
     width: 20%;
@@ -20,8 +18,12 @@
     border-bottom: solid 2px #555555;
     text-align: center;
   }
+fieldset {
+  padding-bottom : 20px !important;
+}
 legend {
   font-weight: bold;
+  color: #000073!important;
 }
 .dropdown-menu {
   background-color : white !important;
@@ -64,4 +66,30 @@ legend {
 }
 #etc {
   color:#00006a;
+}
+
+.chart_table td, .chart_table th{
+  border: none !important;
+}
+.chart_table td {
+  padding: 8px;
+  margin-right: 20px;
+}
+.chart_table th {
+  padding: 8px;
+  margin-right: 10px;
+}
+.chart_table input {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+textarea {
+  width: 100%;
+}
+.message {
+  margin: 0px auto;
+}
+.buttons{
+  float: left;
 }

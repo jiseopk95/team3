@@ -25,10 +25,27 @@
 	
 	<context:component-scan base-package="dev.mvc.ahr" />
   <context:component-scan base-package="dev.mvc.team3" />
+  <context:component-scan base-package="dev.mvc.tool" />
+  
 	<context:component-scan base-package="dev.mvc.reservation" />
 	<context:component-scan base-package="dev.mvc.chart" />
 	<context:component-scan base-package="dev.mvc.animalstory" />
   <context:component-scan base-package="dev.mvc.calendar" />
+  
+  <context:component-scan base-package="dev.mvc.beauty" />
+  
+  <context:component-scan base-package="dev.mvc.categrp" />
+  <context:component-scan base-package="dev.mvc.category" />
+  <context:component-scan base-package="dev.mvc.review" />
+  
+  <context:component-scan base-package="dev.mvc.choice" />
+  <context:component-scan base-package="dev.mvc.survey" />
+  <context:component-scan base-package="dev.mvc.surveyitem" />
+  <context:component-scan base-package="dev.mvc.surveyparty" />
+  
+  <context:component-scan base-package="dev.mvc.manager" />
+  <context:component-scan base-package="dev.mvc.member" />
+  <context:component-scan base-package="dev.mvc.pet" />
 	
 	<!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"

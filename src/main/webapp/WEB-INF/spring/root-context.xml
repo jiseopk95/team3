@@ -19,8 +19,11 @@
     <property name="dataSource" ref="dataSource" />
     <!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
     <property name="typeAliasesPackage" 
-                   value="dev.mvc.reservation,
-                            dev.mvc.chart"/>
+                   value="dev.mvc.reservation,dev.mvc.calendar,dev.mvc.chart,dev.mvc.animalstory,
+                             dev.mvc.beauty,
+                             dev.mvc.categrp,dev.mvc.category,dev.mvc.review
+                             dev.mvc.choice,dev.mvc.survey,dev.mvc.surveyitem,dev.mvc.surveyparty,
+                             dev.mvc.manager,dev.mvc.member,dev.mvc.pet"/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
   
