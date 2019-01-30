@@ -1,5 +1,6 @@
 package dev.mvc.surveyparty;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,26 @@ public class SurveypartyProc implements SurveypartyProcInter {
 
 
   @Override
-  public int mnoCnt(int memberno) {
+  public int mnoCnt(HashMap hashMap) {
     // TODO Auto-generated method stub
-    return surveypartyDAO.mnoCnt(memberno);
+    return surveypartyDAO.mnoCnt(hashMap);
   }
+
+
+  @Override
+  public int delete(int surveyno) {
+    
+    return surveypartyDAO.delete(surveyno);
+  }
+
+
+  @Override
+  public int delete_item(int surveyitemno) {
+    // TODO Auto-generated method stub
+    return surveypartyDAO.delete_item(surveyitemno);
+  }
+
+  
 
 
 

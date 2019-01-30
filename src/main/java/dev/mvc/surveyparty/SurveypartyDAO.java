@@ -1,5 +1,6 @@
 package dev.mvc.surveyparty;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,9 +30,20 @@ public class SurveypartyDAO implements SurveypartyDAOInter {
     return sqlSessionTemplate.selectList("surveyparty.list_survey", surveyno);
   }
   @Override
-  public int mnoCnt(int memberno) {
+  public int mnoCnt(HashMap hashMap) {
     
-    return sqlSessionTemplate.selectOne("surveyparty.mnoCnt",memberno);
+    return sqlSessionTemplate.selectOne("surveyparty.mnoCnt",hashMap);
   }
+  @Override
+  public int delete(int surveyno) {
+    
+    return sqlSessionTemplate.delete("surveyparty.delete", surveyno);
+  }
+  @Override
+  public int delete_item(int surveyitemno) {
+   
+    return sqlSessionTemplate.delete("surveyparty.delete_item", surveyitemno);
+  }
+  
 
 }

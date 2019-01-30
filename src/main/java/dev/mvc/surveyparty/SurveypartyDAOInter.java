@@ -1,5 +1,6 @@
 package dev.mvc.surveyparty;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -17,7 +18,11 @@ public interface SurveypartyDAOInter {
   
   public List<Survey_PartyVO> list_survey(int surveyno);
   
-  public int mnoCnt(int memberno);
+  public int mnoCnt(HashMap hashMap);
+  
+  public int delete(int surveyno);
+  
+  public int delete_item(int surveyitemno);
   
   
   

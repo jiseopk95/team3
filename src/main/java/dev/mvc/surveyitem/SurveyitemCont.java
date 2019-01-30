@@ -386,7 +386,7 @@ public class SurveyitemCont {
       String fname = upDir + files_st.nextToken(); // 단어 추출
       Tool.deleteFile(fname);
     }
-
+    surveypartyProc.delete_item(surveyitemno);
     int count = surveyitemProc.delete(surveyitemno); // 레코드 삭제
 
   if (count == 1) {

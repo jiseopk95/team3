@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.survey.Manager_SurveyVO;
+import dev.mvc.survey.SurveyProcInter;
 
 
 
 @Controller
 public class SurveypartyCont {
+  @Autowired
+  @Qualifier("dev.mvc.survey.SurveyProc")
+  private SurveyProcInter surveyProc = null;
+  
   @Autowired
   @Qualifier("dev.mvc.surveyparty.SurveypartyProc")
  
@@ -38,9 +43,11 @@ public class SurveypartyCont {
   public ModelAndView list_survey(int surveyno) {
     ModelAndView mav = new ModelAndView();
     
-
+    Manager_SurveyVO surveyVO =surveyProc.read(surveyno);
+    mav.addObject("surveyVO", surveyVO);
     List<Survey_PartyVO> list_survey = surveypartyProc.list_survey(surveyno);
     mav.addObject("list_survey", list_survey);
+    
     
     mav.addObject("surveyno", surveyno);
     mav.setViewName("/surveyparty/list_survey"); // /webapp/categrp/list.jsp

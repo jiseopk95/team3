@@ -46,7 +46,7 @@ public class SurveyCont {
   @Qualifier("dev.mvc.choice.ChoiceProc")
   private ChoiceProcInter choiceProc = null;
   
-  @Autowired
+  @Autowired 
   @Qualifier("dev.mvc.surveyparty.SurveypartyProc")
   private SurveypartyProcInter surveypartyProc = null;
   
@@ -215,9 +215,11 @@ if(countBySurvey ==0){
   msgs.add("공지사항을 삭제했습니다.");
 }
 else if(countBySurvey > 0 || surveyProc.delete(surveyno) ==0){
+  surveypartyProc.delete(surveyno);
+  
   surveyitemProc.deleteBySurveyno(surveyno);
   surveyProc.decreaseCnt(surveyno);
-  surveyProc.delete(surveyno);    
+  surveyProc.delete(surveyno); 
   msgs.add("문제 목록을 모두 삭제 했습니다.");
 }
 
@@ -413,13 +415,49 @@ return mav;
 
     List<SurveyVO> list = surveyProc.list_m();
     mav.addObject("list", list);
-    
-
-    
     mav.setViewName("/survey/list_m"); // /webapp/categrp/list.jsp
-    
+
+   
     return mav;
   }
+/*  
+  //http://localhost:9090/ahr/survey/list_m.do
+  @RequestMapping(value="/survey/list_mnoCnt.do", method=RequestMethod.POST)
+  public ModelAndView list_mnoCnt(int memberno,int surveyno) {
+    ModelAndView mav = new ModelAndView();
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("memberno",memberno ); // #{categoryno}
+    hashMap.put("surveyno", surveyno);
+    int mnoCnt=  surveypartyProc.mnoCnt(hashMap);
+    mav.addObject("mnoCnt", mnoCnt);
+    
+    mav.setViewName("/survey/list_m");
+    return mav;
+  }*/
+  
+  @ResponseBody
+  @RequestMapping(value="/survey/list_mnoCnt.do", 
+                             method=RequestMethod.POST,
+                             produces="text/plain;charset=UTF-8")
+  public ResponseEntity list_mnoCnt(int memberno,int surveyno) {
+    HttpHeaders responseHeaders = new HttpHeaders();
+         
+    SurveyVO  surveyVO = surveyProc.read_m(surveyno);
+    
+    JSONObject json = new JSONObject();
+ 
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("memberno",memberno ); // #{categoryno}
+    hashMap.put("surveyno", surveyno);
+    int mnoCnt=  surveypartyProc.mnoCnt(hashMap);
+    json.put("mnoCnt", mnoCnt);
+
+    
+    return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+  }
+  
+  
   
   
 
