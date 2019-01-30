@@ -150,17 +150,42 @@ public class AnimalStoryCont {
   
   /**
    * 전체 리스트 - 검색 가능
-   * http://localhost:9090/ahr/animalstory/list.do
+   * http://localhost:9090/ahr/animalstory/list.do?content=&nowPage=
    * @return
    */
   @RequestMapping(value = "/animalstory/list.do", method = RequestMethod.GET)
-  public ModelAndView list(String content) {
+  public ModelAndView list(
+      @RequestParam(value="content") String content,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage
+      ) {
     ModelAndView mav = new ModelAndView();
  
     AnimalStoryVO aniVO = new AnimalStoryVO();
-    List<AnimalStoryVO> list = aniProc.list_by_search(content);
     
-    /*List<AnimalStoryVO> list = aniProc.list();*/
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("content", content);
+    hashMap.put("nowPage", nowPage);
+    
+    // 검색 목록
+    List<AnimalStoryVO> list = aniProc.list_by_search_paging(hashMap);
+    
+    // 검색된 레코드 갯수
+    int search_count = aniProc.search_count(hashMap);
+    mav.addObject("search_count", search_count);
+    
+    /*
+     * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 
+     * 현재 페이지: 11 / 22   [이전] 11 12 13 14 15 16 17 18 19 20 [다음] 
+     *
+     * @param managerno 카테고리번호 
+     * @param nowPage     현재 페이지
+     * @param petname 검색어
+     * @param name 검색어
+     * @return 페이징 생성 문자열
+     */ 
+    String paging = aniProc.paging(nowPage, search_count, content);
+    mav.addObject("paging", paging);
+    
     int size = list.size();
     int managerno = 0;
     String manager = "";
@@ -175,6 +200,7 @@ public class AnimalStoryCont {
     mav.addObject("list", list);
     mav.addObject("title", "애니멀 스토리");
     mav.addObject("managerno", managerno);
+    mav.addObject("nowPage", nowPage);
     mav.setViewName("/animalstory/list");
     return mav;
   }
@@ -186,20 +212,43 @@ public class AnimalStoryCont {
    * @return
    */
   @RequestMapping(value = "/animalstory/list_anitype.do", method = RequestMethod.GET)
-  public ModelAndView list_anitype(int anitype, String content) {
+  public ModelAndView list_anitype(
+      @RequestParam(value="anitype") int anitype,
+      @RequestParam(value="content") String content,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage
+      ) {
     ModelAndView mav = new ModelAndView();
+    AnimalStoryVO aniVO = new AnimalStoryVO();
+
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
     hashMap.put("content", content);
     hashMap.put("anitype", anitype);
-    if(anitype == 1) {
-      mav.setViewName("/animalstory/list_dog");
-    } else if(anitype == 2) {
-      mav.setViewName("/animalstory/list_cat");
-    }
+    hashMap.put("nowPage", nowPage);
     
-    AnimalStoryVO aniVO = new AnimalStoryVO();
-    List<AnimalStoryVO> list = aniProc.list_anitype(hashMap);
-    /*List<AnimalStoryVO> list = aniProc.list_anitype(anitype);*/
+      mav.setViewName("/animalstory/list_anitype");
+    
+   
+    
+    // 검색 목록
+    List<AnimalStoryVO> list = aniProc.list_by_search_paging_anitype(hashMap);
+    
+    // 검색된 레코드 갯수
+    int search_count = aniProc.search_count_anitype(hashMap);
+    mav.addObject("search_count", search_count);
+    
+    /*
+     * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 
+     * 현재 페이지: 11 / 22   [이전] 11 12 13 14 15 16 17 18 19 20 [다음] 
+     *
+     * @param managerno 카테고리번호 
+     * @param nowPage     현재 페이지
+     * @param petname 검색어
+     * @param name 검색어
+     * @return 페이징 생성 문자열
+     */ 
+    String paging = aniProc.paging_anitype(nowPage, search_count, content, anitype);
+    mav.addObject("paging", paging);
+    
     int size = list.size();
     int managerno = 0;
     String manager = "";
@@ -212,10 +261,14 @@ public class AnimalStoryCont {
     }
     
     mav.addObject("list", list);
-    mav.addObject("title", "애니멀 스토리");
+    if(anitype == 1) {
+      mav.addObject("title", "강아지 스토리");
+    } else {
+      mav.addObject("title", "고양이 스토리");
+    }
+    mav.addObject("anitype", anitype);
     mav.addObject("managerno", managerno);
-    //mav.addObject("managerno", managerno);
-    
+    mav.addObject("nowPage", nowPage);
     return mav;
   }
   
@@ -506,4 +559,6 @@ public class AnimalStoryCont {
     
     return mav;
   }
+  
+  
 }

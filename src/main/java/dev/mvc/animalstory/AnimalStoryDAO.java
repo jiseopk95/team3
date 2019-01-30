@@ -64,6 +64,30 @@ public class AnimalStoryDAO implements AnimalStoryDAOInter{
     return sqlSessionTemplate.selectList("animalstory.list_by_search", content);
   }
 
+  @Override
+  public List<AnimalStoryVO> list_by_search_paging(HashMap<String, Object> hashMap) {
+    
+    return sqlSessionTemplate.selectList("animalstory.list_by_search_paging", hashMap);
+  }
+
+  @Override
+  public List<AnimalStoryVO> list_by_search_paging_anitype(HashMap hashMap) {
+    
+    return sqlSessionTemplate.selectList("animalstory.list_by_search_paging_anitype", hashMap);
+  }
+
+  @Override
+  public int search_count(HashMap hashMap) {
+   
+    return sqlSessionTemplate.selectOne("animalstory.search_count", hashMap);
+  }
+
+  @Override
+  public int search_count_anitype(HashMap hashMap) {
+    
+    return sqlSessionTemplate.selectOne("animalstory.search_count_anitype", hashMap);
+  }
+
   
 
   

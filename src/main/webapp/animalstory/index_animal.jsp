@@ -55,7 +55,7 @@ legend {
   <legend>애니멀 스토리</legend>
   <DIV class="view">
     ▷
-    <A href="${pageContext.request.contextPath}/animalstory/list.do?content=">전체 보기</A>
+    <A href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">전체 보기</A>
   </DIV>
   <UL class='categrp_category_list_left' >
     <c:forEach var="title" items="${index_list}">

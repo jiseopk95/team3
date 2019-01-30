@@ -47,6 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE anino = #{anino}
   </update>
   
+  <!-- 검색가능 리스트 - 전체 -->
   <select id="list_by_search" parameterType="String" resultType="AnimalStoryVO">
     SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
     FROM animalstory
@@ -54,10 +55,66 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY anino DESC
   </select>
   
+  <!-- 검색가능 리스트 - 분류 -->
   <select id="list_by_search_anitype" parameterType="HashMap" resultType="AnimalStoryVO">
     SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
     FROM animalstory
     WHERE content LIKE '%' || #{content} || '%' AND anitype = #{anitype}
     ORDER BY anino DESC
+  </select>
+  
+  <!-- 검색 + 페이징 - 전체 -->
+  <select id="list_by_search_paging" parameterType="HashMap" resultType="AnimalStoryVO">
+    SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, rdate, r
+    FROM( 
+              SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, rdate, rownum as r
+              FROM(
+                       SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
+                        FROM animalstory
+                      <if test="content != null"> <!-- 검색하는 경우 -->
+                         WHERE content LIKE '%' || #{content} || '%'  
+                       </if>                        
+                       ORDER BY anino DESC
+               )
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
+  </select>
+  
+  <!-- 검색 + 페이징 - 분류 -->
+  <select id="list_by_search_paging_anitype" parameterType="HashMap" resultType="AnimalStoryVO">
+    SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, rdate, r
+    FROM( 
+              SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, rdate, rownum as r
+              FROM(
+                       SELECT anino, anitype, title, content, files, thumbs, sizes, managerno, substr(rdate, 1, 8) rdate
+                        FROM animalstory
+                      <choose>
+                          <when test="content == null or content == ''"> <!-- 검색하지 않는 경우 -->
+                            WHERE content LIKE '%' || #{content} || '%'  AND anitype = #{anitype}
+                          </when>
+                          <otherwise>
+                            WHERE content LIKE '%' || #{content} || '%'  AND anitype = #{anitype}
+                          </otherwise>
+                        </choose>                       
+                       ORDER BY anino DESC
+               )
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
+  </select>
+  
+  <select id="search_count" parameterType="HashMap" resultType="int">
+    SELECT count(*)as cnt
+    FROM animalstory
+    <if test="content != null"> <!-- 검색하는 경우 -->
+    WHERE content LIKE '%' || #{content} || '%'    
+    </if>
+  </select>
+  
+  <select id="search_count_anitype" parameterType="HashMap" resultType="int">
+    SELECT count(*)as cnt
+    FROM animalstory
+    <if test="content != null"> <!-- 검색하는 경우 -->
+    WHERE content LIKE '%' || #{content} || '%' AND anitype LIKE '%' || #{anitype} || '%'
+    </if>
   </select>
 </mapper>

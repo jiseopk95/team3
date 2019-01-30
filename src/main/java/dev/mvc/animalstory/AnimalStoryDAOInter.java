@@ -59,4 +59,32 @@ public interface AnimalStoryDAOInter {
    * @return
    */
   public List<AnimalStoryVO> list_by_search(String content);
+  
+  /**
+   * 검색 + 페이징 - 전체
+   * @param hashMap
+   * @return
+   */
+  public List<AnimalStoryVO> list_by_search_paging(HashMap<String, Object> hashMap);
+  
+  /**
+   * 검색 + 페이징 - 분류
+   * @param hashMap
+   * @return
+   */
+  public List<AnimalStoryVO> list_by_search_paging_anitype(HashMap hashMap);
+  
+  /**
+   * 검색된 게시물 개수
+   * @param content
+   * @return
+   */
+  public int search_count(HashMap hashMap);
+  
+  /**
+   * 검색된 게시물 개수 - 분류
+   * @param hashMap
+   * @return
+   */
+  public int search_count_anitype(HashMap hashMap);
 }

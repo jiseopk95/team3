@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>고양이 스토리</title>
+<title>강아지 스토리</title>
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -16,6 +16,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+$(function() {
+  if(${anitype} == 1) {
+    $('.buttons').append("<button class='btn btn-primary btn-sm' id='anitype_button' onclick='location.href=\"./list_anitype.do?nowPage=&anitype=2&content=\"'>고양이</button>");
+  } else {
+    $('.buttons').append("<button class='btn btn-primary btn-sm' id='anitype_button' onclick='location.href=\"./list_anitype.do?nowPage=&anitype=1&content=\"'>강아지</button>");
+  }
+})
 function deleteOne(anino) {
   $.ajax({
     url: "./delete.do",
@@ -115,7 +122,6 @@ function update(anino) {
 <div class="title_line">${title }</div>
 <div class='buttons'>
   <button class='btn btn-primary btn-sm' onclick='location.href="./create.do?managerno=${managerno}"'>글 등록하기</button>
-  <button class='btn btn-primary btn-sm' onclick='location.href="./list_anitype.do?anitype=1"'>강아지</button>
 </div>
 <form name='frm' id='frm' method="get" action="./list.do">
   <input type="hidden" name="managerno" value="${managerno}">
@@ -183,7 +189,7 @@ function update(anino) {
       </c:forEach>
     </tbody>
   </TABLE>
-  <%-- <DIV class='bottom_menu'>${paging }</DIV> --%>
+  <DIV class='bottom_menu'>${paging }</DIV>
   <br><br>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->

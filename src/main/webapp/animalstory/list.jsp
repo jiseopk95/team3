@@ -115,8 +115,8 @@ function update(anino) {
 <div class="title_line">${title }</div>
 <div class='buttons'>
   <button class='btn btn-primary btn-sm' onclick='location.href="./create.do?managerno=${managerno}"'>글 등록하기</button>
-  <button class='btn btn-primary btn-sm' onclick='location.href="./list_anitype.do?anitype=1&content="'>강아지</button>
-  <button class='btn btn-primary btn-sm' onclick='location.href="./list_anitype.do?anitype=2&content="'>고양이</button>
+  <button class='btn btn-primary btn-sm' onclick='location.href="./list_anitype.do?nowPage=&anitype=1&content="'>강아지</button>
+  <button class='btn btn-primary btn-sm' onclick='location.href="./list_anitype.do?nowPage=&anitype=2&content="'>고양이</button>
 </div>
 <form name='frm' id='frm' method="get" action="./list.do">
   <input type="hidden" name="managerno" value="${managerno}">
@@ -184,7 +184,7 @@ function update(anino) {
       </c:forEach>
     </tbody>
   </TABLE>
-  <%-- <DIV class='bottom_menu'>${paging }</DIV> --%>
+  <DIV class='bottom_menu'>${paging }</DIV>
   <br><br>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
