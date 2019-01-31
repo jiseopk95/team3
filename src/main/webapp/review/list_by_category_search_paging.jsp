@@ -29,7 +29,7 @@ $(function(){
 <jsp:include page="/menu/top.jsp" flush='false' />  
 <DIV class='container' style='width: 100%;'>
 <DIV class='content'>     
-<form name='frm' id='frm' method="get" action="./list.do">
+<form name='frm' id='frm' method="get" action="./list_by_category_search.do">
  <%--  <ASIDE style='float: left;'>
     <A href='../category/list.do'>게시판 목록</A>
     <span style='font-size: 1.4em;'>></span> 
@@ -61,22 +61,18 @@ $(function(){
   <div style='width: 100%;'>
     <table class="table" style='width: 100%;'>
       <colgroup>
-        <col style="width: 5%;"></col>
         <col style="width: 10%;"></col>
-        <col style="width: 20%;"></col>
-        <col style="width: 20%;"></col>
-        <col style="width: 10%;"></col>
+        <col style="width: 35%;"></col>
+        <col style="width: 15%;"></col>
         <col style="width: 15%;"></col>
         <col style="width: 10%;"></col>
-        <col style="width: 20%;"></col>
+        <col style="width: 15%;"></col>
         
       </colgroup>
       <%-- table 컬럼 --%>
       <thead>
         <tr >
-          <th style='text-align: center;' >NO</th>
           <th style='text-align: center;' >파일</th>
-          <th style='text-align: center;' >카테고리</th>
           <th style='text-align: center;'>제목</th>
           <th style='text-align: center;'>글쓴이</th>
           <th style='text-align: center;'>등록일</th>
@@ -87,7 +83,7 @@ $(function(){
       </thead>
         <c:forEach var="reviewVO" items="${list }">
           <tr> 
-          <td style='vertical-align: middle;'> <p class="text-center">${reviewVO.reviewno} </p> </td>
+          
           <td style='vertical-align: middle;'>
             <c:choose>
               <c:when test="${reviewVO.thumbs != NULL}">
@@ -102,7 +98,7 @@ $(function(){
               </c:otherwise>
             </c:choose>
             </td>          
-            <td style='vertical-align: middle;'> <p class="text-center">${categoryVO.name} </p> </td>
+            
            <td style='vertical-align: middle;'>
               <p class="text-center">
               <a href="./read.do?reviewno=${reviewVO.reviewno}&categoryno=${reviewVO.categoryno}">${reviewVO.title}</a> 
@@ -123,6 +119,7 @@ $(function(){
         </c:forEach>
         
     </table>
+    <DIV class='bottom_menu'>${paging }</DIV>
     <br><br>
   </div>
 

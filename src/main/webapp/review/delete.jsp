@@ -22,8 +22,8 @@
 </head> 
 
 <body>
-<DIV class='container' style='width: 100%;'>
 <jsp:include page="/menu/top.jsp" flush='false' />
+<DIV class='container' style='width: 100%;'>
 <DIV class='content'>   
      
 
@@ -55,9 +55,8 @@
   </FORM>
 
 </DIV> <!-- content END -->
-
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html> 
