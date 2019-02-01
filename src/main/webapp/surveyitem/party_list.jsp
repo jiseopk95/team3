@@ -11,25 +11,7 @@
     <meta name="author" content="">
 
     <title>Pet Doctor</title> <!-- 주소창 타이틀 -->
-    <!-- <link href="./css/style.css" rel='Stylesheet' type='text/css'> -->
-    <!-- Bootstrap core CSS -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- Plugin CSS -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
-
-    <!-- Custom styles for this template -->
-    <link href=" ${pageContext.request.contextPath}/resources/css/freelancer.min.css" rel="stylesheet">
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
-   <!-- Bootstrap -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <title></title> 
 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
@@ -44,7 +26,7 @@
     
 <title></title> 
 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
+
 <style>
 /*   table, th, td {
     border: 3px solid #bcbcbc;
@@ -105,7 +87,7 @@ function submit_proc(surveyitemno) {
 
   <DIV id='main_panel'></DIV>
 
-  <DIV class='title_line'><span style='color:red; font-size:18px;'>[${surveyVO.survey_title}]</span></DIV>
+  <DIV class='title_line' style="width:50%;">${surveyVO.survey_title}</DIV>
 
 
 <TABLE class='table table-hover' >

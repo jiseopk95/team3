@@ -136,11 +136,11 @@ function seqnoDown(surveyitemno,surveyno) {
 
   <DIV id='main_panel'></DIV>
 
-  <DIV class='title_line'><span style='color:red; font-size:18px;'>[${surveyVO.survey_title}]</span></DIV>
+  <DIV class='title_line' style=" width: 40%;"><IMG src='./images/q.png'>  ${surveyVO.survey_title}</DIV>
 
 <div>
      <ASIDE style='float: left;'>
-    <A href="../survey/list_by_manager_search_paging.do?managerno=${surveyVO.managerno}">전체 categrp</A>
+    <A href="../survey/list_by_manager_search_paging.do?managerno=${surveyVO.managerno}"><IMG src='./images/back.png' style="width:40px;height:40px;"></A>
     <!-- <A href='./create.jsp'>등록</A> -->
     </ASIDE> 
     

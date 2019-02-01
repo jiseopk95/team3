@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+r<%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -37,6 +37,32 @@ function send(){
   $('#frm').submit();  // 서브밋
 
   }
+  
+var today = new Date(); 
+
+var dd = today.getDate(); 
+ 
+var mm = today.getMonth() + 1; //January is 0! 
+ 
+
+ 
+var yyyy = today.getFullYear(); 
+ 
+if (dd < 10) { 
+ 
+    dd = '0' + dd; 
+ 
+} 
+ 
+if (mm < 10) { 
+ 
+    mm = '0' + mm; 
+ 
+} 
+ 
+var today = mm + '/' + dd + '/' + yyyy; 
+ 
+document.getElementById('starttdate').value = today;
 </script>
 
 </head> 
@@ -67,7 +93,7 @@ function send(){
           
          <div class="col-md-3 mb-2">
             <label for="startdate">Startdate</label>
-            <input type="date" class="form-control" name="startdate" id="startdate" placeholder="" value="2019-01-15" required >
+            <input type="date" class="form-control" name="startdate" id="startdate" placeholder=""  required >
           </div>
           
           <div class="col-md-3 mb-2">

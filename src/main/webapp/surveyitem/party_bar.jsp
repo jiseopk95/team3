@@ -1,38 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@page import="java.io.*" %> 
+<%@page import="java.util.*" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
-    <meta name="description" content="">
-    <meta name="author" content="">
+
 
     <title>Pet Doctor</title> <!-- 주소창 타이틀 -->
     <!-- <link href="./css/style.css" rel='Stylesheet' type='text/css'> -->
-    <!-- Bootstrap core CSS -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- Plugin CSS -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
-
-    <!-- Custom styles for this template -->
-    <link href=" ${pageContext.request.contextPath}/resources/css/freelancer.min.css" rel="stylesheet">
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
-   <!-- Bootstrap -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<title></title> 
-
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-
+   
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
@@ -54,24 +35,9 @@
   }
 
 </style>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
 <script type="text/javascript">
 
-/* $(function(){
-
-  <c:forEach var="survey_itemVO" items="${list}">
-  $('#bar').css('width', '${survey_itemVO.itemcnt}%'); 
-  </c:forEach>
-
-
-}) */
 
 function create(surveyno) {
   // 문자열: ', ""
@@ -144,19 +110,30 @@ function seqnoDown(surveyitemno,surveyno) {
   </FORM>
 
   <DIV id='main_panel'></DIV>
+  <aside style="float: center; font-weight: bold; font-size:35px; ">참여현황</aside><br>
 
-  <DIV class='title_line'><span style='color:red; font-size:18px;'>[${surveyVO.survey_title}] </span>
-    <br>설문 현황
-  
+  <DIV class='title_line' style="width:30%;">
+ <span style="font-size:18px;font-weight:bold;">${surveyVO.survey_title}<br></span>
+  <br>
   </DIV>
 
 <div>
      <ASIDE style='float: left;'>
-    <A href="../survey/list_by_manager_search_paging.do?managerno=${surveyVO.managerno}">전체 categrp</A>
+    <A href="../survey/list_by_manager_search_paging.do?managerno=${surveyVO.managerno}"><IMG src='./images/back.png' style="width:40px;height:40px;"></A>
     <!-- <A href='./create.jsp'>등록</A> -->
     </ASIDE> 
-   
+
+<!--     File file = new File("C:/ai3/ws_frame/AHR_system/src/main/webapp/surveyitem/surveyVO.getSurveyno().html");
+    boolean isExists = file.exists();
+    if(isExists) { -->
+
+
+     <ASIDE style='float: right;'>
+     <button type="button" class="btn btn-warning btn"onclick="location.href='../surveyitem/rdata/${surveyVO.surveyno}.html'" >R 분석 (결과 보기)</button>
+    </ASIDE> 
+
 </div>
+
 <TABLE class='table table-hover' >
   <colgroup>
     <col style='width:10%;'/> 
