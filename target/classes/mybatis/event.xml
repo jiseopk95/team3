@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="event">
+<select id="select_user" parameterType="HashMap" resultType="int">
+select count(*) from eventuser where memberno = #{memberno} and eventno = #{eventno}
+</select>
+
+
+<insert id="create" parameterType="EventVO">
+ INSERT INTO event(eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+image, image_size, thumb, windate,wincnt,winner,rdate)
+VALUES ((SELECT NVL(MAX(eventno), 0)+1 as eventno FROM event),
+#{managerno},#{presentno},#{title},#{content},#{period_start},#{period_end},#{writer},#{usercnt},#{image},#{image_size},#{thumb},
+ #{windate},#{wincnt},#{winner}, sysdate)
+  </insert>
+  <select id="list_all_event" resultType="EventVO">
+SELECT eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+image, image_size, thumb, windate,wincnt,winner,rdate
+FROM event
+ORDER BY rdate DESC
+  </select>
+  
+    <select id="list_present" resultType="event_presentVO">
+SELECT presentno, info, end_date
+FROM present
+  </select>
+  
+  <!-- 회원번호 뽑기 -->
+   <select id="read_member" resultType="event_eventuserVO">
+    SELECT memberno, id, name
+FROM member
+    </select>
+  
+   <select id="read_win" parameterType="int" resultType="event_eventuserVO">
+  select  win, eventno
+from eventuser
+where eventno = #{eventno}
+</select>
+
+  <!-- 응모버튼 누르면 참여자테이블에 값 들어갈 놈 . 이자리가 아닌가봄. 느낌이 참여자쪽으로..-->
+  <insert id="eventCheck" parameterType="event_eventuserVO">
+  INSERT INTO eventuser(eventuserno, memberno, eventno,joindate)
+VALUES ((SELECT NVL(MAX(eventuserno), 0)+1 as eventuserno FROM eventuser),1,#{eventno},sysdate)
+  </insert> 
+  <!--  -->
+  
+      <update id="update" parameterType="EventVO">
+ UPDATE event
+SET title=#{title}, presentno=#{presentno},content = #{content}, period_start=#{period_start},period_end=#{period_end},
+usercnt=#{usercnt},windate=#{windate},image=#{image},image_size=#{image_size},thumb=#{thumb}
+WHERE eventno=#{eventno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM event
+WHERE eventno=#{eventno}
+
+  </delete>
+  
+    <select id="read" resultType="EventVO" parameterType="int">
+    SELECT eventno, managerno, presentno, title, content, period_start,period_end, writer, usercnt, 
+image, image_size, thumb, windate,wincnt,winner,rdate
+FROM event
+WHERE eventno=#{eventno} 
+    </select>
+  
+      <select id="read_manager" resultType="event_managerVO" parameterType="int">
+    SELECT eventno, managerno, presentno, title, content, period_start,period_end, writer, usercnt, 
+image, image_size, thumb, windate,wincnt,winner,rdate
+FROM event
+WHERE eventno=#{eventno} 
+    </select>
+  
+  <!--  조회수 굳이 안필요할듯<update id="increaseCnt" parameterType="int">
+    UPDATE sevent
+    SET cnt = cnt + 1 
+    WHERE styleno=#{styleno}
+  </update> -->
+  
+ <select id="search_paging" resultType="event_managerVO" parameterType="HashMap">
+ SELECT eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+image, image_size, thumb, windate,wincnt,winner,rdate, r
+    FROM (
+              SELECT eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+                       image, image_size, thumb, windate,wincnt,winner,rdate, rownum as r
+              FROM (
+                        SELECT eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+                                  image, image_size, thumb, windate,wincnt,winner,rdate
+                        FROM event
+                        <choose>
+                          <when test="content == null or content == ''"> <!-- 검색하지 않는 경우 -->
+                          WHERE managerno=#{managerno}
+                          </when>
+                          <otherwise>
+                            WHERE managerno=#{managerno} AND content LIKE '%' || #{content} || '%'  
+                          </otherwise>
+                        </choose>
+                        ORDER BY rdate DESC
+              )            
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]> 
+    <!--     WHERE r >= #{startNum} AND r <= #{endNum} -->
+    
+  </select>
+  
+  
+  <select id="search_paging_member" resultType="EventVO" parameterType="HashMap">
+ SELECT eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+image, image_size, thumb, windate,wincnt,winner,rdate, r
+    FROM (
+              SELECT eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+                       image, image_size, thumb, windate,wincnt,winner,rdate, rownum as r
+              FROM (
+                        SELECT eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+                                  image, image_size, thumb, windate,wincnt,winner,rdate
+                        FROM event
+                        <choose>
+                          <when test="content == null or content == ''"> <!-- 검색하지 않는 경우 -->
+                        
+                          </when>
+                          <otherwise>
+                          WHERE content LIKE '%' || #{content} || '%'  
+                          </otherwise>
+                        </choose>
+                        ORDER BY rdate DESC
+              )            
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]> 
+    <!--     WHERE r >= #{startNum} AND r <= #{endNum} -->
+    
+  </select>
+  
+  
+  
+  
+  <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM event
+    <choose>
+      <when test="content == null or content == ''"> <!-- 검색하지 않는 경우 -->
+      </when>
+      <otherwise>
+        WHERE content LIKE '%' || #{content} || '%'  
+      </otherwise>
+    </choose>
+  </select>
+  
+  
+  <!-- 여기부터 당첨확인부분 시작 -->
+  
+  <select id="search_paging_win" resultType="event_eventuserVO" parameterType="HashMap">
+     SELECT eventuserno, eventno, memberno, name, win, id, r
+    FROM (
+              SELECT eventuserno, eventno, memberno, name, win, id, rownum as r 
+              FROM (
+                        SELECT e.eventuserno, e.eventno, m.memberno, m.name, e.win, m.id
+                        FROM eventuser e, member m
+                        <choose>
+                          <when test="id == null or id == ''"> <!-- 검색하지 않는 경우 -->
+                          WHERE e.memberno = m.memberno AND e.eventno=#{eventno}
+                           </when>
+                          <otherwise>
+                        WHERE e.memberno = m.memberno AND e.eventno=#{eventno} AND e.win ='1' AND m.id LIKE '%' || #{id} || '%'  
+                        </otherwise>
+                        </choose>
+                        ORDER BY e.eventuserno DESC
+              )            
+    )
+WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>  
+  </select>
+  
+  <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count_win" resultType="int" parameterType="HashMap">
+    SELECT COUNT(e.eventuserno) as cnt
+     FROM eventuser e LEFT OUTER JOIN member m ON e.memberno= m.memberno
+    <choose>
+      <when test="id == null or id == ''"> <!-- 검색하지 않는 경우 -->
+        WHERE eventno=#{eventno}  
+      </when>
+      <otherwise>
+        WHERE eventno=#{eventno} AND m.id LIKE '%' || #{id} || '%'  
+      </otherwise>
+    </choose>
+  </select>
+
+</mapper>

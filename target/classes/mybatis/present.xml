@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="present">
+<!-- 등록, (수정), 삭제, 목록만/ 다른기능 필요x-->
+<!-- 수정, 삭제창을 ajax 로 구현 -->
+  <insert id="create" parameterType="PresentVO">
+ INSERT INTO present(presentno, info, end_date)
+VALUES ((SELECT NVL(MAX(presentno), 0)+1 as presentno FROM present),#{info}, #{end_date})
+  </insert>
+  
+  <select id="list_all_present" resultType="PresentVO">
+      SELECT presentno, info, end_date
+      FROM present
+      ORDER BY presentno
+  </select>
+  
+  <update id="update" parameterType="PresentVO">
+      UPDATE present
+      SET info=#{info}, end_date=#{end_date}
+      WHERE presentno=#{presentno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+      DELETE FROM present
+      WHERE presentno=#{presentno}
+  </delete>
+  
+    <select id="read" resultType="PresentVO" parameterType="int">
+SELECT presentno, info, end_date
+FROM present
+WHERE presentno=#{presentno} 
+    </select>
+     
+ <select id="search_paging" resultType="PresentVO" parameterType="HashMap">
+   SELECT presentno, info, end_date, r
+    FROM (
+              SELECT presentno, info, end_date, rownum as r
+              FROM (
+                         SELECT presentno, info, end_date
+                         FROM present
+                        <choose>
+                          <when test="info == null or info == ''"> <!-- 검색하지 않는 경우 -->
+                          </when>
+                          <otherwise>
+                           info LIKE '%' || #{info} || '%'  
+                          </otherwise>
+                        </choose>
+                        ORDER BY presentno 
+              )            
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]> 
+    <!--     WHERE r >= #{startNum} AND r <= #{endNum} -->
+    
+  </select>
+  
+  <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM present
+    <choose>
+      <when test="info == null or info == ''"> <!-- 검색하지 않는 경우 -->
+      </when>
+      <otherwise>
+        WHERE info LIKE '%' || #{info} || '%'  
+      </otherwise>
+    </choose>
+  </select>
+  
+</mapper>

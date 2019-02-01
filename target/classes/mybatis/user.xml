@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+<!-- 난수시작 -->
+<!-- 이벤트별로 리스트뽑기 -->
+<select id="list_all_eventuserno" resultType="member_userVO" parameterType="int">
+SELECT eventno, memberno
+FROM eventuser 
+WHERE eventno=#{eventno}
+</select>
+  <!--  -->
+
+ <!-- 이벤트별로 win값 업데이트 콘트롤러에서 돌아서 당첨이면 1값이 들어감. -->
+  <update id="list_all_user2" parameterType="HashMap">
+  update eventuser
+  set win = 1
+  where eventno = #{eventno} AND memberno = #{memberno}
+  </update>
+  
+  <select id="cnt_win" resultType="int" parameterType="int">
+SELECT count(*)
+FROM eventuser
+WHERE eventno=#{eventno} and win=1
+</select>
+  <!-- 난수끝 -->
+
+  <select id="list_all_user" resultType="member_userVO">
+SELECT e.eventuserno,e.memberno, m.memberno, e.eventno, e.joindate, e.win ,m.name
+FROM eventuser e, member m
+WHERE e.memberno = m.memberno         
+ORDER BY e.eventuserno
+  </select>
+  
+   <insert id="create" parameterType="hashMap">
+  INSERT INTO eventuser(eventuserno, memberno, eventno, joindate)
+VALUES ((SELECT NVL(MAX(eventuserno), 0)+1 as eventuserno FROM eventuser),#{memberno},#{eventno},sysdate)
+  </insert> 
+  
+  <!-- 회원번호 뽑기 -->
+   <select id="read_member" parameterType="int" resultType="member_userVO">
+    SELECT memberno,eventno
+FROM eventuser
+WHERE memberno=#{memberno}
+    </select>
+    
+      <!-- 회원번호 뽑기 -->
+   <select id="list_member" parameterType="int" resultType="member_userVO">
+    SELECT memberno,eventno
+FROM eventuser
+WHERE memberno=#{memberno}
+    </select>
+    
+      <!-- 회원 응모한 이벤트번호 뽑기 그냥 위에서 다 뽑아버림.-->
+<!--    <select id="read_eventno" parameterType="int" resultType="member_userVO">
+  SELECT eventno
+FROM eventuser
+WHERE memberno=#{memberno}
+    </select>  -->
+    
+    
+<!--   참여자수 세기 -->
+    <select id="user_cnt" parameterType="int" resultType="int">
+  SELECT COUNT(*) as user_cnt
+FROM eventuser
+WHERE eventno=#{eventno}
+  </select>
+  
+   <update id="win_update" parameterType="member_userVO">
+  UPDATE eventuser
+  SET win=#{win}
+  WHERE eventuserno=#{eventuserno}
+    </update>
+    
+  </mapper>
