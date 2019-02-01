@@ -428,7 +428,7 @@ public class SurveyitemCont {
   }
   
   @RequestMapping(value="/surveyitem/submit_proc.do", method=RequestMethod.POST)
-  public ModelAndView submit_proc(int surveyitemno,SurveypartyVO surveypartyVO) {
+  public ModelAndView submit_proc(int surveyitemno,SurveypartyVO surveypartyVO,int memberno) {
     
     ModelAndView mav = new ModelAndView();
     
@@ -446,7 +446,7 @@ public class SurveyitemCont {
           mav.addObject("surveyVO", surveyVO);
           
      
-      mav.setViewName("redirect:/survey/list_m.do"); // /webapp/categrp/list.jsp
+      mav.setViewName("redirect:/survey/list_m.do?memberno="+memberno); // /webapp/categrp/list.jsp
  
     return mav;
   }

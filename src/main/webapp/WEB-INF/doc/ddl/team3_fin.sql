@@ -567,7 +567,7 @@ COMMENT ON COLUMN surveyitem.thumbs is 'Thumb 파일';
 COMMENT ON COLUMN surveyitem.files is '파일들의 이름';
 COMMENT ON COLUMN surveyitem.itemcnt is '체크 인원';
 COMMENT ON COLUMN surveyitem.sizes is '파일들의 크기';
-
+delete from surveyitem;
 2. 등록 
 INSERT INTO surveyitem(surveyitemno,surveyno,seqno,question,thumbs,files, sizes)
 values((select NVL(max(surveyitemno),0)+1 as surveyitemno from surveyitem),10,1,'당신이 원하는 미용 스타일은?','fall_m.jpg', 'fall.jpg', 0);	
@@ -592,7 +592,7 @@ COMMENT ON COLUMN surveyparty.surveyitemno is '설문조사 항목 번호';
 COMMENT ON COLUMN surveyparty.rdate is '참여날짜';
 COMMENT ON COLUMN surveyparty.memberno is '회원번호';
 
-
+delete from surveyparty;
 2. 등록 
 INSERT INTO surveyparty(surveypartyno,surveyno,surveyitemno,memberno,rdate)
 values((select NVL(max(surveypartyno),0)+1 as surveypartyno from surveyparty),12,9,1,sysdate);

@@ -412,7 +412,7 @@ return mav;
   public ModelAndView list_m() {
     ModelAndView mav = new ModelAndView();
     
-
+    
     List<SurveyVO> list = surveyProc.list_m();
     mav.addObject("list", list);
     mav.setViewName("/survey/list_m"); // /webapp/categrp/list.jsp
