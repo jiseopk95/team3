@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import dev.mvc.chart.ChartVO;
-import dev.mvc.chart.Contents;
+import dev.mvc.chart.chart_paging;
 import nation.web.tool.Tool;
 
 @Component("dev.mvc.animalstory.AnimalStoryProc")
@@ -153,8 +153,8 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
   }
   
   @Override
-  public ArrayList<FileVO> getThumbs(AnimalStoryVO aniVO) {
-    ArrayList<FileVO> file_list = new ArrayList<FileVO>();
+  public ArrayList<AniFileVO> getThumbs(AnimalStoryVO aniVO) {
+    ArrayList<AniFileVO> file_list = new ArrayList<AniFileVO>();
     
     String thumbs = aniVO.getThumbs(); // xmas01_2_t.jpg/xmas02_2_t.jpg...
     String files = aniVO.getFiles();          // xmas01_2.jpg/xmas02_2.jpg...
@@ -172,7 +172,7 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
       for (int index = 0; index < count; index++) {
         sizes_array[index] = Tool.unit(new Integer(sizes_array[index]));  // 1024 -> 1KB
       
-        FileVO fileVO = new FileVO(thumbs_array[index], files_array[index], sizes_array[index]);
+        AniFileVO fileVO = new AniFileVO(thumbs_array[index], files_array[index], sizes_array[index]);
         file_list.add(fileVO);
       }
     } 
@@ -225,12 +225,12 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     2 페이지: nowPage = 2, (2 - 1) * 10 --> 10
     3 페이지: nowPage = 3, (3 - 1) * 10 --> 20
     */
-   int beginOfPage = ((Integer)hashMap.get("nowPage") - 1) * Contents.RECORD_PER_PAGE;
+   int beginOfPage = ((Integer)hashMap.get("nowPage") - 1) * chart_paging.RECORD_PER_PAGE;
    
     // 시작 rownum, 1 페이지: 1 / 2 페이지: 11 / 3 페이지: 21 
    int startNum = beginOfPage + 1; 
    //  종료 rownum, 1 페이지: 10 / 2 페이지: 20 / 3 페이지: 30
-   int endNum = beginOfPage + Contents.RECORD_PER_PAGE;   
+   int endNum = beginOfPage + chart_paging.RECORD_PER_PAGE;   
    /*
     1 페이지: WHERE r >= 1 AND r <= 10
     2 페이지: WHERE r >= 11 AND r <= 20
@@ -273,12 +273,12 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     2 페이지: nowPage = 2, (2 - 1) * 10 --> 10
     3 페이지: nowPage = 3, (3 - 1) * 10 --> 20
     */
-   int beginOfPage = ((Integer)hashMap.get("nowPage") - 1) * Contents.RECORD_PER_PAGE;
+   int beginOfPage = ((Integer)hashMap.get("nowPage") - 1) * chart_paging.RECORD_PER_PAGE;
    
     // 시작 rownum, 1 페이지: 1 / 2 페이지: 11 / 3 페이지: 21 
    int startNum = beginOfPage + 1; 
    //  종료 rownum, 1 페이지: 10 / 2 페이지: 20 / 3 페이지: 30
-   int endNum = beginOfPage + Contents.RECORD_PER_PAGE;   
+   int endNum = beginOfPage + chart_paging.RECORD_PER_PAGE;   
    /*
     1 페이지: WHERE r >= 1 AND r <= 10
     2 페이지: WHERE r >= 11 AND r <= 20
@@ -338,11 +338,11 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
    */  
   @Override
   public String paging(int nowPage, int search_count, String content){ 
-    int totalPage = (int)(Math.ceil((double)search_count/Contents.RECORD_PER_PAGE)); // 전체 페이지    
-    int totalGrp = (int)(Math.ceil((double)totalPage/Contents.PAGE_PER_BLOCK));// 전체 그룹 
-    int nowGrp = (int)(Math.ceil((double)nowPage/Contents.PAGE_PER_BLOCK));    // 현재 그룹 
-    int startPage = ((nowGrp - 1) * Contents.PAGE_PER_BLOCK) + 1; // 특정 그룹의 페이지 목록 시작  
-    int endPage = (nowGrp * Contents.PAGE_PER_BLOCK);             // 특정 그룹의 페이지 목록 종료   
+    int totalPage = (int)(Math.ceil((double)search_count/chart_paging.RECORD_PER_PAGE)); // 전체 페이지    
+    int totalGrp = (int)(Math.ceil((double)totalPage/chart_paging.PAGE_PER_BLOCK));// 전체 그룹 
+    int nowGrp = (int)(Math.ceil((double)nowPage/chart_paging.PAGE_PER_BLOCK));    // 현재 그룹 
+    int startPage = ((nowGrp - 1) * chart_paging.PAGE_PER_BLOCK) + 1; // 특정 그룹의 페이지 목록 시작  
+    int endPage = (nowGrp * chart_paging.PAGE_PER_BLOCK);             // 특정 그룹의 페이지 목록 종료   
      System.out.println("totalPage : " + totalPage);
      System.out.println("nowGrp : " + nowGrp);
      System.out.println("totalGrp : " + totalGrp);
@@ -381,7 +381,7 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     // nowGrp: 1 (1 ~ 10 page),  nowGrp: 2 (11 ~ 20 page),  nowGrp: 3 (21 ~ 30 page) 
     // 현재 2그룹일 경우: (2 - 1) * 10 = 1그룹의 10
     // 현재 3그룹일 경우: (3 - 1) * 10 = 2그룹의 20
-    int _nowPage = (nowGrp-1) * Contents.PAGE_PER_BLOCK;  
+    int _nowPage = (nowGrp-1) * chart_paging.PAGE_PER_BLOCK;  
     if (nowGrp >= 2){ 
       str.append("<span class='span_box_1'><A href='./list.do?nowPage="+_nowPage+"&content=" + content + "'>이전</A></span>"); 
     } 
@@ -403,7 +403,7 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     // nowGrp: 1 (1 ~ 10 page),  nowGrp: 2 (11 ~ 20 page),  nowGrp: 3 (21 ~ 30 page) 
     // 현재 1그룹일 경우: (1 * 10) + 1 = 2그룹의 11
     // 현재 2그룹일 경우: (2 * 10) + 1 = 3그룹의 21
-    _nowPage = (nowGrp * Contents.PAGE_PER_BLOCK)+1;  
+    _nowPage = (nowGrp * chart_paging.PAGE_PER_BLOCK)+1;  
     if (nowGrp < totalGrp){ 
       str.append("<span class='span_box_1'><A href='./list.do?nowPage="+_nowPage+"&content=" + content + "'>다음</A></span>"); 
     } 
@@ -424,11 +424,11 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
    */  
   @Override
   public String paging_anitype(int nowPage, int search_count, String content, int anitype){  
-    int totalPage = (int)(Math.ceil((double)search_count/Contents.RECORD_PER_PAGE)); // 전체 페이지    
-    int totalGrp = (int)(Math.ceil((double)totalPage/Contents.PAGE_PER_BLOCK));// 전체 그룹 
-    int nowGrp = (int)(Math.ceil((double)nowPage/Contents.PAGE_PER_BLOCK));    // 현재 그룹 
-    int startPage = ((nowGrp - 1) * Contents.PAGE_PER_BLOCK) + 1; // 특정 그룹의 페이지 목록 시작  
-    int endPage = (nowGrp * Contents.PAGE_PER_BLOCK);             // 특정 그룹의 페이지 목록 종료   
+    int totalPage = (int)(Math.ceil((double)search_count/chart_paging.RECORD_PER_PAGE)); // 전체 페이지    
+    int totalGrp = (int)(Math.ceil((double)totalPage/chart_paging.PAGE_PER_BLOCK));// 전체 그룹 
+    int nowGrp = (int)(Math.ceil((double)nowPage/chart_paging.PAGE_PER_BLOCK));    // 현재 그룹 
+    int startPage = ((nowGrp - 1) * chart_paging.PAGE_PER_BLOCK) + 1; // 특정 그룹의 페이지 목록 시작  
+    int endPage = (nowGrp * chart_paging.PAGE_PER_BLOCK);             // 특정 그룹의 페이지 목록 종료   
      System.out.println("totalPage : " + totalPage);
      System.out.println("nowGrp : " + nowGrp);
      System.out.println("totalGrp : " + totalGrp);
@@ -467,7 +467,7 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     // nowGrp: 1 (1 ~ 10 page),  nowGrp: 2 (11 ~ 20 page),  nowGrp: 3 (21 ~ 30 page) 
     // 현재 2그룹일 경우: (2 - 1) * 10 = 1그룹의 10
     // 현재 3그룹일 경우: (3 - 1) * 10 = 2그룹의 20
-    int _nowPage = (nowGrp-1) * Contents.PAGE_PER_BLOCK;  
+    int _nowPage = (nowGrp-1) * chart_paging.PAGE_PER_BLOCK;  
     if (nowGrp >= 2){ 
       str.append("<span class='span_box_1'><A href='./list_anitype.do?nowPage="+_nowPage+"&content=" + content + "&anitype=" + anitype+"'>이전</A></span>"); 
     } 
@@ -489,7 +489,7 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     // nowGrp: 1 (1 ~ 10 page),  nowGrp: 2 (11 ~ 20 page),  nowGrp: 3 (21 ~ 30 page) 
     // 현재 1그룹일 경우: (1 * 10) + 1 = 2그룹의 11
     // 현재 2그룹일 경우: (2 * 10) + 1 = 3그룹의 21
-    _nowPage = (nowGrp * Contents.PAGE_PER_BLOCK)+1;  
+    _nowPage = (nowGrp * chart_paging.PAGE_PER_BLOCK)+1;  
     if (nowGrp < totalGrp){ 
       str.append("<span class='span_box_1'><A href='./list_anitype.do?nowPage="+_nowPage+"&content=" + content + "&anitype=" + anitype+"'>다음</A></span>"); 
     } 
@@ -498,17 +498,5 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     return str.toString(); 
   }
 
-  @Override
-  public List<EventVO> event(int evnetno) {
-    
-    return aniDAO.event(evnetno);
-  }
-
-  @Override
-  public int win(HashMap hashMap) {
-    // TODO Auto-generated method stub
-    return aniDAO.win(hashMap);
-  }
-  
 
 }

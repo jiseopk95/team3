@@ -89,18 +89,4 @@ public interface AnimalStoryDAOInter {
   public int search_count_anitype(HashMap hashMap);
   
   
-  /**
-   * 이벤트별 참여자 추출
-   * @param evnetno
-   * @return
-   */
-  public List<EventVO> event(int evnetno); 
-  
-  /**
-   * 당첨자 업데이트
-   * @param hashMap
-   * @return
-   */
-  public int win(HashMap hashMap);
-  
 }

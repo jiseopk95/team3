@@ -1,15 +1,15 @@
 package dev.mvc.animalstory;
 
-public class FileVO {
+public class AniFileVO {
   private String thumb;
   private String file;
   private String size;
 
-  public FileVO() {
+  public AniFileVO() {
 
   }
 
-  public FileVO(String thumb, String file, String size) {
+  public AniFileVO(String thumb, String file, String size) {
     super();
     this.thumb = thumb;
     this.file = file;

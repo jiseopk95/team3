@@ -88,19 +88,5 @@ public class AnimalStoryDAO implements AnimalStoryDAOInter{
     return sqlSessionTemplate.selectOne("animalstory.search_count_anitype", hashMap);
   }
 
-  @Override
-  public List<EventVO> event(int evnetno) {
-    
-    return sqlSessionTemplate.selectList("event.event_list", evnetno);
-  }
-
-  @Override
-  public int win(HashMap hashMap) {
-    
-    return sqlSessionTemplate.update("event.win", hashMap);
-  }
-
-  
-
   
 }

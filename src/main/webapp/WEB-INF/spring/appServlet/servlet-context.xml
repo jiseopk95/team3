@@ -40,6 +40,8 @@
   <context:component-scan base-package="dev.mvc.categrp" />
   <context:component-scan base-package="dev.mvc.category" />
   <context:component-scan base-package="dev.mvc.review" />
+  <context:component-scan base-package="dev.mvc.answer" />
+  <context:component-scan base-package="dev.mvc.question" />
   
   <context:component-scan base-package="dev.mvc.choice" />
   <context:component-scan base-package="dev.mvc.survey" />

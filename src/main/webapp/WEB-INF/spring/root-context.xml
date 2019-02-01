@@ -21,7 +21,7 @@
     <property name="typeAliasesPackage" 
                    value="dev.mvc.reservation,dev.mvc.calendar,dev.mvc.chart,dev.mvc.animalstory,
                              dev.mvc.beauty,dev.mvc.event,dev.mvc.present,dev.mvc.user,
-                             dev.mvc.categrp,dev.mvc.category,dev.mvc.review,
+                             dev.mvc.categrp,dev.mvc.category,dev.mvc.review,dev.mvc.answer,dev.mvc.question,
                              dev.mvc.choice,dev.mvc.survey,dev.mvc.surveyitem,dev.mvc.surveyparty,
                              dev.mvc.manager,dev.mvc.member,dev.mvc.pet,dev.mvc.manager_login,dev.mvc.member_login"/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />

@@ -10,7 +10,7 @@ public interface ReservationProcInter {
    * @param mno
    * @return
    */
-  public List<PetVO> pet_list(int memberno);
+  public List<ResPetVO> pet_list(int memberno);
   
   /**
    * 예약 가능한 시간 리스트 - 병원

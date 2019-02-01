@@ -43,7 +43,7 @@ public class ReservationCont {
   @RequestMapping(value = "/reservation/create.do", method = RequestMethod.GET)
   public ModelAndView create(int memberno, String resdate) {
     ModelAndView mav = new ModelAndView();
-    List<PetVO> list = reservationProc.pet_list(memberno); // 해당 동물 리스트를 가져온다.
+    List<ResPetVO> list = reservationProc.pet_list(memberno); // 해당 동물 리스트를 가져온다.
     List<Time_hVO> list_h = reservationProc.time_h(resdate); // 의료(1번)의 예약된 시간을 받아온다
     List<Time_bVO> list_b = reservationProc.time_b(resdate); // 미용(2번)의 예약된 시간을 받아온다
     
@@ -112,7 +112,7 @@ public class ReservationCont {
   public ModelAndView update(int reservationno, int memberno, String resdate) {
     ModelAndView mav = new ModelAndView();
     
-    List<PetVO> list = reservationProc.pet_list(memberno); // 펫리스트를 가져온다
+    List<ResPetVO> list = reservationProc.pet_list(memberno); // 펫리스트를 가져온다
     List<Time_hVO> list_h = reservationProc.time_h(resdate); // 의료(1번)의 예약된 시간을 받아온다
     List<Time_bVO> list_b = reservationProc.time_b(resdate); // 미용(2번)의 예약된 시간을 받아온다
     ReservationVO reservationVO = reservationProc.read(reservationno); // 해당 글번호의 예약내용을 불러온다.

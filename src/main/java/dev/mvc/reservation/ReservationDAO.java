@@ -17,7 +17,7 @@ public class ReservationDAO implements ReservationDAOInter {
   }
   
   @Override
-  public List<PetVO> pet_list(int memberno) {
+  public List<ResPetVO> pet_list(int memberno) {
    
     return sqlSessionTemplate.selectList("reservation.pet_list", memberno);
   }

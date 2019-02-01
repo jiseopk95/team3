@@ -172,7 +172,7 @@ public class ChartCont {
       HashMap<String, Object> hashMap = new HashMap<String, Object>();
       hashMap.put("name", name); // #{categoryno}
       hashMap.put("petname", petname);                  // #{word}
-      if (chartProc.search_count(hashMap) % Contents.RECORD_PER_PAGE == 0){ 
+      if (chartProc.search_count(hashMap) % chart_paging.RECORD_PER_PAGE == 0){ 
         nowPage = nowPage - 1;
         System.out.println("delete nowPage : " + nowPage);
         if (nowPage < 1){

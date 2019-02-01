@@ -22,7 +22,7 @@ public class ReservationProc implements ReservationProcInter{
   }
   
   @Override
-  public List<PetVO> pet_list(int memberno) {
+  public List<ResPetVO> pet_list(int memberno) {
     
     return reservationDAO.pet_list(memberno);
   }

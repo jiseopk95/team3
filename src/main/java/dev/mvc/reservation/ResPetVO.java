@@ -1,6 +1,6 @@
 package dev.mvc.reservation;
 
-public class PetVO {
+public class ResPetVO {
 
 //  반려동물 번호
   private int petno;
@@ -11,7 +11,7 @@ public class PetVO {
 //  반려동물 이름
   private String name;
   
-  public PetVO() {
+  public ResPetVO() {
     
   }
 
