@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dev.mvc.category.CategoryProcInter;
 import dev.mvc.category.Categrp_CategoryVO;
 import nation.web.tool.Messages;
 import nation.web.tool.Tool;
@@ -41,6 +42,10 @@ public class ReviewCont {
   @Autowired
   @Qualifier("dev.mvc.tool.Messages")
   private Messages messages = null;
+  
+  @Autowired
+  @Qualifier("dev.mvc.category.CategoryProc")
+  private CategoryProcInter categoryProc = null;
   
   public ReviewCont() {
     System.out.println("--> ReviewCont crated.");
@@ -162,8 +167,8 @@ public class ReviewCont {
    * 
    * @return
    */
-  // http://localhost:9090/ojt/contents/list_all_category.do
-  @RequestMapping(value = "/review/list.do", method = RequestMethod.GET)
+
+/*  @RequestMapping(value = "/review/list.do", method = RequestMethod.GET)
   public ModelAndView list() {
     ModelAndView mav = new ModelAndView();
 
@@ -173,7 +178,7 @@ public class ReviewCont {
     mav.setViewName("/review/list"); // /webapp/contents/list_all_category.jsp
 
     return mav;
-  }
+  }*/
   
 /**
  * 삭제폼
@@ -431,6 +436,126 @@ public class ReviewCont {
 
     return mav;
 
+  }
+  
+  /**
+   * 검색 목록
+   * 
+   * @param categoryno
+   * @param word
+   * @return
+   */
+  @RequestMapping(value = "/review/list.do", method = RequestMethod.GET)
+  public ModelAndView list_by_category_search(int categoryno, String title) {
+
+    ModelAndView mav = new ModelAndView();
+   
+    // 검색 기능 추가, webapp/contents/list_by_category_search.jsp
+    mav.setViewName("/review/list");
+
+    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("categoryno", categoryno); // #{categoryno}
+    hashMap.put("title", title); // #{title}
+
+     System.out.println("categoryno: " + categoryno);
+     System.out.println("title: " + title);
+
+    // 검색 목록
+    List<ReviewVO> list = reviewProc.list_by_category_search(hashMap);
+   // List<ReviewVO> list = reviewProc.list();
+    mav.addObject("list", list);
+
+    // 검색된 레코드 갯수
+    int search_count = reviewProc.search_count(hashMap);
+    mav.addObject("search_count", search_count);
+    
+    System.out.println("search_count: " + search_count);
+
+    Categrp_CategoryVO categoryVO = categoryProc.read(categoryno);
+    
+    mav.addObject("categoryVO", categoryVO);
+
+    // mav.addObject("word", word);
+
+    return mav;
+  }
+  
+  /**
+   * 목록 + 검색 + 페이징 지원
+   * @param categoryno
+   * @param word
+   * @param nowPage
+   * @return
+   */
+/*  @RequestMapping(value = "/review/list.do", 
+                                       method = RequestMethod.GET)
+  public ModelAndView list_by_category_search_paging(
+      @RequestParam(value="categoryno") int categoryno,
+      @RequestParam(value="title", defaultValue="") String title,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage
+      ) { 
+    // System.out.println("--> list_by_category() GET called.");
+    System.out.println("--> nowPage: " + nowPage);
+    
+    ModelAndView mav = new ModelAndView();
+    
+    // 검색 기능 추가,  /webapp/contents/list_by_category_search_paging.jsp
+    mav.setViewName("/review/list");   
+    
+    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("categoryno", categoryno); // #{categoryno}
+    hashMap.put("title", title);                  // #{word}
+    hashMap.put("nowPage", nowPage);       
+    
+    // 검색 목록
+    List<ReviewVO> list = reviewProc.list_by_category_search_paging(hashMap);
+    mav.addObject("list", list);
+    
+    // 검색된 레코드 갯수
+    int search_count = reviewProc.search_count(hashMap);
+    mav.addObject("search_count", search_count);
+  
+    Categrp_CategoryVO categoryVO = categoryProc.read(categoryno);
+    mav.addObject("categoryVO", categoryVO);
+    
+    // mav.addObject("word", word);
+  
+    
+     * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 
+     * 현재 페이지: 11 / 22   [이전] 11 12 13 14 15 16 17 18 19 20 [다음] 
+     *
+     * @param categoryno 카테고리번호 
+     * @param search_count 검색(전체) 레코드수 
+     * @param nowPage     현재 페이지
+     * @param word 검색어
+     * @return 페이징 생성 문자열
+      
+    String paging = reviewProc.paging(categoryno, search_count, nowPage, title);
+    mav.addObject("paging", paging);
+  
+    mav.addObject("nowPage", nowPage);
+    
+    return mav;
+  }*/
+  
+  /**
+   * index화면 작은 리스트
+   * @return
+   */
+  @RequestMapping(value = "/review/index_list.do", method = RequestMethod.GET)
+  public ModelAndView list() {
+    ModelAndView mav = new ModelAndView();
+
+    List<ReviewVO> index_list = reviewProc.index_list();
+    
+
+    mav.addObject("index_list", index_list);
+
+    mav.setViewName("/review/index_list"); // /webapp/contents/list_all_category.jsp
+
+    return mav;
   }
   
   

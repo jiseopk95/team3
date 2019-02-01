@@ -18,6 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY reviewno ASC
   </select>
   
+  <select id="list_index" resultType="ReviewVO">
+    SELECT reviewno, name, title, contents, rdate, files, filesize, thumbs, num, score, categoryno, memberno
+    FROM review
+    WHERE <![CDATA[ ROWNUM <=5 ]]>
+    ORDER BY reviewno ASC
+  </select>   
+  
   <select id="read" resultType="ReviewVO" parameterType="int">
     SELECT reviewno,
               name, title, contents, rdate, files, filesize, thumbs, num, score, categoryno, memberno
@@ -37,22 +44,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE reviewno=#{reviewno}
   </update>
   
+  <!-- category별 검색된 레코드 목록 -->
+  <select id="list_by_category_search" resultType="ReviewVO" parameterType="HashMap">
+    SELECT reviewno,
+          categoryno, memberno, title,name, score, thumbs, files, filesize, num, rdate
+    FROM review
+    <choose>
+      <when test="title == null or title == ''"> <!-- 검색하지 않는 경우 -->
+        WHERE categoryno=#{categoryno}
+      </when>
+      <otherwise>
+        WHERE categoryno=#{categoryno} AND title LIKE '%' || #{title} || '%'  
+      </otherwise>
+    </choose>
+    ORDER BY reviewno DESC
+  </select>
+  
    <!-- category별 검색된 레코드 갯수 -->
   <select id="search_count" resultType="int" parameterType="HashMap">
     SELECT COUNT(*) as cnt
     FROM review
-    WHERE categoryno=#{categoryno}
-    </select>
+     <choose>
+      <when test="title == null or title == ''"> <!-- 검색하지 않는 경우 -->
+        WHERE categoryno=#{categoryno}
+      </when>
+      <otherwise>
+        WHERE categoryno=#{categoryno} AND title LIKE '%' || #{title} || '%'  
+      </otherwise>
+    </choose>
+  </select>
+  
+  <!-- category별 검색된 레코드 목록 + 페이징 -->
+  <select id="list_by_category_search_paging" resultType="ReviewVO" parameterType="HashMap">
+    SELECT reviewno, categoryno, title, contents, score, thumbs, files, filesize,
+             num, rdate, r
+    FROM (
+              SELECT reviewno, categoryno, title, contents, score, thumbs, files, filesize,
+                        num, rdate, rownum as r
+              FROM (
+                        SELECT  reviewno, categoryno, title, contents, score, thumbs, files, filesize,
+                                    num, rdate
+                        FROM review
+                        <choose>
+                          <when test="title == null or title == ''"> <!-- 검색하지 않는 경우 -->
+                            WHERE categoryno=#{categoryno}
+                          </when>
+                          <otherwise>
+                            WHERE categoryno=#{categoryno} AND title LIKE '%' || #{title} || '%'  
+                          </otherwise>
+                        </choose>
+                        ORDER BY reviewno DESC
+              )            
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]> 
+    <!--     WHERE r >= #{startNum} AND r <= #{endNum} -->
     
-    <select id="search_word" resultType="ReviewVO" parameterType="HashMap">
-      SELECT reviewno,
-                categoryno, memberno, title, score, thumbs, files, filesize, num, rdate, 
-                word
-     FROM review
-     WHERE categoryno=#{categoryno} AND title LIKE '%' || #{title} || '%' 
-     ORDER BY reviewno ASC;
-    </select>
-     
+  </select>
+    
 </mapper>
 
 

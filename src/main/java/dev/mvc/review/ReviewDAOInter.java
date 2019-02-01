@@ -22,6 +22,12 @@ public interface ReviewDAOInter {
   public List<ReviewVO> list();
   
   /**
+   * 5개만 나오는 목록
+   * @return
+   */
+    public List<ReviewVO> index_list();
+  
+  /**
    * 조회
    * @param reviewno
    * @return
@@ -47,14 +53,21 @@ public interface ReviewDAOInter {
    * @param categoryno
    * @return
    */
-//  public List<ReviewVO> list_by_category_search(HashMap hashMap);
+  public List<ReviewVO> list_by_category_search(HashMap hashMap);
 
   /**
    * category별 검색된 레코드 갯수
    * @return
    */
- // public int search_count(HashMap hashMap);
+  public int search_count(HashMap hashMap);
   
+  /**
+   * 검색 목록 + 페이징
+   * @param hashMap
+   * @return
+   */
+  public List<ReviewVO> list_by_category_search_paging(HashMap<String, Object> hashMap);
+
 
   
   

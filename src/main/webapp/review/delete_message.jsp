@@ -23,8 +23,8 @@
 
 </head> 
 <body>
-<DIV class='container'>
 <c:import url="/menu/top.jsp" />
+<DIV class='container'>
 <DIV class='content'>
 
 <DIV class='title_line'>알림</DIV>
@@ -58,8 +58,8 @@
 </DIV>
 
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html> 

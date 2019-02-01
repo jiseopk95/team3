@@ -49,7 +49,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <div style='width: 80%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
 <c:import url="/animalstory/index_animal.do" /> 
-
+<c:import url="./review/index_list.do" />
 </div>
 <!-- 여기까지 -->
 
