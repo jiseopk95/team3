@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="question">
+ 
+  <insert id="create" parameterType="QuestionVO">
+    INSERT INTO question(questionno, title, rdate, content, name, files, filesize, num, passwd, visible , 
+                                     replycnt, grpno, indent, ansnum, categoryno, memberno)
+    VALUES((SELECT NVL(MAX(questionno), 0)+1 as questionno FROM question), #{title}, sysdate, #{content},
+             #{name}, #{files},#{filesize},#{num},#{passwd},#{visible}, #{replycnt},  (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM question),
+                #{indent}, #{ansnum} , #{categoryno},#{memberno})
+  </insert>
+  
+   <select id="list" resultType="QuestionVO" parameterType="int">
+    SELECT questionno, title, rdate, content, name, files,  filesize, num, passwd, visible ,  replycnt, grpno, indent, ansnum, categoryno, memberno
+    FROM question
+    WHERE categoryno=#{categoryno}
+    ORDER BY  grpno DESC,questionno ASC
+  </select>
+  
+  <select id="read" resultType="QuestionVO" parameterType="int">
+    SELECT questionno, title, rdate, content, name, files, filesize, num, passwd, visible , replycnt, grpno, indent, ansnum, categoryno, memberno
+    FROM question
+    WHERE questionno=#{questionno}
+  </select>
+  
+   <select id="passwd_check" resultType="int" parameterType="Map">
+    SELECT COUNT(*) as cnt
+    FROM question
+    WHERE questionno=#{questionno} AND passwd=#{passwd}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM question
+    WHERE questionno=#{questionno}
+  </delete>
+  
+  <update id="update" parameterType="QuestionVO">
+    UPDATE question
+    SET title=#{title}, content=#{content}, name=#{name},
+                   passwd=#{passwd}, visible=#{visible}
+    WHERE questionno=#{questionno}
+  </update>
+  
+  <!-- ******************** 답변 관련 시작 ******************** -->
+  <!-- 신규 답변을 최우선으로 출력하기위한 답변 순서 조절 -->
+  <update id='updateAnsnum' parameterType="QuestionVO">
+    UPDATE question
+    SET ansnum = ansnum + 1
+    WHERE grpno = #{grpno} AND ansnum > #{ansnum}
+  </update>  
+   
+  <!-- 답변 --> 
+  <insert id="reply" parameterType="QuestionVO">
+    INSERT INTO question(questionno,
+                      categoryno, memberno, title, content, files, filesize, num, replycnt, rdate, 
+                      grpno, indent, ansnum,name, passwd)  
+    VALUES((SELECT NVL(MAX(questionno), 0) + 1 as questionno FROM question),
+                #{categoryno}, #{memberno}, #{title}, #{content:VARCHAR}, #{files}, #{filesize}, 0, 0, sysdate,
+                #{grpno}, #{indent}, #{ansnum},#{name},#{passwd})
+  </insert>
+  
+  <!-- ******************** 답변 관련 종료 ******************** -->
+
+
+
+
+
+
+
+
+
+</mapper>
+

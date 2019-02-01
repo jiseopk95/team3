@@ -42,11 +42,11 @@
           panel += "<TR>";
           // panel += "<TD style='text-align: center ;'>"+rdata[index].categoryno+"</TD>";
           panel += "<TD style='text-align: center ;'>"+(index+1)+"</TD>";
-          panel += "<TD>"+rdata[index].name+"</TD>";
-          panel += "<TD>"+rdata[index].title+"</TD>";
+          panel += "<TD style='text-align: center ;'>"+rdata[index].name+"</TD>";
+          panel += "<TD style='text-align: center ;'>"+rdata[index].title+"</TD>";
           panel += "<TD  style='text-align: center ;'>"+rdata[index].category_seqno+"</TD>";
-          panel += "<TD  style='text-align: center ;'>"+rdata[index].visible+"</TD>";
-          panel += "<TD>"+rdata[index].ids+"</TD>";
+/*           panel += "<TD  style='text-align: center ;'>"+rdata[index].visible+"</TD>";
+          panel += "<TD>"+rdata[index].ids+"</TD>"; */
           panel += "<TD style='text-align: center;'>"; 
           panel += "  <A href=\"javascript:update("+rdata[index].categoryno+")\"><IMG src='./images/update.png' title='수정' style='width: 20px;'></A>";  
           panel += "  <A href=\"javascript:deleteOne("+rdata[index].categoryno+")\"><IMG src='./images/delete.png' title='삭제' style='width: 20px;'></A>";
@@ -209,9 +209,9 @@
 </head> 
  
 <body>
-<DIV class='container' style='width: 90%;'>
 <jsp:include page="/menu/top.jsp" flush='false' />
-<DIV class='content' style='width: 100%;'>
+<DIV class='container' style='width: 100%;'>
+<DIV class='content' >
   
   <DIV id='main_panel'></DIV>
   
@@ -244,17 +244,6 @@
       <label for='seqno'>출력 순서</label>
       <input type='number' name='seqno' id='seqno' value='' required="required" style='width: 5%;'>
   
-      <label for='visible'>출력 형식</label>
-      <!-- 
-      <input type='text' name='visible' id='visible' value='' required="required" style='width: 2%;'>
-       -->
-       <select name='visible'>
-         <option value='Y' selected="selected">Y</option>
-         <option value='N'>N</option>
-       </select>
-       
-      <label for='ids'>접근 계정</label>
-      <input type='text' name='ids' id='ids' value='admin' required="required" style='width: 10%;'>
  
       <button type="button" id='submit' onclick="create()">등록</button>
       <button type="button" onclick="create_update_cancel()">취소</button>
@@ -312,8 +301,8 @@
  
  
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
  
 </html> 

@@ -40,13 +40,16 @@
  
         for(index=0; index < rdata.length; index++) {
           panel += "<TR>";
-          // panel += "<TD style='text-align: center ;'>"+rdata[index].categoryno+"</TD>";
-          panel += "<TD style='text-align: center ;'>"+rdata[index].rdate.substring(0,10)+"</TD>";
-          panel += "<TD style='text-align: center ;'>"+rdata[index].content+"</TD>";
-          panel += "<TD style='text-align: center;'>"; 
+          panel += "<TD style='text-align: right ;'>익명</TD>";
+          panel += "<TD style='text-align: left ;'>"+rdata[index].rdate.substring(0,10);
+          panel += "<br>"+rdata[index].content+"</TD>";
+          panel += "<TD ></TD>";
+          panel += "<TD ></TD>";
+          panel += "<TD ></TD>";
+/*       panel += "<TD style='text-align: center;'>"; 
           panel += "  <A href=\"javascript:update("+rdata[index].categoryno+")\"><IMG src='./images/update.png' title='수정' style='width: 20px;'></A>";  
           panel += "  <A href=\"javascript:deleteForm("+rdata[index].categoryno+")\"><IMG src='./images/delete.png' title='삭제' style='width: 20px;'></A>";
-          panel += "</TD>"; 
+          panel += "</TD>";  */
           panel += "</TR>";
         }
         // alert(panel);
@@ -164,9 +167,13 @@
   <colgroup>
 <%--     <col style='width: 10%;'/>
     <col style='width: 10%;'/> --%>
-    <col style='width: 10%;'/>
-    <col style='width: 10%;'/>
-    <col style='width: 25%;'/>
+    <col style='width: 5%;'/>
+    <col style='width: 30%;'/>
+    <col style='width: 20%;'/>
+    <col style='width: 30%;'/>
+    <col style='width: 5%;'/>
+
+
  
   </colgroup>
 
