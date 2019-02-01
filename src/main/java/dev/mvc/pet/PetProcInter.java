@@ -56,7 +56,7 @@ public interface PetProcInter {
    */
   public int delete(int petno);
   
-  ArrayList<FileVO> getThumbs(PetVO petVO);
+  ArrayList<PetFileVO> getThumbs(PetVO petVO);
   
   /**
    * 검색 목록

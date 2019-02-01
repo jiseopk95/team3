@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
   
-import dev.mvc.beauty.FileVO;
+import dev.mvc.beauty.BeaFileVO;
 import nation.web.tool.Tool;
 import nation.web.tool.Upload;
 
@@ -176,7 +176,7 @@ public class BeautyCont {
                                                                                    // 추출
     mav.addObject("categoryVO", categoryVO);*/
 
-    ArrayList<FileVO> file_list = beautyProc.getThumbs(beautyVO);
+    ArrayList<BeaFileVO> file_list = beautyProc.getThumbs(beautyVO);
 
     mav.addObject("file_list", file_list);
     
@@ -317,7 +317,7 @@ public class BeautyCont {
                                                                                    // 추출
     mav.addObject("categoryVO", categoryVO);
 
-    ArrayList<FileVO> file_list = beautyProc.getThumbs(beautyVO);
+    ArrayList<BeaFileVO> file_list = beautyProc.getThumbs(beautyVO);
 
     mav.addObject("file_list", file_list);
 

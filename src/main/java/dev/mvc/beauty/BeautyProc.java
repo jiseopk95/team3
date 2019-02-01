@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import dev.mvc.beauty.FileVO;
+import dev.mvc.beauty.BeaFileVO;
 import nation.web.tool.Tool;
 
 @Component("dev.mvc.beauty.BeautyProc") 
@@ -62,8 +62,8 @@ public class BeautyProc implements BeautyProcInter {
     return thumb;
   }*/
   @Override
-  public ArrayList<FileVO> getThumbs(BeautyVO beautyVO) {
-    ArrayList<FileVO> file_list = new ArrayList<FileVO>();
+  public ArrayList<BeaFileVO> getThumbs(BeautyVO beautyVO) {
+    ArrayList<BeaFileVO> file_list = new ArrayList<BeaFileVO>();
     
     String thumbs = beautyVO.getThumb(); // xmas01_2_t.jpg/xmas02_2_t.jpg...
     String files = beautyVO.getImage();          // xmas01_2.jpg/xmas02_2.jpg...
@@ -82,7 +82,7 @@ public class BeautyProc implements BeautyProcInter {
       for (int index = 0; index < count; index++) {
         sizes_array[index] = Tool.unit(new Integer(sizes_array[index]));  // 1024 -> 1KB
       
-        FileVO fileVO = new FileVO(thumbs_array[index], files_array[index], sizes_array[index]);
+        BeaFileVO fileVO = new BeaFileVO(thumbs_array[index], files_array[index], sizes_array[index]);
         file_list.add(fileVO);
       }
     } 

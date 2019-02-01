@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import dev.mvc.beauty.BeautyVO;
-import dev.mvc.event.File2VO;
+import dev.mvc.event.EventFileVO;
 
 public interface EventProcInter {
   
@@ -57,13 +57,13 @@ public interface EventProcInter {
    * @param beautyVO
    * @return
    */
-  public ArrayList<File2VO> getThumbs(EventVO eventVO);
+  public ArrayList<EventFileVO> getThumbs(EventVO eventVO);
   /**
    * 파일 목록 추출
    * @param beautyVO
    * @return
    */
-  public ArrayList<File2VO> getThumbs(event_managerVO event_managerVO);
+  public ArrayList<EventFileVO> getThumbs(event_managerVO event_managerVO);
   /**
    * 수정처리
    * @param vo

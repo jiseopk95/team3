@@ -1,15 +1,15 @@
 package dev.mvc.surveyitem;
 
-public class FileVO {
+public class SurFileVO {
   private String thumb;
   private String file;
   private String size;
 
-  public FileVO() {
+  public SurFileVO() {
 
   }
 
-  public FileVO(String thumb, String file, String size) {
+  public SurFileVO(String thumb, String file, String size) {
     super();
     this.thumb = thumb;
     this.file = file;

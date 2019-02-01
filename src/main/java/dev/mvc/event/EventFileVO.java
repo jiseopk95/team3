@@ -1,15 +1,15 @@
-package dev.mvc.review;
+package dev.mvc.event;
 
-public class FileVO {
+public class EventFileVO {
   private String thumb;
   private String file;
   private String size;
 
-  public FileVO() {
+  public EventFileVO() {
 
   }
 
-  public FileVO(String thumb, String file, String size) {
+  public EventFileVO(String thumb, String file, String size) {
     super();
     this.thumb = thumb;
     this.file = file;

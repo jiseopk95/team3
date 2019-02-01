@@ -34,7 +34,7 @@ public interface SurveyitemProcInter {
    * @param contentsVO
    * @return
    */
-  public ArrayList<FileVO> getThumbs(Survey_ItemVO survey_itemVO);
+  public ArrayList<SurFileVO> getThumbs(Survey_ItemVO survey_itemVO);
   
   /**
    * 수정처리

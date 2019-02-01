@@ -287,7 +287,7 @@ public class ReviewCont {
                                                                                    // 추출
 //    mav.addObject("categoryVO", categoryVO);
 
-    ArrayList<FileVO> file_list = reviewProc.getThumbs(reviewVO);
+    ArrayList<ReFileVO> file_list = reviewProc.getThumbs(reviewVO);
 
     mav.addObject("file_list", file_list);
 
@@ -315,7 +315,7 @@ public class ReviewCont {
                                                                                    // 추출
     mav.addObject("categoryVO", categoryVO);*/
 
-    ArrayList<FileVO> file_list = reviewProc.getThumbs(reviewVO);
+    ArrayList<ReFileVO> file_list = reviewProc.getThumbs(reviewVO);
 
     mav.addObject("file_list", file_list);
 

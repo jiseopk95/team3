@@ -183,7 +183,7 @@ public class PetCont {
     PetVO petVO = petProc.read(petno);
     mav.addObject("petVO", petVO);
     
-    ArrayList<FileVO> file_list=petProc.getThumbs(petVO);
+    ArrayList<PetFileVO> file_list=petProc.getThumbs(petVO);
     mav.addObject("file_list", file_list);
     return mav;
   }  

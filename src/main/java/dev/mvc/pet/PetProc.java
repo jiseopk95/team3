@@ -18,7 +18,7 @@ import dev.mvc.manager.Manager;
 import dev.mvc.manager.ManagerVO;
 import dev.mvc.member.Member;
 import dev.mvc.member.MemberVO;
-import dev.mvc.pet.FileVO;
+import dev.mvc.pet.PetFileVO;
 import nation.web.tool.Tool;
 
 
@@ -86,8 +86,8 @@ public class PetProc implements PetProcInter {
   }
   
   @Override
-  public ArrayList<FileVO> getThumbs(PetVO petVO) {
-    ArrayList<FileVO> file_list = new ArrayList<FileVO>();
+  public ArrayList<PetFileVO> getThumbs(PetVO petVO) {
+    ArrayList<PetFileVO> file_list = new ArrayList<PetFileVO>();
     
     String thumbs = petVO.getThumbs(); // xmas01_2_t.jpg/xmas02_2_t.jpg...
     String files = petVO.getFiles();          // xmas01_2.jpg/xmas02_2.jpg...
@@ -106,7 +106,7 @@ public class PetProc implements PetProcInter {
       for (int index = 0; index < count; index++) {
         sizes_array[index] = Tool.unit(new Integer(sizes_array[index]));  // 1024 -> 1KB
       
-        FileVO fileVO = new FileVO(thumbs_array[index], files_array[index], sizes_array[index]);
+        PetFileVO fileVO = new PetFileVO(thumbs_array[index], files_array[index], sizes_array[index]);
         file_list.add(fileVO);
       }
     } 

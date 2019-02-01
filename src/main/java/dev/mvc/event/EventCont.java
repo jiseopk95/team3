@@ -30,7 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import dev.mvc.beauty.Beauty;
 import dev.mvc.beauty.BeautyVO;
 import dev.mvc.category.Categrp_CategoryVO;
-import dev.mvc.event.File2VO;
+import dev.mvc.event.EventFileVO;
 import dev.mvc.present.PresentProcInter;
 import dev.mvc.present.PresentVO;
 import dev.mvc.user.UserProcInter;
@@ -197,7 +197,7 @@ public class EventCont{
     event_managerVO eventVO = eventProc.read_manager(eventno);
     mav.addObject("eventVO", eventVO);
     
-    ArrayList<File2VO> file_list = eventProc.getThumbs(eventVO);
+    ArrayList<EventFileVO> file_list = eventProc.getThumbs(eventVO);
  
     mav.addObject("file_list", file_list);
     
@@ -224,7 +224,7 @@ public class EventCont{
 /*    List<member_userVO> member_userVO = userProc.list_member(memberno);
     mav.addObject("member_userVO",member_userVO);
     */
-    ArrayList<File2VO> file_list = eventProc.getThumbs(eventVO);
+    ArrayList<EventFileVO> file_list = eventProc.getThumbs(eventVO);
  
     mav.addObject("file_list", file_list);
     
@@ -253,7 +253,7 @@ public class EventCont{
      EventVO eventVO = eventProc.read(eventno);
      mav.addObject("eventVO", eventVO);             // 정보 추출
 
-     ArrayList<File2VO> file_list = eventProc.getThumbs(eventVO);
+     ArrayList<EventFileVO> file_list = eventProc.getThumbs(eventVO);
 
      mav.addObject("file_list", file_list);
 

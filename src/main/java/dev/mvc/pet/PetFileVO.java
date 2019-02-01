@@ -1,15 +1,15 @@
 package dev.mvc.pet;
 
-public class FileVO {
+public class PetFileVO {
   private String thumbs;
   private String files;
   private String filesizes;
 
-  public FileVO() {
+  public PetFileVO() {
 
   }
 
-  public FileVO(String thumbs, String files, String filesizes) {
+  public PetFileVO(String thumbs, String files, String filesizes) {
     super();
     this.thumbs = thumbs;
     this.files = files;

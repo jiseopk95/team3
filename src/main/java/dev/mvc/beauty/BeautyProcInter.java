@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import dev.mvc.beauty.FileVO;
+import dev.mvc.beauty.BeaFileVO;
 
 public interface BeautyProcInter {
   /**
@@ -35,7 +35,7 @@ public interface BeautyProcInter {
    * @param beautyVO
    * @return
    */
-  public ArrayList<FileVO> getThumbs(BeautyVO beautyVO);
+  public ArrayList<BeaFileVO> getThumbs(BeautyVO beautyVO);
   /**
    * 수정처리
    * @param vo

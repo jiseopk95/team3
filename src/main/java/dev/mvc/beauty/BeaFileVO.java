@@ -1,15 +1,15 @@
-package dev.mvc.event;
+package dev.mvc.beauty;
 
-public class File2VO {
+public class BeaFileVO {
   private String thumb;
   private String file;
   private String size;
 
-  public File2VO() {
+  public BeaFileVO() {
 
   }
 
-  public File2VO(String thumb, String file, String size) {
+  public BeaFileVO(String thumb, String file, String size) {
     super();
     this.thumb = thumb;
     this.file = file;

@@ -1,15 +1,15 @@
-package dev.mvc.beauty;
+package dev.mvc.review;
 
-public class FileVO {
+public class ReFileVO {
   private String thumb;
   private String file;
   private String size;
 
-  public FileVO() {
+  public ReFileVO() {
 
   }
 
-  public FileVO(String thumb, String file, String size) {
+  public ReFileVO(String thumb, String file, String size) {
     super();
     this.thumb = thumb;
     this.file = file;

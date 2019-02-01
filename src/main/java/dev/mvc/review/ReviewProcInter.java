@@ -50,7 +50,7 @@ public interface ReviewProcInter {
    * @param contentsVO
    * @return
    */
-  public ArrayList<FileVO> getThumbs(ReviewVO reviewVO);
+  public ArrayList<ReFileVO> getThumbs(ReviewVO reviewVO);
   
   /**
    *¼öÁ¤

@@ -50,8 +50,8 @@ public class ReviewProc implements ReviewProcInter {
   }
 
   @Override
-  public ArrayList<FileVO> getThumbs(ReviewVO reviewVO) {
-   ArrayList<FileVO> file_list = new ArrayList<FileVO>();
+  public ArrayList<ReFileVO> getThumbs(ReviewVO reviewVO) {
+   ArrayList<ReFileVO> file_list = new ArrayList<ReFileVO>();
     
     String thumbs = reviewVO.getThumbs(); // xmas01_2_t.jpg/xmas02_2_t.jpg...
     String files = reviewVO.getFiles();          // xmas01_2.jpg/xmas02_2.jpg...
@@ -70,7 +70,7 @@ public class ReviewProc implements ReviewProcInter {
       for (int index = 0; index < count; index++) {
         sizes_array[index] = Tool.unit(new Integer(sizes_array[index]));  // 1024 -> 1KB
       
-        FileVO fileVO = new FileVO(thumbs_array[index], files_array[index], sizes_array[index]);
+        ReFileVO fileVO = new ReFileVO(thumbs_array[index], files_array[index], sizes_array[index]);
         file_list.add(fileVO);
       }
     }   

@@ -212,7 +212,7 @@ public class SurveyitemCont {
     mav.addObject("survey_itemVO",survey_itemVO);
 
     if(survey_itemVO.getThumbs() != null){
-    ArrayList<FileVO> file_list = surveyitemProc.getThumbs(survey_itemVO);
+    ArrayList<SurFileVO> file_list = surveyitemProc.getThumbs(survey_itemVO);
 
     mav.addObject("file_list", file_list);
     }

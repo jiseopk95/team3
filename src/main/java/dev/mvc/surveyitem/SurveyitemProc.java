@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import dev.mvc.surveyitem.FileVO;
+import dev.mvc.surveyitem.SurFileVO;
 import nation.web.tool.Tool;
 
 
@@ -72,8 +72,8 @@ public class SurveyitemProc implements SurveyitemProcInter {
   }
 
   @Override
-  public ArrayList<FileVO> getThumbs(Survey_ItemVO survey_itemVO) {
- ArrayList<FileVO> file_list = new ArrayList<FileVO>();
+  public ArrayList<SurFileVO> getThumbs(Survey_ItemVO survey_itemVO) {
+ ArrayList<SurFileVO> file_list = new ArrayList<SurFileVO>();
     
     String thumbs = survey_itemVO.getThumbs(); // xmas01_2_t.jpg/xmas02_2_t.jpg...
     String files = survey_itemVO.getFiles();          // xmas01_2.jpg/xmas02_2.jpg...
@@ -92,7 +92,7 @@ public class SurveyitemProc implements SurveyitemProcInter {
       for (int index = 0; index < count; index++) {
         sizes_array[index] = Tool.unit(new Integer(sizes_array[index]));  // 1024 -> 1KB
       
-        FileVO fileVO = new FileVO(thumbs_array[index], files_array[index], sizes_array[index]);
+        SurFileVO fileVO = new SurFileVO(thumbs_array[index], files_array[index], sizes_array[index]);
         file_list.add(fileVO);
       }
     } 

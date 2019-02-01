@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import dev.mvc.event.File2VO;
+import dev.mvc.event.EventFileVO;
 import nation.web.tool.Tool;
 
 @Component("dev.mvc.event.EventProc") 
@@ -54,8 +54,8 @@ public class EventProc implements EventProcInter {
   }
   
   @Override
-  public ArrayList<File2VO> getThumbs(EventVO eventVO) {
-    ArrayList<File2VO> file_list = new ArrayList<File2VO>();
+  public ArrayList<EventFileVO> getThumbs(EventVO eventVO) {
+    ArrayList<EventFileVO> file_list = new ArrayList<EventFileVO>();
     
     String thumbs = eventVO.getThumb(); // xmas01_2_t.jpg/xmas02_2_t.jpg...
     String files = eventVO.getImage();          // xmas01_2.jpg/xmas02_2.jpg...
@@ -74,7 +74,7 @@ public class EventProc implements EventProcInter {
       for (int index = 0; index < count; index++) {
         sizes_array[index] = Tool.unit(new Integer(sizes_array[index]));  // 1024 -> 1KB
       
-        File2VO fileVO = new File2VO(thumbs_array[index], files_array[index], sizes_array[index]);
+        EventFileVO fileVO = new EventFileVO(thumbs_array[index], files_array[index], sizes_array[index]);
         file_list.add(fileVO);
       }
     } 
@@ -363,8 +363,8 @@ public class EventProc implements EventProcInter {
   }
 
   @Override
-  public ArrayList<File2VO> getThumbs(event_managerVO event_managerVO) {
-      ArrayList<File2VO> file_list = new ArrayList<File2VO>();
+  public ArrayList<EventFileVO> getThumbs(event_managerVO event_managerVO) {
+      ArrayList<EventFileVO> file_list = new ArrayList<EventFileVO>();
       
       String thumbs = event_managerVO.getThumb(); // xmas01_2_t.jpg/xmas02_2_t.jpg...
       String files = event_managerVO.getImage();          // xmas01_2.jpg/xmas02_2.jpg...
@@ -383,7 +383,7 @@ public class EventProc implements EventProcInter {
         for (int index = 0; index < count; index++) {
           sizes_array[index] = Tool.unit(new Integer(sizes_array[index]));  // 1024 -> 1KB
         
-          File2VO fileVO = new File2VO(thumbs_array[index], files_array[index], sizes_array[index]);
+          EventFileVO fileVO = new EventFileVO(thumbs_array[index], files_array[index], sizes_array[index]);
           file_list.add(fileVO);
         }
       } 
