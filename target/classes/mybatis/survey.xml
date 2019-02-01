@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="survey">
+
+  <insert id="create" parameterType="SurveyVO">
+  INSERT INTO survey(surveyno,managerno,survey_title,seqno,startdate,enddate,rdate)
+	VALUES((SELECT NVL(max(surveyno),0)+1 as surveyno from survey),#{managerno},#{survey_title},#{seqno},#{startdate},#{enddate},sysdate)		  
+  </insert>
+  
+   <select id="list_m" resultType="SurveyVO">
+	SELECT surveyno,survey_title,seqno,startdate,enddate,q_cnt,rdate
+	FROM survey
+	ORDER BY surveyno ASC
+  </select> 
+  
+   <!-- manager 정보+ survey정보 목록 -->
+  <select id="list" resultType="Manager_SurveyVO"  parameterType="int">
+	SELECT m.managerno,m.name,s.surveyno,s.managerno,s.survey_title,s.q_cnt,s.seqno,s.startdate,s.enddate,s.rdate
+	FROM manager m, survey s
+	WHERE m.managerno = s.managerno AND m.managerno=#{managerno}
+	ORDER BY s.seqno ASC
+  </select>
+  
+   <select id="read_m" resultType="SurveyVO" parameterType="int">
+	select surveyno,survey_title,seqno,q_cnt,startdate,enddate,rdate
+	from survey
+	where surveyno=#{surveyno}
+	order by surveyno asc
+  </select>
+  
+   <select id="read" resultType="Manager_SurveyVO" parameterType="int">
+	select m.managerno,m.id,s.surveyno,s.managerno,s.survey_title,s.seqno,s.startdate,s.enddate,s.rdate
+	from manager m, survey s
+	where s.surveyno=#{surveyno} AND m.managerno = s.managerno                                                                                                                   
+	order by m.managerno asc, s.surveyno asc
+  </select>
+  
+
+  <update id="update" parameterType="SurveyVO">
+  UPDATE survey
+  SET survey_title=#{survey_title},seqno=#{seqno},startdate=#{startdate},enddate=#{enddate}
+  WHERE surveyno=#{surveyno}
+  </update>
+  
+    <delete id="delete" parameterType="int">
+    DELETE FROM survey
+    WHERE surveyno = #{surveyno}
+  </delete>
+  
+    <!-- 우선순위 상향, 10 -> 1 -->
+  <update id="update_seqno_up" parameterType="int">
+    UPDATE survey 
+    SET seqno = seqno - 1 
+    WHERE surveyno=#{surveyno}
+  </update>
+
+  <!-- 출력순서 하향, 1 -> 10 -->
+  <update id="update_seqno_down" parameterType="int">
+    UPDATE survey 
+    SET seqno = seqno + 1 
+    WHERE surveyno=#{surveyno}
+  </update>
+  
+    <update id="increaseCnt" parameterType="int">
+    UPDATE survey
+    SET q_cnt = q_cnt + 1 
+    WHERE surveyno=#{surveyno}
+    </update>
+  
+  <update id="decreaseCnt" parameterType="int">
+    UPDATE survey
+    SET q_cnt = q_cnt - 1 
+    WHERE surveyno=#{surveyno}
+  </update>
+  
+  <select id="findNo" resultType="FindVO"  parameterType="int">
+  select surveyitemno from surveyitem where surveyno=#{surveyno}
+  </select>
+  
+    <select id="list_by_manager_search" resultType="Manager_SurveyVO" parameterType="HashMap">
+	SELECT m.managerno,m.name,s.surveyno,s.managerno,s.survey_title,s.q_cnt,s.seqno,s.startdate,s.enddate,s.rdate
+	FROM manager m, survey s
+   
+    <choose>
+      <when test="survey_title== null or survey_title == ''"> <!-- 검색하지 않는 경우 -->
+       WHERE m.managerno = s.managerno AND m.managerno=#{managerno}
+      </when>
+      <otherwise>
+        WHERE m.managerno = s.managerno AND m.managerno=#{managerno} AND survey_title LIKE '%' || #{survey_title} || '%'  
+      </otherwise>
+    </choose>
+   ORDER BY surveyno DESC
+  </select>
+  
+    <!-- manager별 검색된 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM survey
+ <choose>
+      <when test="survey_title== null or survey_title == ''"> <!-- 검색하지 않는 경우 -->
+       WHERE managerno=#{managerno}
+      </when>
+      <otherwise>
+        WHERE managerno=#{managerno} AND survey_title LIKE '%' || #{survey_title} || '%'  
+      </otherwise>
+    </choose>
+  </select>
+  
+    <!-- category별 검색된 레코드 목록 + 페이징 -->
+  <select id="list_by_manager_search_paging" resultType="Manager_SurveyVO" parameterType="HashMap">
+    SELECT managerno,name,surveyno,survey_title,q_cnt,seqno,startdate,enddate,rdate,r
+    FROM (
+              SELECT managerno,name,surveyno,survey_title,q_cnt,seqno,startdate,enddate,rdate,rownum as r
+              FROM (
+                        SELECT m.name,s.surveyno,s.managerno,s.survey_title,s.q_cnt,s.seqno,s.startdate,s.enddate,s.rdate
+											  FROM manager m, survey s
+                      <choose>
+                            <when test="survey_title== null or survey_title == ''"> <!-- 검색하지 않는 경우 -->
+                             WHERE m.managerno = s.managerno AND m.managerno=#{managerno}
+                            </when>
+                            <otherwise>
+                              WHERE m.managerno = s.managerno AND m.managerno=#{managerno} AND survey_title LIKE '%' || #{survey_title} || '%'  
+                            </otherwise>
+                          </choose>
+                        ORDER BY seqno asc
+              )            
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]> 
+    <!--     WHERE r >= #{startNum} AND r <= #{endNum} -->
+    
+  </select>
+  
+
+  
+  
+  
+  
+</mapper>

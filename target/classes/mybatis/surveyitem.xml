@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="surveyitem">
+
+<insert id="create" parameterType="SurveyitemVO">
+  INSERT INTO surveyitem(surveyitemno,surveyno,seqno,question,thumbs,files,sizes)
+	values((select NVL(max(surveyitemno),0)+1 as surveyitemno from surveyitem),#{surveyno},#{seqno},#{question},#{thumbs},#{files},#{sizes})	
+</insert>
+
+  <select id="list" resultType="Survey_ItemVO" parameterType="int">
+	select s.surveyno,s.survey_title,i.surveyitemno,i.surveyno,i.itemcnt,i.seqno,i.question,i.thumbs,i.files,i.sizes
+  from survey s,surveyitem i
+  where  s.surveyno = i.surveyno AND s.surveyno=#{surveyno} 
+  order by i.seqno ASC
+  </select>
+  
+   <select id="read" resultType="Survey_ItemVO" parameterType="int">
+	select s.surveyno,s.survey_title,i.surveyitemno,i.surveyno,i.itemcnt,i.seqno,i.question,i.thumbs,i.files,i.sizes
+	from survey s,surveyitem i
+	where s.surveyno = i.surveyno AND i.surveyitemno=#{surveyitemno}
+	order by s.surveyno asc, i.surveyitemno asc
+  </select>
+  
+ <update id="update" parameterType="SurveyitemVO">
+    UPDATE surveyitem
+    SET question=#{question}, seqno=#{seqno},
+          thumbs=#{thumbs}, files=#{files}, sizes=#{sizes}
+    WHERE surveyitemno=#{surveyitemno}
+  </update>
+  
+    <delete id="delete" parameterType="int">
+    DELETE FROM surveyitem
+    WHERE surveyitemno=#{surveyitemno}
+  </delete>
+  
+      <!-- 우선순위 상향, 10 -> 1 -->
+  <update id="update_seqno_up" parameterType="int">
+    UPDATE surveyitem
+    SET seqno = seqno - 1 
+    WHERE surveyitemno=#{surveyitemno}
+  </update>
+
+  <!-- 출력순서 하향, 1 -> 10 -->
+  <update id="update_seqno_down" parameterType="int">
+    UPDATE surveyitem 
+    SET seqno = seqno + 1 
+    WHERE surveyitemno=#{surveyitemno}
+  </update>
+  
+   <select id="countBySurveyno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt
+    FROM surveyitem
+    WHERE surveyno = #{surveyno}
+  </select>
+  
+   <delete id="deleteBySurveyno" parameterType="int">
+    DELETE FROM surveyitem   
+    WHERE surveyno = #{surveyno}
+  </delete>
+  
+  <update id ="itemCnt" parameterType="int">
+  update surveyitem
+  set itemcnt = itemcnt +1
+  where surveyitemno=#{surveyitemno}
+  </update>
+  
+  
+  
+</mapper>

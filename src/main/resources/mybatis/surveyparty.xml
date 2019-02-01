@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="surveyparty">
+<insert id="create" parameterType="SurveypartyVO">
+	INSERT INTO surveyparty(surveypartyno,surveyno,surveyitemno,memberno,rdate)
+	values((select NVL(max(surveypartyno),0)+1 as surveypartyno from surveyparty),#{surveyno},#{surveyitemno},#{memberno},sysdate)
+</insert>
+
+<select id="list" resultType="Survey_PartyVO">
+  select i.surveyitemno,i.question,m.id,m.name,p.surveypartyno,p.surveyitemno,p.memberno,p.rdate,s.surveyno,s.survey_title
+	from surveyitem i,member m,surveyparty p,survey s
+	where p.surveyitemno = i.surveyitemno and p.memberno = m.memberno and p.surveyno=s.surveyno
+</select>
+
+<select id="list_survey" resultType="Survey_PartyVO" parameterType="int">
+  select i.surveyitemno,i.question,m.id,m.name,p.surveypartyno,p.surveyitemno,p.memberno,p.rdate,s.surveyno,s.survey_title
+  from surveyitem i,member m,surveyparty p,survey s
+  where p.surveyitemno = i.surveyitemno and p.memberno = m.memberno and p.surveyno=s.surveyno and s.surveyno=#{surveyno}
+</select>
+
+<select id="mnoCnt" resultType="int" parameterType="HashMap">
+	select count(*) as cnt from surveyparty where memberno=#{memberno} and surveyno=#{surveyno}
+</select>
+
+    <delete id="delete" parameterType="int">
+    DELETE FROM surveyparty
+    WHERE surveyno = #{surveyno}
+  </delete>
+  
+      <delete id="delete_item" parameterType="int">
+    DELETE FROM surveyparty
+    WHERE surveyitemno = #{surveyitemno}
+  </delete>
+
+
+
+
+</mapper>

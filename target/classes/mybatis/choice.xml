@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="choice">
+<insert id="create" parameterType="ChoiceVO">
+  INSERT INTO choice(choiceno,surveyitemno,a1,a2,a3,a4)
+  values((select NVL(max(choiceno),0)+1 as choiceno from choice),#{surveyitemno},#{a1},#{a2},#{a3},#{a4})
+</insert>
+
+  <select id="list" resultType="Surveyitem_ChoiceVO" parameterType="int">
+	select i.surveyitemno,i.question,c.choiceno,c.a1,c.a2,c.a3,c.a4
+	from surveyitem i, choice c
+	where i.surveyitemno = c.surveyitemno AND i.surveyitemno=#{surveyitemno}
+	order by i.surveyitemno asc, c.choiceno asc
+  </select>
+  
+     <select id="countBySurveyitemno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt
+    FROM choice
+    WHERE surveyitemno = #{surveyitemno}
+  </select>
+  <update id="update" parameterType="ChoiceVO">
+  update choice
+  set a1=#{a1},a2=#{a2},a3=#{a3},a4=#{a4}
+  where choiceno=#{choiceno}
+  </update>
+  
+    <delete id="delete" parameterType="int">
+    DELETE FROM choice
+    WHERE surveyitemno = #{surveyitemno}
+  </delete>
+  
+  
+</mapper>
