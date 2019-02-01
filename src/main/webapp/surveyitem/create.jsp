@@ -51,8 +51,8 @@ function send(){
              enctype="multipart/form-data" class="form-horizontal">
        <input type='hidden' name='surveyno' id='surveyno' value='${param.surveyno}'> 
       <div class="form-group">   
-        <label for="question" class="col-md-2 control-label">질문 타이틀</label>
-        <div class="col-md-4">
+        <label for="question" class="col-md-1 control-label">질문 타이틀</label>
+        <div class="col-md-2">
           <input type='text' class="form-control input-lg" name="question" id="question" placeholder="" value="" required ></input>
         </div>
       </div>   
@@ -65,7 +65,7 @@ function send(){
       </div>
       
       <div class="form-group">   
-        <label for="filesMF"class="col-md-2 control-label">이미지</label>
+        <label for="filesMF"class="col-md-2 control-label" style="text-align:left;">이미지</label>
         <div class="col-md-5">
           <input  type="file" name='filesMF' id='filesMF' size='40' multiple="multiple"> (10 MB 이하만 전송 가능)
         </div>

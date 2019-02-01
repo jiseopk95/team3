@@ -125,8 +125,8 @@ function seqnoDown(surveyitemno,surveyno) {
 
 <body>
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
-<DIV class='container' style='width:80%; margin:0px auto; text-align: center; margin-top: 5%; margin-bottom:5%' >
-<DIV class='content'>
+<DIV class='container' style="width:80%;" >
+<DIV class='content' style=' margin:0px auto; text-align: center; margin-top: 5%; margin-bottom:5%'>
   
   <!-- 우선 순위 증가 감소 폼 -->
   <FORM name='frm_seqno' id='frm_seqno' method='post' action=''>
@@ -136,7 +136,12 @@ function seqnoDown(surveyitemno,surveyno) {
 
   <DIV id='main_panel'></DIV>
 
-  <DIV class='title_line' style=" width: 40%;"><IMG src='./images/q.png'>  ${surveyVO.survey_title}</DIV>
+
+  
+    <DIV class='title_line' style="width:30%;">
+  <span style="font-size:18px;font-weight:bold;"><IMG src='./images/q.png'>  ${surveyVO.survey_title}<br></span>
+  <br>
+  </DIV>
 
 <div>
      <ASIDE style='float: left;'>
@@ -145,8 +150,8 @@ function seqnoDown(surveyitemno,surveyno) {
     </ASIDE> 
     
     <ASIDE style='float: right;'>
-    
-    <A href="javascript:create(${surveyVO.surveyno})">등록</A>
+    <button class="btn btn-primary btn" type="button" onclick="create(${surveyVO.surveyno});">등록</button>
+<%--     <A href="javascript:create(${surveyVO.surveyno})">등록</A> --%>
     </ASIDE> 
 </div>
 <TABLE class='table ' >

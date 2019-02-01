@@ -230,8 +230,8 @@ function create_update_cancel() {
 
     
   <DIV class='title_line' style="width:30%;">
- <span style="font-size:18px;font-weight:bold;">설문조사 항목<br></span>
-  <br>
+    <aside style="float: center; font-weight: bold; font-size:35px; ">설문 조사 목록</aside><br>
+
   </DIV>
 
     <div style='text-align: right'>
