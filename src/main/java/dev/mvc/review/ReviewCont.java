@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dev.mvc.category.CategoryProcInter;
 import dev.mvc.category.Categrp_CategoryVO;
-import nation.web.tool.Messages;
+/*import nation.web.tool.Messages;*/
 import nation.web.tool.Tool;
 import nation.web.tool.Upload;
 
@@ -39,9 +39,9 @@ public class ReviewCont {
   @Qualifier("dev.mvc.review.ReviewProc")
   private ReviewProcInter reviewProc = null;
   
-  @Autowired
+ /* @Autowired
   @Qualifier("dev.mvc.tool.Messages")
-  private Messages messages = null;
+  private Messages messages = null;*/
   
   @Autowired
   @Qualifier("dev.mvc.category.CategoryProc")

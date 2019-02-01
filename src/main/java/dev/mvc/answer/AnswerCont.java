@@ -27,7 +27,7 @@ import dev.mvc.category.CategoryProcInter;
 import dev.mvc.category.CategoryVO;
 import dev.mvc.category.Categrp_CategoryVO;
 import dev.mvc.categrp.CategrpVO;
-import nation.web.tool.Messages;
+/*import nation.web.tool.Messages;*/
 import nation.web.tool.Tool;
 import nation.web.tool.Upload;
 
@@ -38,9 +38,9 @@ public class AnswerCont {
   @Qualifier("dev.mvc.answer.AnswerProc")
   private AnswerProcInter answerProc = null;
   
-  @Autowired
+  /*@Autowired
   @Qualifier("dev.mvc.tool.Messages")
-  private Messages messages = null;
+  private Messages messages = null;*/
   
   
   public AnswerCont() {

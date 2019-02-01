@@ -24,7 +24,7 @@ import dev.mvc.category.CategoryProcInter;
 import dev.mvc.category.Categrp_CategoryVO;
 import dev.mvc.categrp.CategrpProcInter;
 import dev.mvc.categrp.CategrpVO;
-import nation.web.tool.Messages;
+/*import nation.web.tool.Messages;*/
 
 
 
@@ -42,9 +42,9 @@ public class QuestionCont {
   @Qualifier("dev.mvc.categrp.CategrpProc")
   private CategrpProcInter categrpProc = null;
   
-  @Autowired
+/*  @Autowired
   @Qualifier("dev.mvc.tool.Messages")
-  private Messages messages = null;
+  private Messages messages = null;*/
   
   public QuestionCont() {
     System.out.println("--> QuestionCont crated.");

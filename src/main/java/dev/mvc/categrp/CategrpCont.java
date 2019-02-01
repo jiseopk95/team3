@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.category.CategoryProcInter;
 /*import dev.mvc.category.CategoryProcInter;*/
-import nation.web.tool.Messages;
+/*import nation.web.tool.Messages;*/
 
 @Controller
 public class CategrpCont {
@@ -30,10 +30,10 @@ public class CategrpCont {
   @Autowired
   @Qualifier("dev.mvc.category.CategoryProc")
   private CategoryProcInter categoryProc = null;
-  
+  /*
   @Autowired
   @Qualifier("dev.mvc.tool.Messages")
-  private Messages messages = null;
+  private Messages messages = null;*/
   
   public CategrpCont() {
     System.out.println("--> CategrpCont crated.");
