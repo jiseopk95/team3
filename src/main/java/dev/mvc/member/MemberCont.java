@@ -1,6 +1,7 @@
 package dev.mvc.member;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -101,8 +102,8 @@ public class MemberCont {
     ModelAndView mav = new ModelAndView();
    
     int count = memberProc.checkId(memberVO.getId());
-    
-    if (count == 1) { // ID 중복시 메시지 출력
+    int count2 = memberProc.checkemail(memberVO.getEmail());
+    if (count == 1 || count2==1) { // ID 중복시 메시지 출력
       redirectAttributes.addAttribute("sw", "id");
       redirectAttributes.addAttribute("count", count); // 1 or 0
       
@@ -147,6 +148,30 @@ public class MemberCont {
     
     return mav;
   }  
+  
+  @RequestMapping(value="/member/read2.do", method=RequestMethod.GET)
+  public ModelAndView read2(String email){
+    // System.out.println("--> read(int memberno) GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/member/idsearch"); // webapp/member/read.jsp
+    
+    MemberVO memberVO = memberProc.read2(email);
+    mav.addObject("memberVO", memberVO);
+    
+    return mav;
+  }  
+  
+  @RequestMapping(value="/member/read3.do", method=RequestMethod.GET)
+  public ModelAndView read3(String email){
+    // System.out.println("--> read(int memberno) GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/member/passwdsearch"); // webapp/member/read.jsp
+    
+    MemberVO memberVO = memberProc.read3(email);
+    mav.addObject("memberVO", memberVO);
+    
+    return mav;
+  }
   
   @RequestMapping(value="/member/update.do", method=RequestMethod.GET)
   public ModelAndView update(int memberno){
@@ -446,9 +471,12 @@ public class MemberCont {
    * @return
    */
   @RequestMapping(value = "/member/list_search.do", method = RequestMethod.GET)
-  public ModelAndView list_search(String name) {
+  public ModelAndView list_search( @RequestParam(value="name", defaultValue="") String name,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage) {
     // System.out.println("--> list_by_category(int categoryno, String
     // word_find) GET called.");
+    System.out.println("--> nowPage: " + nowPage);
+    
     ModelAndView mav = new ModelAndView();
     // mav.setViewName("/contents/list_by_categoryno"); //
     // webapp/contents/list_by_categoryno.jsp
@@ -459,6 +487,7 @@ public class MemberCont {
     // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
     hashMap.put("name", name); // #{word}
+    hashMap.put("nowPage", nowPage);    
 
     // System.out.println("categoryno: " + categoryno);
     // System.out.println("word_find: " + word_find);
@@ -472,6 +501,10 @@ public class MemberCont {
     mav.addObject("search_count", search_count);
 
     // mav.addObject("word", word);
+    
+    String paging = memberProc.paging(search_count, nowPage, name);
+    mav.addObject("paging", paging);
+    mav.addObject("nowPage", nowPage);
 
     return mav;
   }
@@ -494,11 +527,11 @@ public class MemberCont {
     System.out.println("search_count2: " + search_count2 );
     mav.addObject("search_count2", search_count2);
     
-   
-    
-   /* MemberVO memberVO = memberProc.idsearch(email);
-    mav.addObject("memberVO", memberVO);*/
-      
+   if(search_count2==1){
+     MemberVO memberVO = memberProc.read2(email);
+     mav.addObject("memberVO", memberVO);
+   }
+     
     return mav;
   }  
   
@@ -536,8 +569,10 @@ public class MemberCont {
     int search_count3 = memberProc.search_count3(hashMap);
     mav.addObject("search_count3", search_count3);
     
-   /* MemberVO memberVO = memberProc.idsearch(email);
-    mav.addObject("memberVO", memberVO);*/
+    if(search_count3==1){
+      memberVO = memberProc.read3(email);
+      mav.addObject("memberVO", memberVO);
+    }
       
     return mav;
   }  
@@ -558,7 +593,7 @@ public class MemberCont {
     
     return mav;
   }  
-  
+
 }
 
 

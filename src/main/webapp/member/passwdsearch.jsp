@@ -30,19 +30,27 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
 
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
   
 <br>
 <DIV style='width: 100%; margin: 0px auto;'>
 <DIV style='font-weight:bold;'>비밀번호 찾기</DIV> 
-<c:forEach var="memberVO" items="${passwdsearch }">
-    <c:set var="memberno" value ="${memberVO.memberno }" /> 
+ 
     <DIV class='title_line' style='width: 30%;'></DIV>
-${memberVO.id} 의 비밀번호는 ${memberVO.passwd} 입니다. <br><br>
-로그인 후 마이페이지에서 비밀번호를 변경해주세요. <br>
+<br>
+     <c:choose>
+      <c:when test="${search_count3 eq 1}">
+        ${memberVO.id} 의 비밀번호는 ${memberVO.passwd} 입니다. <br><br>
+        로그인 후 마이페이지에서 비밀번호를 변경해주세요. <br>
+      </c:when>  
+      <c:otherwise>  
+        정보가 일치하지 않습니다.<br>
+        다시시도해주세요.
+        <br>
+        </c:otherwise>  
+      </c:choose>
+<br>
 <DIV class='title_line' style='width: 30%;'></DIV>
-</c:forEach>
-
 </DIV>
 
 <DIV class='bottom_menu'>

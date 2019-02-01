@@ -24,7 +24,7 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
 
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
 <DIV class='title_fontss' style='width: 20%;'>LOGIN</DIV>
 
@@ -57,7 +57,7 @@
         
        
         <label class=fontss >저장</label>    <br><br>
-      &nbsp&nbsp <A style='font-size: 13px' href='../.jsp'>아이디 찾기(개발중)</A>&nbsp <A style='font-size: 13px' href='../.jsp'>비밀번호 찾기(개발중)</A>
+     &nbsp&nbsp&nbsp <A style='font-size: 13px' href='./list_id.do'>아이디 찾기</A><span class='menu_divide' >│</span><A style='font-size: 13px' href='./list_passwd.do'>비밀번호 찾기</A>
       <br><br>&nbsp&nbsp
         <button type="submit" class="btn btn-primary">로그인</button>
         <button type="button" onclick="location.href='./create.do' " class="btn btn-secondary">회원가입</button>

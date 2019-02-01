@@ -26,7 +26,7 @@
 <c:import url="/menu/top.jsp" />
 <DIV class='container' style='width: 100%;'>
 
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
 <DIV class='title_line'>알림</DIV>
 
@@ -35,7 +35,7 @@
     <UL>
       <c:choose>
         <c:when test="${param.sw == 'id'}">
-          <li class='li_none'>ID가 중복됩니다.</li>
+          <li class='li_none'>이메일 또는 아이디가 중복됩니다.</li>
           <li class='li_none'>다시시도해주세요.</li>
           <li class='li_none'>
             <br>

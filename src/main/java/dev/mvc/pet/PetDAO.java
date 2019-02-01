@@ -59,7 +59,7 @@ public class PetDAO implements PetDAOInter {
   }
   
   @Override
-  public List<PetVO> list_search(HashMap hashMap) {
+  public List<PetVO> list_search(HashMap<String, Object> hashMap) {
     return sqlSessionTemplate.selectList("pet.list_search", hashMap);
   }
 

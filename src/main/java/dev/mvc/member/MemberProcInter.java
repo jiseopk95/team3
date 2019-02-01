@@ -43,7 +43,8 @@ public interface MemberProcInter {
    * @return
    */
   public MemberVO read(int memberno);
-
+  public MemberVO read2(String email);
+  public MemberVO read3(String email);
 
   
   /**
@@ -89,7 +90,7 @@ public interface MemberProcInter {
    * @param categoryno
    * @return
    */
-  public List<MemberVO> list_search(HashMap hashMap);
+  public List<MemberVO> list_search(HashMap<String, Object> hashMap);
 
   /**
    * category별 검색된 레코드 갯수
@@ -108,6 +109,8 @@ public interface MemberProcInter {
   public List<MemberVO> list_passwd();
   
   public int search_count3(HashMap hashMap);
+  
+  public String paging(int search_count, int nowPage, String word);
 }
 
 

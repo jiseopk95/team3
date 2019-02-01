@@ -63,7 +63,7 @@ public interface PetProcInter {
    * @param categoryno
    * @return
    */
-  public List<PetVO> list_search(HashMap hashMap);
+  public List<PetVO> list_search(HashMap<String, Object> hashMap);
 
   /**
    * category별 검색된 레코드 갯수
@@ -79,7 +79,7 @@ public interface PetProcInter {
   /*public PetVO pet_list(int memberno);*/
   public List<PetVO> pet_list(HashMap hashMap);
   public int search_count2(HashMap hashMap);
-
+  public String paging(int search_count, int nowPage, String word);
 }
 
 

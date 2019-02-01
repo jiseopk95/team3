@@ -13,6 +13,7 @@ public interface ManagerDAOInter {
    * @return 중복 아이디 갯수
    */
   public int checkId(String id);
+  public int checkemail(String email);
   
   /**
   회원 등록
@@ -33,7 +34,8 @@ public interface ManagerDAOInter {
    * @return
    */
   public ManagerVO read(int managerno);
-  public ManagerVO idsearch(String email);
+  public ManagerVO read2(String email);
+  public ManagerVO read3(String email);
   /**
    * 조회
    * @param mno
@@ -80,7 +82,19 @@ public interface ManagerDAOInter {
   
   public int search_count(HashMap hashMap);
   
-  public List<ManagerVO> list_search(HashMap hashMap);
+public List<ManagerVO> list_search(HashMap<String, Object> hashMap);
+  
+public List<ManagerVO> idsearch(HashMap hashMap);
+  
+  public List<ManagerVO> list_id();
+  
+  public int search_count2(HashMap hashMap);
+  
+  public List<ManagerVO> passwdsearch(HashMap hashMap);
+  
+  public List<ManagerVO> list_passwd();
+  
+  public int search_count3(HashMap hashMap);
 }
 
 

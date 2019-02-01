@@ -30,7 +30,7 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
 
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 <DIV class='title_line' style='width: 20%;'>권한 변경</DIV>
   
    <ASIDE style='float: right;'>
@@ -86,6 +86,7 @@
     <input type='hidden' name='position' id='position' value='${managerVO.position }'>  --%>
     
     <div class="list_search_form">
+    <br>
       <label class=kind_font><input type="radio" name="kind" id='kind1' value='N'  />&nbsp&nbsp N 인증 되지 않은 회원</label> <br> <br>
       <label class=kind_font ><input type="radio" name="kind" id='kind2' value='B' />&nbsp&nbsp B 미용관계자</label> <br> <br>
       <label class=kind_font ><input type="radio" name="kind" id='kind3' value='D' />&nbsp&nbsp D 병원관계자</label> <br> <br>
@@ -107,7 +108,6 @@
             </c:if> --%>
           <!-- <input type='file' name='filesMF' id='filesMF' size='40' multiple="multiple" > -->
           <br>
-<br>
      <button type="submit" class="btn btn-primary">수정</button>
      <button type="button" onclick="history.go(-1);" class="btn btn-secondary">취소</button> <br>
 

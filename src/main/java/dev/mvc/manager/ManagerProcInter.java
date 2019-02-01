@@ -18,6 +18,7 @@ public interface ManagerProcInter {
    * @return 중복 아이디 갯수
    */
   public int checkId(String id);
+  public int checkemail(String email);
   
   /**
   회원 등록
@@ -45,7 +46,9 @@ public interface ManagerProcInter {
    * @return
    */
   public ManagerVO read(int managerno);
-  public ManagerVO idsearch(String email);
+  public ManagerVO read2(String email);
+  public ManagerVO read3(String email);
+
 
   
   /**
@@ -101,13 +104,27 @@ public interface ManagerProcInter {
    * @param categoryno
    * @return
    */
-  public List<ManagerVO> list_search(HashMap hashMap);
+  public List<ManagerVO> list_search(HashMap<String, Object> hashMap);
 
   /**
    * category별 검색된 레코드 갯수
    * @return
    */
   public int search_count(HashMap hashMap);
+  
+  public List<ManagerVO> idsearch(HashMap hashMap);
+  
+  public List<ManagerVO> list_id();
+  
+  public int search_count2(HashMap hashMap);
+  
+  public List<ManagerVO> passwdsearch(HashMap hashMap);
+  
+  public List<ManagerVO> list_passwd();
+  
+  public int search_count3(HashMap hashMap);
+  
+  public String paging(int search_count, int nowPage, String word);
 }
 
 

@@ -29,53 +29,40 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
-  <DIV class='title_line' style='width: 20%;'>로그인 기록</DIV>
-  
-   <ASIDE style='float: right;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
+  <form name='frm' id='frm' method="get" action="./idsearch.do">
+ 
+   <!-- <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
     <A href='../index.jsp'>HOME</A>
-  </ASIDE> 
-<br>
-  <div class='menu_line'></div>
-<DIV style='width: 100%; margin: 0px auto;'>
+  </ASIDE>  -->
   
-  <table class="table" style='width: 100%;'>
-  <%-- <caption>회원 목록</caption> --%>
-  <colgroup>
-    <col style='width: 15%;'/>
-    <col style='width: 15%;'/>
-    <col style='width: 30%;'/>
-    <col style='width: 20%;'/>
-    <col style='width: 20%;'/>
+  <br>
+   <DIV style='font-weight:bold;'>아이디 찾기</DIV>
+   <DIV class='title_line' style='width: 30%;'></DIV><br>
+  <A href='./list_id.do?managerno=${managerVO.managerno }'>${managerVO.email }</A>
+
+    <c:if test="${param.word.length() > 0}"> 
+      >
+      [${param.email}] 검색 목록(${search_count2 } 건) 
+    </c:if>
+    <input type='hidden' name='managerno' id='managerno' value='${managerVO.managerno }'>
     
-  </colgroup>
-  <TR>
-    <TH class='th'>로그인번호</TH>
-    <TH class='th'>회원번호</TH>
-    <TH class='th'>IP 주소</TH>
-    <TH class='th'>날짜</TH>
-    <TH class='th'>기타</TH>
-  </TR>
-  
-  <c:forEach var="managerVO" items="${list }">
-    <c:set var="managerno" value ="${managerVO.managerno }" /> 
-  <TR>
-    <TD class='td'>${managerno}</TD>
-    <TD class='td'>${sessionScope.id}"</TD>
-    <TD class='td'>${managerVO.name}</TD>
-    <TD class='td'>${managerVO.rdate.substring(0, 10)}</TD> <!-- 년월일 -->
-    <TD class='td'>
-      <IMG src='./images/update.png'  width="20" height="20"  title='수정'></A>
-      <IMG src='./images/delete.png'  width="20" height="20"  title='삭제'></A>
-    </TD>
-    
-  </TR>
-  </c:forEach>
-  
-</TABLE>
-</DIV>
+    <c:choose>
+      <c:when test="${param.email != '' }">
+        <label class=fontss >NAME</label> <span class='menu_divide' >│</span>  <input type='text' name='name' id='name' value='${param.name }' style='width: 20%;'> <br><br>
+        <label class=fontss >EMAIL</label><span class='menu_divide' >│</span>  <input type='text' name='email' id='email' value='${param.email }' style='width: 20%;'>
+      </c:when>
+      <c:otherwise>
+        <input type='text' name='name' id='name' value='' style='width: 35%;'>
+        <input type='text' name='email' id='email' value='' style='width: 35%;'>
+      </c:otherwise>
+    </c:choose>
+    <br><br>
+    <button class="btn btn-secondary" type='submit'>확인</button>
+    <DIV class='title_line' style='width: 30%;'></DIV>
+  </form>
 
 <DIV class='bottom_menu'>
   <!-- <button type='button' onclick="location.href='./create.do'">등록</button> -->

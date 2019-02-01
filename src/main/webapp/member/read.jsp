@@ -29,7 +29,7 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 <DIV class='title_line' style='width: 20%;'>정보 조회</DIV>
   
 <!--    <ASIDE style='float: right;'>
@@ -76,7 +76,7 @@
 <br>
   <FORM name='frm' id='frm' method='POST' action='./update.do' 
               onsubmit="return send();" class="form-horizontal">
-    <img class="img-fluid mb-5 d-block mx-auto" style='margin-top:5%; width: 20%; height: 20%;' src="../resources/img/profile.png" > <br> 
+    <img class="img-fluid mb-5 d-block mx-auto" style='width: 20%; height: 20%;' src='./images/member.jpg'><br><br> <br>
     <input type='hidden' name='memberno' id='memberno' value='${memberVO.memberno }'>          
 
       <label for="id" >아이디</label> ${memberVO.id }    <br><br>    
@@ -167,9 +167,9 @@
     
         <!-- <button type="submit" class="btn btn-primary">수정</button> -->
         <button type="button" onclick="location.href='./update.do?memberno=${memberno}'" class="btn btn-primary">정보 수정</button>
-        <button type="button" onclick="./passwd_update.do?memberno=${memberno}" class="btn btn-secondary">패스워드 변경</button>
+        <button type="button" onclick="location.href='./passwd_update.do?memberno=${memberno}" class="btn btn-secondary">패스워드 변경</button>
+        <button type="button" onclick="location.href='./delete.do?memberno=${memberno}" class="btn btn-secondary">회원 탈퇴</button>
   </FORM>
-
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
 <jsp:include page="/menu/bottom.jsp" flush='false' />

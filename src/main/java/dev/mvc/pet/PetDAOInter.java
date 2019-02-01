@@ -53,7 +53,7 @@ public interface PetDAOInter {
    * @param categoryno
    * @return
    */
-  public List<PetVO> list_search(HashMap hashMap);
+  public List<PetVO> list_search(HashMap<String, Object> hashMap);
 
   /**
    * category별 검색된 레코드 갯수

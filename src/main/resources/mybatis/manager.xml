@@ -9,6 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM manager
     WHERE id=#{id}
   </select>
+  
+     <!-- 이메일 중복확인 -->
+  <select id="checkemail" resultType="int" parameterType="String">
+    SELECT COUNT(email) as cnt
+    FROM manager
+    WHERE email=#{email}
+  </select>
 
   <insert id="create" parameterType="ManagerVO">
     INSERT INTO manager(managerno,
@@ -27,6 +34,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT managerno, id, passwd,kind, name, position, phone, email, zipcode, address1, address2,files,thumbs,filesizes, rdate
     FROM manager
     WHERE managerno = #{managerno}
+  </select>
+  
+  <select id="read2" resultType="ManagerVO" parameterType="String">
+    SELECT managerno, id, rdate
+    FROM manager
+    WHERE email = #{email}
+  </select>
+  
+  <select id="read3" resultType="ManagerVO" parameterType="String">
+    SELECT managerno, id, passwd
+    FROM manager
+    WHERE email = #{email}
   </select>
   
   <select id="kind_update" resultType="ManagerVO" parameterType="int">
@@ -80,10 +99,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- category별 검색된 레코드 목록 -->
   <select id="list_search" resultType="ManagerVO" parameterType="HashMap">
-    SELECT managerno, id, passwd,kind, name, position, phone, email, zipcode, address1, address2,files,thumbs,filesizes, rdate
-    FROM manager
-    WHERE name LIKE '%' || #{name} || '%'  
-    ORDER BY managerno DESC
+    SELECT managerno, id, passwd, kind, name, position, phone, zipcode, address1, address2, files,thumbs,filesizes, rdate, r
+    FROM (
+            SELECT managerno, id, passwd, kind, name, position, phone, zipcode, address1, address2, files,thumbs,filesizes, rdate, rownum as r
+            FROM (
+                      SELECT managerno, id, passwd, kind, name, position, phone, zipcode, address1, address2, files,thumbs,filesizes, rdate
+                      FROM manager
+                      WHERE name LIKE '%' || #{name} || '%' 
+                      ORDER BY managerno ASC
+            )            
+  )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]> 
   </select>
   
   <!-- category별 검색된 레코드 갯수 -->
@@ -91,6 +117,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT COUNT(*) as cnt
     FROM manager
     WHERE name LIKE '%' || #{name} || '%'  
+  </select>
+  
+  <select id="list_id" resultType="ManagerVO">
+     <!--  SELECT memberno, id, passwd, name, phone, zipcode, address1, address2, rdate -->
+      SELECT managerno, id, name, email, rdate
+      FROM manager
+      ORDER BY managerno ASC
+  </select>
+  
+   <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count2" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM manager
+    WHERE (name LIKE '%' || #{name} || '%') AND (email LIKE '%' || #{email} || '%')
+  </select>
+  
+  <select id="list_passwd" resultType="ManagerVO">
+     <!--  SELECT memberno, id, passwd, name, phone, zipcode, address1, address2, rdate -->
+      SELECT managerno, id, name,email,passwd
+      FROM manager
+      ORDER BY managerno ASC
+  </select>
+  
+  <select id="passwdsearch" resultType="ManagerVO" parameterType="HashMap">
+    SELECT managerno,id,name,email,passwd
+    FROM manager
+    WHERE name =#{name} AND id =#{id} AND email =#{email}
+    ORDER BY managerno DESC
+  </select>
+  
+   <!-- category별 검색된 레코드 갯수 -->
+  <select id="search_count3" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM manager
+    WHERE (name =#{name}) AND (id =#{id}) AND (email =#{email})
   </select>
   
 </mapper> 

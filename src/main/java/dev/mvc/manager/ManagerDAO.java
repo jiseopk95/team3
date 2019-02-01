@@ -24,6 +24,12 @@ public class ManagerDAO implements ManagerDAOInter {
     int cnt = sqlSessionTemplate.selectOne("manager.checkId", id);
     return cnt;
   }
+  
+  @Override
+  public int checkemail(String email) {
+    int cnt = sqlSessionTemplate.selectOne("manager.checkemail", email);
+    return cnt;
+  }
 
   @Override
   public int create(ManagerVO managerVO) {
@@ -46,8 +52,15 @@ public class ManagerDAO implements ManagerDAOInter {
   }
   
   @Override
-  public ManagerVO idsearch(String email) {
-    ManagerVO managerVO = sqlSessionTemplate.selectOne("manager.idsearch", email);
+  public ManagerVO read2(String email) {
+    ManagerVO managerVO = sqlSessionTemplate.selectOne("manager.read2", email);
+    
+    return managerVO;
+  }
+  
+  @Override
+  public ManagerVO read3(String email) {
+    ManagerVO managerVO = sqlSessionTemplate.selectOne("manager.read3", email);
     
     return managerVO;
   }
@@ -97,13 +110,47 @@ public class ManagerDAO implements ManagerDAOInter {
   }
   
   @Override
-  public List<ManagerVO> list_search(HashMap hashMap) {
+  public List<ManagerVO> list_search(HashMap<String, Object> hashMap) {
     return sqlSessionTemplate.selectList("manager.list_search", hashMap);
   }
 
   @Override
   public int search_count(HashMap hashMap) {
     return sqlSessionTemplate.selectOne("manager.search_count", hashMap);
+  }
+  
+  @Override
+  public List<ManagerVO> idsearch(HashMap hashMap) {
+    return sqlSessionTemplate.selectList("manager.idsearch", hashMap);
+  }
+  
+  @Override
+  public List<ManagerVO> list_id() {
+    List<ManagerVO> list_id = sqlSessionTemplate.selectList("manager.list_id");
+    
+    return list_id;
+  }
+  
+  @Override
+  public int search_count2(HashMap hashMap) {
+    return sqlSessionTemplate.selectOne("manager.search_count2", hashMap);
+  }
+  
+  @Override
+  public List<ManagerVO> passwdsearch(HashMap hashMap) {
+    return sqlSessionTemplate.selectList("manager.passwdsearch", hashMap);
+  }
+  
+  @Override
+  public List<ManagerVO> list_passwd() {
+    List<ManagerVO> list_passwd = sqlSessionTemplate.selectList("manager.list_passwd");
+    
+    return list_passwd;
+  }
+  
+  @Override
+  public int search_count3(HashMap hashMap) {
+    return sqlSessionTemplate.selectOne("manager.search_count3", hashMap);
   }
 }
 

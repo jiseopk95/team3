@@ -30,7 +30,7 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
 <DIV class='title_line'>알림</DIV>
   <DIV class='message'>
@@ -38,10 +38,10 @@
       <ul>
         <c:choose>
           <c:when test="${param.count == 0}">
-            <li class='li_none'>회원 정보 삭제에 실패했습니다.</li>
+            <li class='li_none'>정보 삭제에 실패했습니다.</li>
           </c:when>
           <c:when test="${param.count == 1}">
-            <li class='li_none'>회원 정보 삭제에 성공했습니다.</li>
+            <li class='li_none'>정보 삭제에 성공했습니다.</li>
           </c:when>
         </c:choose>
      

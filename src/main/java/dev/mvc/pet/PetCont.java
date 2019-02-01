@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dev.mvc.manager.ManagerVO;
 import dev.mvc.member.MemberVO;
 import dev.mvc.pet.PetVO;
 
@@ -328,6 +329,7 @@ public class PetCont {
    
     return mav;
   }
+  
   /**
    * 검색 목록
    * 
@@ -336,9 +338,12 @@ public class PetCont {
    * @return
    */
   @RequestMapping(value = "/pet/list_search.do", method = RequestMethod.GET)
-  public ModelAndView list_search(String name) {
+  public ModelAndView list_search( @RequestParam(value="name", defaultValue="") String name,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage) {
     // System.out.println("--> list_by_category(int categoryno, String
     // word_find) GET called.");
+    System.out.println("--> nowPage: " + nowPage);
+    
     ModelAndView mav = new ModelAndView();
     // mav.setViewName("/contents/list_by_categoryno"); //
     // webapp/contents/list_by_categoryno.jsp
@@ -349,6 +354,7 @@ public class PetCont {
     // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
     hashMap.put("name", name); // #{word}
+    hashMap.put("nowPage", nowPage);    
 
     // System.out.println("categoryno: " + categoryno);
     // System.out.println("word_find: " + word_find);
@@ -362,6 +368,10 @@ public class PetCont {
     mav.addObject("search_count", search_count);
 
     // mav.addObject("word", word);
+    
+    String paging = petProc.paging(search_count, nowPage, name);
+    mav.addObject("paging", paging);
+    mav.addObject("nowPage", nowPage);
 
     return mav;
   }

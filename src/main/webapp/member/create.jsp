@@ -39,13 +39,13 @@
         var msg = "";
 
         if (data.cnt > 0) {
-          /* $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
-          msg = "이미 사용중인 ID 입니다."; */
-          alert('이미 사용중인 ID 입니다.');
+          $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
+          msg = "이미 사용중인 ID 입니다.";
+          /* alert('이미 사용중인 ID 입니다.'); */
         } else {
-          /* $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
-          msg = "사용 가능한 ID 입니다."; */
-          alert('사용 가능한 ID 입니다.');
+          $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
+          msg = "사용 가능한 ID 입니다.";
+          /* alert('사용 가능한 ID 입니다.'); */
           $.cookie('checkID', 'TRUE'); // Cookie 값 변경
         }
 
@@ -95,13 +95,13 @@
         var msg = "";
 
         if (data.cnt > 0) {
-          /* $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
-          msg = "이미 사용중인 email 입니다."; */
-          alert('이미 사용중인 email 입니다.');
+          $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
+          msg = "이미 사용중인 email 입니다.";
+          /* alert('이미 사용중인 email 입니다.'); */
         } else {
-          /* $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
-          msg = "사용 가능한 email 입니다."; */
-          alert('사용 가능한 email 입니다.');
+          $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
+          msg = "사용 가능한 email 입니다.";
+          /* alert('사용 가능한 email 입니다.'); */
           $.cookie('checkemail', 'TRUE'); // Cookie 값 변경
         }
 
@@ -142,7 +142,7 @@
     if (check != 'TRUE') {
       var msg = "ID 중복확인이 되지 않았습니다.<br>";
       msg += "ID 중복확인을 해주세요.<br>";
-      alert('중복x.');
+      /* alert('중복x.'); */
 
       $('#modal_title').html('ID 체크 확인');
       $('#modal_content').attr('class', 'alert alert-danger');
@@ -177,7 +177,7 @@
 </body>
 
 <DIV class='container' style='width: 100%;'>
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
 <DIV class='title_line' >일반회원 가입</DIV>
   <ASIDE style='float: right;'>

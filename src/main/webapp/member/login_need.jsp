@@ -28,7 +28,7 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>>
   <DIV class='message'>
     <H3>로그인이 필요합니다.</H3>
     <BR><BR>

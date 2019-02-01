@@ -7,6 +7,10 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.member.MemberVO;
 
@@ -51,7 +55,19 @@ public class MemberDAO implements MemberDAOInter {
     return memberVO;
   }
   
-
+  @Override
+  public MemberVO read2(String email) {
+    MemberVO memberVO = sqlSessionTemplate.selectOne("member.read2", email);
+    
+    return memberVO;
+  }
+  
+  @Override
+  public MemberVO read3(String email) {
+    MemberVO memberVO = sqlSessionTemplate.selectOne("member.read3", email);
+    
+    return memberVO;
+  }
   
 
   @Override
@@ -86,7 +102,7 @@ public class MemberDAO implements MemberDAOInter {
   }
   
   @Override
-  public List<MemberVO> list_search(HashMap hashMap) {
+  public List<MemberVO> list_search(HashMap<String, Object> hashMap) {
     return sqlSessionTemplate.selectList("member.list_search", hashMap);
   }
 
@@ -128,6 +144,7 @@ public class MemberDAO implements MemberDAOInter {
   public int search_count3(HashMap hashMap) {
     return sqlSessionTemplate.selectOne("member.search_count3", hashMap);
   }
+  
 }
 
 

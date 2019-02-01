@@ -35,6 +35,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM member
     WHERE memberno = #{memberno}
   </select>
+  
+  <select id="read2" resultType="MemberVO" parameterType="String">
+    SELECT memberno, id, rdate
+    FROM member
+    WHERE email = #{email}
+  </select>
+  
+  <select id="read3" resultType="MemberVO" parameterType="String">
+    SELECT memberno, id, passwd
+    FROM member
+    WHERE email = #{email}
+  </select>
 
   <select id="readById" resultType="MemberVO" parameterType="String">
     SELECT memberno, id, passwd, name, phone,email, zipcode, address1, address2, rdate
@@ -82,10 +94,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- category별 검색된 레코드 목록 -->
   <select id="list_search" resultType="MemberVO" parameterType="HashMap">
-    SELECT memberno, id, passwd, name, phone,email, zipcode, address1, address2, rdate
-    FROM member
-    WHERE name LIKE '%' || #{name} || '%'  
-    ORDER BY memberno DESC
+    SELECT memberno, id, passwd, name, phone,email, zipcode, address1, address2, rdate, r
+    FROM (
+            SELECT memberno, id, passwd, name, phone,email, zipcode, address1, address2, rdate, rownum as r
+            FROM (
+                      SELECT memberno, id, passwd, name, phone,email, zipcode, address1, address2, rdate
+                      FROM member
+                      WHERE name LIKE '%' || #{name} || '%' 
+                      ORDER BY memberno ASC
+            )            
+  )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]> 
   </select>
   
   <!-- category별 검색된 레코드 갯수 -->

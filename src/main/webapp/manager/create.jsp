@@ -39,11 +39,11 @@
         var msg = "";
 
         if (data.cnt > 0) {
-          $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
-          msg = "이미 사용중인 ID 입니다.";
+          /* $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap */
+          alert('이미 사용중인 ID 입니다.');
         } else {
-          $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
-          msg = "사용 가능한 ID 입니다.";
+         /*  $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap */
+          alert('사용 가능한 ID 입니다.');
           
           $.cookie('checkID', 'TRUE'); // Cookie 값 변경
         }
@@ -71,6 +71,62 @@
         // $('#main_panel').show();
             // id_span.html(msg);
         $('#modal_title').html('ID 중복 확인');
+        $('#modal_content').attr('class', 'alert alert-danger');
+        $('#modal_content').html(msg);
+        $('#modal_panel').modal(); // 다이얼로그 출력   
+      }
+    });
+
+  }
+  
+  function checkemail(){
+    var frm = $('#frm');
+    var params = 'email='+$('#email', frm).val(); // #: id
+    // alert('params: ' + params);
+    
+    $.ajax({
+      url: "./checkemail.do",
+      type: "GET",
+      cache: false,
+      dataType: "json", // or html
+      data: params,
+      success: function(data){
+        var msg = "";
+
+        if (data.cnt > 0) {
+          /* $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
+          msg = "이미 사용중인 email 입니다."; */
+          alert('이미 사용중인 email 입니다.');
+        } else {
+          /* $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
+          msg = "사용 가능한 email 입니다."; */
+          alert('사용 가능한 email 입니다.');
+          $.cookie('checkemail', 'TRUE'); // Cookie 값 변경
+        }
+
+        $('#modal_title').html('email 중복 확인');
+        $('#modal_content').html(msg);
+        $('#modal_panel').modal(); // 다이얼로그 출력   
+      },
+      // 통신 에러, 요청 실패, 200 아닌 경우, dataType이 다른경우
+      error: function (request, status, error){  
+        var msg = "에러가 발생했습니다. <br><br>";
+        msg += "다시 시도해주세요.<br><br>";
+        msg += "request.status: " + request.status + "<br>";
+        msg += "request.responseText: " + request.responseText + "<br>";
+        msg += "status: " + status + "<br>";
+        msg += "error: " + error;
+
+        // var panel = "";
+        // panel += "<DIV id='panel' class='popup1' style='height: 350px;'>";
+        // panel += msg;
+        // panel += "<br>[<A href=\"javascript: $('#main_panel').hide()\">CLOSE</A>]";
+        // panel += "</DIV>";
+        
+        // $('#main_panel').html(panel);      
+        // $('#main_panel').show();
+            // id_span.html(msg);
+        $('#modal_title').html('email 중복 확인');
         $('#modal_content').attr('class', 'alert alert-danger');
         $('#modal_content').html(msg);
         $('#modal_panel').modal(); // 다이얼로그 출력   
@@ -119,7 +175,7 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
 
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
 <DIV class='title_line' >관계자 회원가입</DIV>
   <ASIDE style='float: right;'>
@@ -204,7 +260,8 @@
       이메일
       <!-- <label for="email" >이메일</label> -->    
         <input type='text'  name='email' id='email'
-                   value='' required="required" style='width: 20%;' placeholder="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   value='' required="required" style='width: 20%;' placeholder=""> &nbsp
+      <button type='button' onclick="checkemail()" class="btn btn-secondary"  >중복확인</button>
       <br><br>
       
   &nbsp

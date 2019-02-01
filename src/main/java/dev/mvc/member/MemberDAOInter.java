@@ -34,8 +34,8 @@ public interface MemberDAOInter {
    * @return
    */
   public MemberVO read(int memberno);
-
-  
+  public MemberVO read2(String email);
+  public MemberVO read3(String email);
 
   /**
    * 조회
@@ -78,7 +78,7 @@ public interface MemberDAOInter {
    * @param categoryno
    * @return
    */
-  public List<MemberVO> list_search(HashMap hashMap);
+  public List<MemberVO> list_search(HashMap<String, Object> hashMap);
 
   /**
    * category별 검색된 레코드 갯수

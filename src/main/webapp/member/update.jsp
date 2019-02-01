@@ -29,7 +29,7 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 <DIV class='title_line' style='width: 20%;'>정보 수정</DIV>
   
    <ASIDE style='float: right;'>
@@ -63,20 +63,6 @@
       
     </div>
   </div> <!-- Modal END -->
-    
-  
-  <!-- <ASIDE style='float: left;'>
-      <A href='./member/list.do'>회원 목록</A>  
-  </ASIDE> -->
-  <!-- <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>목록</A>
-  </ASIDE> 
-
-  <div class='menu_line'></div> -->
   
 
   <FORM name='frm' id='frm' method='POST' action='./update.do' 

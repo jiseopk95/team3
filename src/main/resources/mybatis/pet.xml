@@ -43,10 +43,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- category별 검색된 레코드 목록 -->
   <select id="list_search" resultType="PetVO" parameterType="HashMap">
-    SELECT petno,memberno,name, age, gender, pet_type, neutralization,weight,files,thumbs,filesizes
-    FROM pet
-    WHERE name LIKE '%' || #{name} || '%'  
-    ORDER BY petno DESC
+    SELECT petno,memberno,name, age, gender, pet_type, neutralization, weight,files,thumbs,filesizes, r
+    FROM (
+            SELECT petno,memberno,name, age, gender, pet_type, neutralization, weight,files,thumbs,filesizes, rownum as r
+            FROM (
+                      SELECT petno,memberno,name, age, gender, pet_type, neutralization, weight,files,thumbs,filesizes
+                      FROM pet
+                      WHERE name LIKE '%' || #{name} || '%' 
+                      ORDER BY petno ASC
+            )            
+  )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]> 
   </select>
   
   <!-- category별 검색된 레코드 갯수 -->

@@ -18,11 +18,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-
+ 
 <script type="text/javascript">
-  $(function(){
-
-  });
 </script>
 </head> 
 
@@ -30,31 +27,27 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container' style='width: 100%;'>
 
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
   
 <br>
 <DIV style='width: 100%; margin: 0px auto;'>
 <DIV style='font-weight:bold;'>아이디 찾기</DIV> 
-<%-- <c:set var="memberno" value ="${memberVO.memberno }" /> --%>
-
+ 
     <DIV class='title_line' style='width: 30%;'></DIV>
-        <c:forEach var="memberVO" items="${idsearch }">  
-           <c:choose>
-           <c:when test="${search_count2 eq '1'}">
-              ${param.name} 회원님의 정보로 가입된 아이디가 총 ${search_count2 } 건 있습니다. <br><br>
-              아이디 : ${memberVO.id} 가입 날짜 : ${memberVO.rdate.substring(0, 10)} <br> 
-          </c:when>   
-           <c:otherwise>
-           <br><br>
-            정보가 일치하지 않습니다.<br>
-            다시시도해주세요.
-           <br><br> 
-         </c:otherwise>
-        </c:choose>
-   </c:forEach> 
+    <br>
+    <c:choose>
+      <c:when test="${search_count2 eq 1}">
+        ${param.name} 회원님의 정보로 가입된 아이디가 총 ${search_count2 } 건 있습니다. <br><br>
+        아이디 : ${memberVO.id} 가입 날짜 : ${memberVO.rdate.substring(0, 10)} <br> 
+      </c:when>  
+      <c:otherwise>  
+        정보가 일치하지 않습니다.<br>
+        다시시도해주세요.
+        </c:otherwise>  
+      </c:choose>
 
    
-
+<br>
 <DIV class='title_line' style='width: 30%;'></DIV>
 </DIV>
 

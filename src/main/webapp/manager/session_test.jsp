@@ -28,7 +28,7 @@ $(function(){
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container'>
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
   <c:forEach var="name" items="${pageContext.session.attributeNames}">
       Name: ${name}

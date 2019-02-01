@@ -23,13 +23,14 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false'/>
 <DIV class='container' style='width: 100%;'>
-<DIV class='content' style='padding-top:5%; padding-bottom: 10%;'>
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
 <DIV class='title_fontss' style='width: 20%;'>MY PAGE</DIV>
 
  
   <FORM name='frm' method='POST' action='./login.do'>
-         <img class="img-fluid mb-5 d-block mx-auto" style='margin-top:5%; width: 20%; height: 20%;' src="../resources/img/profile.png" >  <!-- 관련 이미지 넣거나 넣지 않음 --> <br>
+         <img class="img-fluid mb-5 d-block mx-auto" style='margin-top:5%; width: 20%; height: 20%;' src="../css/images/profile.png" >  <!-- 관련 이미지 넣거나 넣지 않음 --> <br>
+        <br><br><br>
         <button type="button" onclick="location.href='../member/read.do?memberno=${memberno }' " class="btn btn-primary" style="width: 20%;height: 20%;">나의 정보 조회</button>
         <button type="button" onclick="location.href='./pet_list.do?memberno=${memberno}'" class="btn btn-secondary" style="width: 20%;height: 20%;">반려동물 정보 조회</button>
 

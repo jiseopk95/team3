@@ -25,8 +25,6 @@ import dev.mvc.manager.ManagerVO;
 import dev.mvc.manager_login.Manager_loginProcInter;
 import dev.mvc.manager_login.Manager_loginVO;
 import dev.mvc.member.MemberVO;
-import dev.mvc.member_login.Member_loginProcInter;
-import dev.mvc.member_login.Member_loginVO;
 import dev.mvc.manager.File2VO;
 import nation.web.tool.Tool;
 import nation.web.tool.Upload;
@@ -68,6 +66,25 @@ public class ManagerCont {
   public String checkId(String id) {
     JSONObject json = new JSONObject();
     int cnt = managerProc.checkId(id);
+    
+    json.put("cnt", cnt);
+    return json.toString();
+  }
+  
+  /**
+   * 중복 이메일 검사
+   * http://localhost:9090/ojt/member/checkId.do?id=user1
+   * 결과: {"cnt":1}
+   * @param id
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/manager/checkemail.do", 
+                           method = RequestMethod.GET, 
+                           produces = "text/plain;charset=UTF-8")
+  public String checkemail(String email) {
+    JSONObject json = new JSONObject();
+    int cnt = managerProc.checkemail(email);
     
     json.put("cnt", cnt);
     return json.toString();
@@ -152,8 +169,8 @@ public class ManagerCont {
     // -------------------------------------------------------------------
     
     count = managerProc.checkId(managerVO.getId());
-    
-    if (count == 1) { // ID 중복시 메시지 출력
+    int count2 = managerProc.checkemail(managerVO.getEmail());
+    if (count == 1 || count2==1) { // ID 중복시 메시지 출력
       redirectAttributes.addAttribute("sw", "id");
       redirectAttributes.addAttribute("count", count); // 1 or 0
       
@@ -201,18 +218,29 @@ public class ManagerCont {
     return mav;
   }  
   
-  @RequestMapping(value="/manager/idsearch.do", method=RequestMethod.GET)
-  public ModelAndView idsearch(String email){
+  @RequestMapping(value="/manager/read2.do", method=RequestMethod.GET)
+  public ModelAndView read2(String email){
     // System.out.println("--> read(int memberno) GET called.");
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/manager/idsearch"); // webapp/member/read.jsp
     
-    ManagerVO managerVO = managerProc.idsearch(email);
+    ManagerVO managerVO = managerProc.read2(email);
     mav.addObject("managerVO", managerVO);
-      
+    
     return mav;
   }  
   
+  @RequestMapping(value="/manager/read3.do", method=RequestMethod.GET)
+  public ModelAndView read3(String email){
+    // System.out.println("--> read(int memberno) GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/manager/passwdsearch"); // webapp/member/read.jsp
+    
+    ManagerVO managerVO = managerProc.read3(email);
+    mav.addObject("managerVO", managerVO);
+    
+    return mav;
+  }
   
   @RequestMapping(value="/manager/kind_update.do", method=RequestMethod.GET)
   public ModelAndView kind_update(int managerno){
@@ -623,16 +651,19 @@ public class ManagerCont {
   }
   
   /**
-   * 검색
+   * 검색 목록
    * 
    * @param categoryno
    * @param word
    * @return
    */
   @RequestMapping(value = "/manager/list_search.do", method = RequestMethod.GET)
-  public ModelAndView list_search(String name) {
+  public ModelAndView list_search( @RequestParam(value="name", defaultValue="") String name,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage) {
     // System.out.println("--> list_by_category(int categoryno, String
     // word_find) GET called.");
+    System.out.println("--> nowPage: " + nowPage);
+    
     ModelAndView mav = new ModelAndView();
     // mav.setViewName("/contents/list_by_categoryno"); //
     // webapp/contents/list_by_categoryno.jsp
@@ -643,6 +674,7 @@ public class ManagerCont {
     // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
     hashMap.put("name", name); // #{word}
+    hashMap.put("nowPage", nowPage);    
 
     // System.out.println("categoryno: " + categoryno);
     // System.out.println("word_find: " + word_find);
@@ -656,9 +688,100 @@ public class ManagerCont {
     mav.addObject("search_count", search_count);
 
     // mav.addObject("word", word);
+    
+    String paging = managerProc.paging(search_count, nowPage, name);
+    mav.addObject("paging", paging);
+    mav.addObject("nowPage", nowPage);
 
     return mav;
   }
+  
+  @RequestMapping(value="/manager/idsearch.do", method=RequestMethod.GET)
+  public ModelAndView idsearch(String name, String email){
+    // System.out.println("--> read(int memberno) GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/manager/idsearch"); // webapp/member/read.jsp
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("name", name); // #{word}
+    hashMap.put("email", email); // #{word}
+    
+    List<ManagerVO> idsearch = managerProc.idsearch(hashMap);
+    mav.addObject("idsearch", idsearch);
+   
+    
+    int search_count2 = managerProc.search_count2(hashMap);
+    System.out.println("search_count2: " + search_count2 );
+    mav.addObject("search_count2", search_count2);
+    
+   
+    
+    if(search_count2==1){
+      ManagerVO managerVO = managerProc.read2(email);
+      mav.addObject("managerVO", managerVO);
+    }
+      
+    return mav;
+  }  
+  
+  /**
+   * 아이디 찾기에 쓸 리스트
+   * @param session
+   * @return
+   */
+  @RequestMapping(value="/manager/list_id.do", method=RequestMethod.GET)
+  public ModelAndView list_id(HttpSession session){
+    // System.out.println("--> create() GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/manager/list_id"); // webapp/member/list.jsp
+
+      List<ManagerVO> list_id = managerProc.list_id();
+      mav.addObject("list_id", list_id);
+    
+    return mav;
+  }  
+  @RequestMapping(value="/manager/passwdsearch.do", method=RequestMethod.GET)
+  public ModelAndView passwdsearch(String name, String id, String email){
+    // System.out.println("--> read(int memberno) GET called.");
+    ModelAndView mav = new ModelAndView();
+    ManagerVO managerVO=new ManagerVO();
+    mav.setViewName("/manager/passwdsearch"); // webapp/member/read.jsp
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("name", name); // #{word}
+    hashMap.put("id", id); // #{word}
+    hashMap.put("email", email); // #{word}
+    
+    List<ManagerVO> passwdsearch = managerProc.passwdsearch(hashMap);
+    mav.addObject("passwdsearch", passwdsearch);
+    
+    int search_count3 = managerProc.search_count3(hashMap);
+    mav.addObject("search_count3", search_count3);
+    
+    if(search_count3==1){
+      managerVO = managerProc.read3(email);
+      mav.addObject("managerVO", managerVO);
+    }
+      
+    return mav;
+  }  
+  
+  /**
+   * 아이디 찾기에 쓸 리스트
+   * @param session
+   * @return
+   */
+  @RequestMapping(value="/manager/list_passwd.do", method=RequestMethod.GET)
+  public ModelAndView list_passwd(HttpSession session){
+    // System.out.println("--> create() GET called.");
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/manager/list_passwd"); // webapp/member/list.jsp
+
+      List<ManagerVO> list_passwd = managerProc.list_passwd();
+      mav.addObject("list_passwd", list_passwd);
+    
+    return mav;
+  }  
   
 }
 
