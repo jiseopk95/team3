@@ -27,10 +27,9 @@ $(function(){
 
 <body id="page-top">
 <jsp:include page="/menu/top.jsp" flush='false' />  
-
 <DIV class='container' style='width: 100%;'>
 <DIV class='content'>     
-
+<form name='frm' id='frm' method="get" action="./list.do">
  <%--  <ASIDE style='float: left;'>
     <A href='../category/list.do'>게시판 목록</A>
     <span style='font-size: 1.4em;'>></span> 
@@ -42,25 +41,42 @@ $(function(){
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
-    <A href='./create.do?categoryno=1'>등록</A>
+    <A href='./create.do?categoryno=1'>등록</A>&nbsp
+    <input type='hidden' name='categoryno' id='categoryno' value='${categoryVO.categoryno }'>
+    <c:choose>
+      <c:when test="${param.title != '' }">
+        <input type='text' name='title' id='title' value='${param.title }' style='width: 35%;'>
+      </c:when>
+      <c:otherwise>
+        <input type='text' name='title' id='title' value='' style='width: 35%;'>
+      </c:otherwise>
+    </c:choose>
+    <button type='submit'>검색</button>
+    <button type='button' 
+                 onclick="location.href='./list.do?categoryno=${categoryVO.categoryno }'">전체 보기</button>
   </ASIDE> 
+  </form>
   <DIV class='menu_line' style='clear: both;'></DIV>  
          
   <div style='width: 100%;'>
     <table class="table" style='width: 100%;'>
       <colgroup>
+        <col style="width: 5%;"></col>
         <col style="width: 10%;"></col>
-        <col style="width: 35%;"></col>
-        <col style="width: 15%;"></col>
-        <col style="width: 15%;"></col>
+        <col style="width: 20%;"></col>
+        <col style="width: 20%;"></col>
         <col style="width: 10%;"></col>
         <col style="width: 15%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 20%;"></col>
         
       </colgroup>
       <%-- table 컬럼 --%>
       <thead>
         <tr >
+          <th style='text-align: center;' >NO</th>
           <th style='text-align: center;' >파일</th>
+          <th style='text-align: center;' >카테고리</th>
           <th style='text-align: center;'>제목</th>
           <th style='text-align: center;'>글쓴이</th>
           <th style='text-align: center;'>등록일</th>
@@ -71,7 +87,7 @@ $(function(){
       </thead>
         <c:forEach var="reviewVO" items="${list }">
           <tr> 
-          
+          <td style='vertical-align: middle;'> <p class="text-center">${reviewVO.reviewno} </p> </td>
           <td style='vertical-align: middle;'>
             <c:choose>
               <c:when test="${reviewVO.thumbs != NULL}">
@@ -86,7 +102,7 @@ $(function(){
               </c:otherwise>
             </c:choose>
             </td>          
-            
+            <td style='vertical-align: middle;'> <p class="text-center">${categoryVO.name} </p> </td>
            <td style='vertical-align: middle;'>
               <p class="text-center">
               <a href="./read.do?reviewno=${reviewVO.reviewno}&categoryno=${reviewVO.categoryno}">${reviewVO.title}</a> 

@@ -13,7 +13,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstra
+
 
 <script type="text/javascript">
   $(document).ready(function(){ // window.onload = function() { ... }
@@ -52,12 +53,13 @@
     $('#main_panel').show();
     
   }
+
 </script>
 </head>
 
 <body>
-<DIV class='container' style='width: 100%;'>
 <jsp:include page="/menu/top.jsp" flush='false' />
+<DIV class='container' style='width: 100%;'>
 <DIV class='content'>   
 
  <DIV class='title_line'>후기</DIV>
@@ -117,12 +119,18 @@
           </div>
         </ul>
       </fieldset>
-  </FORM>
+        </FORM>
+      
 
-
+<jsp:include page="/answer/list.jsp"  flush='false' > 
+    <jsp:param name="reviewno" value="${reviewVO.reviewno}" />
+</jsp:include>
+ 
+     
+ 
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html>

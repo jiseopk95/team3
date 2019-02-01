@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="answer">
+
+  <insert id="create" parameterType="AnswerVO">
+  INSERT INTO answer(answerno, reviewno,content, rdate,memberno)
+  VALUES((SELECT NVL(MAX(answerno), 0)+1 as answerno FROM answer), #{reviewno}, #{content}, sysdate, #{memberno} )
+  </insert>
+  
+<select id="list" resultType="AnswerVO" >
+    SELECT answerno, reviewno, content, rdate
+    FROM answer
+    WHERE reviewno=#{reviewno}
+    ORDER BY answerno ASC
+  </select>
+  
+  
+  
+</mapper>
+
+
+
+
+
+
+
+

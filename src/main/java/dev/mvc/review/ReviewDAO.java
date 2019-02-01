@@ -1,5 +1,6 @@
 package dev.mvc.review;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,6 +26,11 @@ public class ReviewDAO implements ReviewDAOInter {
   public List<ReviewVO> list() {
     return sqlSessionTemplate.selectList("review.list");
   }
+  
+  @Override
+  public List<ReviewVO> index_list() {
+    return sqlSessionTemplate.selectList("review.index_list");
+  }
 
   @Override
   public ReviewVO read(int reviewno) {
@@ -41,7 +47,22 @@ public class ReviewDAO implements ReviewDAOInter {
     return sqlSessionTemplate.update("review.update", reviewVO);
   }
 
+  @Override
+  public List<ReviewVO> list_by_category_search(HashMap hashMap) {
+    return sqlSessionTemplate.selectList("review.list_by_category_search", hashMap);
+  }
 
+  @Override
+  public int search_count(HashMap hashMap) {
+    return sqlSessionTemplate.selectOne("review.search_count", hashMap);
+  }
+
+  @Override
+  public List<ReviewVO> list_by_category_search_paging(HashMap<String, Object> hashMap) {
+    // return sqlSessionTemplate.selectList("contents.list_by_category_search_paging", hashMap);
+    return sqlSessionTemplate.selectList("review.list_by_category_search_paging", hashMap);
+  }
+  
   
  
 }

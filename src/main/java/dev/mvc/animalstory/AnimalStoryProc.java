@@ -497,6 +497,18 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
      
     return str.toString(); 
   }
+
+  @Override
+  public List<EventVO> event(int evnetno) {
+    
+    return aniDAO.event(evnetno);
+  }
+
+  @Override
+  public int win(HashMap hashMap) {
+    // TODO Auto-generated method stub
+    return aniDAO.win(hashMap);
+  }
   
 
 }

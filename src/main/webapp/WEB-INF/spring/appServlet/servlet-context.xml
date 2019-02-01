@@ -33,6 +33,9 @@
   <context:component-scan base-package="dev.mvc.calendar" />
   
   <context:component-scan base-package="dev.mvc.beauty" />
+  <context:component-scan base-package="dev.mvc.event" />
+  <context:component-scan base-package="dev.mvc.present" />
+  <context:component-scan base-package="dev.mvc.user" />
   
   <context:component-scan base-package="dev.mvc.categrp" />
   <context:component-scan base-package="dev.mvc.category" />

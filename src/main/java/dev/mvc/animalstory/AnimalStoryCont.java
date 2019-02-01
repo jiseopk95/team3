@@ -561,4 +561,87 @@ public class AnimalStoryCont {
   }
   
   
+  /**
+   * 이벤트 추첨 - 폼 : 그냥 전송, 번호 확인겸
+   * http://localhost:9090/ahr/animalstory/event.do?eventno=1
+   * @param anino
+   * @return
+   */
+  @RequestMapping(value = "/animalstory/event.do", method = RequestMethod.GET)
+  public ModelAndView eventuser(int eventno) {
+    ModelAndView mav = new ModelAndView();
+
+    List<EventVO> list = aniProc.event(eventno);
+
+    mav.addObject("eventno", eventno);
+    mav.addObject("list", list);
+
+    mav.setViewName("/animalstory/event"); // /webapp/contents/read.jsp
+    return mav;
+  }
+
+  
+
+  /**
+   * 이벤트 추첨 - 기능
+   * @param eventVO
+   * @return
+   */
+
+  @RequestMapping(value = "/animalstory/event_proc.do", method = RequestMethod.POST)
+  public ModelAndView eventuser_proc(EventVO eventVO) {
+    ModelAndView mav = new ModelAndView();
+    List<EventVO> list = null;
+   HashMap<String, Object> hashMap = new HashMap<String, Object>();
+   int count = 0;
+   int[] winner_num = new int[3]; // 당첨자 번호를 담을 배열
+
+    list = aniProc.event(eventVO.getEvnetno()); // 참여자 리스트
+
+    // 3명만 뽑음
+    for(int i = 0; i < 3; i++) {
+    // 0~ 참여자리스트 길이 중 랜덤수를 뽑아서 당첨자번호 배열에 할당
+    // 랜덤수를 0부터 뽑는 이유 
+    //  : 단순히 번호를 뽑는게 아니라 이 랜덤수를 리스트의 인덱스로 사용할 것이기 때문임.
+      winner_num[i] = (int)(Math.random() * list.size()); 
+
+      // 중복 제거 구간
+      // : 만약 winner_num의 i번째와 j번째가 같다면 i를 하나 낮추고 i j for문을 멈춰라
+      // -> 상위 for문의 i의 수를 하나 낮춰서 그 배열 요소의 랜덤수를 다시 뽑아라
+      for(int j = 0; j < i; j++) {
+        if(winner_num[i] == winner_num[j]) {
+          i--;
+          break;
+        }
+      }
+    }
+
+    // 아래 for문은 확인을 위한것. 작동에는 필요 없는 요소
+    for(int i = 0; i < list.size(); i++) {
+      System.out.println("list의 " +i+ "번째 멤버번호 : " + list.get(i).getMemberno()); // 리스트의 멤버번호 확인
+    }
+
+    hashMap.put("eventno", eventVO.getEvnetno()); // 이벤트번호는 받아온걸로 고정 
+
+    // 당첨번호 배열의 길이만큼 돌린다
+    for(int i = 0; i < winner_num.length; i++) {
+      System.out.println("winner_num : " + winner_num[i]); // 당첨번호
+
+      // list.get(winner_num[i]).getMemberno() 
+      // : list의 winner_num[i]번째 인덱스의 요소인 VO에서 memberno를 가져와라
+      hashMap.put("memberno", list.get(winner_num[i]).getMemberno()); // 당첨자 번호를 할당함.
+      System.out.println("winner memberno : " + list.get(winner_num[i]).getMemberno()); // 당첨된 멤버번호 확인
+
+      // 당첨번호 배열의 길이만큼 update문 실행(3번으로 지정돼있음) 
+      // - 주의점 : 중복참여 불가 전제조건 필수
+      count = aniProc.win(hashMap);
+    }
+
+    
+    mav.addObject("count", count);
+    mav.addObject("eventno", eventVO.getEvnetno());
+    mav.setViewName("/animalstory/result"); // /webapp/contents/read.jsp
+    return mav;
+  }
+ 
 }

@@ -120,5 +120,18 @@ public interface AnimalStoryProcInter {
    */ 
   public String paging_anitype(int nowPage, int search_count, String content, int anitype);
   
+  /**
+   * 이벤트별 참여자 추출
+   * @param evnetno
+   * @return
+   */
+  public List<EventVO> event(int evnetno); 
+  
+  /**
+   * 당첨자 업데이트
+   * @param hashMap
+   * @return
+   */
+  public int win(HashMap hashMap);
 
 }
