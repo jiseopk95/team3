@@ -46,6 +46,10 @@ function check() {
     $('#frm').submit();
   }
 };
+function exit() {
+  opener.location.reload();
+  window.close();
+}
 </script>
 </head>
 <body>
@@ -121,7 +125,7 @@ function check() {
       ${chartVO.etc }
       </textarea>
     </fieldset>
-    <button type="button" class="btn btn-primary" onclick="location.href='./list.do?managerno=${managerno}'"  style="float: right;">취소</button>
+    <button type="button" class="btn btn-primary" onclick="exit();" style="float: right;">취소</button>
     <button type="button" class="btn btn-primary" onclick="check();" style="float: right; margin-right: 1%;">수정</button>
   </form>
 </DIV> <!-- content END -->

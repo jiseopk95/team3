@@ -107,9 +107,9 @@ function check() {
     
     <fieldset id="etc">
       <legend>진료사항 기록</legend>
-      <textarea rows="20" cols="100" class="etc" id='etc' name="etc" >
+      <DIV>
       ${chartVO.etc }
-      </textarea>
+      </DIV>
     </fieldset>
     <button type="button" class='btn btn-primary btn-sm' onclick="location.href='./list.do?managerno=${managerno}'" style="float: right;">뒤로가기</button>
   </form>

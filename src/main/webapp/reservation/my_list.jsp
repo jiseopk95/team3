@@ -30,19 +30,19 @@ String today = year + "-" + month;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style type="text/css">
 /* 출력되는 A 태그 기본 모양 */
-a:link{ 
+.content a:link{ 
   text-decoration: none !important; /* 밑줄 삭제 */
   color: #000000;
 }
 /* A 태그에 마우스가 위치했을 때 */
-a:hover{
+.content a:hover{
   text-decoration: none !important;
   color: #0080ff;
   color: #000000;
   font-weight: bold;
 }
 /* A 태그가 클릭된적이 있는 경우의 모양 */
-a:visited {
+.content a:visited {
   text-decoration: none !important;
   color: #000000;
 }

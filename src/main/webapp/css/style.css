@@ -93,3 +93,63 @@ textarea {
 .buttons{
   float: left;
 }
+.read_title_table {
+  margin-bottom: 10px;
+  width:100%;
+  cellspacing='0';
+  collspacing='0';
+}
+.read_title {
+  font-size: 30px;
+  font-weight: bold;
+}
+.read_thumbs {
+  margin-bottom: 20px;
+}
+.show_thumbs {
+  font-weight: bold;
+  cursor:pointer;
+}
+.hide_thumbs {
+  text-decoration: none;
+  color: #000057;
+  font-weight: bold;
+  float: right;
+}
+.hide_thumbs:hover{
+  text-decoration: none;
+  color: #0000cc;
+  font-weight: bold;
+  float: right;
+}
+.read_content {
+  margin: auto;
+}
+.nav-li {
+  display:inline !important; 
+}
+.nav-li a {
+  vertical-align: middle;
+  font-weight:bold;
+  color: #000000;
+  margin-right: 1%;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.small-top {
+  padding-top: 0.5%;
+  padding-right: 1%;
+  text-align: right;
+}
+.logo a{
+  color: #2455c5;
+  font-size: 30px;
+}
+.menu {
+  margin-right: 2%;
+  margin-left: 2%;
+}
+a:hover {
+  text-decoration: none;
+}

@@ -13,8 +13,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
+window.onload=function(){
+  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
+};
+
 $(function() {
   var gender = "${petVO.gender}";
   var neutralization = "${petVO.neutralization}";
@@ -120,7 +125,7 @@ function check() {
     
     <fieldset id="etc">
       <legend>진료사항 기록</legend>
-      <textarea rows="20" cols="100" class="etc" id='etc' name="etc" >
+      <textarea rows="20" cols="100" class="content" id='content' name="etc" >
       특별한 내용 없음
       </textarea>
     </fieldset>

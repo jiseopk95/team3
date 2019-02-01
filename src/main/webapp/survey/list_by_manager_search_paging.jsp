@@ -11,33 +11,14 @@
     <meta name="author" content="">
 
     <title>Pet Doctor</title> <!-- 주소창 타이틀 -->
-    <!-- <link href="./css/style.css" rel='Stylesheet' type='text/css'> -->
-    <!-- Bootstrap core CSS -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- Plugin CSS -->
-    <link href=" ${pageContext.request.contextPath}/resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
-
-    <!-- Custom styles for this template -->
-    <link href=" ${pageContext.request.contextPath}/resources/css/freelancer.min.css" rel="stylesheet">
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
-   <!-- Bootstrap -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <title></title> 
 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-<!-- Bootstrap -->
+ 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -50,6 +31,8 @@ $(function() {
  $('#btn_create').on('click', create_form);
  $('#main_panel').hide();
  $('#panel_update').hide();
+ document.getElementById('startdate').valueAsDate = new Date();
+ document.getElementById('enddate').valueAsDate = new Date();
  
 });
 
@@ -233,6 +216,7 @@ function create_update_cancel() {
 }
 
 
+
 </script>
 
 
@@ -241,11 +225,14 @@ function create_update_cancel() {
 
 <body>
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
-<DIV class='container' style='width:80%; margin:0px auto; text-align: center; margin-top: 5%; margin-bottom:5%' >
-<DIV class='content' >
+<DIV class='container' style="width:80%;" >
+<DIV class='content' style=' margin:0px auto; text-align: center; margin-top: 5%; margin-bottom:5%'>
 
     
-  <DIV class='title_line'>설문조사 항목</DIV>
+  <DIV class='title_line' style="width:30%;">
+ <span style="font-size:18px;font-weight:bold;">설문조사 항목<br></span>
+  <br>
+  </DIV>
 
     <div style='text-align: right'>
     
@@ -254,34 +241,21 @@ function create_update_cancel() {
    </div> 
 
 
-  <form name='frm_find' id='frm_find' method="get" action="./list_by_manager_search.do">
-<%--   <ASIDE style='float: left;'>
-    <A href='../category/list.do'>게시판 목록</A>
-    >  
-    <A href='./list_by_category.do?categoryno=${categoryVO.categoryno }'>${categoryVO.title }</A>
-
-    <c:if test="${param.survey_title.length() > 0}"> 
-      >
-      [${param.survey_title}] 검색 목록(${search_count } 건) 
-    </c:if>
-
-  </ASIDE> --%>
-<!--   <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A> -->
+  <form name='frm_find' id='frm_find' method="get" action="./list_by_manager_search_paging.do">
 
 
     <input type='hidden' name='managerno' id='managerno' value='${managerno}'>
    <div style="width:100%;background-color:white;text-align:right; margin-top:10px;">
     <c:choose>
       <c:when test="${survey_title != '' }">
-        <input type="search" placeholder="Search" id='survey_title' value='${survey_title}' style='width: 10%;height:28px;'>
+        <input type="search" placeholder="타이틀 검색" id='survey_title' value='${survey_title}' style='width: 10%;height:28px;'>
       </c:when>
       <c:otherwise>
-        <input type="search" name='survey_title' id='survey_title' value='' style='width: 10%;height:28px;'>
+        <input type="search" placeholder="타이틀 검색"  name='survey_title' id='survey_title' value='' style='width: 10%;height:28px;'>
       </c:otherwise>
     </c:choose>
-    <button type='submit' class="btn btn-info btn-sm">검색</button>
-    <button type='button' class="btn btn-info btn-sm"
+    <button type='submit' class="btn btn-success btn-sm">검색</button>
+    <button type='button' class="btn btn-success btn-sm"
                  onclick="location.href='./list_by_manager_search_paging.do?managerno=${managerno}'">전체 보기</button>
     </div> 
   </form>
@@ -314,12 +288,12 @@ function create_update_cancel() {
           
          <div class="col-md-3 mb-6">
             <label for="startdate">Startdate</label>
-            <input type="date" class="form-control" name="startdate" id="startdate" placeholder="" value="2019-01-15" required >
+            <input type="date" class="form-control" name="startdate" id="startdate" placeholder="" value="" required >
           </div>
           
           <div class="col-md-3 mb-6">
             <label for="enddate">Enddate</label>
-            <input type="date" class="form-control" name="enddate" id="enddate" placeholder="" value="2019-01-15"  required >
+            <input type="date" class="form-control" name="enddate" id="enddate" placeholder="" value=""  required >
           </div>
           
         <label></label>
@@ -373,7 +347,7 @@ function create_update_cancel() {
     </DIV>
 
   
-<TABLE class='table '>
+<TABLE class='table'>
   <colgroup>
     <col style='width:5%;'/> 
     <col style='width: 10%;'/> 
@@ -416,14 +390,7 @@ function create_update_cancel() {
          </c:otherwise>
     </c:choose>
       <button type="button" class="btn btn-danger btn-xs"onclick="location.href='../surveyparty/list_survey.do?surveyno=${manager_surveyVO.surveyno}'" >참여 List</button>   
-<%--     <c:choose>   
-         <c:when test="${manager_surveyVO.q_cnt==0}">
-           <button type="button" class="btn btn-danger btn-xs "onclick="exit();" >응시 불가</button>
-         </c:when>
-         <c:otherwise>
-            <button type="button" class="btn btn-primary btn-xs"onclick="location.href='../surveyitem/party_list.do?surveyno=${manager_surveyVO.surveyno}&memberno=1'" >응시 가능</button>
-         </c:otherwise>
-    </c:choose> --%>
+
     
       <A href="javascript:update(${manager_surveyVO.surveyno})"><IMG src='./images/update.png' title='수정' style='width:20px;'></A>
       <A href="javascript:delete_form(${manager_surveyVO.surveyno})"><IMG src='./images/delete.png' title='삭제' style='width:20px;'></A>

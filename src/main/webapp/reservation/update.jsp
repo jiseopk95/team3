@@ -272,7 +272,7 @@ var time_b = '<div class="class="form-group" id="time_b">'
 </head>
 <body>
 <DIV class='container'>
-<DIV class='content'>
+<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
 <h1>예약수정</h1>
   <FORM name='frm' id="frm" method='POST' action='./update.do'
                enctype="multipart/form-data" class="form-horizontal">
@@ -341,8 +341,8 @@ var time_b = '<div class="class="form-group" id="time_b">'
         </div>
       </div>
       <DIV style='text-align: right;'>
-        <button type="button" onclick="check();">수정</button>
-        <button type="button" onclick="exit();">취소</button>
+        <button type="button" class="btn btn-primary" onclick="check();" style="float: right; margin-right: 1%;">수정</button>
+        <button type="button" class="btn btn-primary" onclick="exit();" style="float: right;">취소</button>
       </DIV>
     </FORM>
 </DIV> <!-- content END -->

@@ -146,10 +146,9 @@ function update(anino) {
     <colgroup>
       <col style='width: 10%;'/>
       <col style='width: 25%;'/>
+      <col style='width: 20%;'/>
       <col style='width: 15%;'/>
-      <col style='width: 10%;'/>
       <col style='width: 15%;'/>
-      <col style='width: 10%;'/>
       <col style='width: 15%;'/>
     </colgroup>
     <thead>  
@@ -159,7 +158,6 @@ function update(anino) {
         <th style='text-align: center ;'>제목</th>
         <th style='text-align: center ;'>작성자</th>
         <th style='text-align: center ;'>작성일</th>
-        <th style='text-align: center ;'>조회수</th>
         <th style='text-align: center ;'>기타</th>
       </tr>
     </thead>
@@ -180,7 +178,6 @@ function update(anino) {
           <td style='vertical-align: middle; text-align: center ;'><a href='./read.do?anino=${aniVO.anino }'>${aniVO.title }</a></td><!-- 제목 -->
           <td style='vertical-align: middle; text-align: center ;'>${aniVO.manager }</td><!-- 작성자 (관리자번호로 select해오기) -->
           <td style='vertical-align: middle; text-align: center ;'>${aniVO.rdate }</td><!-- 작성일 -->
-          <td style='vertical-align: middle; text-align: center ;'>${aniVO.cnt }</td><!-- 조회수 -->
           <td style='vertical-align: middle; text-align: center ;'>
             <a href="javascript:update(${aniVO.anino });"><img alt="수정이미지" src="./images/update.png" title="수정" style="width:20px; height:20px;"></a>
             <a href="javascript:deleteOne(${aniVO.anino })"><img alt="삭제이미지" src="./images/delete.png" title="삭제" style="width:20px; height:20px;"></a>

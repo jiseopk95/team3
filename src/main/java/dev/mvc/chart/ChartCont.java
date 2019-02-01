@@ -20,12 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import dev.mvc.reservation.PetVO;
-import dev.mvc.reservation.ReservationProcInter;
-import dev.mvc.reservation.ReservationVO;
-import dev.mvc.reservation.Time_bVO;
-import dev.mvc.reservation.Time_hVO;
-
 @Controller
 public class ChartCont {
   

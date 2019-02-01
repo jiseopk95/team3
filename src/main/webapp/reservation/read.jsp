@@ -56,7 +56,6 @@ td {
 </script>
 </head>
 <body>
-<c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container' >
 <DIV class='content' style='width: 80%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
 <div class="title_line">예약내용</div>
@@ -98,7 +97,6 @@ td {
   </DIV>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' /> <!--  bottom 부분 소스분리 -->
 </body>
 </html>
 

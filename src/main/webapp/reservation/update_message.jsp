@@ -16,16 +16,22 @@ function exit() {
 </head>
 <body>
 <DIV class='container'>
-<DIV class='content'>
-  <c:choose>
-    <c:when test="${param.count  == 1}">
-      수정됐습니다.
-    </c:when>
-    <c:otherwise>
-      수정에 실패했습니다.
-    </c:otherwise>
-  </c:choose>
-  <button type="button" class="btn btn-primary" onclick="exit();">닫기</button>
+<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
+  <DIV class='message'>
+    <fieldset class='fieldset_basic'>
+    <legend>알림</legend>
+    <c:choose>
+      <c:when test="${param.count  == 1}">
+        수정됐습니다.
+      </c:when>
+      <c:otherwise>
+        수정에 실패했습니다.
+      </c:otherwise>
+    </c:choose>
+    <br>
+    <button type="button" class="btn btn-primary" onclick="exit();">닫기</button>
+    </fieldset>
+  </DIV>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
 </body>

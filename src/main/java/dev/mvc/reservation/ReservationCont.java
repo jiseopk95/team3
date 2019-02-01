@@ -200,6 +200,8 @@ public class ReservationCont {
     
     if(count==1) {
       json.put("msgs", "삭제를 성공했습니다.");
+    } else {
+      json.put("msgs", "삭제를 실패했습니다.");
     }
     
     return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);

@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>${aniVO.title}</title>
 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
@@ -18,7 +18,15 @@
 <script type="text/javascript">
   $(document).ready(function(){ // window.onload = function() { ... }
     imgResize()
+    $('.read_thumbs').hide();
+    $('.show_thumbs').on('click', function() {
+      $('.read_thumbs').show();
+    })
   });
+  
+  function hide_thumbs() {
+    $('.read_thumbs').hide();
+  }
 
   //<div id='file1Panel'> 태그의 width에 맞추어 자동 축소
   function imgResize() {
@@ -60,31 +68,36 @@
 <DIV class='container'>
 <DIV class='content' style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'>
 
-  <div class='menu_line'></div>
-
-  <DIV id='main_panel'></DIV>
+  <button type="button" class='btn btn-primary btn-sm' style="float: right;" onclick="location.href='./list.do?content=&nowPage='">목록</button> 
   
   <FORM name='frm' method="get" action='./update.do'>
       <input type="hidden" name="managerno" value="${aniVO.managerno}">
-      <fieldset class="fieldset">
-        <ul>
-          <li class="li_none">
-            <span>${aniVO.title}</span>
-            <span>${aniVO.rdate}</span>
-            <DIV>
-              <c:forEach var ="fileVO"  items="${file_list }">
-                <A href="javascript: panel_img('${fileVO.file }')"><IMG src='./storage/${fileVO.thumb }' style='margin-top: 2px;'></A>
-              </c:forEach>
-            </DIV>
-          </li>
-          <li class="li_none">
-            <DIV>${aniVO.content }</DIV>
-          </li>
-        </ul>
-      </fieldset>
+      <table class="read_title_table">
+        <colgroup>
+          <col width="75%">
+          <col width="15%">
+          <col width="10%">
+        </colgroup>
+        <tr>
+          <td class="read_title">${aniVO.title}</td>
+          <td class="read_rdate">작성일 : ${aniVO.rdate}</td>
+          <td class="show_thumbs">첨부파일</td>
+        </tr>
+      </table>
+      <hr>
+      <div class="read_thumbs">
+      <c:forEach var ="fileVO"  items="${file_list }">
+        <A href="javascript: panel_img('${fileVO.file }')"><IMG src='./storage/${fileVO.thumb }' style='margin-top: 2px;'></A>
+      </c:forEach>
+      <a class="hide_thumbs" href="javascript: hide_thumbs();">숨기기</a>
+      </div>
+      <table class="read_content">
+        <tr>
+          <td>${aniVO.content }</td>
+        </tr>
+      </table>
+
   </FORM>
-
-
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
 <jsp:include page="/menu/bottom.jsp" flush='false' />

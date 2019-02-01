@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import dev.mvc.reservation.PetVO;
 
 @Repository("dev.mvc.chart.ChartDAO")
 public class ChartDAO implements ChartDAOInter{
