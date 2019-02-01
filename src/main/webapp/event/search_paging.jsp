@@ -97,10 +97,10 @@ function delete_event(eventno) {
 
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
-<DIV class='container'>
+<DIV class='container' style='width:80%;'>
 <DIV class='title_line'>이벤트관리
  </DIV>
-<DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'><!-- style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%' -->   
+<DIV class='content' style=' margin:0px auto; text-align: center; pagging-top:5%; padding-bottom:10%'><!-- style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%' -->   
  <FORM name='frm_e' id='frm_e' method='post' action=''>
  <input type='hidden' name='eventno' id='eventno' value=' ${eventVO.eventno}'>
     

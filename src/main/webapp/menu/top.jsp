@@ -67,10 +67,11 @@
               <div class="dropdown"> 
               <a class="dropdown-toggle"  style="color: #FFFFFF; font-size: 20px; font-weight:bold; margin-top: 3%;"data-toggle="dropdown"  href="#">소식공간</a> 
                <div class="dropdown-menu" >
-                  <LI> <a class="dropdown-item" href="#">미용스타일</a></LI>
+                  <LI> <a class="dropdown-item" href="${pageContext.request.contextPath}/beauty/search_paging.do?categoryno=1&managerno=1">미용스타일</a></LI>
                   <LI>  <a class="dropdown-item" href="#">이벤트상품</a></LI>
                     
                     <LI><a class="dropdown-item" href="#">이벤트관리</a></LI>
+                          <LI><a class="dropdown-item" href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></LI>
                   <LI> <a class="dropdown-item" href="#">애니멀스토리</a></LI>
                </div>
           </div>  
