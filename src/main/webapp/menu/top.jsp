@@ -62,7 +62,7 @@
                   <LI> <a class="dropdown-item" href="${pageContext.request.contextPath}/review/list.do?categoryno=3">미용후기</a></LI>
                    <LI><a class="dropdown-item" href="#">설문조사 항목</a>
                </div>
-              </div> 
+              </div>  
               
               <div class="dropdown"> 
               <a class="dropdown-toggle"  style="color: #FFFFFF; font-size: 20px; font-weight:bold; margin-top: 3%;"data-toggle="dropdown"  href="#">소식공간</a> 
