@@ -545,12 +545,12 @@ public class AnimalStoryCont {
       manager = aniProc.manager(aniVO.getManagerno());
 
       url.append("<LI class='category_title'>");
-      url.append("  <span style='font-size: 0.9em; color: #555555;'>"+ aniVO.getAnitype() +"</span>");
+      url.append("  <span style='font-size: 0.7em; color: #555555;'>"+ aniVO.getAnitype() +"</span>");
       url.append("  <A href='" + request.getContextPath()+ "/animalstory/read.do?anino=" + aniVO.getAnino() + "'>");
-      url.append(aniVO.getTitle());
+      url.append("  <span style='font-size: 17px; color: #2c3e50;'>"+aniVO.getTitle()+"</span>");
       url.append("  </A>");
-      url.append("  <span style='font-size: 0.9em; color: #555555;'>("+manager+")</span>");
-      url.append("  <span style='font-size: 0.9em; color: #555555;'>"+aniVO.getRdate()+"</span>");
+      url.append("  <span style='font-size: 0.7em; color: #555555;'>("+manager+")</span>");
+      url.append("  <span style='font-size: 0.7em; color: #555555;'>"+aniVO.getRdate()+"</span>");
       url.append("</LI>");
       index_list.add(url.toString()); // 출력 목록에 하나의 category 추가 
       
@@ -561,6 +561,7 @@ public class AnimalStoryCont {
     
     return mav;
   }
+
   
  
 }

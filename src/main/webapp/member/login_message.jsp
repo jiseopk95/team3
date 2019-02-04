@@ -40,7 +40,7 @@
         <li class='li_none'>ID 또는 패스워드가 일치하지 않습니다.</li>
         <li class='li_none'>
           [<A href='./login.do'>다시 시도</A>]
-          [<A href='${pageContext.request.contextPath}/index.do'>확인</A>]
+          [<A href='${pageContext.request.contextPath}/index.jsp'>확인</A>]
         </li>
         
       </ul>

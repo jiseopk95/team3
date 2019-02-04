@@ -622,7 +622,7 @@ public class ManagerCont {
       
       int count=manager_loginProc.create(manager_loginVO);
       
-      mav.setViewName("redirect:/index.do"); // 확장자 명시 
+      mav.setViewName("redirect:/index.jsp"); // 확장자 명시 
       
     }
     

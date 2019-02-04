@@ -22,7 +22,8 @@
 
          <div style="text-align: center; width: 100%;">
             <label style="color: #FFFFFF; font-size: 20px;">Location</label> <br>
-            <label style="color: #FFFFFF; font-weight:normal; font-size: 20px;">Jongno-gu, Seoul </label> 
+            <label style="color: #FFFFFF; font-weight:normal; font-size: 20px;">서울특별시 종로구 종로12길 15 코아빌딩1 <br></label>
+            <label style="color: #FFFFFF; font-weight:normal; font-size: 20px;">PET24</label><br> 
             <label style="color: #FFFFFF; font-weight:normal; font-size: 20px;">Call</label><br>
             <label style="color: #FFFFFF; font-weight:normal; font-size: 20px;"> 02.1234.5678 </label><br> <!-- 전화번호 -->
             <label style="color: #FFFFFF; font-weight:normal; font-size: 20px;"> 10AM~7PM </label><br> <!-- 영업시간 -->

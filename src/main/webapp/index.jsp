@@ -24,8 +24,9 @@
 
 <body>
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
+<BR>
 <!-- Header ( index 파랑색 칸 부분 ) -->
-     <div style='background-color:  #eeece1a1;'>
+     <div style='background-color:  #FFFFFF;'>
       <div class="container" style='margin:0px auto;' >
       <img style='margin-top:5%; margin-left:41%; width: 17%; height: 17%; text-align: center; ' src="./css/images/pet3.png" >  <!-- 관련 이미지 넣거나 넣지 않음 -->
         <h1 style='margin-top:2%; color:gray; text-align: center; font-size: 35px;' >Animal Total System</h1>
@@ -47,18 +48,40 @@
 
 <br><br><br> <br> <br>
  
-<div style=' float: center;'>
-<div style='border:1px solid #BDBDBD !important; padding:30px !important; width: 28%; text-align: left;  /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
+<%-- <div style=' float: left; font-size: 9em; width:60%; '>
+<div style='border:1px solid #BDBDBD !important; width:50%; height:300px; padding:30px !important; float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
 <c:import url="/animalstory/index_animal.do" /> 
 </div>
-<br>
-<div style='border:1px solid #BDBDBD !important; padding:30px !important; width: 28%;  text-align: right; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
+<div style='border:1px solid #BDBDBD !important; width:47%;  padding:30px !important; float:right; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
 <c:import url="/review/index_list.do" />
-<br>
+</div>
+</div> --%>
+
+<div style=' float: left; font-size: 9em; width:60%; '>
+<div style='width:50%; height:300px; padding:30px !important; float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
+<div style='width: 66%; border-bottom: dotted 1px #777777; float: right; margin-top: 3.5%;'></div>
+<c:import url="/animalstory/index_animal.do" /> 
+</div>
+<div style='width:47%;  padding:30px !important; float:right; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
+<div style='width: 74%; border-bottom: dotted 1px #777777; float: right; margin-top: 3.5%;'></div>
+<c:import url="/review/index_list.do" />
 </div>
 </div>
 
+
+<div style='font-weight: bold; text-align: right;font-size: 25px; margin-right: 7%; color: #2c3e50;'>
+CUSTOMER SERVICE <br>
+<!-- <div style='width: 26%; border-bottom: dotted 1px #777777; float: right; margin-top: 1.3%;'></div> -->
+</div>
+
+<div style=' padding:30px !important; width:30%; float:right;/* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
+ <a href=' ${pageContext.request.contextPath}/review/list.do'><img  style='width: 45%; float:left;'  src="./css/images/qna.png"/></a>
+ <img style='width: 45%; float:right; margin-left: 5%;' src="./css/images/call.png"/>
+</div>
+
+
 <br><br><br><br><br>
+
 </div>
 
  <br>
@@ -69,6 +92,3 @@
 </div>
    </body>
 </html>
-  
-  
-  

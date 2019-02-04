@@ -436,7 +436,7 @@ public class MemberCont {
       
       int count=member_loginProc.create(member_loginVO);
       
-      mav.setViewName("redirect:/index.do"); // 확장자 명시 
+      mav.setViewName("redirect:/index.jsp"); // 확장자 명시 
       
     }
     

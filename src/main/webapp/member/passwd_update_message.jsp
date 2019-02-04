@@ -48,7 +48,7 @@
         <li class='li_none'>
           [<A href='./passwd_update.do?memberno=${param.memberno }'>패스워드 다시 수정</A>]
           [<A href='./list.do'>목록</A>]
-          [<A href='${pageContext.request.contextPath}/index.do'>확인</A>]
+          [<A href='${pageContext.request.contextPath}/index.jsp'>확인</A>]
         </li>
         
       </ul>

@@ -9,8 +9,8 @@
   margin: 0px auto; 
   border-left: none; 
   border-right: none;
-  border-top: solid 1px #DDDDDD;  
-  border-bottom: solid 1px #DDDDDD;  
+  padding-top:10px;
+  padding-bottom:5px;
   text-align: left;
 }
 /* <UL> 태그에 적용 */
@@ -45,22 +45,25 @@ a:visited {
 }
 legend {
   font-weight: bold;
+  text-align: left;
 }
 .view {
-  float: right;
+/*   float: right; */
+  color: #999999;
+  font-size: 15px;
 }
-</style>
 
-<fieldset class='index_animal' >
-  <legend>애니멀 스토리</legend>
-  <DIV class="view">
-    ▷
-    <A href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">전체 보기</A>
+</style>
+ <legend style="border-bottom: none; margin-bottom: 0%; color: black !important;">애니멀 스토리</legend>
+   <DIV class="view" style="color: #999999; text-align: right;">
+    <A href="${pageContext.request.contextPath}/animalstory/list.do?content=">+ more</A>
   </DIV>
-  <UL class='categrp_category_list_left' >
+  
+<fieldset class='index_animal' >
+  <!-- <UL class='categrp_category_list_left' > -->
     <c:forEach var="title" items="${index_list}">
       ${title}
     </c:forEach>
-  </UL>
+  <!-- </UL> -->
 </fieldset>
 <br>
