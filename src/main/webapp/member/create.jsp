@@ -186,7 +186,7 @@
     <A href='./login.do'>로그인 &nbsp</A>
   </ASIDE>
   <br>
-  <div class='menu_line'></div>
+
   <br>
  
   <DIV id='main_panel'></DIV>

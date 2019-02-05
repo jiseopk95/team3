@@ -28,7 +28,7 @@
 <!-- 여기 첫번째 탑 부분에는 세션에 따라 로그인,회원가입,로그아웃 뜨게 해주고 
 로그인했을경우에는 로그인한 아이디도 뜨게해줘
 그리고 회원 로그인이면 마이페이지 뜨게 해주고
-직원 로그인이면 직원페이지 뜨게 해주랑 색상은 여기는 회색으로 -->
+직원 로그인이면 직원페이지 뜨게 해주랑 색상은 여기는  color: gray; 회색으로 -->
 
 <body id="page-top">
 <div  style="text-align: right; width:100%; height: 30px; background-color: #FFFFFF; color: gray; width:90%; margin-top: 1.1%; margin-bottom: 1.1%;">
@@ -46,17 +46,16 @@
       </c:otherwise>
       </c:choose>
 </div>
-<div class='menu_line' style="width: 90%; margin: 0px auto;"></div>
-<!-- 나머지 카테고리나 메뉴들은 이 밑으로 정리해줘 색상은 검정색으로 -->
-
-   <nav style="background-color:#ffffff; ">
-   <div style='margin-left: 15%; '>
-   <br>
-   <a style="color: #000000; font-size: 50px;font-weight:bold; margin-right:2%;" href= '${pageContext.request.contextPath}/index.jsp'>Pet 24</a> <!-- 상단 왼쪽에 작게 나오는 이름 -->
-      <a style="color: #000000; font-size: 20px; font-weight:bold; margin-top: 3%; "href='${pageContext.request.contextPath}/index.jsp'>HOME  &nbsp</a> 
-        
+<!-- 나머지 카테고리나 메뉴들은 이 밑으로 정리해줘 색상은 #626262; 으로 -->
+<div style='text-align:center; margin-top: 2%;  margin-bottom: 2%;'>
+<a style="color: #000000; font-size: 60px;font-weight:bold; margin:0px auto; float: center; " href= '${pageContext.request.contextPath}/index.jsp'>Pet 24</a> <!-- 상단 왼쪽에 작게 나오는 이름 --><br>
+ 
+ </div>
+<!--  <div class='menu_line' style="width: 90%; margin: 0px auto; border-style: 1px solid; "></div> -->
+   <nav style="background-color: #FFFFFF; width: 80%; margin: 0px auto; height: 50px; text-align: center;line-height: 50px;">
+   <div style='width: 70%; margin: 0px auto; '>
+      <a style="color: #626262; font-size: 17px; font-weight:bold; "href='${pageContext.request.contextPath}/index.jsp'>HOME  &nbsp</a> 
          <!-- 회원 로그인시 -->
-       
          <c:choose>
              <c:when test="${sessionScope.memberno != null}">
                <a style="color: #FFFFFF; font-size: 20px; font-weight:bold; margin-top: 3%; " href=' ${pageContext.request.contextPath}/member/logout.do'>예약&캘린더 &nbsp</a>
@@ -163,6 +162,7 @@
       <br>
       </div>
    </nav>
+   <br>
     
    </body>
 </html>
