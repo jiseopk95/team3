@@ -11,6 +11,7 @@
     <meta name="author" content="">
 
     <title>Pet Doctor</title> <!-- 주소창 타이틀 -->
+    
     <link href="./css/style.css" rel='Stylesheet' type='text/css'>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -29,7 +30,7 @@
      <div style='background-color:  #FFFFFF;'>
       <div class="container" style='margin:0px auto;' >
       <img style='margin-top:5%; margin-left:41%; width: 17%; height: 17%; text-align: center; ' src="./css/images/pet3.png" >  <!-- 관련 이미지 넣거나 넣지 않음 -->
-        <h1 style='margin-top:2%; color:gray; text-align: center; font-size: 35px;' >Animal Total System</h1>
+        <h1 style='margin-top:2%; color:#000000; text-align: center; font-size: 35px;' >Animal Total System</h1>
         <h2 style='margin-top:1%; color:#505050; text-align: center; font-size: 24px; '>Hospital & Beauty</h2>
         <br> <br> <br> 
       </div>
@@ -69,7 +70,7 @@
 </div>
 
 
-<div style='font-weight: bold; text-align: right;font-size: 25px; margin-right: 7%; color: #2c3e50;'>
+<div style='font-weight: bold; text-align: right;font-size: 25px; margin-right: 7%; color: #000000;'>
 CUSTOMER SERVICE <br>
 <!-- <div style='width: 26%; border-bottom: dotted 1px #777777; float: right; margin-top: 1.3%;'></div> -->
 </div>

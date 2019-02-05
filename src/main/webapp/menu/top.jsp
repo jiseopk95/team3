@@ -24,27 +24,36 @@
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
     
  </head>
+ 
+<!-- 여기 첫번째 탑 부분에는 세션에 따라 로그인,회원가입,로그아웃 뜨게 해주고 
+로그인했을경우에는 로그인한 아이디도 뜨게해줘
+그리고 회원 로그인이면 마이페이지 뜨게 해주고
+직원 로그인이면 직원페이지 뜨게 해주랑 색상은 여기는 회색으로 -->
 
 <body id="page-top">
-
-   <nav style="background-color:#2c3e50; color: #FFFFFF; ">
-   <div style='margin-left: 15%; '>
-   <br>
-   <a style="color: #FFFFFF; font-size: 50px;font-weight:bold; margin-right:2%;" href= '${pageContext.request.contextPath}/index.jsp'>Pet 24</a> <!-- 상단 왼쪽에 작게 나오는 이름 -->
-        <c:choose>
+<div  style="text-align: right; width:100%; height: 30px; background-color: #FFFFFF; color: gray; width:90%; margin-top: 1.1%; margin-bottom: 1.1%;">
+      <c:choose>
           <c:when test="${sessionScope.id == null}">
             <li class="top-li">
-               <a href=' ${pageContext.request.contextPath}/member/login.do'>Login</a>
-               <a href=' ${pageContext.request.contextPath}/member/create.do'>Join</a>
+               <a style="color: gray !important;"href=' ${pageContext.request.contextPath}/member/login.do'>Login</a>
+               <a style="color: gray !important;"href=' ${pageContext.request.contextPath}/member/create.do'>Join</a>
            </li>
           </c:when>
          <c:otherwise>
       <li class="top-li">
-        <a href=' ${pageContext.request.contextPath}/member/logout.do'>Logout</a>
+        <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/member/logout.do'>Logout</a>
       </li>
       </c:otherwise>
       </c:choose>
-      <a style="color: #FFFFFF; font-size: 20px; font-weight:bold; margin-top: 3%; "href='${pageContext.request.contextPath}/index.jsp'>HOME  &nbsp</a> 
+</div>
+<div class='menu_line' style="width: 90%; margin: 0px auto;"></div>
+<!-- 나머지 카테고리나 메뉴들은 이 밑으로 정리해줘 색상은 검정색으로 -->
+
+   <nav style="background-color:#ffffff; ">
+   <div style='margin-left: 15%; '>
+   <br>
+   <a style="color: #000000; font-size: 50px;font-weight:bold; margin-right:2%;" href= '${pageContext.request.contextPath}/index.jsp'>Pet 24</a> <!-- 상단 왼쪽에 작게 나오는 이름 -->
+      <a style="color: #000000; font-size: 20px; font-weight:bold; margin-top: 3%; "href='${pageContext.request.contextPath}/index.jsp'>HOME  &nbsp</a> 
         
          <!-- 회원 로그인시 -->
        
