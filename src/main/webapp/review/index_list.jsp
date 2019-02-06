@@ -58,7 +58,7 @@ legend {
 
   <legend style="border-bottom: none; margin-bottom: 0%; color: black !important;">진료 후기</legend>
   <DIV class="view" style="color: #999999; text-align: right;">
-    <A href="${pageContext.request.contextPath}/review/list.do">+ more</A>
+    <A href="${pageContext.request.contextPath}/review/list.do?categoryno=2">+ more</A>
   </DIV>
   
   <fieldset class='index_animal' >
