@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div style=' float: right;width:25%; margin-top: 2%;'>
+    <div style=' float: right;width:25%; margin-top: 2%; '>
       <div style='font-weight: bold;text-align: CENTER; font-size: 20px; color: #000000;'>
        CUSTOMER SERVICE <br><br>
       <a href=' ${pageContext.request.contextPath}/review/list.do'><img  style='width:35%;'  src="./css/images/qna.png"/></a>
