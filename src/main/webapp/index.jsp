@@ -43,54 +43,37 @@
    
 <!-- 내용 넣는 공간 여기부터 -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<div style="padding-left:27%;">
-<div class="fotorama" >
-
+<div style="margin: 0px auto; float:center; text-align: center; padding-left: 33%;">
+<div class="fotorama" style="margin: 0px auto; float:center; text-align: center;">
       <a href="./menu/images/pet1.jpg"><img src="./menu/images/pet1.jpg" ></a>
       <a href="./menu/images/food2.jpg"><img src="./menu/images/food2_t.jpg" ></a>
       <a href="./menu/images/food4.jpg"><img src="./menu/images/food4_t.jpg" ></a>
       <a href="./menu/images/food5.jpg"><img src="./menu/images/food5_t.jpg" ></a>
-      
 </div>
 </div>
 
 <br><br><br> <br> <br>
  
-<%-- <div style=' float: left; font-size: 9em; width:60%; '>
-<div style='border:1px solid #BDBDBD !important; width:50%; height:300px; padding:30px !important; float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
-<c:import url="/animalstory/index_animal.do" /> 
-</div>
-<div style='border:1px solid #BDBDBD !important; width:47%;  padding:30px !important; float:right; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
-<c:import url="/review/index_list.do" />
-</div>
-</div> --%>
 <div style="width: 85%;height:350px;margin:0px auto; text-align: center;">
     <div style=' float: left; width:65%; '>
-      <div style='width:50%; height:300px; padding:30px !important; float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
-      <div style='width: 70%; border-bottom: dotted 1px #777777; float: right; margin-top: 3.5%;'></div>
+      <div style='width:50%; height:300px; padding:30px !important; float:left; '> 
+      <div style='width: 80%; border-bottom: dotted 1px #777777; float: right; margin-top: 2%;'></div>
       <c:import url="/animalstory/index_animal.do" /> 
       </div>
-      <div style='width:47%;  padding:30px !important; float:right; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
-      <div style='width: 74%; border-bottom: dotted 1px #777777; float: right; margin-top: 3.5%;'></div>
+      <div style='width:47%;  padding:30px !important; float:right; '>
+      <div style='width: 85%; border-bottom: dotted 1px #777777; float: right; margin-top: 2.5%;'></div>
       <c:import url="/review/index_list.do" />
       </div>
     </div>
 
-
-    <div style=' float: right;width:25%; '>
+    <div style=' float: right;width:25%; margin-top: 2%;'>
       <div style='font-weight: bold;text-align: CENTER; font-size: 20px; color: #000000;'>
        CUSTOMER SERVICE <br><br>
-    
       <a href=' ${pageContext.request.contextPath}/review/list.do'><img  style='width:35%;'  src="./css/images/qna.png"/></a>
       <img style='width:35%; margin-left: 3%;' src="./css/images/call.png"/>
-
       </div>
   </div>
 </div>
-
-
-
-
 
  <br>
 
