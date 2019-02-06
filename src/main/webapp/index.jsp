@@ -43,7 +43,7 @@
    
 <!-- 내용 넣는 공간 여기부터 -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<div style=" position:relative; padding-left:27%;">
+<div style="padding-left:27%;">
 <div class="fotorama" >
 
       <a href="./menu/images/pet1.jpg"><img src="./menu/images/pet1.jpg" ></a>
@@ -64,8 +64,8 @@
 <c:import url="/review/index_list.do" />
 </div>
 </div> --%>
-<div style="width: 95%;height:200px;margin:0px auto; text-align: center;">
-    <div style=' float: left; width:75%; '>
+<div style="width: 85%;height:350px;margin:0px auto; text-align: center;">
+    <div style=' float: left; width:65%; '>
       <div style='width:50%; height:300px; padding:30px !important; float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
       <div style='width: 70%; border-bottom: dotted 1px #777777; float: right; margin-top: 3.5%;'></div>
       <c:import url="/animalstory/index_animal.do" /> 
@@ -77,7 +77,7 @@
     </div>
 
 
-    <div style=' float: right;width:25%; padding:30px; '>
+    <div style=' float: right;width:25%; '>
       <div style='font-weight: bold;text-align: CENTER; font-size: 20px; color: #000000;'>
        CUSTOMER SERVICE <br><br>
     
