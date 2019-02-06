@@ -20,16 +20,16 @@
 <div style="/* background-color:#2c3e50; */ width:100%; height: 30%; background-color: #F9F9F9; ">
 <br><br>
          
-<div style='font-size: 9em; width:70%; margin-left: 20%; margin-top: 3%;'>
-<div style='width:42%; height:200px; float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
+<div style='width:80%; height:200px;margin-left: 20%; margin-top: 3%;'>
+<div style='width:40%; float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
             <label style="color: #000000; font-size: 20px; font-weight: bold; margin-bottom: 3%;">LOCATION</label> <br>
-            <label style="color: gray; font-weight:normal; font-size: 20px;margin-bottom: 2.5%;">서울특별시 종로구 종로12길 15 코아빌딩 1, 5층 PET24</label> <br>
+            <label style="color: gray; font-weight:normal; font-size: 15px;margin-bottom: 2.5%;">서울특별시 종로구 종로12길 15 코아빌딩 1, 5층 PET24</label> <br>
 </div>
 
-<div style='width:24%;float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
+<div style='width:20%;float:left; /* margin-bottom: 10%; */ '> <!-- top, buttom 사이에 10%씩 위아래로 공백 주기 -->
             <label style="color: #000000; font-size: 20px; font-weight: bold; margin-bottom: 2.5%;"> 진료시간 </label><br>
-            <label style="color: gray; font-weight:normal; font-size: 20px;"> 평일 10AM~7PM </label><br>
-            <label style="color: gray; font-weight:normal; font-size: 20px;margin-bottom: 2.5%;"> 주말 10AM~5PM </label><br>
+            <label style="color: gray; font-weight:normal; font-size: 15px;"> 평일 10AM~7PM </label><br>
+            <label style="color: gray; font-weight:normal; font-size: 15px;margin-bottom: 2.5%;"> 주말 10AM~5PM </label><br>
             <label style="color: gray; font-weight: bold; font-size: 18px;">  일요일, 공휴일 휴진 </label>
 </div>
 
@@ -57,7 +57,7 @@
             <label style="color: #ec9797; font-weight: bold; font-size: 20px;">  일요일, 공휴일 휴진 </label><br>
 </div> -->
 
-         <br><br><br><br><br><br><br><br><br><br>
+
 
       </div>
     

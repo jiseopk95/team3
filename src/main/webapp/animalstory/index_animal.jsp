@@ -46,11 +46,12 @@ a:visited {
 legend {
   font-weight: bold;
   text-align: left;
+  font-size: 14px;
 }
 .view {
 /*   float: right; */
   color: #999999;
-  font-size: 15px;
+
 }
 
 </style>
