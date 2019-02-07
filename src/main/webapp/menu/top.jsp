@@ -145,7 +145,7 @@
     <c:choose>
        <c:when test="${sessionScope.managerno != null}">
           <nav class="navbar">
-            <div class="container-fluid center-block">
+            <div class="container-fluid center-block">   
                 <ul class="nav navbar-nav">
                    <li class="active"><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                    
