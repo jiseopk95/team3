@@ -103,7 +103,6 @@ function update(anino) {
 }
 #tool-tip {
   font-weight: bold;
-  
   margin-bottom: 5px;
 }
 </style>
@@ -114,7 +113,9 @@ function update(anino) {
 <DIV class='content'  style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
 <div class="title_line">${title }</div>
 <div class='buttons'>
-  <button class='btn btn-primary btn-sm' onclick='location.href="./create.do?managerno=${managerno}"'>글 등록하기</button>
+  <c:if test="${sessionScope.managerno != null}">
+    <button class='btn btn-primary btn-sm' onclick='location.href="./create.do?managerno=${sessionScope.managerno}"'>글 등록하기</button>
+  </c:if>
   <button class='btn btn-primary btn-sm' onclick='location.href="./list_anitype.do?nowPage=&anitype=1&content="'>강아지</button>
   <button class='btn btn-primary btn-sm' onclick='location.href="./list_anitype.do?nowPage=&anitype=2&content="'>고양이</button>
 </div>
@@ -173,10 +174,12 @@ function update(anino) {
           <td style='vertical-align: middle; text-align: center ;'><a href='./read.do?anino=${aniVO.anino }'>${aniVO.title }</a></td><!-- 제목 -->
           <td style='vertical-align: middle; text-align: center ;'>${aniVO.manager }</td><!-- 작성자 (관리자번호로 select해오기) -->
           <td style='vertical-align: middle; text-align: center ;'>${aniVO.rdate }</td><!-- 작성일 -->
-          <td style='vertical-align: middle; text-align: center ;'>
-            <a href="javascript:update(${aniVO.anino });"><img alt="수정이미지" src="./images/update.png" title="수정" style="width:20px; height:20px;"></a>
-            <a href="javascript:deleteOne(${aniVO.anino })"><img alt="삭제이미지" src="./images/delete.png" title="삭제" style="width:20px; height:20px;"></a>
-          </td>
+          <c:if test="${sessionScope.managerno != null}">
+            <td style='vertical-align: middle; text-align: center ;'>
+              <a href="javascript:update(${aniVO.anino });"><img alt="수정이미지" src="./images/update.png" title="수정" style="width:20px; height:20px;"></a>
+              <a href="javascript:deleteOne(${aniVO.anino })"><img alt="삭제이미지" src="./images/delete.png" title="삭제" style="width:20px; height:20px;"></a>
+            </td>
+          </c:if>
         </tr>
       </c:forEach>
     </tbody>

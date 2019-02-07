@@ -29,7 +29,7 @@
 
 <body id="page-top">
 <jsp:include page="/menu/top.jsp" flush='false' /> 
-<DIV class='container' style='width: 100%;'>
+<DIV class='container' >
 <DIV class='content'>     
 
   <ASIDE style='float: left;'>
@@ -70,9 +70,9 @@
       </div>
       <div class="form-group">   
         <label for="content" class="col-md-1 control-label">평점</label>
-        <div class="col-md-11">
+        <div class="col-md-11 text-left">
         
-     <select name='score' id='score'>
+     <select name='score' id='score' >
           <option value='1' selected="selected">1점</option>
           <option value='2'>2점</option>
           <option value='3'>3점</option>

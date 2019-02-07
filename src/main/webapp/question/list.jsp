@@ -27,7 +27,7 @@ $(function(){
 
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> 
-<DIV class='container' style='width: 100%;'>
+<DIV class='container' >
 <DIV class='content'>     
 <!-- <form name='frm' id='frm' method="get" action="./list.do"> -->
 

@@ -44,6 +44,11 @@ function check() {
   }
 };
 </script>
+<style type="text/css">
+  legend, #etc {
+    text-align: left;
+  }
+</style>
 </head>
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
@@ -111,7 +116,7 @@ function check() {
       ${chartVO.etc }
       </DIV>
     </fieldset>
-    <button type="button" class='btn btn-primary btn-sm' onclick="location.href='./list.do?managerno=${managerno}'" style="float: right;">뒤로가기</button>
+    <button type="button" class='btn btn-primary btn-sm' onclick="location.href='./list.do?managerno=${managerno}'" style="float: right;">목록</button>
   </form>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->

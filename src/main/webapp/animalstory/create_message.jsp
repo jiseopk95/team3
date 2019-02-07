@@ -37,7 +37,6 @@
       </c:choose>
       <LI class='li_none'>
         <br>
-        <button type='button' onclick="location.href='./read.do?anino=${param.anino}'">등록된 컨텐츠 확인</button>
         <button type='button' onclick="location.href='./list.do?content=&nowPage='">목록</button>
       </LI>
      </UL>

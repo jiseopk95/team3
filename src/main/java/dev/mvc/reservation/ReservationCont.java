@@ -51,6 +51,7 @@ public class ReservationCont {
     mav.addObject("list_h", list_h); // 병원 예약되어있는 시간 리스트
     mav.addObject("list_b", list_b); // 미용 예약되어있는 시간 리스트
     mav.addObject("memberno", memberno); // 멤버넘버
+    mav.addObject("title", "예약");
     mav.setViewName("/reservation/create");
     return mav;
   }

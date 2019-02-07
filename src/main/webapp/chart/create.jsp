@@ -54,6 +54,14 @@ function check() {
   }
 };
 </script>
+<style type="text/css">
+legend {
+  text-align: left;
+}
+fieldset {
+  margin-bottom: 10%;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />

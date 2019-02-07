@@ -92,7 +92,7 @@
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">소식공간 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/list_all_beauty.do">미용스타일</a></li>
-                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=">애니멀스토리</a></li>
+                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">애니멀스토리</a></li>
                        </ul>
                    </li>
 
@@ -112,24 +112,31 @@
             <div class="container-fluid center-block">
                 <ul class="nav navbar-nav">
                    <li class="active"><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
-                   
-                   <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/calendar/calendar.jsp?memberno=${memberno}">예약&캘린더</a></li>
-                   
+                   <li>
+                   <c:choose>
+                   <c:when test="${sessionScope.memberno == 1}">
+                    <a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/calendar/calendar_t.jsp?memberno=${memberno}">예약&캘린더</a>
+                   </c:when>
+                   <c:when test="${sessionScope.memberno != 1}">
+                    <a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/calendar/calendar.jsp?memberno=${memberno}">예약&캘린더</a>
+                   </c:when>
+                   </c:choose>
+                   </li>
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;" type="button"  href="#" aria-haspopup="true" aria-expanded="false">커뮤니티 <span class="caret"></span></a>
                        <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/question/list.do?categoryno=2">진료QnA</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/question/list.do?categoryno=4">미용QnA</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/review/list.do?categoryno=1">진료후기</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/review/list.do?categoryno=3">미용후기</a></li>
-                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="#">설문조사 항목</a>
+                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/survey/list_m.do?memberno=${memberno}">설문조사 참여</a>
                        </ul>
                    </li>
                   
-                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">소식공간 <span class="caret"></span></a>
+                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;"  href="#">소식공간 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/search_paging.do?categoryno=1">미용스타일</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></li>
-                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=">애니멀스토리</a></li>
+                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">애니멀스토리</a></li>
                        </ul>
                    </li>
                    
@@ -151,7 +158,7 @@
                    
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;" type="button"  href="#" >진료 관리<span class="caret"></span></a>
                        <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
-                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/calendar/calendar_t.jsp">예약&캘린더</a></li>
+                            
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/chart/list.do?managerno=${managerno}">의료차트</a></li>
                        </ul>                                    
                    </li>
@@ -172,22 +179,27 @@
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/question/list.do?categoryno=4">미용QnA</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/review/list.do?categoryno=1">진료후기</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/review/list.do?categoryno=3">미용후기</a></li>
-                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="#">설문조사 항목</a>
+                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/survey/list_by_manager_search_paging.do?managerno=${managerno}">설문조사 항목</a>
                        </ul>
                    </li>                   
                   
-                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">소식공간 관리 <span class="caret"></span></a>
+                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;"  href="#">소식공간 관리 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/search_paging.do?categoryno=1">미용스타일</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></li>
+<<<<<<< HEAD
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging.do?managerno=${managerno}">이벤트관리</a></li>   
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/present/list_all_present.do">이벤트상품</a></li>             
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/user/list_all_user.do">이벤트참여자보기</a></li>                    
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=">애니멀스토리</a></li>
+=======
+                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="#">이벤트관리</a></li>                           
+                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">애니멀스토리</a></li>
+>>>>>>> branch 'master' of https://github.com/jiseopk95/team3.git
                        </ul>
                    </li>
 
-                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">카테고리 관리 <span class="caret"></span></a>
+                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;"  href="#">카테고리 관리 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/categrp/list.do">카테고리 그룹</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/category/list.do">카테고리</a></li>

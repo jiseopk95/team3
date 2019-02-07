@@ -263,7 +263,7 @@ String date = year + "-" + month;
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container' >
 <DIV class='content'>
-<h1>예약창</h1>
+<div class="title_line">${title }</div>
   <FORM name='frm' id='frm' method='POST' action='./create.do'
                enctype="multipart/form-data" class="form-horizontal">
                

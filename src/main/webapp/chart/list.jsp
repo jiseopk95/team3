@@ -99,6 +99,11 @@ function check() {
     $('#frm').submit();
   }
 }
+
+function create_chart() {
+  alert("차트를 등록하기 위해 동물목록으로 이동합니다.");
+  location.href='${pageContext.request.contextPath}/pet/list_search.do';
+}
 </script>
 <style type="text/css">
 /* 출력되는 A 태그 기본 모양 */
@@ -136,6 +141,7 @@ function check() {
 <DIV class='container' >
 <DIV class='content'  style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
 <div class="title_line">${title }</div>
+<button class='btn btn-primary btn-sm' onclick='create_chart();' style="float: left;">차트쓰기</button>
 <form name='frm' id='frm' method="get" action="./list.do">
   <input type="hidden" name="managerno" value="${managerno}">
   

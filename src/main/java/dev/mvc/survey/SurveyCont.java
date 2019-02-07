@@ -409,13 +409,14 @@ return mav;
   
   //http://localhost:9090/ahr/survey/list_m.do
   @RequestMapping(value="/survey/list_m.do", method=RequestMethod.GET)
-  public ModelAndView list_m() {
+  public ModelAndView list_m(int memberno) {
     ModelAndView mav = new ModelAndView();
     
     
     List<SurveyVO> list = surveyProc.list_m();
     mav.addObject("list", list);
-    mav.setViewName("/survey/list_m"); // /webapp/categrp/list.jsp
+    mav.addObject("memberno",memberno);
+    mav.setViewName("/survey/list_m");   
 
    
     return mav;

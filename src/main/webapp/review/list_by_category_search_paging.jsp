@@ -27,7 +27,7 @@ $(function(){
 
 <body id="page-top">
 <jsp:include page="/menu/top.jsp" flush='false' />  
-<DIV class='container' style='width: 100%;'>
+<DIV class='container' >
 <DIV class='content'>     
 <form name='frm' id='frm' method="get" action="./list_by_category_search.do">
  <%--  <ASIDE style='float: left;'>
