@@ -66,11 +66,11 @@
 </div>
 <!-- 나머지 카테고리나 메뉴들은 이 밑으로 정리해줘 색상은 #626262; 으로 -->
 <div style='text-align:center; margin-top: 2%;  margin-bottom: 2%;'>
-<a style="color: #000000; font-size: 60px;font-weight:bold; margin:0px auto; float: center; " href= '${pageContext.request.contextPath}/index.jsp'>Pet 24</a> <!-- 상단 왼쪽에 작게 나오는 이름 --><br>
+<a style="color: #8FD3E8; font-size: 60px;font-weight:bold; margin:0px auto; float: center; " href= '${pageContext.request.contextPath}/index.jsp'>Pet 24</a> <!-- 상단 왼쪽에 작게 나오는 이름 --><br>
  
  </div>
 <!--  <div class='menu_line' style="width: 90%; margin: 0px auto; border-style: 1px solid; "></div> -->
-   <nav style="background-color: #FFFFFF; width: 80%; margin: 0px auto; height: 50px; text-align: center;line-height: 50px;">
+   <nav style="background-color: #F6F3EE; width: 100%; margin: 0px auto; height: 50px; text-align: center;margin-bottom:-25px;">
    <div style='width: 70%; margin: 0px auto; '>
 
 <!-- 로그인 전 -->
