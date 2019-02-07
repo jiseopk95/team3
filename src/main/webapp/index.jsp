@@ -53,11 +53,11 @@
 <div style="width: 85%;height:350px;margin:0px auto; text-align: center;">
   <div style=' float: left; width:65%; '>
     <div style='width:50%; height:300px; padding:30px !important; float:left; '> 
-      <div style='width: 80%; border-bottom: dotted 1px #777777; float: right; margin-top: 2%;'></div>
+      <div style='width: 70%; border-bottom: dotted 1px #777777; float: right; margin-top: 2%;'></div>
       <c:import url="/animalstory/index_animal.do" /> 
     </div>
     <div style='width:47%;  padding:30px !important; float:right; '>
-      <div style='width: 85%; border-bottom: dotted 1px #777777; float: right; margin-top: 2.5%;'></div>
+      <div style='width: 70%; border-bottom: dotted 1px #777777; float: right; margin-top: 2.5%;'></div>
       <c:import url="/review/index_list.do" />
     </div>
   </div>
