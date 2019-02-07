@@ -32,7 +32,7 @@
   </ASIDE>
 
 <div class='menu_line'></div> -->
- 
+ <br>
   <FORM name='frm' method='POST' action='./login.do'>
   &nbsp&nbsp&nbsp&nbsp
        <label class=fontss ><input type="radio" name="myname" OnClick="window.location.href='../member/login.do'" checked>&nbsp&nbsp일반회원&nbsp</label>

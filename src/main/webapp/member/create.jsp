@@ -179,7 +179,7 @@
 <DIV class='container' style='width: 100%;'>
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
-<DIV class='title_line' >일반회원 가입</DIV>
+<DIV class='title_line' >회원가입</DIV>
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
@@ -216,18 +216,20 @@
   <FORM name='frm' id='frm' method='POST' action='./create.do' 
               onsubmit="return send();" class="form-horizontal">
               
+              
 <br>
-      <IMG src='./images/member.jpg' style='width: 200px; height: 200px; border-radius: 50%'> <br><br><br>
- 가입 유형    
- 
+      <IMG src='./images/member.jpg' style='width: 200px; height: 200px; border-radius: 50%'> <br><br><br><br>
+ 가입유형&nbsp&nbsp    
+
        <input type="radio" name="login1" OnClick="window.location.href='../member/create.do'" checked >&nbsp일반회원&nbsp
        <input type="radio" name="login2" OnClick="window.location.href='../manager/create.do'">&nbsp직원&nbsp&nbsp&nbsp
-   <br><br><br>
+   <br><br><br><br>
        <!-- <label class=fonts >아이디</label> -->
        
-       아이디
+      &nbsp&nbsp&nbsp&nbsp&nbsp아이디
        <input type='text' name='id' id='id' value='' required="required" style='width: 20%;' placeholder="" autofocus="autofocus">
-        <button type='button' onclick="checkId()" class="btn btn-secondary"  >중복확인</button>
+       &nbsp
+        <button type='button' onclick="checkId()" class="btn btn-info"  >중복확인</button>
         <SPAN id='id_span'></SPAN> <!-- ID 중복 관련 메시지 -->        
     <br>
    <br>             
@@ -259,36 +261,24 @@
       &nbsp&nbsp
       
       <!-- <label for="email" >이메일</label> -->
-      이메일    
+      &nbsp&nbsp이메일    
         <input type='text'  name='email' id='email'
                    value='' required="required" style='width: 20%;' placeholder=""> &nbsp
-      <button type='button' onclick="checkemail()" class="btn btn-secondary"  >중복확인</button>
+      <button type='button' onclick="checkemail()" class="btn btn-info"  >중복확인</button>
       <br><br>
       
 
       <!-- <label for="zipcode" >우편번호</label> --> 
-      &nbsp   
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
        우편번호
         <input type='text' name='zipcode' id='zipcode' 
                    value='' required="required" style='width: 20%;' placeholder="">
-
+&nbsp
         <input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
     <br><br>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <!-- <label for="address1" >주소</label>  -->   
-      주소
-        <input type='text'  name='address1' id='address1' 
-                   value='' required="required" style='width: 35%;' placeholder=""> &nbsp
-    <br><br>
-
-      <!-- <label for="address2" >상세 주소</label>  -->
-      상세 주소   
-        <input type='text' name='address2' id='address2' 
-                   value='' required="required" style='width: 35%;' placeholder=""> &nbsp
-<br><br>
-
-<!-- ----- DAUM 우편번호 API 시작 ----- -->
-<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 110px;position:relative">
+    
+    <!-- ----- DAUM 우편번호 API 시작 ----- -->
+<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:0px auto;position:relative">
   <img src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 </div>
 
@@ -354,6 +344,19 @@
     }
 </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
+<br><br>
+    &nbsp&nbsp
+      <!-- <label for="address1" >주소</label>  -->   
+      주소
+        <input type='text'  name='address1' id='address1' 
+                   value='' required="required" style='width: 35%;' placeholder=""> &nbsp&nbsp&nbsp&nbsp&nbsp
+    <br><br>
+
+      <!-- <label for="address2" >상세 주소</label>  -->
+      상세 주소   
+        <input type='text' name='address2' id='address2' 
+                   value='' required="required" style='width: 35%;' placeholder=""> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<br><br>
 <br>
     
         <button type="submit" class="btn btn-primary">가입</button>

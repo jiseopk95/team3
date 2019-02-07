@@ -31,6 +31,7 @@
   
 <br>
 <DIV style='width: 100%; margin: 0px auto;'>
+<br>
 <DIV style='font-weight:bold;'>아이디 찾기</DIV> 
  
     <DIV class='title_line' style='width: 30%;'></DIV>
@@ -42,7 +43,7 @@
       </c:when>  
       <c:otherwise>  
         정보가 일치하지 않습니다.<br>
-        다시시도해주세요.
+        다시시도해주세요.<br>
         </c:otherwise>  
       </c:choose>
 

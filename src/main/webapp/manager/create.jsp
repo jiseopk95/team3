@@ -177,14 +177,14 @@
 
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
-<DIV class='title_line' >관계자 회원가입</DIV>
+<DIV class='title_line' >직원 가입</DIV>
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
     <A href='./login.do'>로그인 &nbsp</A>
   </ASIDE>
   <br>
-  <div class='menu_line'></div>
+
   <br>
  
   <DIV id='main_panel'></DIV>
@@ -214,16 +214,16 @@
               onsubmit="return send();" class="form-horizontal">
 <br>
       <IMG src='./images/member.jpg' style='width: 200px; height: 200px; border-radius: 50%'> <br><br><br>
-  
-  가입 유형    
+  <br>
+  가입유형&nbsp    
        <input type="radio" name="myname" OnClick="window.location.href='../member/create.do'">&nbsp일반회원&nbsp
        <input type="radio" name="myname" OnClick="window.location.href='../manager/create.do'" checked>&nbsp직원&nbsp&nbsp&nbsp
-   <br><br><br>
-   아이디
+   <br><br><br><br>
+   &nbsp&nbsp아이디
       <!-- <label for="id" >아이디</label>  -->   
         <input type='text' name='id' id='id' value='' required="required" style='width: 20%;' placeholder="" autofocus="autofocus">
         &nbsp
-        <button type='button' class="btn btn-secondary" onclick="checkId()" >중복확인</button> 
+        <button type='button' class="btn btn-info" onclick="checkId()" >중복확인</button> 
         <SPAN id='id_span'></SPAN> <!-- ID 중복 관련 메시지 -->        
     <br>
    <br>             
@@ -256,12 +256,12 @@
         <input type='text'  name='phone' id='phone'
                    value='' required="required" style='width: 20%;' placeholder="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <br><br>
-      &nbsp&nbsp
+      
       이메일
       <!-- <label for="email" >이메일</label> -->    
         <input type='text'  name='email' id='email'
                    value='' required="required" style='width: 20%;' placeholder=""> &nbsp
-      <button type='button' onclick="checkemail()" class="btn btn-secondary"  >중복확인</button>
+      <button type='button' onclick="checkemail()" class="btn btn-info"  >중복확인</button>
       <br><br>
       
   &nbsp
@@ -273,33 +273,8 @@
          &nbsp
         <input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
     <br><br>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-     <!--  <label for="address1" >주소</label> -->    
-      주소
-        <input type='text'  name='address1' id='address1' 
-                   value='' required="required" style='width: 35%;' placeholder=""> &nbsp
-    <br><br>
-
-      <!-- <label for="address2" >상세 주소</label> --> 
-      상세 주소   
-        <input type='text' name='address2' id='address2' 
-                   value='' required="required" style='width: 35%;' placeholder=""> &nbsp
-                   
-<br><br>      
-       <div class="form-group">   
-        <label for="files" class="col-md-1 control-label">업로드 파일</label>
-        <div class="col-md-11">
-          <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple">
-          <br>
-         
-        </div>
-      </div>
-    
-    
-    <br><br>
-
-<!-- ----- DAUM 우편번호 API 시작 ----- -->
-<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 110px;position:relative">
+     <!-- ----- DAUM 우편번호 API 시작 ----- -->
+<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:0px auto;position:relative">
   <img src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 </div>
 
@@ -365,6 +340,32 @@
     }
 </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
+<br><br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     <!--  <label for="address1" >주소</label> -->    
+      주소
+        <input type='text'  name='address1' id='address1' 
+                   value='' required="required" style='width: 35%;' placeholder=""> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <br><br>
+
+      <!-- <label for="address2" >상세 주소</label> --> 
+      상세 주소   
+        <input type='text' name='address2' id='address2' 
+                   value='' required="required" style='width: 35%;' placeholder=""> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   
+<br><br><br>
+       <div class="form-group">   
+        <label for="files" class="col-md-1 control-label" style="text-align: center !important ; width: 100%; margin: 0px auto; margin-bottom: 3%; color: #000000; font-weight: bold;">사원증 사진 첨부</label>
+        <div class="col-md-11" style="margin-left: 3%;">
+          <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple" style="width: 80%; margin: 0px auto;">
+          
+          <br>
+         
+        </div>
+      </div>
+    
+    
+    <br><br>
     
         <button type="submit" class="btn btn-primary">가입</button>
         <button type="button" onclick="location.href='../index.jsp'" class="btn btn-secondary">취소</button>

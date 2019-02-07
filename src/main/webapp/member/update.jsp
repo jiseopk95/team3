@@ -40,7 +40,7 @@
     <A href='../index.jsp'>HOME</A>
   </ASIDE> 
 <br>
-  <div class='menu_line'></div>
+
   <DIV id='main_panel'></DIV>
 
   <!-- Modal -->

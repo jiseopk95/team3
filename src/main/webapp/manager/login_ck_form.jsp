@@ -26,19 +26,20 @@
 
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
-<DIV class='title_fontss' style='width: 20%;'>LOGIN</DIV>
+<DIV class='title_fontss' style='width: 20%;'>&nbsp&nbsp&nbspLOGIN</DIV>
 
 <!--    <ASIDE style='float: right;'>
     <A href='./create.do'>JOIN &nbsp</A>
   </ASIDE>
 
 <div class='menu_line'></div> -->
- 
+ <br>
   <FORM name='frm' method='POST' action='./login.do'>
-          <label class=fontss ><input type="radio" name="myname" OnClick="window.location.href='../member/login.do'" >&nbsp일반회원&nbsp</label>
+  &nbsp&nbsp&nbsp&nbsp
+          <label class=fontss ><input type="radio" name="myname" OnClick="window.location.href='../member/login.do'" >&nbsp&nbsp일반회원&nbsp</label>
        <label class=fontss ><input type="radio" name="myname" OnClick="window.location.href='../manager/login.do'"checked>&nbsp직원&nbsp&nbsp&nbsp</label>
    <br><br>
-      <label class=fontss >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspID</label>    
+      <label class=fontss >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspID</label><span class='menu_divide' >│</span>    
         <input type='text' class='loginfont' name='id' id='id' value='${ck_id }' required="required" style='width: 18%;' placeholder="" autofocus="autofocus">
          &nbsp
         <Label >   
@@ -47,7 +48,7 @@
         </Label>
           <label class=fontss >저장</label>    
   <br>
-        <label class=fontss >PASSWORD</label>    
+        <label class=fontss >PASSWORD</label><span class='menu_divide' >│</span>    
         <input type='password' class='loginfont' name='passwd' id='passwd' value='${ck_passwd }' required="required" style='width: 18%;' placeholder="">
         &nbsp
         <Label>

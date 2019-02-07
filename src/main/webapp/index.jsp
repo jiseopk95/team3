@@ -26,32 +26,31 @@
 
 <body>
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
-<BR>
+
 <!-- Header ( index 파랑색 칸 부분 ) -->
-<div style='background-color:  #FFFFFF;'>
+<!--  <div style='background-color:  #FFFFFF;'>
   <div class="container" style='margin:0px auto;' >
-    <img style='margin-top:5%; margin-left:41%; width: 17%; height: 17%; text-align: center; ' src="./css/images/pet3.png" >  <!-- 관련 이미지 넣거나 넣지 않음 -->
+    <img style='margin-top:5%; margin-left:41%; width: 17%; height: 17%; text-align: center; ' src="./css/images/pet3.png" >  
     <h1 style='margin-top:2%; color:#000000; text-align: center; font-size: 35px;' >Animal Total System</h1>
     <h2 style='margin-top:1%; color:#505050; text-align: center; font-size: 24px; '>Hospital & Beauty</h2>
     <br> <br> <br> 
   </div>
-</div>
+</div> -->
 
-<br>
+
    
 <!-- 내용 넣는 공간 여기부터 -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<div style="margin: 0px auto; float:center; text-align: center; padding-left: 24%;">
-  <div class="fotorama" style="margin: 0px auto; float:center; text-align: center;">
-        <a href="./menu/images/pet6.png"><img src="./menu/images/pet6.png" ></a>
-        <a href="./menu/images/pet2.png"><img src="./menu/images/pet2.png" ></a>
-        <a href="./menu/images/pet3.png"><img src="./menu/images/pet3.png" ></a>
-        <a href="./menu/images/pet4.png"><img src="./menu/images/pet4.png" ></a>
-        <a href="./menu/images/pet5.png"><img src="./menu/images/pet5.png" ></a>
+<div style="margin: 0px auto; float:center; text-align: center;">
+  <div class="fotorama" style="margin: 0px auto; float:center;height:600px;">
+
+        <a href="./menu/images/dog1.png"><img src="./menu/images/dog1.png" ></a>   
+        <a href="./menu/images/dog2.png"><img src="./menu/images/dog2.png" ></a>
+        <a href="./menu/images/dog3.png"><img src="./menu/images/dog3.png" ></a>
   </div>
 </div>
 
-<br><br><br> <br> <br>
+
  
 <div style="width: 85%;height:350px;margin:0px auto; text-align: center;">
   <div style=' float: left; width:65%; '>
