@@ -36,15 +36,18 @@
     <br> <br> <br> 
   </div>
 </div>
+
+<br>
    
 <!-- 내용 넣는 공간 여기부터 -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<div style="margin: 0px auto; float:center; text-align: center; padding-left: 33%;">
+<div style="margin: 0px auto; float:center; text-align: center; padding-left: 24%;">
   <div class="fotorama" style="margin: 0px auto; float:center; text-align: center;">
-        <a href="./menu/images/pet1.jpg"><img src="./menu/images/pet1.jpg" ></a>
-        <a href="./menu/images/food2.jpg"><img src="./menu/images/food2_t.jpg" ></a>
-        <a href="./menu/images/food4.jpg"><img src="./menu/images/food4_t.jpg" ></a>
-        <a href="./menu/images/food5.jpg"><img src="./menu/images/food5_t.jpg" ></a>
+        <a href="./menu/images/pet6.png"><img src="./menu/images/pet6.png" ></a>
+        <a href="./menu/images/pet2.png"><img src="./menu/images/pet2.png" ></a>
+        <a href="./menu/images/pet3.png"><img src="./menu/images/pet3.png" ></a>
+        <a href="./menu/images/pet4.png"><img src="./menu/images/pet4.png" ></a>
+        <a href="./menu/images/pet5.png"><img src="./menu/images/pet5.png" ></a>
   </div>
 </div>
 
