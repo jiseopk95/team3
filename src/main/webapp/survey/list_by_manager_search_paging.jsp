@@ -11,6 +11,14 @@
     <meta name="author" content="">
 
     <title>Pet Doctor</title> <!-- 주소창 타이틀 -->
+    <style type="text/css">
+    th {
+    font-size:15px;
+    }
+    td {
+    font-size:15px;
+    }
+    </style>
 
 <title></title> 
 
@@ -372,10 +380,10 @@ function create_update_cancel() {
   </TR>
   </thead>
   <c:forEach var="manager_surveyVO" items="${list }">
-  <TR>
+  <TR style="font-size:12px;">
     <TD style='text-align: center ;'>${manager_surveyVO.surveyno}</TD>  
     <TD style='text-align: center ;'>${manager_surveyVO.name}</TD>  
-    <TD style='text-align: left;'><A href="../surveyitem/list.do?surveyno=${manager_surveyVO.surveyno}">${manager_surveyVO.survey_title }</A></TD>
+    <TD style='text-align: left;'><A href="../surveyitem/list.do?surveyno=${manager_surveyVO.surveyno}"><span style="color:#3C55B1;font-size:15px;">${manager_surveyVO.survey_title }</span></A></TD>
     <TD style='text-align: center ;'>${manager_surveyVO.q_cnt}</TD>
     <TD style='text-align: center ;'>${manager_surveyVO.startdate }</TD>
     <TD style='text-align: center ;'>${manager_surveyVO.enddate }</TD>
@@ -383,13 +391,13 @@ function create_update_cancel() {
     <TD style='text-align: center ;'>
         <c:choose>   
          <c:when test="${manager_surveyVO.q_cnt==0}">
-    <button type="button" class="btn btn-warning btn-xs"onclick="exit();" >결과 보기</button>
+    <button type="button" class="btn btn-warning btn-sm"onclick="exit();" >결과 보기</button>
           </c:when>
          <c:otherwise>
-     <button type="button" class="btn btn-warning btn-xs"onclick="location.href='../surveyitem/party_bar.do?surveyno=${manager_surveyVO.surveyno}'" >결과 보기</button>
+     <button type="button" class="btn btn-warning btn-sm"onclick="location.href='../surveyitem/party_bar.do?surveyno=${manager_surveyVO.surveyno}'" >결과 보기</button>
          </c:otherwise>
     </c:choose>
-      <button type="button" class="btn btn-danger btn-xs"onclick="location.href='../surveyparty/list_survey.do?surveyno=${manager_surveyVO.surveyno}'" >참여 List</button>   
+      <button type="button" class="btn btn-danger btn-sm"onclick="location.href='../surveyparty/list_survey.do?surveyno=${manager_surveyVO.surveyno}'" >참여 List</button>   
 
     
       <A href="javascript:update(${manager_surveyVO.surveyno})"><IMG src='./images/update.png' title='수정' style='width:20px;'></A>
