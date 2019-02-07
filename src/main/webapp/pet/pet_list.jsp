@@ -110,7 +110,7 @@
 </DIV>
 <br>
 <DIV class='bottom_menu'>
-<button type="submit" class="btn btn-secondary" onclick="location.href='../pet/create.do?memberno=${memberno }' " >새 반려동물 등록</button>
+<button type="submit" class="btn btn-info" onclick="location.href='../pet/create.do?memberno=${memberno }' " >새로운 반려동물 등록</button>
   <!-- <button type='button' onclick="location.href='./create.do'">등록</button> -->
   <!-- <button type='button' onclick="location.reload();" class="btn btn-secondary">새로 고침</button> -->
 </DIV>
