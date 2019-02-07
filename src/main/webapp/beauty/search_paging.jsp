@@ -70,21 +70,21 @@ function list_all_rdate() {
   });
   }
 // 삭제폼
-function delete_style(styleno,categoryno) {
+function delete_style(styleno) {
   $.ajax({
   url: "./delete.do",
   type: "get",
   cache: false,
   async: true,
   dataType: "json",
-  data: "styleno=" + styleno + "&categoryno=" + categoryno,
+  data: "styleno=" + styleno,
   success: function(rdata) {
 /*   var title=document.getElementById("title"); */
   var delete_message = confirm(
       "삭제 되는 글 : "+ rdata.title + "\n글을 삭제하시겠습니까? 삭제하시면 복구 할 수 없습니다.\n"
   +"");
   if(delete_message) {
-  delete_proc(rdata.styleno,rdata.categoryno);
+  delete_proc(rdata.styleno);
   } else {
   alert("글 삭제를 취소했습니다.");
   location.reload();
@@ -93,14 +93,14 @@ function delete_style(styleno,categoryno) {
   });
   }
   // 삭제처리폼
-  function delete_proc(styleno,categoryno) {
+  function delete_proc(styleno) {
   $.ajax({
   url: "./delete.do",
   type: "post",
   cache: false,
   async: true,
   dataType: "json",
-  data: "styleno=" + styleno +"&categoryno=" + categoryno,
+  data: "styleno=" + styleno,
   success: function(rdata) {
   location.reload();
   alert(rdata.msgs);
@@ -147,7 +147,7 @@ function delete_style(styleno,categoryno) {
  <ASIDE style='float: left;'>
     <A href='../category/list.do'>게시판 목록</A> 
     >
-    <A href='./search_paging.do?categoryno=${beautyVO.categoryno }'>${beautyVO.title }</A>
+<%--     <A href='./search_paging.do?categoryno=${beautyVO.categoryno }'>${beautyVO.title }</A> --%>
 
     <c:if test="${param.title.length() > 0}"> 
       >
@@ -161,10 +161,9 @@ function delete_style(styleno,categoryno) {
     <!-- id가 어케 되는거지 일단 보류 -->
     <c:if test="${sessionScope.managerno != null}">
       <span class='menu_divide' >│</span> 
-      <A href='./create.do?categoryno=${beautyVO.categoryno }'>등록</A>
+      <A href='./create.do?managerno=${sessionScope.managerno}'>등록</A>
     </c:if>
-    
-    <input type='hidden' name='categoryno' id='categoryno' value='1'>
+
      <span class='menu_divide' >│</span>
      <c:choose>
      <c:when test = " ${param.title != '' }">
@@ -175,7 +174,7 @@ function delete_style(styleno,categoryno) {
      </c:otherwise>
      </c:choose>
      <button type='submit' class="btn btn-primary btn-sm">검색</button>
-     <button type='button' class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do?categoryno=${param.categoryno}'">전체보기</button>
+     <button type='button' class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do'">전체보기</button>
      
   </ASIDE> 
   </form>
@@ -183,8 +182,7 @@ function delete_style(styleno,categoryno) {
   
   <DIV class='menu_line' style='clear: both;'></DIV> 
 <!--  <div style='width: 100%;'> -->
-  <input type='hidden' name='categoryno' id='categoryno' value='${param.categoryno}'>
-<input type='hidden' name='managerno' id='managerno' value='1'>
+<input type='hidden' name='managerno' id='managerno' value='${sessionScope.managerno}'>
     
      <ASIDE style='float: right;'>
       <A href="javascript:list_all_rdate();">최신순</A> |
@@ -193,7 +191,7 @@ function delete_style(styleno,categoryno) {
     
     <c:if test="${sessionScope.managerno != null}">
     <button type="button" class="btn btn-primary btn-sm" 
-    onclick="location.href='./create.do?categoryno=${param.categoryno}&managerno=${sessionScope.managerno}'">등록
+    onclick="location.href='./create.do?managerno=${sessionScope.managerno}'">등록
     </button>
     </c:if>
     </ASIDE>
@@ -249,7 +247,7 @@ function delete_style(styleno,categoryno) {
               </c:choose>
               </td>          
             <td style='vertical-align: middle;'>
-              <a href="./read.do?styleno=${beautyVO.styleno}&categoryno=${beautyVO.categoryno}">${beautyVO.title}</a> 
+              <a href="./read.do?styleno=${beautyVO.styleno}">${beautyVO.title}</a> 
             </td> 
             <td style='vertical-align: middle;'>${beautyVO.rname}</td>
            <td style='vertical-align: middle;'>${beautyVO.cnt}</td>
@@ -260,9 +258,9 @@ function delete_style(styleno,categoryno) {
             <td style='vertical-align: middle;'><!-- 뷰티카테고리를 1번이라 임시지정, 마지막에 조인할 때 managerno도 들어가서 값 받을 수 있게끔 수정필요. -->
            <c:choose>
        <c:when test="${sessionScope.managerno != null}">
-        <a href="./create.do?categoryno=${beautyVO.categoryno}&managerno=${beautyVO.managerno}"><img src="./images/create.png" title="등록" border='0' style='width: 20px; height: 20px;'/></a>
-              <a href="./update.do?styleno=${beautyVO.styleno}&categoryno=${beautyVO.categoryno}&managerno=${beautyVO.managerno}"><img src="./images/update.png" title="수정" border='0' style='width: 20px; height: 20px;'/></a>
-               <A href="javascript:delete_style(${beautyVO.styleno},${beautyVO.categoryno});"><img src="./images/delete.png" title="삭제"  border='0' style='width: 20px; height: 20px;'/></a>
+        <a href="./create.do?managerno=${beautyVO.managerno}"><img src="./images/create.png" title="등록" border='0' style='width: 20px; height: 20px;'/></a>
+              <a href="./update.do?styleno=${beautyVO.styleno}&managerno=${beautyVO.managerno}"><img src="./images/update.png" title="수정" border='0' style='width: 20px; height: 20px;'/></a>
+               <A href="javascript:delete_style(${beautyVO.styleno});"><img src="./images/delete.png" title="삭제"  border='0' style='width: 20px; height: 20px;'/></a>
        </c:when>
        <c:otherwise>
            <button type="button" class="btn btn-outline-warning btn-sm" >회원접근불가</button>

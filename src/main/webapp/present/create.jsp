@@ -44,12 +44,12 @@
   </ASIDE>  --%>
 
  <!--  <div class='menu_line'></div> -->
-  <DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'>
+  <DIV class='content' style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'>
     <FORM name='frm' method='POST' action='./create.do'
                enctype="multipart/form-data" class="form-horizontal">
    
         <div class="form-group">   
-        <label for="info" class="col-md-1 control-label">선물내용</label>
+        <label for="info" class="col-md-1 control-label">내용</label>
         <div class="col-md-11">
           <textarea class="form-control input-lg" name='info' id='info'  rows='10'></textarea>
         </div>
@@ -62,8 +62,8 @@
       </div>
 
       <DIV style='text-align: right;'>
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./list_all_present.do'">취소[목록]</button>
+        <button type="submit" class="btn btn-primary btn-sm">등록</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="location.href='./list_all_present.do'">취소[목록]</button>
       </DIV>
     </FORM>
   </DIV>

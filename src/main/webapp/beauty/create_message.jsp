@@ -40,7 +40,7 @@
       <LI class='li_none'>
         <br>
         <button type="button" class="btn btn-primary btn-sm" onclick="location.href='./create.do'">새로운 컨텐츠 등록</button>
-        <button type="button" class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do?categoryno=${param.categoryno}'">목록</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do?managerno=${sessionScope.managerno}'">목록</button>
       </LI>
      </UL>
   </fieldset>

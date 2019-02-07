@@ -38,17 +38,15 @@ public class BeautyCont {
    * @return
    */
   @RequestMapping(value = "/beauty/create.do", method = RequestMethod.GET)
-  public ModelAndView create(int categoryno,int managerno) {
+  public ModelAndView create(int managerno) {
     System.out.println("--> create() GET executed");
     ModelAndView mav = new ModelAndView();
   /*  
     CategoryVO categoryVO = categoryProc.read(categoryno);
     mav.addObject("categoryVO", categoryVO);*/
-    BeautyVO beautyVO = beautyProc.read(categoryno);
-    mav.addObject("beautyVO",beautyVO);
    BeautyVO managerVO = beautyProc.read(managerno);
     mav.addObject("managerVO",managerVO);
-   System.out.println("categoryno : "+categoryno);
+/*   System.out.println("categoryno : "+categoryno);*/
    System.out.println("managerno : "+managerno);
     mav.setViewName("/beauty/create"); // /webapp/contents/create.jsp
 
@@ -65,7 +63,7 @@ public class BeautyCont {
   public ModelAndView create(HttpServletRequest request, BeautyVO beautyVO) {
     System.out.println("--> create() POST executed");
     ModelAndView mav = new ModelAndView();
-    System.out.println("categoryno : "+beautyVO.getCategoryno());
+ /*   System.out.println("categoryno : "+beautyVO.getCategoryno());*/
     System.out.println("managerno : "+beautyVO.getManagerno());
     // -------------------------------------------------------------------
     // 파일 전송 코드 시작
@@ -134,7 +132,7 @@ public class BeautyCont {
     count = beautyProc.create(beautyVO);
     
     mav.setViewName(
-        "redirect:/beauty/create_message.jsp?count=" + count + "&categoryno=" + beautyVO.getCategoryno()+"&managerno="+beautyVO.getManagerno()); // /webapp/contents/create_message.jsp
+        "redirect:/beauty/create_message.jsp?count=" + count +"&managerno="+beautyVO.getManagerno()); // /webapp/contents/create_message.jsp
 
     return mav;
   }
@@ -196,7 +194,7 @@ public class BeautyCont {
    * @return
    */
   @RequestMapping(value = "/beauty/delete.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
-  public ResponseEntity delete(int styleno, int categoryno) {
+  public ResponseEntity delete(int styleno) {
     // System.out.println("--> delete() GET executed");
     //ModelAndView mav = new ModelAndView();
     HttpHeaders responseHeaders = new HttpHeaders();
@@ -204,10 +202,8 @@ public class BeautyCont {
   
     JSONObject json = new JSONObject(); 
     BeautyVO beautyVO = beautyProc.read(styleno);
-    BeautyVO categoryVO = beautyProc.read(categoryno);
     json.put("styleno", beautyVO.getStyleno()); 
     json.put("title", beautyVO.getTitle());
-    json.put("categoryno", beautyVO.getCategoryno());
 
     return new ResponseEntity(json.toString(),responseHeaders,HttpStatus.CREATED);
   }
@@ -224,7 +220,6 @@ public class BeautyCont {
   @RequestMapping(value = "/beauty/delete.do", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
   public ResponseEntity delete(RedirectAttributes redirectAttributes, 
                                         HttpServletRequest request, 
-                                        int categoryno,
                                         int styleno, 
                                         @RequestParam(value="title", defaultValue="") String title,
                                         @RequestParam(value="nowPage", defaultValue="1") int nowPage 
@@ -240,7 +235,7 @@ public class BeautyCont {
 
     BeautyVO beautyVO = beautyProc.read(styleno); // 삭제할 파일 정보를 읽기 위한
                                                             // 목적
-    BeautyVO categoryVO = beautyProc.read(categoryno);
+   
     
     String thumbs_old = beautyVO.getThumb();
     String files_old = beautyVO.getImage();
@@ -274,7 +269,6 @@ public class BeautyCont {
       // 4개의 레코드가 하나의 페이지인경우 5번째 레코드가 삭제되면 페이지수도
       // 2페이지에서 1 페이지로 줄여야합니다. 
       HashMap<String, Object> hashMap = new HashMap<String, Object>();
-      hashMap.put("categoryno", categoryno); // #{categoryno}
       hashMap.put("title", title);                  // #{word}
       if (beautyProc.search_count(hashMap) % Beauty.RECORD_PER_PAGE == 0){ 
         nowPage = nowPage - 1;
@@ -289,7 +283,6 @@ public class BeautyCont {
     // 이제 연동할때 카테고리no에 값 받아오니까 수정하기.
     redirectAttributes.addAttribute("count", count); // 1 or 0
     redirectAttributes.addAttribute("styleno", beautyVO.getStyleno());
-    redirectAttributes.addAttribute("categoryno", beautyVO.getCategoryno());
     //redirectAttributes.addAttribute("word", word);
     redirectAttributes.addAttribute("title", title);
     redirectAttributes.addAttribute("nowPage", nowPage);
@@ -311,11 +304,7 @@ public class BeautyCont {
     BeautyVO beautyVO = beautyProc.read(styleno);
     mav.addObject("beautyVO", beautyVO);
 
-    BeautyVO categoryVO = beautyProc.read(beautyVO.getCategoryno());
-    mav.addObject("categoryVO",categoryVO);
-                                                                                   // 정보
-                                                                                   // 추출
-    mav.addObject("categoryVO", categoryVO);
+
 
     ArrayList<BeaFileVO> file_list = beautyProc.getThumbs(beautyVO);
 
@@ -428,7 +417,7 @@ public class BeautyCont {
 
     // redirect시에는 request가 전달이안됨으로 아래의 방법을 이용하여 데이터 전달
     redirectAttributes.addAttribute("styleno", beautyVO.getStyleno());
-    redirectAttributes.addAttribute("categoryno", beautyVO.getCategoryno());
+
 
     mav.setViewName("redirect:/beauty/update_message.jsp");
 
@@ -486,7 +475,6 @@ public class BeautyCont {
   @RequestMapping(value = "/beauty/search_paging.do", 
                                        method = RequestMethod.GET)
   public ModelAndView search_paging(
-      @RequestParam(value="categoryno") int categoryno,
       @RequestParam(value="title", defaultValue="") String title,
       @RequestParam(value="nowPage", defaultValue="1") int nowPage
       ) { 
@@ -500,7 +488,6 @@ public class BeautyCont {
     
     // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
-    hashMap.put("categoryno", categoryno); // #{categoryno}
     hashMap.put("title", title);                  // #{title}
     hashMap.put("nowPage", nowPage);       
     
@@ -511,10 +498,7 @@ public class BeautyCont {
     // 검색된 레코드 갯수
     int search_count = beautyProc.search_count(hashMap);
     mav.addObject("search_count", search_count);
-  
-    BeautyVO categoryVO = beautyProc.read(categoryno);
-    mav.addObject("categoryVO", categoryVO);
-    
+
     // mav.addObject("word", word);
   
     /*
@@ -527,7 +511,7 @@ public class BeautyCont {
      * @param word 검색어
      * @return 페이징 생성 문자열
      */ 
-    String paging = beautyProc.paging(categoryno, search_count, nowPage, title);
+    String paging = beautyProc.paging(search_count, nowPage, title);
     mav.addObject("paging", paging);
   
     mav.addObject("nowPage", nowPage);
