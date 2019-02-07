@@ -24,7 +24,7 @@
 <jsp:include page="/menu/top.jsp" flush='false'/>
 <DIV class='container' style='width: 100%;'>
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
-
+<br>
 <DIV class='title_fontss' style='width: 20%;'>&nbsp&nbsp&nbspLOGIN</DIV>
 
 <!--    <ASIDE style='float: right;'>
@@ -32,7 +32,7 @@
   </ASIDE>
 
 <div class='menu_line'></div> -->
- 
+ <br>
   <FORM name='frm' method='POST' action='./login.do'>
   &nbsp&nbsp&nbsp&nbsp
        <label class=fontss ><input type="radio" name="myname" OnClick="window.location.href='../member/login.do'" checked>&nbsp&nbsp일반회원&nbsp</label>
