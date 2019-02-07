@@ -289,7 +289,7 @@ public class BeautyCont {
     // 이제 연동할때 카테고리no에 값 받아오니까 수정하기.
     redirectAttributes.addAttribute("count", count); // 1 or 0
     redirectAttributes.addAttribute("styleno", beautyVO.getStyleno());
-    redirectAttributes.addAttribute("categoryno", 1);
+    redirectAttributes.addAttribute("categoryno", beautyVO.getCategoryno());
     //redirectAttributes.addAttribute("word", word);
     redirectAttributes.addAttribute("title", title);
     redirectAttributes.addAttribute("nowPage", nowPage);

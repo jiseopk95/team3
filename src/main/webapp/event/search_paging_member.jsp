@@ -211,6 +211,7 @@ function delete_event(eventno) {
             <!-- 날짜가 지났을 때 클릭시 응모기간이 아닙니다! 뜨도록 -->
           <jsp:useBean id="toDay" class="java.util.Date" />
          <fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' var="nowDate"/>
+         <%--  <input type = 'text' name='nowDate' id='nowDate' value='${nowDate}' style='width:35%;'> --%>
             <c:choose>   
          <c:when test="${eventVO.period_end<nowDate}"> 
             <A href="javascript:no_enter();">${eventVO.title}</A>
@@ -231,8 +232,11 @@ function delete_event(eventno) {
                <A href="javascript:delete_event(${eventVO.eventno});"><img src="./images/delete.png" title="삭제"  border='0' style='width: 20px; height: 20px;'/></a>
             </td> --%>
             <td style='vertical-align: middle; text-align: center;'>
+            <jsp:useBean id="toDay2" class="java.util.Date" />
+         <fmt:formatDate value='${toDay2}' pattern='yyyy-MM-dd' var="nowDate2"/>
+                <%--  <input type = 'text' name='nowDate2' id='nowDate2' value='${nowDate2}' style='width:35%;'> --%>
             <c:choose>   
-         <c:when test="${eventVO.period_end<nowDate}"> <!-- 나중에 수정. 멋들어지는 이미지로 -->
+         <c:when test="${eventVO.period_end<nowDate2}"> <!-- 나중에 수정. 멋들어지는 이미지로 -->
            <button type="button" class="btn btn-danger btn-sm" style='width:65px;'>종료</button>
             
          </c:when>
@@ -241,7 +245,7 @@ function delete_event(eventno) {
          </c:otherwise>
     </c:choose>
        <c:choose>   
-         <c:when test="${eventVO.windate<=nowDate}"> <!-- 나중에 수정. 멋들어지는 이미지로 -->
+         <c:when test="${eventVO.windate<=nowDate2}"> <!-- 나중에 수정. 멋들어지는 이미지로 -->
          <!-- 이벤트 번호별로 당첨자 확인 -->
           <button type="button" class="btn btn-warning btn-sm" onclick="location.href='javascript:check_win(${eventVO.eventno});'">당첨자 확인</button>
          </c:when>

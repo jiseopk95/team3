@@ -159,7 +159,7 @@ function delete_style(styleno,categoryno) {
     <A href="javascript:location.reload();">새로고침</A>
     
     <!-- id가 어케 되는거지 일단 보류 -->
-    <c:if test="${sessionScope.id ne null }">
+    <c:if test="${sessionScope.managerno != null}">
       <span class='menu_divide' >│</span> 
       <A href='./create.do?categoryno=${beautyVO.categoryno }'>등록</A>
     </c:if>
@@ -191,10 +191,11 @@ function delete_style(styleno,categoryno) {
        <A href="javascript:list_all_cnt();">조회순</A> |
           <A href="javascript:list_all_like1();">좋아요순</A>
     
-
+    <c:if test="${sessionScope.managerno != null}">
     <button type="button" class="btn btn-primary btn-sm" 
-    onclick="location.href='./create.do?categoryno=${param.categoryno}&managerno=1'">등록
+    onclick="location.href='./create.do?categoryno=${param.categoryno}&managerno=${sessionScope.managerno}'">등록
     </button>
+    </c:if>
     </ASIDE>
 <!--     <form name='frm'  id='frm' action='./serach_paging.do' method='post'>
        <select style='margin-left: 90%;'>
@@ -257,9 +258,16 @@ function delete_style(styleno,categoryno) {
            <img src="./images/like.png" title="좋아요" border='0' style='width: 20px; height: 20px;'
            /> </A>${beautyVO.like1}</td>
             <td style='vertical-align: middle;'><!-- 뷰티카테고리를 1번이라 임시지정, 마지막에 조인할 때 managerno도 들어가서 값 받을 수 있게끔 수정필요. -->
-             <a href="./create.do?categoryno=${beautyVO.categoryno}&managerno=${beautyVO.managerno}"><img src="./images/create.png" title="등록" border='0' style='width: 20px; height: 20px;'/></a>
+           <c:choose>
+       <c:when test="${sessionScope.managerno != null}">
+        <a href="./create.do?categoryno=${beautyVO.categoryno}&managerno=${beautyVO.managerno}"><img src="./images/create.png" title="등록" border='0' style='width: 20px; height: 20px;'/></a>
               <a href="./update.do?styleno=${beautyVO.styleno}&categoryno=${beautyVO.categoryno}&managerno=${beautyVO.managerno}"><img src="./images/update.png" title="수정" border='0' style='width: 20px; height: 20px;'/></a>
                <A href="javascript:delete_style(${beautyVO.styleno},${beautyVO.categoryno});"><img src="./images/delete.png" title="삭제"  border='0' style='width: 20px; height: 20px;'/></a>
+       </c:when>
+       <c:otherwise>
+           <button type="button" class="btn btn-outline-warning btn-sm" >회원접근불가</button>
+       </c:otherwise>
+       </c:choose>
             </td>
           </tr>
         </c:forEach>

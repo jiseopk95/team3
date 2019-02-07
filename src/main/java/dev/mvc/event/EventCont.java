@@ -229,7 +229,7 @@ public class EventCont{
     mav.addObject("file_list", file_list);
     
     mav.addObject("memberno",memberno);
-    
+    System.out.println("마감날짜, 발표날짜:"+eventVO.getPeriod_end()+","+eventVO.getWindate());
   /*  EventVO count = eventProc.read(eventno); 
     if (count != null) {
       eventProc.increaseCnt(eventno); // 조회 수 증가 
@@ -645,8 +645,8 @@ public class EventCont{
        }
      } else if(count2 > 0) { // count2 가 0보다 크다 => 즉, 참여한 기록있다. 
        System.out.println("이미 참여함");
-       msgs.add("응모에 실패했습니다.\n");
-       msgs.add("다시한번 시도해주세요.");
+       msgs.add("응모실패.\n");
+       msgs.add("이미 참여한 이벤트입니다.");
      }
       
      json.put("msgs", msgs);
