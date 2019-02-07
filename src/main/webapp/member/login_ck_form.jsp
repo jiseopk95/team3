@@ -24,7 +24,7 @@
 <jsp:include page="/menu/top.jsp" flush='false'/>
 <DIV class='container' style='width: 100%;'>
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
-<br>
+
 <DIV class='title_fontss' style='width: 20%;'>&nbsp&nbsp&nbspLOGIN</DIV>
 
 <!--    <ASIDE style='float: right;'>
