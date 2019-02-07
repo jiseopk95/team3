@@ -36,8 +36,9 @@
 </head> 
 
 <body>
-<DIV class='container' style='width: 100%;'>
+
 <jsp:include page="/menu/top.jsp" flush='false' />
+<DIV class='container' >
 <DIV class='content'>     
 
 <%--   <ASIDE style='float: left;'>
