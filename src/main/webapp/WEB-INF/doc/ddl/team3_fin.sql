@@ -16,14 +16,16 @@ DROP TABLE present CASCADE CONSTRAINTS;
 DROP TABLE style CASCADE CONSTRAINTS;
 
 -- 미영
-drop table survey;
-drop table surveyparty;
-drop table surveyitem
+drop table survey CASCADE CONSTRAINTS;
+drop table surveyparty CASCADE CONSTRAINTS;
+drop table surveyitem CASCADE CONSTRAINTS
 
 -- 해원
-DROP TABLE review;
-DROP TABLE question;
-DROP TABLE category;
+DROP TABLE review CASCADE CONSTRAINTS;
+DROP TABLE question CASCADE CONSTRAINTS;
+DROP TABLE category CASCADE CONSTRAINTS;
+DROP TABLE categrp CASCADE CONSTRAINTS;
+DROP TABLE answer CASCADE CONSTRAINTS;
 
 select * from tab;
 /**
@@ -36,9 +38,9 @@ CREATE TABLE member (
   name    VARCHAR2(20)   NOT NULL,
   phone          VARCHAR2(20)   NOT NULL,
   email       VARCHAR2(20)  UNIQUE NOT NULL,
-  zipcode   VARCHAR(5)        NULL, -- 우편번호
-  address1  VARCHAR(80)       NULL, -- 주소
-  address2  VARCHAR(50)       NULL, -- 상세주소
+  zipcode   VARCHAR2(5)        NULL, -- 우편번호
+  address1  VARCHAR2(80)       NULL, -- 주소
+  address2  VARCHAR2(50)       NULL, -- 상세주소
   rdate      DATE       NOT NULL,
   PRIMARY KEY (memberno)                
 );
@@ -58,7 +60,7 @@ COMMENT ON COLUMN member.rdate is '가입 날짜';
 1) 회원등록
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
-'master', '1234', '마스터', '000-1234-5678', 'master@gmail.com','1234','서울시 종로구','솔데스크', sysdate);
+'Mmaster', '1234', '마스터', '000-1234-5678', 'master@gmail.com','1234','서울시 종로구','솔데스크', sysdate);
 
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
@@ -71,6 +73,7 @@ VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 'user2', '1234', '왕눈이', '000-1456-5678', 'abc150@gmail.com','1215','서울시 서초구','솔데스크 545', sysdate);
+<<<<<<< HEAD
 
 	UPDATE member
 	SET id = 'test' 
@@ -78,6 +81,9 @@ VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 	
 	select * from member;
 
+=======
+select memberno, id from member 
+>>>>>>> branch 'master' of https://github.com/jiseopk95/team3
 
 /* manager */
 
@@ -116,12 +122,11 @@ COMMENT ON COLUMN manager.files is '이미지 파일';
 COMMENT ON COLUMN manager.thumbs is '미리보기 이미지';
 COMMENT ON COLUMN manager.filesizes is '이미지 사이즈';
 COMMENT ON COLUMN manager.rdate is '가입날짜';
-
-
+select id, passwd from manager 
 1) 등록
 INSERT INTO manager(managerno,kind, id, passwd, name,position, phone, email,zipcode,address1,address2,files,thumbs,filesizes,rdate)
 VALUES ((SELECT NVL(MAX(managerno), 0)+1 as managerno FROM manager),
-'M','master', '1234', '아로미','대표이사' ,'010-1234-5458', 'abc1453@gmail.com','12345', '서울시 종로구 종로동', '123-45','pet1.jpg','pet1_m.jpg','2.5',sysdate);
+'M','master', '123', '아로미','대표이사' ,'010-1234-5458', 'abc1453@gmail.com','12345', '서울시 종로구 종로동', '123-45','pet1.jpg','pet1_m.jpg','2.5',sysdate);
 
 INSERT INTO manager(managerno,kind, id, passwd, name,position, phone, email,zipcode,address1,address2,files,thumbs,filesizes,rdate)
 VALUES ((SELECT NVL(MAX(managerno), 0)+1 as managerno FROM manager),
@@ -343,7 +348,7 @@ COMMENT ON COLUMN animalstory.thumbs is '썸네일이름';
 COMMENT ON COLUMN animalstory.sizes is '파일크기';
 COMMENT ON COLUMN animalstory.rdate is '작성일';
 COMMENT ON COLUMN animalstory.managerno is '관리자번호';
-drop table animalstory
+
 2. 등록 
 INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, cnt, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
@@ -360,161 +365,6 @@ VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
 '고양이', '비싼 가구랑 소파를 막 긁어놔요', 'Q. 비싼 가구랑 소파를 막 긁어놔요 A. “집안의 모든 것은 고양이 용품!”, 발상 전환하기', 
 'cat.jpg', 'cat_thumb.jpg', 0, 0, 1, sysdate);
 
-/**********************************/
-/* Table Name: 미용스타일 */
-/**********************************/
-CREATE TABLE style(
-		styleno                       		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		categoryno                    		NUMBER(10)		 NULL ,
-		managerno                     		NUMBER(10)		 NULL ,
-		title                         		VARCHAR2(50)		 NOT NULL,
-		name                          		VARCHAR2(50)		 NOT NULL,
-		rname                         		VARCHAR2(20)		 NOT NULL,
-		like1                         		NUMBER(10)		 NOT NULL,
-		email                         		VARCHAR2(20)		 NULL ,
-		content                       		CLOB		 NOT NULL,
-		cnt                           		NUMBER(10)		 DEFAULT 0		 NOT NULL,
-		image                         		VARCHAR2(1000)		 NULL ,
-		image_name                    		VARCHAR2(1000)		 NULL ,
-		thumb                         		VARCHAR2(1000)		 NULL ,
-		sizes                          		VARCHAR2(1000)		 DEFAULT 0		 NULL ,
-		pay                           		NUMBER(10)		 NOT NULL,
-		times                         		NUMBER(10)		 NOT NULL,
-		rdate                         		DATE		 NOT NULL,
-  FOREIGN KEY (categoryno) REFERENCES category (categoryno),
-  FOREIGN KEY (managerno) REFERENCES manager (managerno)
-);
-
-COMMENT ON TABLE style is '미용스타일';
-COMMENT ON COLUMN style.styleno is '스타일번호';
-COMMENT ON COLUMN style.categoryno is '카테고리번호';
-COMMENT ON COLUMN style.managerno is '관리자번호';
-COMMENT ON COLUMN style.title is '제목';
-COMMENT ON COLUMN style.name is '스타일이름';
-COMMENT ON COLUMN style.rname is '작성자';
-COMMENT ON COLUMN style.like1 is '좋아요수';
-COMMENT ON COLUMN style.email is '이메일';
-COMMENT ON COLUMN style.content is '내용';
-COMMENT ON COLUMN style.cnt is '조회수';
-COMMENT ON COLUMN style.image is '이미지';
-COMMENT ON COLUMN style.image_name is '저장이미지명';
-COMMENT ON COLUMN style.thumb is '썸네일';
-COMMENT ON COLUMN style.sizes is '이미지크기';
-COMMENT ON COLUMN style.pay is '가격';
-COMMENT ON COLUMN style.times is '소요시간';
-COMMENT ON COLUMN style.rdate is '등록날짜';
-
-/*등록*/
- INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
-VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
-1,1,'미용사가 추천하는 곰돌이컷','곰돌이컷','미용사1',0,'beauty@naver.com','곰돌이 컷 너무 귀여워요',0, 'bear.jpg', 'bear01.jpg', 'bear_m.jpg',0, 50000, 3, sysdate);
-
-INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
-VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
-1,2,'사자가 떠오르는 귀여운 사자컷','곰돌이컷','미용사2',0,'beauty2@naver.com','몸의 털은 밀고 머리털만 남겨주어 사자의 갈기를 떠올리게 하는 컷입니다',0, 'cut.jpg', 'cut01.jpg', 'cut_m.jpg',0, 60000, 3, sysdate);
-
-/**********************************/
-/* Table Name: 이벤트선물 */
-/**********************************/
-CREATE TABLE present(
-		presentno                     		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		info                          		VARCHAR2(50)		 NOT NULL,
-		end_date                       VARCHAR2(30)	   NOT NULL
-);
-
-COMMENT ON TABLE present is '이벤트선물';
-COMMENT ON COLUMN present.presentno is '선물번호';
-COMMENT ON COLUMN present.info is '선물내용';
-COMMENT ON COLUMN present.end_date is '선물만료일';
-
-/*등록*/
-INSERT INTO present(presentno, info,end_date)
-VALUES ((SELECT NVL(MAX(presentno), 0)+1 as presentno FROM present),'커트20%할인해주는 쿠폰', '2019-3-31');
-
-INSERT INTO present(presentno, info,end_date)
-VALUES ((SELECT NVL(MAX(presentno), 0)+1 as presentno FROM present),'간식 선착순 무료증정', '2019-4-30');
-
-/**********************************/
-/* Table Name: 이벤트 목록 */
-/**********************************/
-CREATE TABLE event(
-		eventno                       		NUMBER(10)		 NOT NULL	PRIMARY KEY,
-		managerno                     		NUMBER(10)		 NULL,
-		presentno                     		NUMBER(10)		 NULL,
-		title                         		VARCHAR2(50)		 NOT NULL,
-		content                       		CLOB		 NOT NULL,
-		period_start                  		VARCHAR2(30)		 NOT NULL,
-		period_end                    		VARCHAR2(30)		 NOT NULL,
-		writer                        		VARCHAR2(10)		 NOT NULL,
-		usercnt                       		NUMBER(10)		 NOT NULL,
-		image                         		VARCHAR2(1000)		 NULL ,
-		image_size                    		VARCHAR2(1000)		 NULL ,
-		thumb                         		VARCHAR2(1000)		 NULL ,
-		windate                       		VARCHAR2(20)		 NOT NULL,
-		wincnt                        		NUMBER(10)		 NULL ,
-		winner                        		VARCHAR2(1000)		 NULL ,
-		rdate                         		DATE		 NOT NULL,
-  FOREIGN KEY (managerno) REFERENCES manager (managerno),
-  FOREIGN KEY (presentno) REFERENCES present (presentno)
-);
-
-COMMENT ON TABLE event is '이벤트 목록';
-COMMENT ON COLUMN event.eventno is '이벤트 목록 번호';
-COMMENT ON COLUMN event.managerno is '관리자번호';
-COMMENT ON COLUMN event.presentno is '선물번호';
-COMMENT ON COLUMN event.title is '이벤트제목';
-COMMENT ON COLUMN event.content is '이벤트내용';
-COMMENT ON COLUMN event.period_start is '이벤트시작날';
-COMMENT ON COLUMN event.period_end is '이벤트만료날';
-COMMENT ON COLUMN event.writer is '작성자';
-COMMENT ON COLUMN event.usercnt is '최대응모인원수';
-COMMENT ON COLUMN event.image is '이미지';
-COMMENT ON COLUMN event.image_size is '이미지크기';
-COMMENT ON COLUMN event.thumb is '썸네일';
-COMMENT ON COLUMN event.windate is '당첨발표일';
-COMMENT ON COLUMN event.wincnt is '당첨인원수';
-COMMENT ON COLUMN event.winner is '당첨자명';
-COMMENT ON COLUMN event.rdate is '등록날짜';
-
-/*등록*/
---당첨자 3명/30명 
-INSERT INTO event(eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
-image, image_size, thumb, windate,wincnt,winner,rdate)
-VALUES ((SELECT NVL(MAX(eventno), 0)+1 as eventno FROM event),
-1,1,'커트 20% 할인 이벤트','이벤트 응모 누르세요!지정된 기간안에 방문하시면 커트20%할인해드립니다.','2018-12-12','2018-12-25','미용사1', 30, 'cupon.jpg', 0, 'cupon_m.jpg', '2018-12-31', 3, '가주인', sysdate);
-INSERT INTO event(eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
-image, image_size, thumb, windate,wincnt,winner,rdate)
-VALUES ((SELECT NVL(MAX(eventno), 0)+1 as eventno FROM event),
-1,1,'커트 20% 할인 이벤트','이벤트 응모 누르세요!지정된 기간안에 방문하시면 커트20%할인해드립니다.','2018-12-12','2018-12-25','미용사1', 30, 'cupon.jpg', 0, 'cupon_m.jpg', '2018-12-31', 3, '나주인', sysdate);
-
-/**********************************/
-/* Table Name: 이벤트 참여자 */
-/**********************************/  
-CREATE TABLE eventuser(
-		eventuserno                   		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		memberno                      		NUMBER(10)		 NULL ,
-		eventno                       		NUMBER(10)		 NULL ,
-		joindate                      		DATE		 NOT NULL,
-		win                           		VARCHAR2(10)	default '0',
-  FOREIGN KEY (memberno) REFERENCES member (memberno),
-  FOREIGN KEY (eventno) REFERENCES event (eventno)
-);
-
-COMMENT ON TABLE eventuser is '이벤트 참여자';
-COMMENT ON COLUMN eventuser.eventuserno is '이벤트 참여자 번호';
-COMMENT ON COLUMN eventuser.memberno is '회원번호';
-COMMENT ON COLUMN eventuser.eventno is '이벤트 목록 번호';
-COMMENT ON COLUMN eventuser.joindate is '참여날짜';
-COMMENT ON COLUMN eventuser.win is '당첨여부';
- select * from eventuser
-/*등록*/
---(당첨N > 비어있음)
-INSERT INTO eventuser(eventuserno, memberno, eventno, joindate)
-VALUES ((SELECT NVL(MAX(eventuserno), 0)+1 as eventuserno FROM eventuser),1,2,sysdate);
-INSERT INTO eventuser(eventuserno, memberno, eventno, joindate)
-VALUES ((SELECT NVL(MAX(eventuserno), 0)+1 as eventuserno FROM eventuser),2,2,sysdate);
-INSERT INTO eventuser(eventuserno, memberno, eventno, joindate)
-VALUES ((SELECT NVL(MAX(eventuserno), 0)+1 as eventuserno FROM eventuser),3,2,sysdate);
 
 /**********************************/
 /* Table Name: 설문조사 */
@@ -529,7 +379,6 @@ startdate                     	VARCHAR2(50)	 NOT NULL,
 enddate                       	VARCHAR2(50)	 NOT NULL,
 rdate                         	DATE	 NOT NULL,
 q_cnt                  NUMBER(6)       DEFAULT 0          NOT NULL,
-
 managerno                    NUMBER(10)	 NULL ,
 FOREIGN KEY (managerno) REFERENCES manager (managerno)
 );
@@ -574,7 +423,7 @@ COMMENT ON COLUMN surveyitem.thumbs is 'Thumb 파일';
 COMMENT ON COLUMN surveyitem.files is '파일들의 이름';
 COMMENT ON COLUMN surveyitem.itemcnt is '체크 인원';
 COMMENT ON COLUMN surveyitem.sizes is '파일들의 크기';
-delete from surveyitem;
+
 2. 등록 
 INSERT INTO surveyitem(surveyitemno,surveyno,seqno,question,thumbs,files, sizes)
 values((select NVL(max(surveyitemno),0)+1 as surveyitemno from surveyitem),10,1,'당신이 원하는 미용 스타일은?','fall_m.jpg', 'fall.jpg', 0);	
@@ -599,7 +448,7 @@ COMMENT ON COLUMN surveyparty.surveyitemno is '설문조사 항목 번호';
 COMMENT ON COLUMN surveyparty.rdate is '참여날짜';
 COMMENT ON COLUMN surveyparty.memberno is '회원번호';
 
-delete from surveyparty;
+
 2. 등록 
 INSERT INTO surveyparty(surveypartyno,surveyno,surveyitemno,memberno,rdate)
 values((select NVL(max(surveypartyno),0)+1 as surveypartyno from surveyparty),12,9,1,sysdate);
@@ -607,9 +456,6 @@ values((select NVL(max(surveypartyno),0)+1 as surveypartyno from surveyparty),12
 /**********************************/
 /* Table Name: 카테고리 그룹 */
 /**********************************/
-drop table categrp
-drop table category
-drop table review
 
 CREATE TABLE categrp(
     categrpno                         NUMBER(10)     NOT NULL    PRIMARY KEY,
@@ -811,3 +657,161 @@ VALUES((SELECT NVL(MAX(answerno), 0)+1 as answerno FROM answer), 2, '답변', '관�
 INSERT INTO answer(answerno, questionno, title, name, emoticon, content, rdate, managerno)
 VALUES((SELECT NVL(MAX(answerno), 0)+1 as answerno FROM answer), 1, '답변', '관리자',
              'emoticon.jpg','미용 질문1에 대한 답변입니다.', sysdate, 2);
+             
+             
+
+/**********************************/
+/* Table Name: 미용스타일 */
+/**********************************/
+CREATE TABLE style(
+		styleno                       		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
+		categoryno                    		NUMBER(10)		 NULL ,
+		managerno                     		NUMBER(10)		 NULL ,
+		title                         		VARCHAR2(50)		 NOT NULL,
+		name                          		VARCHAR2(50)		 NOT NULL,
+		rname                         		VARCHAR2(20)		 NOT NULL,
+		like1                         		NUMBER(10)		 NOT NULL,
+		email                         		VARCHAR2(20)		 NULL ,
+		content                       		CLOB		 NOT NULL,
+		cnt                           		NUMBER(10)		 DEFAULT 0		 NOT NULL,
+		image                         		VARCHAR2(1000)		 NULL ,
+		image_name                    		VARCHAR2(1000)		 NULL ,
+		thumb                         		VARCHAR2(1000)		 NULL ,
+		sizes                          		VARCHAR2(1000)		 DEFAULT 0		 NULL ,
+		pay                           		NUMBER(10)		 NOT NULL,
+		times                         		NUMBER(10)		 NOT NULL,
+		rdate                         		DATE		 NOT NULL,
+  FOREIGN KEY (categoryno) REFERENCES category (categoryno),
+  FOREIGN KEY (managerno) REFERENCES manager (managerno)
+);
+
+COMMENT ON TABLE style is '미용스타일';
+COMMENT ON COLUMN style.styleno is '스타일번호';
+COMMENT ON COLUMN style.categoryno is '카테고리번호';
+COMMENT ON COLUMN style.managerno is '관리자번호';
+COMMENT ON COLUMN style.title is '제목';
+COMMENT ON COLUMN style.name is '스타일이름';
+COMMENT ON COLUMN style.rname is '작성자';
+COMMENT ON COLUMN style.like1 is '좋아요수';
+COMMENT ON COLUMN style.email is '이메일';
+COMMENT ON COLUMN style.content is '내용';
+COMMENT ON COLUMN style.cnt is '조회수';
+COMMENT ON COLUMN style.image is '이미지';
+COMMENT ON COLUMN style.image_name is '저장이미지명';
+COMMENT ON COLUMN style.thumb is '썸네일';
+COMMENT ON COLUMN style.sizes is '이미지크기';
+COMMENT ON COLUMN style.pay is '가격';
+COMMENT ON COLUMN style.times is '소요시간';
+COMMENT ON COLUMN style.rdate is '등록날짜';
+
+/*등록*/
+ INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
+VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
+1,1,'미용사가 추천하는 곰돌이컷','곰돌이컷','미용사1',0,'beauty@naver.com','곰돌이 컷 너무 귀여워요',0, 'bear.jpg', 'bear01.jpg', 'bear_m.jpg',0, 50000, 3, sysdate);
+
+INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
+VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
+1,2,'사자가 떠오르는 귀여운 사자컷','곰돌이컷','미용사2',0,'beauty2@naver.com','몸의 털은 밀고 머리털만 남겨주어 사자의 갈기를 떠올리게 하는 컷입니다',0, 'cut.jpg', 'cut01.jpg', 'cut_m.jpg',0, 60000, 3, sysdate);
+
+/**********************************/
+/* Table Name: 이벤트선물 */
+/**********************************/
+CREATE TABLE present(
+		presentno                     		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
+		info                          		VARCHAR2(50)		 NOT NULL,
+		end_date                       VARCHAR2(30)	   NOT NULL
+);
+
+COMMENT ON TABLE present is '이벤트선물';
+COMMENT ON COLUMN present.presentno is '선물번호';
+COMMENT ON COLUMN present.info is '선물내용';
+COMMENT ON COLUMN present.end_date is '선물만료일';
+
+/*등록*/
+INSERT INTO present(presentno, info,end_date)
+VALUES ((SELECT NVL(MAX(presentno), 0)+1 as presentno FROM present),'커트20%할인해주는 쿠폰', '2019-3-31');
+
+INSERT INTO present(presentno, info,end_date)
+VALUES ((SELECT NVL(MAX(presentno), 0)+1 as presentno FROM present),'간식 선착순 무료증정', '2019-4-30');
+
+/**********************************/
+/* Table Name: 이벤트 목록 */
+/**********************************/
+CREATE TABLE event(
+		eventno                       		NUMBER(10)		 NOT NULL	PRIMARY KEY,
+		managerno                     		NUMBER(10)		 NULL,
+		presentno                     		NUMBER(10)		 NULL,
+		title                         		VARCHAR2(50)		 NOT NULL,
+		content                       		CLOB		 NOT NULL,
+		period_start                  		VARCHAR2(30)		 NOT NULL,
+		period_end                    		VARCHAR2(30)		 NOT NULL,
+		writer                        		VARCHAR2(10)		 NOT NULL,
+		usercnt                       		NUMBER(10)		 NOT NULL,
+		image                         		VARCHAR2(1000)		 NULL ,
+		image_size                    		VARCHAR2(1000)		 NULL ,
+		thumb                         		VARCHAR2(1000)		 NULL ,
+		windate                       		VARCHAR2(20)		 NOT NULL,
+		wincnt                        		NUMBER(10)		 NULL ,
+		winner                        		VARCHAR2(1000)		 NULL ,
+		rdate                         		DATE		 NOT NULL,
+  FOREIGN KEY (managerno) REFERENCES manager (managerno),
+  FOREIGN KEY (presentno) REFERENCES present (presentno)
+);
+
+COMMENT ON TABLE event is '이벤트 목록';
+COMMENT ON COLUMN event.eventno is '이벤트 목록 번호';
+COMMENT ON COLUMN event.managerno is '관리자번호';
+COMMENT ON COLUMN event.presentno is '선물번호';
+COMMENT ON COLUMN event.title is '이벤트제목';
+COMMENT ON COLUMN event.content is '이벤트내용';
+COMMENT ON COLUMN event.period_start is '이벤트시작날';
+COMMENT ON COLUMN event.period_end is '이벤트만료날';
+COMMENT ON COLUMN event.writer is '작성자';
+COMMENT ON COLUMN event.usercnt is '최대응모인원수';
+COMMENT ON COLUMN event.image is '이미지';
+COMMENT ON COLUMN event.image_size is '이미지크기';
+COMMENT ON COLUMN event.thumb is '썸네일';
+COMMENT ON COLUMN event.windate is '당첨발표일';
+COMMENT ON COLUMN event.wincnt is '당첨인원수';
+COMMENT ON COLUMN event.winner is '당첨자명';
+COMMENT ON COLUMN event.rdate is '등록날짜';
+
+/*등록*/
+--당첨자 3명/30명 
+INSERT INTO event(eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+image, image_size, thumb, windate,wincnt,winner,rdate)
+VALUES ((SELECT NVL(MAX(eventno), 0)+1 as eventno FROM event),
+1,1,'커트 20% 할인 이벤트','이벤트 응모 누르세요!지정된 기간안에 방문하시면 커트20%할인해드립니다.','2018-12-12','2018-12-25','미용사1', 30, 'cupon.jpg', 0, 'cupon_m.jpg', '2018-12-31', 3, '가주인', sysdate);
+INSERT INTO event(eventno, managerno, presentno, title, content, period_start, period_end, writer, usercnt, 
+image, image_size, thumb, windate,wincnt,winner,rdate)
+VALUES ((SELECT NVL(MAX(eventno), 0)+1 as eventno FROM event),
+1,1,'커트 20% 할인 이벤트','이벤트 응모 누르세요!지정된 기간안에 방문하시면 커트20%할인해드립니다.','2018-12-12','2018-12-25','미용사1', 30, 'cupon.jpg', 0, 'cupon_m.jpg', '2018-12-31', 3, '나주인', sysdate);
+
+/**********************************/
+/* Table Name: 이벤트 참여자 */
+/**********************************/  
+CREATE TABLE eventuser(
+		eventuserno                   		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
+		memberno                      		NUMBER(10)		 NULL ,
+		eventno                       		NUMBER(10)		 NULL ,
+		joindate                      		DATE		 NOT NULL,
+		win                           		VARCHAR2(10)	default '0',
+  FOREIGN KEY (memberno) REFERENCES member (memberno),
+  FOREIGN KEY (eventno) REFERENCES event (eventno)
+);
+
+COMMENT ON TABLE eventuser is '이벤트 참여자';
+COMMENT ON COLUMN eventuser.eventuserno is '이벤트 참여자 번호';
+COMMENT ON COLUMN eventuser.memberno is '회원번호';
+COMMENT ON COLUMN eventuser.eventno is '이벤트 목록 번호';
+COMMENT ON COLUMN eventuser.joindate is '참여날짜';
+COMMENT ON COLUMN eventuser.win is '당첨여부';
+
+/*등록*/
+--(당첨N > 비어있음)
+INSERT INTO eventuser(eventuserno, memberno, eventno, joindate)
+VALUES ((SELECT NVL(MAX(eventuserno), 0)+1 as eventuserno FROM eventuser),1,2,sysdate);
+INSERT INTO eventuser(eventuserno, memberno, eventno, joindate)
+VALUES ((SELECT NVL(MAX(eventuserno), 0)+1 as eventuserno FROM eventuser),2,2,sysdate);
+INSERT INTO eventuser(eventuserno, memberno, eventno, joindate)
+VALUES ((SELECT NVL(MAX(eventuserno), 0)+1 as eventuserno FROM eventuser),3,2,sysdate);

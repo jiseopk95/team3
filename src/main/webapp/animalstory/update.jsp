@@ -45,7 +45,7 @@
 <DIV class='container'>
 <DIV class='content'  style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
 
-  <div class="title_line">${title }</div>
+  <div class="title_line" style="width: 30%;">${title }</div>
     <FORM name='frm' method='POST' action='./update.do'
                enctype="multipart/form-data" class="form-horizontal">
                

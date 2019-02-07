@@ -619,3 +619,32 @@ textarea {
   margin-right: 2%;
   margin-left: 2%;
 }
+
+/** 읽기 모드 */ 
+.subject-part{
+    border-top: 2px solid #434f56;
+		padding: 17px 10px;
+		letter-spacing: -1px;
+		font-size: 15px;
+		color: #494949;
+		font-weight: bold;
+		overflow: hidden;
+}
+
+.info-part{
+  border-top: 1px solid #d9dcdd;
+		padding: 13px 10px;
+		font-size: 12px;
+		letter-spacing: -1px;
+		color: #787878;
+		overflow: hidden;
+}
+
+.content-part{
+  border-top: 1px solid #d9dcdd;
+		border-bottom: 1px solid #d9dcdd;
+		padding: 30px 20px;
+		letter-spacing: -1px;
+		font-size: 13px;
+		line-height: 160%;
+} 

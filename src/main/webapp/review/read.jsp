@@ -59,7 +59,7 @@
 
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-<DIV class='container' style='width: 100%;'>
+<DIV class='container' >
 <DIV class='content'>   
 
  <DIV class='title_line'>후기</DIV>
@@ -99,16 +99,16 @@
         <ul>
           <li class="li_none">
            <div class="subject-part">
-             <div class="subject">           
+             <div class="subject text-left">           
              <span>${reviewVO.title} </span>
              </div> 
             </div>
-            <div class="info-part">
+            <div class="info-part text-left">
             <span>작성자: ${reviewVO.name }</span>&nbsp&nbsp&nbsp&nbsp   <span class="sep">| </span>&nbsp&nbsp
             <span>작성일: ${reviewVO.rdate.substring(0, 16)}</span>&nbsp&nbsp&nbsp&nbsp  <span class="sep">| </span>&nbsp&nbsp
             <span>평점 : ${reviewVO.score}점</span>
             </div>
-            <div class = 'content-part'>
+            <div class = 'content-part text-left'>
             <DIV>
               <c:forEach var ="fileVO"  items="${file_list }">
                 <A href="javascript: panel_img('${fileVO.file }')"><IMG src='./storage/${fileVO.thumb }' style='margin-top: 2px;'></A>
