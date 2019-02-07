@@ -37,7 +37,7 @@
       <ul>
         <li class='li_none'>로그아웃되었습니다.</li>
         <li class='li_none'>
-          [<A href='${pageContext.request.contextPath}/index.do'>확인</A>]
+          [<A href='${pageContext.request.contextPath}/index.jsp'>확인</A>]
         </li>
         
       </ul>

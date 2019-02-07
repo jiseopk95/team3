@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SET memberno=#{memberno},name=#{name}, age=#{age}, gender=#{gender}, pet_type=#{pet_type}, neutralization=#{neutralization}, weight=#{weight},
     files=#{files}, thumbs=#{thumbs}, filesizes=#{filesizes}
     WHERE petno=#{petno}
-  </update>  
+  </update> 
 
   <delete id="delete" parameterType="int">
     DELETE FROM pet
