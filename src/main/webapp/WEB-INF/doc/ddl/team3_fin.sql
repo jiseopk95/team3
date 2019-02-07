@@ -72,6 +72,12 @@ INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,add
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 'user2', '1234', '왕눈이', '000-1456-5678', 'abc150@gmail.com','1215','서울시 서초구','솔데스크 545', sysdate);
 
+	UPDATE member
+	SET id = 'test' 
+	WHERE id='master';
+	
+	select * from member;
+
 
 /* manager */
 
