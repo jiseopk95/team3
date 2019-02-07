@@ -79,8 +79,8 @@
           <col width="10%">
         </colgroup>
         <tr>
-          <td class="read_title">${aniVO.title}</td>
-          <td class="read_rdate">작성일 : ${aniVO.rdate}</td>
+          <td class="read_title" style="text-align: left;">${aniVO.title}</td>
+          <td class="read_rdate">${aniVO.rdate}</td>
           <td class="show_thumbs">첨부파일</td>
         </tr>
       </table>

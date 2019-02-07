@@ -111,7 +111,7 @@
     <TD class='td' style='padding-top: 3%'>${petVO.weight}</TD>
     
     <TD class='td' style='padding-top: 3%'>
-      <A href="../chart/create.do?petno=${petno}"><IMG src='./images/upload.png'  width="20" height="20"  title='차트만들기'></A>
+      <A href="../chart/create.do?petno=${petno}&managerno=${sessionScope.managerno}"><IMG src='./images/upload.png'  width="20" height="20"  title='차트만들기'></A>
       <A href="./update.do?petno=${petno}"><IMG src='./images/update.png'  width="20" height="20"  title='수정'></A>
       <A href="./delete.do?petno=${petno}"><IMG src='./images/delete.png'  width="20" height="20"  title='삭제'></A>
     </TD>

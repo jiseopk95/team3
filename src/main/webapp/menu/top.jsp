@@ -92,7 +92,7 @@
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">소식공간 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/list_all_beauty.do">미용스타일</a></li>
-                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=">애니멀스토리</a></li>
+                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">애니멀스토리</a></li>
                        </ul>
                    </li>
 
@@ -112,9 +112,16 @@
             <div class="container-fluid center-block">
                 <ul class="nav navbar-nav">
                    <li class="active"><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
-                   
-                   <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/calendar/calendar.jsp?memberno=${memberno}">예약&캘린더</a></li>
-                   
+                   <li>
+                   <c:choose>
+                   <c:when test="${sessionScope.memberno == 1}">
+                    <a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/calendar/calendar_t.jsp?memberno=${memberno}">예약&캘린더</a>
+                   </c:when>
+                   <c:when test="${sessionScope.memberno != 1}">
+                    <a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/calendar/calendar.jsp?memberno=${memberno}">예약&캘린더</a>
+                   </c:when>
+                   </c:choose>
+                   </li>
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;" type="button"  href="#" aria-haspopup="true" aria-expanded="false">커뮤니티 <span class="caret"></span></a>
                        <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/question/list.do?categoryno=2">진료QnA</a></li>
@@ -129,7 +136,7 @@
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/list_all_beauty.do">미용스타일</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></li>
-                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=">애니멀스토리</a></li>
+                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">애니멀스토리</a></li>
                        </ul>
                    </li>
                    
@@ -151,7 +158,7 @@
                    
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;" type="button"  href="#" >진료 관리<span class="caret"></span></a>
                        <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
-                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/calendar/calendar_t.jsp">예약&캘린더</a></li>
+                            
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/chart/list.do?managerno=${managerno}">의료차트</a></li>
                        </ul>                                    
                    </li>
@@ -181,7 +188,7 @@
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/search_paging.do?categoryno=1&managerno=1">미용스타일</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="#">이벤트관리</a></li>                           
-                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=">애니멀스토리</a></li>
+                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">애니멀스토리</a></li>
                        </ul>
                    </li>
 

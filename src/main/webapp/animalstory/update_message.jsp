@@ -15,11 +15,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
+
+<script type="text/javascript">
+function exit() {
+  opener.location.reload();
+  window.close();
+}
+</script>   
     
 </head> 
 <body>
-<jsp:include page="/menu/top.jsp" flush='false' />
 <DIV class='container'>
 <DIV class='content' style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'>
 
@@ -37,8 +42,7 @@
       </c:choose>
       <LI class='li_none'>
         <br>
-        <button type='button' onclick="location.href='./read.do?anino=${param.anino}'">수정된 컨텐츠 확인</button>
-        <button type='button' onclick="location.href='./list_dog.do'">목록</button>
+        <button type="button" class="btn btn-primary" onclick="exit();">닫기</button>
       </LI>
      </UL>
   </fieldset>
@@ -47,7 +51,6 @@
 
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html> 
