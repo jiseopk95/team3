@@ -480,6 +480,7 @@ VALUES((select NVL(max(categrpno),0)+1 as categrpno from categrp), 1, '의료', 1,
 INSERT INTO categrp(categrpno, classification, name, seqno, visible, rdate)
 VALUES((select NVL(max(categrpno),0)+1 as categrpno from categrp), 2, '미용', 2, 'Y', sysdate);
 
+SELECT categrpno, classification, nzme, seqno, visible, rdate
 
 /**********************************/
 /* Table Name: 카테고리 */
