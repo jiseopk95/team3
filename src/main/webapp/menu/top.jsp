@@ -51,6 +51,7 @@
             <li class="top-li">
                <a style="color: gray !important;">[ID: ${sessionScope.id }]</a>
                <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/pet/mypage_select.jsp'>MYPAGE</a>
+               <a  style="color: gray !important; " href=' ${pageContext.request.contextPath}/pet/create.do'>반려동물 등록</a>
                <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/member/logout.do'>Logout</a>
             </li>
           </c:when>
@@ -76,8 +77,8 @@
     <c:choose>
        <c:when test="${sessionScope.id == null}">
           <nav class="navbar">
-            <div class="container-fluid center-block">
-                <ul class="nav navbar-nav">
+            <div class="container-fluid center-block" style="width:350px; float:center; margin:0 auto; text-align:center;">
+                <ul class="nav navbar-nav" style="display: table; margin: auto; padding:0; text-align:center; ">
                    <li class="active"><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                    
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;" type="button"  href="#" aria-haspopup="true" aria-expanded="false">커뮤니티 <span class="caret"></span></a>
@@ -97,8 +98,7 @@
                    </li>
 
                    
-                  </ul>
-                  <a  style="color: #626262; font-size: 15px; font-weight:bold; ">[더 많은 소식은 로그인 후 이용할 수 있습니다.]</a>                                   
+                  </ul>                             
                 </div>
              </nav>
  
@@ -109,8 +109,8 @@
     <c:choose>
        <c:when test="${sessionScope.memberno != null}">
           <nav class="navbar">
-            <div class="container-fluid center-block">
-                <ul class="nav navbar-nav">
+            <div class="container-fluid center-block" style="width:500px; float:center; margin:0 auto; text-align:center;">
+                <ul class="nav navbar-nav" style="display: table; margin: auto; padding:0; text-align:center; ">
                    <li class="active"><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                    <li>
                    <c:choose>
@@ -140,7 +140,7 @@
                        </ul>
                    </li>
                    
-                   <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href=' ${pageContext.request.contextPath}/pet/create.do'>동물 등록</a></li>
+                 
                 </ul>
            </div>
          
@@ -152,8 +152,8 @@
     <c:choose>
        <c:when test="${sessionScope.managerno != null}">
           <nav class="navbar">
-            <div class="container-fluid center-block">   
-                <ul class="nav navbar-nav">
+            <div class="container-fluid center-block" style="width:850px; float:center; margin:0 auto; text-align:center;">   
+                <ul class="nav navbar-nav" style="display: table; margin: auto; padding:0; text-align:center; ">
                    <li class="active"><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
                    
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;" type="button"  href="#" >진료 관리<span class="caret"></span></a>
