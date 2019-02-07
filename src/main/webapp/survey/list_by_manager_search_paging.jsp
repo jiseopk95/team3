@@ -273,7 +273,7 @@ function create_update_cancel() {
    <DIV id='panel_create' style='padding: 10px 0px 40px 0px; background-color:#f9f9f9; width: 100%;text-align: center;'>
       <FORM name='frm_create' id='frm_create' method='POST' action='./create.do'
              enctype="multipart/form-data" class="form-horizontal">
-         <input type='hidden' name='managerno' id='managerno' value='1'> 
+         <input type='hidden' name='managerno' id='managerno' value='${managerno}'> 
          
           <div class="row">
           <div class="col-md-5 mb-6">

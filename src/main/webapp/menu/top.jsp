@@ -121,7 +121,7 @@
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/question/list.do?categoryno=4">미용QnA</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/review/list.do?categoryno=1">진료후기</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/review/list.do?categoryno=3">미용후기</a></li>
-                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="#">설문조사 항목</a>
+                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/survey/list_m.do?memberno=${memberno}">설문조사 참여</a>
                        </ul>
                    </li>
                   
@@ -172,7 +172,7 @@
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/question/list.do?categoryno=4">미용QnA</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/review/list.do?categoryno=1">진료후기</a></li>
                             <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/review/list.do?categoryno=3">미용후기</a></li>
-                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="#">설문조사 항목</a>
+                            <li><a style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/survey/list_by_manager_search_paging.do?managerno=${managerno}">설문조사 항목</a>
                        </ul>
                    </li>                   
                   
