@@ -125,7 +125,7 @@
                        </ul>
                    </li>
                   
-                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">소식공간 <span class="caret"></span></a>
+                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;"  href="#">소식공간 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/list_all_beauty.do">미용스타일</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></li>
@@ -176,7 +176,7 @@
                        </ul>
                    </li>                   
                   
-                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">소식공간 관리 <span class="caret"></span></a>
+                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;"  href="#">소식공간 관리 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/search_paging.do?categoryno=1&managerno=1">미용스타일</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></li>
@@ -185,7 +185,7 @@
                        </ul>
                    </li>
 
-                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">카테고리 관리 <span class="caret"></span></a>
+                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;"  href="#">카테고리 관리 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/categrp/list.do">카테고리 그룹</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/category/list.do">카테고리</a></li>

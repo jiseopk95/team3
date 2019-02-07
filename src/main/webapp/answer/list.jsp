@@ -135,7 +135,7 @@
         <input type='hidden' name='reviewno' id='reviewno' value='${param.reviewno }'>
        <br><br>
         <div>
-            <div>
+            <div class="text-left">
                 <span><strong>Comments</strong></span> 
             </div>
             <div>

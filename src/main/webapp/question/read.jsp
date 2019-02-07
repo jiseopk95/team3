@@ -57,7 +57,7 @@
 
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-<DIV class='container' style='width: 100%;'>
+<DIV class='container' >
 
 <DIV class='content'>   
 
@@ -80,15 +80,15 @@
         <ul>
           <li class="li_none">
            <div class="subject-part">
-             <div class="subject">           
+             <div class="subject text-left">           
              <span>${questionVO.title}</span>
              </div> 
             </div>
-            <div class="info-part">
+            <div class="info-part text-left" >
             <span>작성자: ${questionVO.name }</span>&nbsp&nbsp&nbsp&nbsp   <span class="sep">| </span>&nbsp&nbsp
             <span>작성일: ${questionVO.rdate.substring(0, 16)}</span>&nbsp&nbsp&nbsp&nbsp  <span class="sep">| </span>&nbsp&nbsp
             </div>
-            <div class = 'content-part'>
+            <div class = 'content-part text-left'>
             <DIV>${questionVO.content }</DIV>
           </li>
           </div>
