@@ -76,5 +76,5 @@ public interface BeautyProcInter {
    * @param title 
    * @return 페이징 생성 문자열
    */ 
-  public String paging(int categoryno, int search_count, int nowPage, String title);
+  public String paging(int search_count, int nowPage, String title);
 }
