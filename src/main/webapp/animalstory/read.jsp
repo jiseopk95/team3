@@ -91,11 +91,7 @@
       </c:forEach>
       <a class="hide_thumbs" href="javascript: hide_thumbs();">숨기기</a>
       </div>
-      <table class="read_content">
-        <tr>
-          <td>${aniVO.content }</td>
-        </tr>
-      </table>
+      <div style="text-align: left;">${aniVO.content }</div>
 
   </FORM>
 </DIV> <!-- content END -->

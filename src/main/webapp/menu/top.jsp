@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>Pet Doctor</title> <!-- 주소창 타이틀 -->
-    <link href="./css/style.css" rel='Stylesheet' type='text/css'>
+    <link href="${pageContext.request.contextPath}/css/style.css" rel='Stylesheet' type='text/css'>
     
     <script type="text/JavaScript"
           src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

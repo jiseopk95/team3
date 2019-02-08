@@ -58,7 +58,7 @@ td {
 <body>
 <DIV class='container' >
 <DIV class='content' style='width: 80%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
-<div class="title_line">예약내용</div>
+<div class="title_line" style="width: 30%;">예약내용</div>
   <TABLE class='table'>
     <colgroup>
     <col style='width: 35%;'/>

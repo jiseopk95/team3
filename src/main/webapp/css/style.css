@@ -80,7 +80,9 @@
     color: #FFFFFF; 
     background-color: #FF0000;
   }  
-  
+  a {
+    text-decoration: none;
+  }
   A:link{  /* 방문전 상태 */
     text-decoration: none; /* 밑줄 삭제 */
     color: #333333;

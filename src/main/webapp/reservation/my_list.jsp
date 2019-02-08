@@ -138,6 +138,16 @@ String today = year + "-" + month;
     }
     
   }
+  
+  function read(reservationno) {
+    var url = './read.do?reservationno=' + reservationno; 
+    var win = window.open(url, '예약 확인', 'width=500px, height=500px');
+    
+    var x = (screen.width - 500) / 2; // 1000 - 500 = 500 / 2 = 250
+    var y = (screen.height - 350) / 2; // 800 - 350 = 450 / 2 = 225
+    
+    win.moveTo(x, y); //  화면을 가운데로 이동
+  }
 </script>
 </head>
 <body>
@@ -179,7 +189,7 @@ String today = year + "-" + month;
           <td style='vertical-align: middle; text-align: center ;'>${reservationVO.reservationno }</td>
           <td style='vertical-align: middle; text-align: center ;'>${reservationVO.restype }</td>
           <td style='vertical-align: middle; text-align: center ;'>${reservationVO.name }</td>
-          <td style='vertical-align: middle; text-align: center ;'><a href="./read.do?reservationno=${reservationVO.reservationno }">${reservationVO.title }</a></td>
+          <td style='vertical-align: middle; text-align: center ;'><a href="javascript:read(${reservationVO.reservationno });">${reservationVO.title }</a></td>
           <td style='vertical-align: middle; text-align: center ;'>${reservationVO.resdate }</td>
           <td style='vertical-align: middle; text-align: center ;'>${reservationVO.restime }</td>
           <td style='vertical-align: middle; text-align: center ;'>
