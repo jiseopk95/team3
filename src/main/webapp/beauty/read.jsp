@@ -58,11 +58,11 @@
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container' >
-<DIV class='content' style='width: 80%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'> 
-   <input type='hidden' name='categoryno' id='categoryno' value='1'> <!-- 원래 value 가 param.categoryno이런거였음. -->
-      <input type='hidden' name='managerno' id='managerno' value='1'>
+<DIV class='content' style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'> 
+   <input type='hidden' name='categoryno' id='categoryno' value='${param.categoryno}'> <!-- 원래 value 가 param.categoryno이런거였음. -->
+      <input type='hidden' name='managerno' id='managerno' value='${sessionScope.managerno}'>
             
- <ASIDE style='float: left;'>
+<%--  <ASIDE style='float: left;'>
     <A href='../category/list.do?categrpno=${categoryVO.categrpno }'>카테고리</A>
     <span style='font-size: 1.2em;'>></span>  
     <A href='./list_by_category.do?categoryno=${categoryVO.categoryno }&word=${param.word}'>${categoryVO.title }</A>
@@ -70,58 +70,56 @@
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
-    <A href='./list_all_beauty.do?categoryno=${param.categoryno}&word=${param.word}&nowPage=${param.nowPage}'>목록</A>
-    <c:if test="${sessionScope.id ne null }">
+    <A href='./search_paging.do?nowPage=${param.nowPage}'>목록</A>
+    <c:if test="${sessionScope.managerno ne null }">
       <span class='menu_divide' >│</span> 
-      <A href='./create.do?categoryno=${categoryVO.categoryno }'>등록</A>
+      <A href='./create.do?managerno=${sessionScope.managerno}'>등록</A>
       <span class='menu_divide' >│</span> 
-      <A href='./reply.do?categoryno=${categoryVO.categoryno }&styleno=${beautyVO.styleno }&word=${param.word}&nowPage=${param.nowPage}'>답변</A>
-      <span class='menu_divide' >│</span> 
-      <A href='./update.do?styleno=${beautyVO.styleno }&word=${param.word}&nowPage=${param.nowPage}'>수정</A>
-      <span class='menu_divide' >│</span> 
-      <A href='./delete.do?styleno=${beautyVO.styleno }&categoryno=${categoryVO.categoryno }&word=${param.word}&nowPage=${param.nowPage}'>삭제</A>
     </c:if>
-  </ASIDE>  
-  
-  <div class='menu_line'></div>
+  </ASIDE>   --%>
 
   <DIV id='main_panel'></DIV>
   
   <FORM name='frm' method="get" action='./update.do'>
       <input type="hidden" name="styleno" value="${beautyVO.styleno}">
       <fieldset class="fieldset">
-        <ul>
-         <li class="li_none">
-            <span style="font-weight: bold;">${beautyVO.title}</span>
-           </li>
-                <li class="li_none">
+      <table style="margin-bottom: 10px;width:100%;">
+        <colgroup>  <!-- tr과 연관, 한행에서 왼쪽기준부터 85퍼는 타이틀준다는 뜻 15퍼에 날짜주면 자동으로 오른쪽부분에 날짜가 찍히게됨. -->
+          <col width="85%">
+          <col width="15%">
+        </colgroup>
+        <tr>
+    <td style="font-weight: bold; font-size:20px; text-align: left; padding-left:10px;">${beautyVO.title}</td>
+          <td> (${beautyVO.rdate.substring(0, 16)})</td>
+
+        </tr>
+      </table>
+  <div class='menu_line'></div>
             <DIV style='float:left; margin: 10px 10px 0px 10px; width: 40%;'>
               <c:forEach var ="fileVO"  items="${file_list }">
                 <A href="javascript: panel_img('${fileVO.file }')"><IMG src='./storage/${fileVO.file }' style='width:100%;'></A>
               </c:forEach>
             </DIV>
-            <DIV>${beautyVO.content }</DIV>
-          </li>
-          <li class='li_none'>
-          <DIV style='display: table;'>
-          <DIV style='display: table-cell;'>
-            <DIV style='float: left; padding-top: 5px;'> 
-   작성자 : ${beautyVO.rname}( ${beautyVO.email } )<br>▶총 비용 : ${beautyVO.pay}원 / ▶소요시간 : ${beautyVO.times} 시간 
-   <br>
-   조회 수 : <span>${beautyVO.cnt}</span>
-            <span>(${beautyVO.rdate.substring(0, 16)})</span>
-           </DIV>
-           </DIV>
-           </DIV>
-            </li>
-        </ul>
+            <table style="margin-left:0px; margin-top:20px">
+        <tr>
+          <td>${beautyVO.content }</td>
+        </tr>
+           </table>
+               <table style="margin-left:0px; margin-top:50px">
+        
+         <tr><td> ▶총 비용 : ${beautyVO.pay}원 / ▶소요시간 : ${beautyVO.times} 시간</td></tr>  <!-- tr은 행, 일종의 한줄띄기 느낌 -->
+        <tr><td style="text-align: left;">작성자 : ${beautyVO.rname}( ${beautyVO.email} )</td></tr>
+      <tr> <td style="text-align: left;">조회 수 : ${beautyVO.cnt}</td></tr>
+    </table>
+         <button type="button" class="btn btn-primary btn-sm" style='margin-left: 95%;'
+    onclick="location.href='./search_paging.do?nowPage=${param.nowPage}'">목록</button>
       </fieldset>
   </FORM>
 
 
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html>

@@ -76,10 +76,10 @@ function delete_present(presentno) {
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 
-<DIV class='container'>
-<DIV class='title_line'>이벤트선물
+<DIV class='container' style='width:80%;'>
+<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
+<DIV class='title_line' style="margin-bottom:50px">이벤트선물
  </DIV>
-<DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'>
     <!-- Modal -->
   <div class="modal fade" id="modal_panel" role="dialog">
     <div class="modal-dialog">
@@ -114,8 +114,7 @@ function delete_present(presentno) {
         <col style="width: 5%;"></col>
         <col style="width: 60%;"></col>
         <col style="width: 15%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 10%;"></col>
+        <col style="width: 20%;"></col>
         
       </colgroup>
       <%-- table 컬럼 --%>
@@ -124,7 +123,6 @@ function delete_present(presentno) {
           <th style='text-align: center;'>번호</th>
           <th style='text-align: center;'>선물내용</th>  
           <th style='text-align: center;'>만료일</th>  
-          <th style='text-align: center;'>이벤트이동</th>  <!-- 아마 여기에 선물번호로 연결해줘야 할것같음.. -->
           <th style='text-align: center;'>기타</th>  
         </tr>
       
@@ -137,8 +135,6 @@ function delete_present(presentno) {
              <td style='vertical-align: middle; text-align: center;'>${presentVO.presentno}</td>
             <td style='vertical-align: middle;'>${presentVO.info}</td>
             <td style='vertical-align: middle;'>${presentVO.end_date}</td>
-            <td style='vertical-align: middle;'>
-            <a href="../event/search_paging.do?presentno=${presentVO.presentno}"><img src="./images/move.png" title="이동" border='0' style='width: 20px; height: 20px;'/></a></td>
             <td style='vertical-align: middle;'><!-- 뷰티카테고리를 1번이라 임시지정, 마지막에 조인할 때 managerno도 들어가서 값 받을 수 있게끔 수정필요. -->
              <a href="./create.do"><img src="./images/create.png" title="등록" border='0' style='width: 20px; height: 20px;'/></a>
               <a href="./update.do?presentno=${presentVO.presentno}"><img src="./images/update.png" title="수정" border='0' style='width: 20px; height: 20px;'/></a>

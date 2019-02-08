@@ -175,7 +175,7 @@ public class BeautyProc implements BeautyProcInter {
    * @return 페이징 생성 문자열
    */ 
   @Override
-  public String paging(int categoryno, int search_count, int nowPage, String title){ 
+  public String paging(int search_count, int nowPage, String title){ 
     int totalPage = (int)(Math.ceil((double)search_count/Beauty.RECORD_PER_PAGE)); // 전체 페이지  
     int totalGrp = (int)(Math.ceil((double)totalPage/Beauty.PAGE_PER_BLOCK));// 전체 그룹 
     int nowGrp = (int)(Math.ceil((double)nowPage/Beauty.PAGE_PER_BLOCK));    // 현재 그룹 
@@ -219,7 +219,7 @@ public class BeautyProc implements BeautyProcInter {
     // 현재 3그룹일 경우: (3 - 1) * 10 = 2그룹의 20
     int _nowPage = (nowGrp-1) * Beauty.PAGE_PER_BLOCK;  
     if (nowGrp >= 2){ 
-      str.append("<span class='span_box_1'><A href='./search_paging.do?&title="+title+"&nowPage="+_nowPage+"&categoryno="+categoryno+"'>이전</A></span>"); 
+      str.append("<span class='span_box_1'><A href='./search_paging.do?&title="+title+"&nowPage="+_nowPage+"'>이전</A></span>"); 
     } 
 
     for(int i=startPage; i<=endPage; i++){ 
@@ -231,7 +231,7 @@ public class BeautyProc implements BeautyProcInter {
         str.append("<span class='span_box_2'>"+i+"</span>"); // 현재 페이지, 강조 
       }else{
         // 현재 페이지가 아닌 페이지
-        str.append("<span class='span_box_1'><A href='./search_paging.do?title="+title+"&nowPage="+i+"&categoryno="+categoryno+"'>"+i+"</A></span>");   
+        str.append("<span class='span_box_1'><A href='./search_paging.do?title="+title+"&nowPage="+i+"'>"+i+"</A></span>");   
       } 
     } 
 
@@ -241,7 +241,7 @@ public class BeautyProc implements BeautyProcInter {
     // 현재 2그룹일 경우: (2 * 10) + 1 = 3그룹의 21
     _nowPage = (nowGrp * Beauty.PAGE_PER_BLOCK)+1;  
     if (nowGrp < totalGrp){ 
-      str.append("<span class='span_box_1'><A href='./search_paging.do?&title="+title+"&nowPage="+_nowPage+"&categoryno="+categoryno+"'>다음</A></span>"); 
+      str.append("<span class='span_box_1'><A href='./search_paging.do?&title="+title+"&nowPage="+_nowPage+"'>다음</A></span>"); 
     } 
     str.append("</DIV>"); 
      

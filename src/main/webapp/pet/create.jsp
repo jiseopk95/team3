@@ -33,13 +33,7 @@
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
 <DIV class='title_line' >반려동물 등록</DIV>
-  <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A>
-    <!-- <span class='menu_divide' >│</span> 
-    <A href='./login.do'>로그인 &nbsp</A> -->
-  </ASIDE>
-  <br>
-  <div class='menu_line'></div>
+  
   <br>
  
   <DIV id='main_panel'></DIV>
@@ -73,14 +67,14 @@
 
       <label for="name" >이름</label> &nbsp
         <input type='text'  name='name' id='name' 
-                   value='' required="required" style='width: 30%;' placeholder=""> <br><br>
+                   value='' required="required" style='width: 20%;' placeholder=""> <br><br>
 
     
    
       <label for="age" >나이</label> &nbsp
-      <input type='text' name='age' id='age' value='' required="required" style='width: 30%;' placeholder="" autofocus="autofocus"> 
+      <input type='text' name='age' id='age' value='' required="required" style='width: 20%;' placeholder="" autofocus="autofocus"> 
     <br><br>
-
+&nbsp&nbsp&nbsp&nbsp&nbsp
     <label for="gender" >성별</label> &nbsp 
       <label><input type="radio" name="gender" id='gender1' value='수컷'  />수컷&nbsp</label>
       <label><input type="radio" name="gender" id='gender2' value='암컷' />암컷</label>
@@ -95,9 +89,9 @@
                 
    
       <label for="pet_type" >종류</label> &nbsp   
-        <input type='text' name='pet_type' id='pet_type' value='' required="required" style='width: 30%;' placeholder="">
+        <input type='text' name='pet_type' id='pet_type' value='' required="required" style='width: 20%;' placeholder="">
 <br><br>
-
+&nbsp&nbsp&nbsp&nbsp&nbsp
     <label for="neutralization" >중성화 여부</label> &nbsp
       <label><input type="radio" name="neutralization" id='neutralization1' value='N'  />N&nbsp</label>
       <label><input type="radio" name="neutralization" id='neutralization2' value='Y' />Y</label>
@@ -109,13 +103,14 @@
       </div>
     </div>  -->
     <label for="weight" >체중</label> &nbsp    
-        <input type='text' name='weight' id='weight' value='' required="required" style='width: 30%;' placeholder="">
+        <input type='text' name='weight' id='weight' value='' required="required" style='width: 20%;' placeholder="">
         
      <br><br>      
        <div class="form-group">   
-        <label for="files" class="col-md-1 control-label">업로드 파일</label>
-        <div class="col-md-11">
-          <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple">
+        <label for="files" class="col-md-1 control-label" style="text-align: center !important ; width: 100%; margin: 0px auto; margin-bottom: 3%; color: #000000; font-weight: bold;">반려동물 사진 첨부</label>
+        <div class="col-md-11" style="margin-left: 3%;">
+         <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple" style="width: 80%; margin: 0px auto;">
+          
           <br>
          
         </div>

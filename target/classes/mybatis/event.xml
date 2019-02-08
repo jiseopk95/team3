@@ -93,10 +93,9 @@ image, image_size, thumb, windate,wincnt,winner,rdate, r
                         FROM event
                         <choose>
                           <when test="content == null or content == ''"> <!-- 검색하지 않는 경우 -->
-                          WHERE managerno=#{managerno}
                           </when>
                           <otherwise>
-                            WHERE managerno=#{managerno} AND content LIKE '%' || #{content} || '%'  
+                            WHERE content LIKE '%' || #{content} || '%'  
                           </otherwise>
                         </choose>
                         ORDER BY rdate DESC

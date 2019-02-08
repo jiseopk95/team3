@@ -26,7 +26,7 @@ public class BeautyVO {
   private String id = "";
   
   private int styleno;
-  private int categoryno;
+  private int categoryno;  //사실상 안쓰게됐음.
   private int managerno;
   private String title="";
   private String name="";

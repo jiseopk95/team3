@@ -38,8 +38,8 @@
       </c:choose>
       <LI class='li_none'>
         <br>
-        <button type='button' class="btn btn-primary btn-sm" onclick="location.href='./read.do?styleno=${param.styleno}&categoryno=${param.categoryno}'">수정된 컨텐츠 확인</button>
-        <button type='button' class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do?categoryno=${param.categoryno}'">목록</button>
+        <button type='button' class="btn btn-primary btn-sm" onclick="location.href='./read.do?styleno=${param.styleno}'">수정된 컨텐츠 확인</button>
+        <button type='button' class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do'">목록</button>
       </LI>
      </UL>
   </fieldset>
@@ -47,8 +47,8 @@
 </DIV>
 
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html> 

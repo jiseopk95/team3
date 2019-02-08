@@ -139,7 +139,7 @@ function seqnoDown(surveyitemno,surveyno) {
 
   
     <DIV class='title_line' style="width:30%;">
-  <span style="font-size:18px;font-weight:bold;"><IMG src='./images/q.png'>  ${surveyVO.survey_title}<br></span>
+  <span style="font-size:18px;font-weight:bold;"><IMG src='./images/q.png'>  ${surveyVO.survey_title}</span>
   <br>
   </DIV>
 

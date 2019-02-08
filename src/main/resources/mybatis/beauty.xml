@@ -6,16 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="beauty">
   <insert id="create" parameterType="BeautyVO">
-  INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, 
+  INSERT INTO style(styleno, managerno, title, name, rname, like1, 
                           email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
   VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
-              1,1,#{title},#{name},#{rname},#{like1},
+              #{managerno},#{title},#{name},#{rname},#{like1},
               #{email},#{content},#{cnt},#{image},#{image_name}, #{thumb},
               #{sizes}, #{pay}, #{times}, sysdate)
   </insert>
     
   <select id="list_all_beauty" resultType="BeautyVO">
-  SELECT styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
+  SELECT styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
   FROM style 
   ORDER BY styleno
   </select>
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </delete>
   
     <select id="read" resultType="BeautyVO" parameterType="int">
-    SELECT styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
+    SELECT styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
     FROM style
    WHERE styleno=#{styleno} 
     </select>
@@ -50,19 +50,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </update>
   <!-- 조회수순으로 보기 -->
     <select id="list_all_cnt" resultType="BeautyVO">
-  SELECT styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
+  SELECT styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
   FROM style 
   ORDER BY cnt DESC
   </select>
     <!-- 좋아요순으로 보기 -->
     <select id="list_all_like1" resultType="BeautyVO">
-  SELECT styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
+  SELECT styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
   FROM style 
   ORDER BY like1 DESC
   </select>
       <!-- 최신순으로 보기 -->
     <select id="list_all_rdate" resultType="BeautyVO">
-  SELECT styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
+  SELECT styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate
   FROM style 
   ORDER BY rdate DESC
   </select>
@@ -75,21 +75,21 @@ WHERE categoryno=1 AND title LIKE '%곰돌이%'
 ORDER BY styleno ASC; -->
   
  <select id="search_paging" resultType="BeautyVO" parameterType="HashMap">
-   SELECT styleno,categoryno, managerno, title, name, rname, like1, email, 
+   SELECT styleno, managerno, title, name, rname, like1, email, 
    content,cnt,image,image_name,thumb,sizes,pay,times,rdate, r
     FROM (
-              SELECT styleno,categoryno, managerno, title, name, rname, like1, email,
+              SELECT styleno, managerno, title, name, rname, like1, email,
                content,cnt,image,image_name,thumb,sizes,pay,times,rdate, rownum as r
               FROM (
-                        SELECT styleno,categoryno, managerno, title, name, rname, like1, email, 
+                        SELECT styleno, managerno, title, name, rname, like1, email, 
                         content,cnt,image,image_name,thumb,sizes,pay,times,rdate
                         FROM style
                         <choose>
                           <when test="title == null or title == ''"> <!-- 검색하지 않는 경우 -->
-                            WHERE categoryno=#{categoryno}
+                      
                           </when>
                           <otherwise>
-                            WHERE categoryno=#{categoryno} AND title LIKE '%' || #{title} || '%'  
+                            WHERE title LIKE '%' || #{title} || '%'  
                           </otherwise>
                         </choose>
                         ORDER BY rdate DESC
@@ -106,10 +106,9 @@ ORDER BY styleno ASC; -->
     FROM style
     <choose>
       <when test="title == null or title == ''"> <!-- 검색하지 않는 경우 -->
-        WHERE categoryno=#{categoryno}
       </when>
       <otherwise>
-        WHERE categoryno=#{categoryno} AND title LIKE '%' || #{title} || '%'  
+       WHERE title LIKE '%' || #{title} || '%'  
       </otherwise>
     </choose>
   </select>

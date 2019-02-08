@@ -28,7 +28,7 @@
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container' >
-<DIV class='content' style='width: 80%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>     
+<DIV class='content' style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'>     
 
 <%--   <ASIDE style='float: left;'>
     <A href='../category/list.do'>게시판 목록</A>
@@ -47,7 +47,6 @@
 <!--   <div class='menu_line'></div> -->
   <FORM name='frm' method='POST' action='./update.do'
              enctype="multipart/form-data" class="form-horizontal">
-      <input type='hidden' name='categoryno' id='categoryno' value='1'>
       <input type='hidden' name='styleno' id='styleno' value='${beautyVO.styleno }'>
       <div class="form-group">   
         <label for="title" class="col-md-1 control-label">제목</label>
@@ -114,14 +113,14 @@
 
       <DIV style='text-align: right;'>
         <button type="submit" class="btn btn-primary btn-sm">변경된 내용 저장</button>
-<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do?categoryno=1<%-- ${categoryVO.categoryno} --%>'">취소[목록]</button>
+<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do'">취소[목록]</button>
       </DIV>
   </FORM>
 
 
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html> 

@@ -25,10 +25,10 @@
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 
 <DIV class='container'>
-<DIV class='title_line'>이벤트참여자
- </DIV>
 <DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'>
-    <!-- Modal -->    
+<DIV class='title_line' style="margin-bottom:50px">이벤트참여자
+ </DIV>
+     <!-- Modal -->    
   <div class="modal fade" id="modal_panel" role="dialog">
     <div class="modal-dialog">
     
