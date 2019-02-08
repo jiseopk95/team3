@@ -88,30 +88,28 @@
      <br><br>
     <input type='hidden' name='kind' id='kind' value='${managerVO.kind }'>               
 
-     <label for="name" >성명</label>    
-     
-        <input type='text' name='name' id='name' 
-                   value='${managerVO.name }'required="required" style='width: 20%;' placeholder="성명">  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+     <label for="name" >성명</label>  ${managerVO.name }   
+     <input type='hidden' name='name' id='name' value='${managerVO.name }'>
      <br><br>
      
-     <label for="position" >직급</label>    
+     &nbsp<label for="position" >직급</label>    
      
         <input type='text' name='position' id='position' 
-                   value='${managerVO.position }'required="required" style='width: 20%;' placeholder="직급">  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   value='${managerVO.position }'required="required" style='width: 20%;' placeholder="직급">
      <br><br>
      
       <label for="phone" >전화번호</label>    
         <input type='text'  name='phone' id='phone'
-                   value='${managerVO.phone }'required="required" style='width: 20%;' placeholder="전화번호">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   value='${managerVO.phone }'required="required" style='width: 20%;' placeholder="전화번호">&nbsp&nbsp&nbsp&nbsp&nbsp
       <br><br>
       
-      &nbsp&nbsp
+      &nbsp
       <label for="email" >이메일</label>    
         <input type='text'  name='email' id='email'
-                   value='${managerVO.email }' required="required" style='width: 20%;' placeholder="이메일">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   value='${managerVO.email }' required="required" style='width: 20%;' placeholder="이메일">&nbsp&nbsp&nbsp&nbsp
       <br><br>
       
-  &nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <label for="zipcode" >우편번호</label>    
     
         <input type='text' name='zipcode' id='zipcode' 
@@ -119,20 +117,8 @@
          &nbsp
         <input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
     <br><br>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <label for="address1" >주소</label>    
-      
-        <input type='text'  name='address1' id='address1' 
-                   value='${managerVO.address1 }'rrequired="required" style='width: 35%;' placeholder="주소"> &nbsp
-    <br><br>
-
-      <label for="address2" >상세 주소</label>    
-        <input type='text' name='address2' id='address2' 
-                   value='${managerVO.address2 }'required="required" style='width: 35%;' placeholder="상세 주소"> &nbsp
-<br><br>
-
-<!-- ----- DAUM 우편번호 API 시작 ----- -->
-<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 110px;position:relative">
+     <!-- ----- DAUM 우편번호 API 시작 ----- -->
+<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:0px auto;position:relative">
   <img src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 </div>
 
@@ -198,7 +184,17 @@
     }
 </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
-
+<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <label for="address1" >주소</label>    
+      
+        <input type='text'  name='address1' id='address1' 
+                   value='${managerVO.address1 }'rrequired="required" style='width: 30%;' placeholder="주소"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <br><br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <label for="address2" >상세 주소</label>    
+        <input type='text' name='address2' id='address2' 
+                   value='${managerVO.address2 }'required="required" style='width: 30%;' placeholder="상세 주소"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 <br><br> 
      
      <div id='file1Panel' class="form-group">
@@ -207,18 +203,19 @@
           <c:if test="${file_list.size() > 0 }">
               <DIV>
                 <c:forEach var ="fileVO"  items="${file_list }">
-                  <A href="javascript: panel_img('${fileVO.files }')"><IMG src='./storage/${fileVO.thumbs }' style='margin-top: 2px;'></A>
+                  <A href="javascript: panel_img('${fileVO.files }')"><%-- <IMG src='./storage/${fileVO.thumbs }' style='margin-top: 2px;'> --%></A>
                 </c:forEach>
               </DIV>
             </c:if>
         </div>
       </div>     
        <div class="form-group">   
-        <label for="files" class="col-md-1 control-label">업로드 파일</label>
-        <div class="col-md-11">
-          <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple">
+        <label for="files" class="col-md-1 control-label" style="text-align: center !important ; width: 100%; margin: 0px auto; margin-bottom: 3%; color: #000000; font-weight: bold;">사원증 사진 첨부</label>
+        <div class="col-md-11" style="margin-left: 3%;">
+          <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple" style="width: 80%; margin: 0px auto;">
+          
           <br>
-        
+         
         </div>
       </div>
    

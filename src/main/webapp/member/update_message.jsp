@@ -46,7 +46,7 @@
           <li class='li_none'>수정 성공했습니다.</li>
           <li class='li_none'>
             <br>
-            <button type='button' onclick="location.href='./list.do'">수정 확인</button>
+            <button type='button' onclick="location.href='./list_search.do'">수정 확인</button>
             <button type='button' onclick="location.href='${pageContext.request.contextPath}'">홈</button>
           </li>          
  
