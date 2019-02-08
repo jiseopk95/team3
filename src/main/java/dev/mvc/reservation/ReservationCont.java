@@ -172,7 +172,6 @@ public class ReservationCont {
   public ResponseEntity deleteOne(int reservationno) {
     HttpHeaders responseHeaders = new HttpHeaders();
     ReservationVO reservationVO = reservationProc.read(reservationno);
-    
     JSONObject json = new JSONObject();
     json.put("name", reservationVO.getName());
     json.put("title", reservationVO.getTitle());

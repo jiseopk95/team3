@@ -71,4 +71,10 @@ public class ReservationDAO implements ReservationDAOInter {
     return sqlSessionTemplate.delete("reservation.delete", reservationno);
   }
 
+  @Override
+  public String pet_name(int petno) {
+    
+    return sqlSessionTemplate.selectOne("reservation.pet_name", petno);
+  }
+
 }

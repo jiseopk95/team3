@@ -6,8 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="reservation">
 
-  <select id="pet_list" parameterType="int" resultType="PetVO">
-    SELECT name FROM pet WHERE memberno = #{memberno}
+  <select id="pet_list" parameterType="int" resultType="ResPetVO">
+    SELECT name, petno FROM pet WHERE memberno = #{memberno}
+  </select>
+  
+  <select id="pet_name" parameterType="int" resultType="ResPetVO">
+    SELECT name, petno FROM pet WHERE petno = #{petno}
   </select>
   
   <select id="time_h_list" parameterType="String" resultType="Time_hVO">
