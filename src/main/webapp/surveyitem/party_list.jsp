@@ -110,7 +110,7 @@ function submit_proc(surveyitemno) {
   <TR>
     <TD style='text-align: center ;'>${survey_itemVO.surveyitemno}</TD>  
     
-    <td style='vertical-align: middle;'>
+    <td style='text-align: left;'>
               <c:choose>
             
                 <c:when test="${survey_itemVO.thumb != ''}">
