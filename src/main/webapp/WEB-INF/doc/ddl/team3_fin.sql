@@ -80,6 +80,7 @@ VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 	WHERE id='master';
 	
 	select * from member;
+	select * from pet
 
 =======
 select memberno, id from member 
@@ -262,9 +263,13 @@ COMMENT ON COLUMN reservation.restype is '종류';
 COMMENT ON COLUMN reservation.petno is '동물번호';
 COMMENT ON COLUMN reservation.memberno is '회원번호';
 COMMENT ON COLUMN reservation.rdate is '입력날짜'; 
+<<<<<<< HEAD
 drop table reservation
 delete from pet
 delete from pet
+=======
+select * from tab
+>>>>>>> branch 'master' of https://github.com/jiseopk95/team3.git
 1. 등록 
  INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
