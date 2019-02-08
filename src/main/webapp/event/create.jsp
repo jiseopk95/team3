@@ -46,7 +46,7 @@
   </ASIDE>   --%>
     
 <!--   <div class='menu_line'></div> -->
-  <DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'> 
+  <DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'> 
     <FORM name='frm' method='POST' action='./create.do'
                enctype="multipart/form-data" class="form-horizontal">
             <%--    <input type='hidden' name='styleno' id='styleno' value=' ${beautyVO.styleno}'>  --%>
@@ -78,7 +78,7 @@
       <div class="form-group">   
         <label for="writer" class="col-md-1 control-label">작성자</label>
         <div class="col-md-11">
-          <input type='text' class="form-control input-lg" name='writer' id='writer' value='관리자' required="required" style='width: 30%;'>
+          <input type='text' class="form-control input-lg" name='writer' id='writer' value='${sessionScope.name}' required="required" style='width: 30%;'>
         </div>
       </div>
         <div class="form-group">   
@@ -115,8 +115,8 @@
       </div>   
 
       <DIV style='text-align: right;'>
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./search_paging.do'">취소[목록]</button>
+        <button type="submit" class="btn btn-primary btn-sm">등록</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do?managerno=${param.managerno}'">취소[목록]</button>
       </DIV> 
     </FORM>
 <!-- </DIV> -->

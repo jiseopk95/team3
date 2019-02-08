@@ -28,7 +28,7 @@
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container' >
-<DIV class='content' style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'>     
+<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>     
 
 <%--   <ASIDE style='float: left;'>
     <A href='../category/list.do'>게시판 목록</A>

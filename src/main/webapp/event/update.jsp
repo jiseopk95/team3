@@ -14,21 +14,26 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
 
-<!-- <script type="text/javascript" src="../ckeditor/ckeditor.js"></script> -->
-
-<!-- <script type="text/JavaScript">
+/* <script type="text/JavaScript">
   window.onload=function(){
     CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
-  };
-</script> -->
+  }; */
+
+	  
+/* 	  var info = "${event_presentVO.info }"; 
+	  $("#present").val(info).prop("selected", true); */
+
+	  
+	  </script>
 
 </head> 
 
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container' >
-<DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'>     
+<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>     
 
 <%--   <ASIDE style='float: left;'>
     <A href='../category/list.do'>게시판 목록</A>
@@ -65,9 +70,9 @@
            <div class="form-group">   
         <label for="presentno" class="col-md-1 control-label">선물</label>
         <div class="col-md-11">
-     <select class="form-control" id="present" name="presentno">
-            <option value="">--다시선택해주세요--</option>
-            <c:forEach var="event_presentVO" items="${list_present }">
+     <select class="form-control" id="present" name="presentno" onchange="selCh(this)">
+                 <option value="default">--선물 리스트--</option>
+                <c:forEach var="event_presentVO" items="${list_present }">
             <option value="${event_presentVO.presentno }">${event_presentVO.info }</option>
             </c:forEach><!-- 내가 안나온 이유 - controller에 등록get에서 이거 나오게 값을 안설정해줌 추가를 안해줌. -->
           </select>
@@ -126,7 +131,7 @@
 
       <DIV style='text-align: right;'>
         <button type="submit" class="btn btn-primary btn-sm">변경된 내용 저장</button>
-<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do'">취소[목록]</button>
+<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./search_paging.do?managerno=${param.managerno}'">취소[목록]</button>
       </DIV>
   </FORM>
 
