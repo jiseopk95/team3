@@ -19,18 +19,7 @@
 <DIV class='container'>
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
-  <ASIDE style='float: left;'>
-      <A href='./member/list.do'>회원 목록</A> > 회원 삭제 
-  </ASIDE>
-  <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>목록</A>
-  </ASIDE> 
-
-  <div class='menu_line'></div>
+  
 <DIV class='title_line'>회원 삭제</DIV>
 
 <DIV class='content' style='width: 500px; text-align: center;'>

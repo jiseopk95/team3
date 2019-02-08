@@ -40,7 +40,7 @@
           <li class='li_none'>
             <br>
             <button type='button' onclick='history.back()'>다시 시도</button>
-            <button type='button' onclick="location.href='${pageContext.request.contextPath}'">취소</button>
+            <button type='button' onclick="location.href='${pageContext.request.contextPath}/index.jsp'">취소</button>
           </li>
         </c:when>
         <c:when test="${param.sw == 'create'}">
@@ -51,14 +51,14 @@
               <li class='li_none'>
                 <br>
                 <button type='button' onclick='history.back()'>다시 시도</button>
-                <button type='button' onclick="location.href='${pageContext.request.contextPath}'">취소</button>
+                <button type='button' onclick="location.href='${pageContext.request.contextPath}/index.jsp'">취소</button>
               </li>
             </c:when>
             <c:when test="${param.count == 1 }">
               <li class='li_none'>회원가입 성공했습니다.</li>
               <li class='li_none'>
                 <br>
-                <button type='button' onclick="location.href='${pageContext.request.contextPath}'">확인</button>
+                <button type='button' onclick="location.href='${pageContext.request.contextPath}/index.jsp'">확인</button>
               </li>          
 
             </c:when>

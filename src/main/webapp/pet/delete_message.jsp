@@ -47,8 +47,7 @@
         </c:choose>
      
         <li class='li_none'>
-          [<A href='./list.do'>목록</A>]
-          [<A href='${pageContext.request.contextPath}/home.do'>확인</A>]
+          [<A href='${pageContext.request.contextPath}/pet/list_search.do'>확인</A>]
         </li>
         
       </ul>

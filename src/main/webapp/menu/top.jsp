@@ -58,7 +58,7 @@
           <c:when test="${sessionScope.managerno != null}">
             <li class="top-li">
                <a style="color: gray !important;">[ID: ${sessionScope.id }]</a>
-               <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/manager/read.do?managerno=${managerno}'>관리자페이지</a>
+               <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/manager/read.do?managerno=${managerno }'>MYPAGE</a>
                <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/manager/logout.do'>Logout</a>
             </li>
           </c:when>

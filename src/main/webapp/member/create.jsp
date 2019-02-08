@@ -39,18 +39,17 @@
         var msg = "";
 
         if (data.cnt > 0) {
-          $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
-          msg = "이미 사용중인 ID 입니다.";
-          /* alert('이미 사용중인 ID 입니다.'); */
+         /*  $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
+          msg = "이미 사용중인 ID 입니다."; */
+          alert('이미 사용중인 ID 입니다.'); 
         } else {
-          $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
-          msg = "사용 가능한 ID 입니다.";
-          /* alert('사용 가능한 ID 입니다.'); */
+          /* $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
+          msg = "사용 가능한 ID 입니다."; */
+          alert('사용 가능한 ID 입니다.'); 
           $.cookie('checkID', 'TRUE'); // Cookie 값 변경
         }
-
         $('#modal_title').html('ID 중복 확인');
-        $('#modal_content').html(msg);
+       /*  $('#modal_content').html(msg); */
         $('#modal_panel').modal(); // 다이얼로그 출력   
       },
       // 통신 에러, 요청 실패, 200 아닌 경우, dataType이 다른경우
@@ -73,7 +72,7 @@
             // id_span.html(msg);
         $('#modal_title').html('ID 중복 확인');
         $('#modal_content').attr('class', 'alert alert-danger');
-        $('#modal_content').html(msg);
+        /* $('#modal_content').html(msg); */
         $('#modal_panel').modal(); // 다이얼로그 출력   
       }
     });
@@ -95,13 +94,13 @@
         var msg = "";
 
         if (data.cnt > 0) {
-          $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
-          msg = "이미 사용중인 email 입니다.";
-          /* alert('이미 사용중인 email 입니다.'); */
+         /*  $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap
+          msg = "이미 사용중인 email 입니다."; */
+          alert('이미 사용중인 email 입니다.');
         } else {
-          $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
-          msg = "사용 가능한 email 입니다.";
-          /* alert('사용 가능한 email 입니다.'); */
+          /* $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap
+          msg = "사용 가능한 email 입니다."; */
+          alert('사용 가능한 email 입니다.'); 
           $.cookie('checkemail', 'TRUE'); // Cookie 값 변경
         }
 
@@ -129,7 +128,7 @@
             // id_span.html(msg);
         $('#modal_title').html('email 중복 확인');
         $('#modal_content').attr('class', 'alert alert-danger');
-        $('#modal_content').html(msg);
+        /* $('#modal_content').html(msg); */
         $('#modal_panel').modal(); // 다이얼로그 출력   
       }
     });
@@ -158,7 +157,7 @@
 
       $('#modal_title').html('패스워드 일치여부 확인');
       $('#modal_content').attr('class', 'alert alert-danger');
-      $('#modal_content').html(msg);
+      /* $('#modal_content').html(msg); */
       $('#modal_panel').modal(); // 다이얼로그 출력   
       
       return false; // submit 중지

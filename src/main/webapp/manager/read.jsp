@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -84,6 +85,17 @@
               onsubmit="return send();" class="form-horizontal">
     <input type='hidden' name='managerno' id='managerno' value='${managerVO.managerno }'>    
     <br>      
+
+           <%-- <c:choose>
+              <c:when test="${petVO.thumbs != ''}">
+                <IMG style='border-radius: 50%' id='files' src='./storage/${managerVO.files }'> <br> <br><br>
+                </c:when>
+                <c:otherwise>
+                 <!-- 파일이 존재하지 않는 경우 -->
+                 <!-- <IMG src='./images/none1.jpg' style='width: 120px; height: 80px;'> -->
+               </c:otherwise>
+            </c:choose>  --%>
+    
     <IMG style='border-radius: 50%' id='files' src='./storage/${managerVO.files }'> <br> <br><br>
     
     <label for="id" >아이디</label> ${managerVO.id }    <br><br>    

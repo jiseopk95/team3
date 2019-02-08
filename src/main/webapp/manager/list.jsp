@@ -120,7 +120,7 @@
 
     <TD class='td' style='padding-top: 3%'>${managerVO.rdate.substring(0, 10)}</TD> <!-- 년월일 -->
     <TD class='td' style='padding-top: 3%'>
-      <A href="./passwd_update.do?managerno=${managerno}"><IMG src='./images/edit_info.png'  width="20" height="20" title='패스워드 변경' ></A>
+      <%-- <A href="./passwd_update.do?managerno=${managerno}"><IMG src='./images/edit_info.png'  width="20" height="20" title='패스워드 변경' ></A> --%>
       <A href="./update.do?managerno=${managerno}"><IMG src='./images/update.png'  width="20" height="20"  title='수정'></A>
       <A href="./delete.do?managerno=${managerno}"><IMG src='./images/delete.png'  width="20" height="20"  title='삭제'></A>
     </TD>
