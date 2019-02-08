@@ -42,7 +42,7 @@
 <!-- 내용 넣는 공간 여기부터 -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <div style="margin: 0px auto; float:center; text-align: center;">
-  <div class="fotorama" style="margin: 0px auto; float:center;height:600px;">
+  <div class="fotorama"  data-autoplay="3000" style="margin: 0px auto; float:center;height:600px;">
 
         <a href="./menu/images/dog1.png"><img src="./menu/images/dog1.png" ></a>   
         <a href="./menu/images/dog2.png"><img src="./menu/images/dog2.png" ></a>

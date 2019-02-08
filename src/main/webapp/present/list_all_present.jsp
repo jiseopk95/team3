@@ -114,8 +114,7 @@ function delete_present(presentno) {
         <col style="width: 5%;"></col>
         <col style="width: 60%;"></col>
         <col style="width: 15%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 10%;"></col>
+        <col style="width: 20%;"></col>
         
       </colgroup>
       <%-- table 컬럼 --%>
@@ -124,7 +123,6 @@ function delete_present(presentno) {
           <th style='text-align: center;'>번호</th>
           <th style='text-align: center;'>선물내용</th>  
           <th style='text-align: center;'>만료일</th>  
-          <th style='text-align: center;'>이벤트이동</th>  <!-- 아마 여기에 선물번호로 연결해줘야 할것같음.. -->
           <th style='text-align: center;'>기타</th>  
         </tr>
       
@@ -137,8 +135,6 @@ function delete_present(presentno) {
              <td style='vertical-align: middle; text-align: center;'>${presentVO.presentno}</td>
             <td style='vertical-align: middle;'>${presentVO.info}</td>
             <td style='vertical-align: middle;'>${presentVO.end_date}</td>
-            <td style='vertical-align: middle;'>
-            <a href="../event/search_paging.do?presentno=${presentVO.presentno}"><img src="./images/move.png" title="이동" border='0' style='width: 20px; height: 20px;'/></a></td>
             <td style='vertical-align: middle;'><!-- 뷰티카테고리를 1번이라 임시지정, 마지막에 조인할 때 managerno도 들어가서 값 받을 수 있게끔 수정필요. -->
              <a href="./create.do"><img src="./images/create.png" title="등록" border='0' style='width: 20px; height: 20px;'/></a>
               <a href="./update.do?presentno=${presentVO.presentno}"><img src="./images/update.png" title="수정" border='0' style='width: 20px; height: 20px;'/></a>

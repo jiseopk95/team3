@@ -41,13 +41,12 @@
   </ASIDE>   --%>
     
 <!--   <div class='menu_line'></div> -->
-  <DIV class='content'  style='width: 80%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'> 
+  <DIV class='content'  style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'> 
     <FORM name='frm' method='POST' action='./create.do'
                enctype="multipart/form-data" class="form-horizontal">
             <%--    <input type='hidden' name='styleno' id='styleno' value=' ${beautyVO.styleno}'>  --%>
             <!--  create.cont 가보면 폼에 beautyVO가 없는데 내가 여기서 beautyVO.styleno를 쓰려 하니까 에러가 나는거임. -->
-      <input type='hidden' name='categoryno' id='categoryno' value='1'> <!-- 원래 value 가 param.categoryno이런거였음. -->
-      <input type='hidden' name='managerno' id='managerno' value='1'>
+      <input type='hidden' name='managerno' id='managerno' value='${sessionScope.managerno}'>
       <div class="form-group">   
         <label for="title" class="col-md-1 control-label">제목</label>
         <div class="col-md-11">
@@ -101,7 +100,7 @@
 
       <DIV style='text-align: right;'>
         <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./search_paging.do?categoryno=${param.categoryno}'">취소[목록]</button>
+        <button type="button" onclick="location.href='./search_paging.do?managerno=${sessionScope.managerno}'">취소[목록]</button>
       </DIV> 
     </FORM>
 <!-- </DIV> -->
