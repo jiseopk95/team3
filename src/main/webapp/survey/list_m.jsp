@@ -133,7 +133,7 @@ function exit(){
     <!-- end -->
     <c:choose>   
          <c:when test="${surveyVO.q_cnt!=0&&nowDate <=surveyVO.enddate}">
-          <button type="button" class="btn btn-primary btn-sm"onclick="test(3,${surveyVO.surveyno});">응시 가능</button>
+          <button type="button" class="btn btn-primary btn-sm"onclick="test(${memberno},${surveyVO.surveyno});">응시 가능</button>
          </c:when>
          <c:when test="${nowDate >surveyVO.enddate}">
          <IMG src='./images/end.png' style="width:35px; height:35px;">

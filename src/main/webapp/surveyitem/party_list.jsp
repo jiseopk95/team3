@@ -122,7 +122,7 @@ function submit_proc(surveyitemno) {
               </c:choose>
       </td>      
     
-      <TD style='text-align: center;'><A href="../choice/list.do?surveyitemno=${survey_itemVO.surveyitemno}">${survey_itemVO. question}</A></TD>
+      <TD style='text-align: center;'>${survey_itemVO. question}</TD>
     
     <TD style='text-align: center ;'>
        <input type="radio"  name='sradio' id="sradio" value='${survey_itemVO.surveyitemno}'>
