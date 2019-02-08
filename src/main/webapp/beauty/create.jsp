@@ -41,7 +41,7 @@
   </ASIDE>   --%>
     
 <!--   <div class='menu_line'></div> -->
-  <DIV class='content'  style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'> 
+  <DIV class='content'  style='width: 100%; pagging-top:5%; padding-bottom:10%'> 
     <FORM name='frm' method='POST' action='./create.do'
                enctype="multipart/form-data" class="form-horizontal">
             <%--    <input type='hidden' name='styleno' id='styleno' value=' ${beautyVO.styleno}'>  --%>

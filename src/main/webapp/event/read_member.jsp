@@ -126,7 +126,7 @@
     <input type='hidden' name='memberno' id='memberno' value='${memberno}'> --%>
   </FORM>
             
- <ASIDE style='float: left;'>
+ <%-- <ASIDE style='float: left;'>
     <A href='../category/list.do?categrpno=${categoryVO.categrpno }'>카테고리</A>
     <span style='font-size: 1.2em;'>></span>  
     <A href='./list_by_category.do?categoryno=${categoryVO.categoryno }&word=${param.word}'>${categoryVO.title }</A>
@@ -145,49 +145,52 @@
       <span class='menu_divide' >│</span> 
       <A href='./delete.do?styleno=${beautyVO.styleno }&categoryno=${categoryVO.categoryno }&word=${param.word}&nowPage=${param.nowPage}'>삭제</A>
     </c:if>
-  </ASIDE>  
+  </ASIDE>   --%>
   
   <div class='menu_line'></div>
 
   <DIV id='main_panel'></DIV>
   
-  <FORM name='frm' id='frm' method="POST" action='./check.do'>
-      <input type="hidden" name="eventno" id="eventno" value="${eventVO.eventno}">
-        <input type="hidden" name="memberno" id="memberno" value="${memberno}">
-    <%--     <c:forEach var ="member_userVO"  items="${member_userVO }">
-         <input type="text" name="userno" id="userno" value="${member_userVO.memberno}">
-          <input type="text" name="userevent" id="userevent" value="${member_userVO.eventno}">
-          </c:forEach> --%>
+  <FORM name='frm' id='frm' method="POST" action='./update.do'>
+      <input type="hidden" name="eventno" value="${eventVO.eventno}">
+        <input type="hidden" name="memberno" value="${memberno}">
       <fieldset class="fieldset">
-        <ul>
-         <li class="li_none">
-            <span style="font-weight: bold;">${eventVO.title}</span>
-           </li>
-         
-                <li class="li_none">
-            <DIV style='float:center; margin: 10px 10px 10px 10px; width: 40%;'>
+            <table style="margin-bottom: 10px;width:100%;">
+        <colgroup>  <!-- tr과 연관, 한행에서 왼쪽기준부터 85퍼는 타이틀준다는 뜻 15퍼에 날짜주면 자동으로 오른쪽부분에 날짜가 찍히게됨. -->
+          <col width="85%">
+          <col width="15%">
+        </colgroup>
+        <tr>
+    <td style="font-weight: bold; font-size:20px; text-align: left; padding-left:10px;">${eventVO.title}</td>
+          <td> (${eventVO.rdate.substring(0, 16)})</td>
+
+        </tr>
+      </table>
+     <div class='menu_line'></div>
+            <DIV style='float:left; margin: 10px 10px 0px 10px; width: 40%;'>
               <c:forEach var ="fileVO"  items="${file_list }">
                 <A href="javascript: panel_img('${fileVO.file }')"><IMG src='./storage/${fileVO.file }' style='width:100%;'></A>
               </c:forEach>
             </DIV>
-            <DIV>${eventVO.content }</DIV>
-          </li>
-         
-          <li class='li_none'>
-          <DIV style='display: table;'>
-          <DIV style='display: table-cell;'>
-            <DIV style='float: left; padding-top: 5px;'>▶작성자 : ${eventVO.writer}<br> 
-   ▶이벤트 시작일 : ${eventVO.period_start}<br>
-   ▶이벤트 종료일 : ${eventVO.period_end}<br>
-   ▶당첨 발표일 : ${eventVO.windate}<br>
-           </DIV>
-           </DIV> 
-           </DIV>
-           <br>
-         <A href="javascript: check(${eventVO.eventno},${memberno})">
-            <img src="./images/join.png" title="응모" border='0' style='width: 180px; height: 50px;'/></A>
-            </li>
-        </ul>
+            <table style="margin-left:0px; margin-top:20px">
+        <tr>
+          <td>${eventVO.content }</td>
+        </tr>
+           </table>
+        <table style="margin-left:0px; margin-top:50px">
+        
+         <tr><td>▶이벤트 시작일 : ${eventVO.period_start}</tr>
+         <tr><td>▶이벤트 종료일 : ${eventVO.period_end}</td></tr><!-- tr은 행, 일종의 한줄띄기 느낌 -->
+        <tr><td style="text-align: left;">▶당첨 발표일 : ${eventVO.windate}</td></tr>
+      <tr> <td style="text-align: left;">작성자 : ${eventVO.writer}</td></tr>
+         </table>
+       <table style="margin-left:0px; margin-top:50px">
+      <tr><td style="text-align: left;">
+         <A href="javascript: check_form(${eventVO.eventno})">
+            <img src="./images/join.png" title="응모" border='0' style='width: 180px; height: 60px;'/></A></td></tr>
+            </table>
+        <button type="button" class="btn btn-primary btn-sm" style='margin-left: 95%;'
+    onclick="location.href='./search_paging.do?managerno=${sessionScope.managerno}'">목록</button>
       </fieldset>
   </FORM>
 

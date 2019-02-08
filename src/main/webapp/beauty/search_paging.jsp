@@ -114,9 +114,9 @@ function delete_style(styleno) {
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container'>
-<DIV class='title_line'>미용스타일
+<DIV class='content'  style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>   
+<DIV class='title_line' style="margin-bottom:50px">미용스타일
  </DIV>
-<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>   
 <!-- 좋아요수 증가 폼 -->
   <FORM name='frm_like1' id='frm_like1' method='post' action=''>
  <input type='hidden' name='styleno' id='styleno' value=''>
