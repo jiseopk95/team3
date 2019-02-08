@@ -56,7 +56,7 @@ COMMENT ON COLUMN member.zipcode is '우편번호';
 COMMENT ON COLUMN member.address1 is '주소';
 COMMENT ON COLUMN member.address2 is '상세 주소';
 COMMENT ON COLUMN member.rdate is '가입 날짜';
-
+select * from member
 1) 회원등록
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
@@ -80,6 +80,7 @@ VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 	WHERE id='master';
 	
 	select * from member;
+	select * from pet
 
 =======
 select memberno, id from member 
@@ -264,7 +265,7 @@ COMMENT ON COLUMN reservation.name is '동물이름';
 COMMENT ON COLUMN reservation.petno is '동물번호';
 COMMENT ON COLUMN reservation.memberno is '회원번호';
 COMMENT ON COLUMN reservation.rdate is '입력날짜'; 
-
+select * from tab
 1. 등록 
  INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
