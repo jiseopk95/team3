@@ -29,9 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </insert>
   
   <select id="my_list" parameterType="HashMap" resultType="ReservationVO">
-    SELECT r.reservationno, r.restype, r.title, r.resdate, r.restime, r.content, r.name, r.petno, r.rdate, r.memberno
-    FROM reservation r, member m
-    WHERE r.memberno = m.memberno AND r.memberno = #{memberno} AND substr(r.resdate, 1, 7) = #{date}
+    SELECT r.reservationno, r.restype, r.title, r.resdate, r.restime, r.content, r.petno, r.rdate, r.memberno, p.name
+    FROM reservation r, member m, pet p
+    WHERE r.memberno = m.memberno AND r.memberno = #{memberno} AND substr(r.resdate, 1, 7) = #{date} AND p.petno = r.petno
     ORDER BY r.resdate asc, r.restime asc
   </select>
   

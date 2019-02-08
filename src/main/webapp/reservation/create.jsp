@@ -268,7 +268,6 @@ String date = year + "-" + month;
                enctype="multipart/form-data" class="form-horizontal">
                
       <input type='hidden' name='memberno' id='memberno' value='${param.memberno }'>
-      <input type='hidden' name='petno' id='petno' value='1'>
       
       <div class="form-group">   
         <div class="col-md-11">
@@ -287,10 +286,10 @@ String date = year + "-" + month;
       <div class="form-group">
           <label for="name" class="col-md-1 control-label">예약동물</label>
           <div class="col-md-11">
-          <select class="form-control" id="name" name="name">
+          <select class="form-control" id="name" name="petno">
             <option value="default">-- 예약동물이름 --</option>
             <c:forEach var="reservationVO" items="${list }">
-            <option value="${reservationVO.name }">${reservationVO.name }</option>
+            <option value="${reservationVO.petno }">${reservationVO.name }</option>
             </c:forEach>
             <option value="개인">개인 스케줄</option>
           </select>

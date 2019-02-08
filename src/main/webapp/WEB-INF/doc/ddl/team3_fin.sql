@@ -56,7 +56,7 @@ COMMENT ON COLUMN member.zipcode is '우편번호';
 COMMENT ON COLUMN member.address1 is '주소';
 COMMENT ON COLUMN member.address2 is '상세 주소';
 COMMENT ON COLUMN member.rdate is '가입 날짜';
-
+select * from member
 1) 회원등록
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
@@ -211,7 +211,7 @@ CREATE TABLE pet(
   PRIMARY KEY (petno),
   FOREIGN KEY (memberno) REFERENCES member(memberno)
 );
-
+select * from member
 COMMENT ON TABLE pet is '반려동물';
 COMMENT ON COLUMN pet.petno is '동물번호';
 COMMENT ON COLUMN pet.memberno is '회원번호';
@@ -245,7 +245,6 @@ CREATE TABLE reservation(
 		restime                       		VARCHAR2(50)		 NOT NULL,
 		content                       		CLOB		 NOT NULL,
 		restype                       		NUMBER(10)			 NOT NULL,
-		name													VARCHAR2(50)		 NOT NULL,
 		petno                         		NUMBER(10)		 NULL ,
 		memberno                      		NUMBER(10)		 NULL ,
   FOREIGN KEY (petno) REFERENCES pet (petno),
@@ -260,11 +259,12 @@ COMMENT ON COLUMN reservation.resdate is '예약날짜';
 COMMENT ON COLUMN reservation.restime is '예약시간';
 COMMENT ON COLUMN reservation.content is '내용';
 COMMENT ON COLUMN reservation.restype is '종류';
-COMMENT ON COLUMN reservation.name is '동물이름';
 COMMENT ON COLUMN reservation.petno is '동물번호';
 COMMENT ON COLUMN reservation.memberno is '회원번호';
 COMMENT ON COLUMN reservation.rdate is '입력날짜'; 
-
+drop table reservation
+delete from pet
+delete from member
 1. 등록 
  INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
@@ -277,6 +277,11 @@ COMMENT ON COLUMN reservation.rdate is '입력날짜';
  INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
  							'춘향이 털밀기', '춘향이 미용', '2018-12-12', '오전 11:00', '몸쪽 털 짧게 다듬어주세요', 2, '아랑이', 1, 2,  sysdate);
+
+ 							SELECT r.reservationno, r.restype, r.title, r.resdate, r.restime, r.content, r.petno, r.rdate, r.memberno, p.name
+    FROM reservation r, member m, pet p
+    WHERE r.memberno = m.memberno AND r.memberno = 1 AND substr(r.resdate, 1, 7) = 2019-02 AND p.petno = r.petno
+    ORDER BY r.resdate asc, r.restime asc
 
 /* 진료차트 */
 CREATE TABLE chart(
@@ -441,7 +446,8 @@ surveyno                      	NUMBER(10)	 NULL ,
   FOREIGN KEY (memberno) REFERENCES member (memberno),
   FOREIGN KEY (surveyno) REFERENCES survey (surveyno)
 );
-
+select memberno from surveyparty
+select * from member
 COMMENT ON TABLE surveyparty is '설문조사 참여';
 COMMENT ON COLUMN surveyparty.surveypartyno is '설문조사 참여 번호';
 COMMENT ON COLUMN surveyparty.surveyitemno is '설문조사 항목 번호';
