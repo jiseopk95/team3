@@ -75,14 +75,14 @@
     
   </colgroup>
   <TR>
-    <TH class='th'>번호</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspID</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp성명</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전화번호</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주소</TH>
+    <TH class='th'>&nbsp&nbsp번호</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspID</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp성명</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전화번호</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주소</TH>
     <!-- <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp권한</TH> -->
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp기타</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp기타</TH>
   </TR>
   
   
@@ -96,8 +96,8 @@
     <TD class='td'>${memberVO.phone}</TD>
     <TD class='td'>
       <c:choose>
-        <c:when test="${memberVO.address1.length() > 15 }">
-          ${memberVO.address1.substring(0, 15) }...
+        <c:when test="${memberVO.address1.length() > 25 }">
+          ${memberVO.address1.substring(0, 25) }...
         </c:when>
         <c:otherwise>
           ${memberVO.address1}
