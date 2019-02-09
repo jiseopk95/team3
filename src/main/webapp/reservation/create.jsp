@@ -63,6 +63,7 @@ var time_b = '<div class="class="form-group" id="time_b">'
 	  $('#time_div').append(time_h);
 	 	$('#time_schedule').remove();
 	 	
+	 	
 	 	for(var i = 0; i < time_h_array.length; i++) {
       time_h_array_copy[i] = time_h_array[i];
       time_b_array_copy[i] = time_b_array[i];
@@ -269,7 +270,8 @@ String date = year + "-" + month;
                
       <input type='hidden' name='memberno' id='memberno' value='${param.memberno }'>
       
-      <div class="form-group">   
+      <div class="form-group" style="text-align: left;">   
+        <label for="restype" class="col-md-1 control-label">예약 형식</label>
         <div class="col-md-11">
           <label class="radio-inline">
             <input type='radio' class='restype' name='restype' value='1' checked>의료
@@ -284,14 +286,14 @@ String date = year + "-" + month;
       </div>
       
       <div class="form-group">
-          <label for="name" class="col-md-1 control-label">예약동물</label>
+          <label for="petno" class="col-md-1 control-label">예약동물</label>
           <div class="col-md-11">
           <select class="form-control" id="name" name="petno">
             <option value="default">-- 예약동물이름 --</option>
             <c:forEach var="reservationVO" items="${list }">
             <option value="${reservationVO.petno }">${reservationVO.name }</option>
             </c:forEach>
-            <option value="개인">개인 스케줄</option>
+            <option value="0">개인 스케줄</option>
           </select>
         </div>
       </div>
@@ -323,8 +325,8 @@ String date = year + "-" + month;
         </div>
       </div>
       <DIV style='text-align: right;'>
-        <button type="button" onclick="check();">등록</button>
-        <button type="button" onclick="location.href='./my_list.do?memberno=${param.memberno}&date=<%=date%>'">취소</button>
+        <button type="button" class="btn btn-primary" onclick="check();">등록</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='./my_list.do?memberno=${param.memberno}&date=<%=date%>'">취소</button>
       </DIV>
     </FORM>
     

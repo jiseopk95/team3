@@ -176,103 +176,108 @@ if (month_list.length() < 2) {
 String today = year_list + "-" + month_list;
 %>
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
-<div style='width: 80%; margin:0px auto; text-align: center; margin-top: 5%; margin-bottom: 10%'>
-
-<button type="button" id="create_reservation" class="btn btn-primary" style="float: right;" onclick="location.href='../reservation/my_list.do?memberno=<%=memberno%>&date=<%=today%>'">예약 리스트</button>
-<%-- <button type="button" id="create_reservation" class="btn btn-primary" style="float: right;" onclick="location.href='../reservation/create.do?memberno=<%=memberno%>'">예약&일정 등록하기</button> --%>
-
-<table id="calendar_wrap">
-  <tr class="month">
-    <td>
-      <a href="./calendar_t.jsp?y=<%=prevYear%>&m=<%=prevMonth%>&memberno=<%=memberno%>">&#10094;</a> 
-      <%=year%>년 <%=month+1%>월 
-      <a href="./calendar_t.jsp?y=<%=nextYear%>&m=<%=nextMonth%>&memberno=<%=memberno%>">&#10095;</a>
-    </td>
-  </tr>	
-  <tr>
-	  <td>
-		  <table class='calendar'>
-			  <tr class="weekdays" style="background-color:#c68cff;">
-					<td width='14%'>일</td>
-					<td width='14%'>월</td>
-					<td width='14%'>화</td>
-					<td width='14%'>수</td>
-					<td width='14%'>목</td>
-					<td width='14%'>금</td>
-					<td width='16%'>토</td>
-				</tr>
-				<tr>
-				<%
-        // 시작요일까지 이동
-        for (int i=1; i<bgnWeek; i++){
-          out.println("<td class='calendar_td' style='border-left:none;'>&nbsp;</td>");
-        }
-
-        // 첫날~마지막날까지 처리
-        // - 날짜를 하루씩 이동하여 월이 바뀔때까지 그린다
-        String str="";
-        ArrayList list = null;
-        CalendarDAO dao = new CalendarDAO();
-        StringBuffer sb = null;
-    
-        while (cal.get(Calendar.MONTH) == month) {
-          if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
-            out.println("<td class='calendar_td' valign='top' style='color:#9f9f9f; text-align: right; border-right:none;'><a href='javascript:reservation(" + cal.get(Calendar.YEAR) + "," + cal.get(Calendar.MONTH) + "," + cal.get(Calendar.DATE) +")'>" + cal.get(Calendar.DATE) + "</a>");
-          }else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
-            out.println("<td class='calendar_td' valign='top' style='color:#9f9f9f; text-align: right; border-left:none;'><a href='javascript:reservation(\"sun\")'>" + cal.get(Calendar.DATE) + "</a>");
-          }else{
-            out.println("<td class='calendar_td' valign='top' style='text-align: right;'><a href='javascript:reservation(" + cal.get(Calendar.YEAR) + "," + cal.get(Calendar.MONTH) + "," + cal.get(Calendar.DATE) +")'>" + cal.get(Calendar.DATE) + "</a>");
-          }
-        
-          // ------------------------------------------------------------------------
-          // 2010-01-01에 해당하는 일정만 DBMS에서 가져옵니다.
-          // ------------------------------------------------------------------------
-          // str = cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DATE);
-          str = Tool.getDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
-          list = dao.listLabel(str, memberno); 
+<DIV class='container' >
+  <DIV class='content'  style='margin:0px auto; text-align: center; margin-top: 5%; margin-bottom:5%'>
+    <div class="buttons" style="float: right;">
+      <button type="button" id="create_reservation" class="btn btn-primary" onclick="location.href='../reservation/my_list.do?memberno=<%=memberno%>&date=<%=today%>'">전체 예약 리스트</button>
+      <button type="button" id="res_info" class="btn btn-info" onclick="javascript:res_info();" data-toggle="tooltip" data-placement="top" title="원하는 예약 날짜를 클릭해주십시오."style="margin-right: 10px;">예약 방법 보기</button>
+    </div>
+    <br>
+    <div>
+      <table id="calendar_wrap">
+        <tr class="month">
+          <td>
+            <a href="./calendar_t.jsp?y=<%=prevYear%>&m=<%=prevMonth%>&memberno=<%=memberno%>">&#10094;</a> 
+            <%=year%>년 <%=month+1%>월 
+            <a href="./calendar_t.jsp?y=<%=nextYear%>&m=<%=nextMonth%>&memberno=<%=memberno%>">&#10095;</a>
+          </td>
+        </tr>	
+        <tr>
+      	  <td>
+      		  <table class='calendar'>
+      			  <tr class="weekdays" style="background-color:#c68cff;">
+      					<td width='14%'>일</td>
+      					<td width='14%'>월</td>
+      					<td width='14%'>화</td>
+      					<td width='14%'>수</td>
+      					<td width='14%'>목</td>
+      					<td width='14%'>금</td>
+      					<td width='16%'>토</td>
+      				</tr>
+      				<tr>
+      				<%
+              // 시작요일까지 이동
+              for (int i=1; i<bgnWeek; i++){
+                out.println("<td class='calendar_td' style='border-left:none;'>&nbsp;</td>");
+              }
+      
+              // 첫날~마지막날까지 처리
+              // - 날짜를 하루씩 이동하여 월이 바뀔때까지 그린다
+              String str="";
+              ArrayList list = null;
+              CalendarDAO dao = new CalendarDAO();
+              StringBuffer sb = null;
           
+              while (cal.get(Calendar.MONTH) == month) {
+                if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+                  out.println("<td class='calendar_td' valign='top' style='color:#9f9f9f; text-align: right; border-right:none;'><a style='color:#337ab7d9 !important;' href='javascript:reservation(" + cal.get(Calendar.YEAR) + "," + cal.get(Calendar.MONTH) + "," + cal.get(Calendar.DATE) +")'>" + cal.get(Calendar.DATE) + "</a>");
+                }else if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+                  out.println("<td class='calendar_td' valign='top' style='color:#9f9f9f; text-align: right; border-left:none;'><a style='color:#dd3a15c7 !important;' href='javascript:reservation(\"sun\")'>" + cal.get(Calendar.DATE) + "</a>");
+                }else{
+                  out.println("<td class='calendar_td' valign='top' style='text-align: right;'><a href='javascript:reservation(" + cal.get(Calendar.YEAR) + "," + cal.get(Calendar.MONTH) + "," + cal.get(Calendar.DATE) +")'>" + cal.get(Calendar.DATE) + "</a>");
+                }
+              
+                // ------------------------------------------------------------------------
+                // 2010-01-01에 해당하는 일정만 DBMS에서 가져옵니다.
+                // ------------------------------------------------------------------------
+                // str = cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DATE);
+                str = Tool.getDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+                list = dao.listLabel(str, memberno); 
+                
+            
+                if (list != null){ 
+                  sb = new StringBuffer();
+                  for(int i=0; i<list.size(); i++){
+                    CalendarVO calendarVO = (CalendarVO)list.get(i);
+                    sb.append("<img src='"+request.getContextPath()+"/calendar/images/bu5.gif'>");
+                    sb.append("<a href='javascript:read("+calendarVO.getReservationno()+")'>"+calendarVO.getName()+ " - " + calendarVO.getRestype() +"</a><br>");            
+                  }
+              
+                }
+                out.println("<br><div class='calendar_a' style='color:#00AA00; text-align: left;'>" + sb.toString() + "</div></td>");
+                // ------------------------------------------------------------------------
+            
+                // 한달의 마지막 날이 아니면서 토요일인 경우 다음줄로 생성
+                // System.out.println(cal.getActualMaximum ( Calendar.DAY_OF_MONTH ));
+                if ((cal.getActualMaximum ( Calendar.DAY_OF_MONTH ) != cal.get(Calendar.DATE))) {
+                  if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){ // 토요일인 경우
+                    out.println("</tr><tr>");
+                  }
+                }
       
-          if (list != null){ 
-            sb = new StringBuffer();
-            for(int i=0; i<list.size(); i++){
-              CalendarVO calendarVO = (CalendarVO)list.get(i);
-              sb.append("<img src='"+request.getContextPath()+"/calendar/images/bu5.gif'>");
-              sb.append("<a href='javascript:read("+calendarVO.getReservationno()+")'>"+calendarVO.getName()+ " - " + calendarVO.getRestype() +"</a><br>");            
-            }
-        
-          }
-          out.println("<br><div class='calendar_a' style='color:#00AA00; text-align: left;'>" + sb.toString() + "</div></td>");
-          // ------------------------------------------------------------------------
+                // 날짜 증가시키기
+                cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)+1);
+                // 끝날부터 토요일까지 빈칸으로 처리
+            
+              }
+              //System.out.println("cal.get(Calendar.MONTH): " + cal.get(Calendar.MONTH));
+              //System.out.println("cal.get(Calendar.DATE): " + cal.get(Calendar.DATE));
+              //System.out.println("cal.get(Calendar.DATE): " + cal.get(Calendar.DATE));
+          
+              if (cal.get(Calendar.DATE) == 1 && (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)) {
+                // 한달의 마지막 날짜 토요일이면 아무일도 안함
+              }else{
+                for (int i=cal.get(Calendar.DAY_OF_WEEK); i<=7; i++) out.println("<td class='calendar_td' style='border-right:none;'>&nbsp;</td>");
+              }
       
-          // 한달의 마지막 날이 아니면서 토요일인 경우 다음줄로 생성
-          // System.out.println(cal.getActualMaximum ( Calendar.DAY_OF_MONTH ));
-          if ((cal.getActualMaximum ( Calendar.DAY_OF_MONTH ) != cal.get(Calendar.DATE))) {
-            if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){ // 토요일인 경우
-              out.println("</tr><tr>");
-            }
-          }
-
-          // 날짜 증가시키기
-          cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)+1);
-          // 끝날부터 토요일까지 빈칸으로 처리
-      
-        }
-        //System.out.println("cal.get(Calendar.MONTH): " + cal.get(Calendar.MONTH));
-        //System.out.println("cal.get(Calendar.DATE): " + cal.get(Calendar.DATE));
-        //System.out.println("cal.get(Calendar.DATE): " + cal.get(Calendar.DATE));
-    
-        if (cal.get(Calendar.DATE) == 1 && (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)) {
-          // 한달의 마지막 날짜 토요일이면 아무일도 안함
-        }else{
-          for (int i=cal.get(Calendar.DAY_OF_WEEK); i<=7; i++) out.println("<td class='calendar_td' style='border-right:none;'>&nbsp;</td>");
-        }
-
-%>
-		  	</tr>
-	  	</table>
-  	</td>
-	</tr>
-</table>
+      %>
+      		  	</tr>
+      	  	</table>
+        	</td>
+      	</tr>
+      </table>
+    </div>
+  </DIV>
 </DIV>
 
 <jsp:include page="/menu/bottom.jsp" flush='false' /> <!--  bottom 부분 소스분리 -->

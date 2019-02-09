@@ -73,18 +73,6 @@ VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 'user2', '1234', '왕눈이', '000-1456-5678', 'abc150@gmail.com','1215','서울시 서초구','솔데스크 545', sysdate);
-<<<<<<< HEAD
-
-	UPDATE member
-	SET id = 'test' 
-	WHERE id='master';
-	
-	select * from member;
-	select * from pet
-
-=======
-select memberno, id from member 
->>>>>>> branch 'master' of https://github.com/jiseopk95/team3
 
 /* manager */
 
@@ -123,7 +111,7 @@ COMMENT ON COLUMN manager.files is '이미지 파일';
 COMMENT ON COLUMN manager.thumbs is '미리보기 이미지';
 COMMENT ON COLUMN manager.filesizes is '이미지 사이즈';
 COMMENT ON COLUMN manager.rdate is '가입날짜';
-select id, passwd from manager 
+
 1) 등록
 INSERT INTO manager(managerno,kind, id, passwd, name,position, phone, email,zipcode,address1,address2,files,thumbs,filesizes,rdate)
 VALUES ((SELECT NVL(MAX(managerno), 0)+1 as managerno FROM manager),
@@ -212,7 +200,7 @@ CREATE TABLE pet(
   PRIMARY KEY (petno),
   FOREIGN KEY (memberno) REFERENCES member(memberno)
 );
-select * from member
+
 COMMENT ON TABLE pet is '반려동물';
 COMMENT ON COLUMN pet.petno is '동물번호';
 COMMENT ON COLUMN pet.memberno is '회원번호';
@@ -263,13 +251,7 @@ COMMENT ON COLUMN reservation.restype is '종류';
 COMMENT ON COLUMN reservation.petno is '동물번호';
 COMMENT ON COLUMN reservation.memberno is '회원번호';
 COMMENT ON COLUMN reservation.rdate is '입력날짜'; 
-<<<<<<< HEAD
-drop table reservation
-delete from pet
-delete from pet
-=======
-select * from tab
->>>>>>> branch 'master' of https://github.com/jiseopk95/team3.git
+select * from reservation
 1. 등록 
  INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
@@ -283,10 +265,6 @@ select * from tab
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
  							'춘향이 털밀기', '춘향이 미용', '2018-12-12', '오전 11:00', '몸쪽 털 짧게 다듬어주세요', 2, '아랑이', 1, 2,  sysdate);
 
- 							SELECT r.reservationno, r.restype, r.title, r.resdate, r.restime, r.content, r.petno, r.rdate, r.memberno, p.name
-    FROM reservation r, member m, pet p
-    WHERE r.memberno = m.memberno AND r.memberno = 1 AND substr(r.resdate, 1, 7) = 2019-02 AND p.petno = r.petno
-    ORDER BY r.resdate asc, r.restime asc
 
 /* 진료차트 */
 CREATE TABLE chart(
@@ -319,7 +297,7 @@ COMMENT ON COLUMN chart.petname is '동물이름';
 COMMENT ON COLUMN chart.name is '보호자이름';
 COMMENT ON COLUMN chart.phone is '보호자 전화번호';
 COMMENT ON COLUMN chart.petno is '동물번호';
-select * from chart
+
 2. 등록 
 INSERT INTO chart(chartno, petno, petname, name, phone, title, sick, medicine, stay, etc, managerno, rdate)
 VALUES ((SELECT NVL(MAX(chartno), 0)+1 as chartno FROM chart),
@@ -334,7 +312,7 @@ VALUES ((SELECT NVL(MAX(chartno), 0)+1 as chartno FROM chart),
 3, '토토', '해', '000-5678-1234', '토토 진료차트', '감기', '감기약', 'N', 'ㅇㅇ약에 알러지반응', 3, 1, sysdate);
 
 /* 애니멀스토리 */
-drop table animalstory 
+
 CREATE TABLE animalstory(
 		anino                         		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		anitype                       		VARCHAR2(10)		 NOT NULL,
@@ -365,15 +343,15 @@ VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
 '개', '산책만 나가면 아무거나 주워 먹는 강아지', 'Q. 아무거나 주워 먹는 강아지, 어떻게 해야 하나요? A. 대부분 타고난 식탐쟁이일 가능성이 높다. ', 
 'dog.jpg', 'dog_thumb.jpg', 0, 1, sysdate);
 
-INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, cnt, managerno, rdate)
+INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
 '개', '분리불안증의 증상과 치료법', 'Q. 분리불안증의 원인 A. 개는 무리동물이다. ', 
-'dog2.jpg', 'dog2_thumb.jpg', 0, 2, 1, sysdate);
+'dog2.jpg', 'dog2_thumb.jpg', 0, 1, sysdate);
 
-INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, cnt, managerno, rdate)
+INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
 '고양이', '비싼 가구랑 소파를 막 긁어놔요', 'Q. 비싼 가구랑 소파를 막 긁어놔요 A. “집안의 모든 것은 고양이 용품!”, 발상 전환하기', 
-'cat.jpg', 'cat_thumb.jpg', 0, 0, 1, sysdate);
+'cat.jpg', 'cat_thumb.jpg', 0, 1, sysdate);
 
 
 /**********************************/
@@ -402,8 +380,8 @@ COMMENT ON COLUMN survey.enddate is '만료날';
 COMMENT ON COLUMN survey.rdate is '작성일자';
 COMMENT ON COLUMN survey.q_cnt is '문제수';
 COMMENT ON COLUMN survey.managerno is '관리자번호';
-2. 등록 
-             
+
+2. 등록     
 INSERT INTO survey(surveyno,managerno,survey_title,seqno,startdate,enddate,rdate)
 VALUES((SELECT NVL(max(surveyno),0)+1 as surveyno from survey),1,'당신의 강아지미용만족도에 대한 조사',1,'2018-01-02','2018-01-08',sysdate);	
 INSERT INTO survey(surveyno,managerno,survey_title,seqno,startdate,enddate,rdate)
@@ -451,8 +429,7 @@ surveyno                      	NUMBER(10)	 NULL ,
   FOREIGN KEY (memberno) REFERENCES member (memberno),
   FOREIGN KEY (surveyno) REFERENCES survey (surveyno)
 );
-select memberno from surveyparty
-select * from member
+
 COMMENT ON TABLE surveyparty is '설문조사 참여';
 COMMENT ON COLUMN surveyparty.surveypartyno is '설문조사 참여 번호';
 COMMENT ON COLUMN surveyparty.surveyitemno is '설문조사 항목 번호';
@@ -491,7 +468,6 @@ VALUES((select NVL(max(categrpno),0)+1 as categrpno from categrp), 1, '의료', 1,
 INSERT INTO categrp(categrpno, classification, name, seqno, visible, rdate)
 VALUES((select NVL(max(categrpno),0)+1 as categrpno from categrp), 2, '미용', 2, 'Y', sysdate);
 
-SELECT categrpno, classification, nzme, seqno, visible, rdate
 
 /**********************************/
 /* Table Name: 카테고리 */
