@@ -10,7 +10,7 @@ DROP TABLE chart CASCADE CONSTRAINTS;
 DROP TABLE reservation CASCADE CONSTRAINTS;
 
 -- 희원
-DROP TABLE eventuser CASCADE CONSTRAINTS;
+DROP TABLE eventusers CASCADE CONSTRAINTS;
 DROP TABLE event CASCADE CONSTRAINTS;
 DROP TABLE present CASCADE CONSTRAINTS;
 DROP TABLE style CASCADE CONSTRAINTS;
@@ -360,10 +360,10 @@ COMMENT ON COLUMN animalstory.rdate is '작성일';
 COMMENT ON COLUMN animalstory.managerno is '관리자번호';
 
 2. 등록 
-INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, cnt, managerno, rdate)
+INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
 '개', '산책만 나가면 아무거나 주워 먹는 강아지', 'Q. 아무거나 주워 먹는 강아지, 어떻게 해야 하나요? A. 대부분 타고난 식탐쟁이일 가능성이 높다. ', 
-'dog.jpg', 'dog_thumb.jpg', 0, 0, 1, sysdate);
+'dog.jpg', 'dog_thumb.jpg', 0, 1, sysdate);
 
 INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, cnt, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
@@ -677,7 +677,6 @@ VALUES((SELECT NVL(MAX(answerno), 0)+1 as answerno FROM answer), 1, '답변', '관�
 /**********************************/
 CREATE TABLE style(
 		styleno                       		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		categoryno                    		NUMBER(10)		 NULL ,
 		managerno                     		NUMBER(10)		 NULL ,
 		title                         		VARCHAR2(50)		 NOT NULL,
 		name                          		VARCHAR2(50)		 NOT NULL,
@@ -693,13 +692,11 @@ CREATE TABLE style(
 		pay                           		NUMBER(10)		 NOT NULL,
 		times                         		NUMBER(10)		 NOT NULL,
 		rdate                         		DATE		 NOT NULL,
-  FOREIGN KEY (categoryno) REFERENCES category (categoryno),
   FOREIGN KEY (managerno) REFERENCES manager (managerno)
 );
 
 COMMENT ON TABLE style is '미용스타일';
 COMMENT ON COLUMN style.styleno is '스타일번호';
-COMMENT ON COLUMN style.categoryno is '카테고리번호';
 COMMENT ON COLUMN style.managerno is '관리자번호';
 COMMENT ON COLUMN style.title is '제목';
 COMMENT ON COLUMN style.name is '스타일이름';
@@ -717,11 +714,11 @@ COMMENT ON COLUMN style.times is '소요시간';
 COMMENT ON COLUMN style.rdate is '등록날짜';
 
 /*등록*/
- INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
+ INSERT INTO style(styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
 VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
 1,1,'미용사가 추천하는 곰돌이컷','곰돌이컷','미용사1',0,'beauty@naver.com','곰돌이 컷 너무 귀여워요',0, 'bear.jpg', 'bear01.jpg', 'bear_m.jpg',0, 50000, 3, sysdate);
 
-INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
+INSERT INTO style(styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
 VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
 1,2,'사자가 떠오르는 귀여운 사자컷','곰돌이컷','미용사2',0,'beauty2@naver.com','몸의 털은 밀고 머리털만 남겨주어 사자의 갈기를 떠올리게 하는 컷입니다',0, 'cut.jpg', 'cut01.jpg', 'cut_m.jpg',0, 60000, 3, sysdate);
 

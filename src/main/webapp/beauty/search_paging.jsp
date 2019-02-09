@@ -145,8 +145,8 @@ function delete_style(styleno) {
   </div> <!-- Modal END -->
    <form name='frm' id='frm' method="get" action="./search_paging.do">
  <ASIDE style='float: left;'>
-    <A href='../category/list.do'>게시판 목록</A> 
-    >
+   <!--  <A href='../category/list.do'>게시판 목록</A> 
+    > -->
 <%--     <A href='./search_paging.do?categoryno=${beautyVO.categoryno }'>${beautyVO.title }</A> --%>
 
     <c:if test="${param.title.length() > 0}"> 
@@ -167,10 +167,10 @@ function delete_style(styleno) {
      <span class='menu_divide' >│</span>
      <c:choose>
      <c:when test = " ${param.title != '' }">
-     <input type = 'text' name='title' id='title' value='${param.title}' style='width:35%;'>
+     <input type = 'text' name='title' id='title' value='${param.title}' placeholder='제목을 입력하세요' style='width:40%;'>
      </c:when>
      <c:otherwise>
-     <input type ='text'  name = 'title' id='title' value='' style='width:35%;'>
+     <input type ='text'  name = 'title' id='title' value='' placeholder='제목을 입력하세요' style='width:40%;'>
      </c:otherwise>
      </c:choose>
      <button type='submit' class="btn btn-primary btn-sm">검색</button>
@@ -185,10 +185,10 @@ function delete_style(styleno) {
 <input type='hidden' name='managerno' id='managerno' value='${sessionScope.managerno}'>
     
      <ASIDE style='float: right;'>
-      <A href="javascript:list_all_rdate();">최신순</A> |
+      <!-- <A href="javascript:list_all_rdate();">최신순</A> |
        <A href="javascript:list_all_cnt();">조회순</A> |
           <A href="javascript:list_all_like1();">좋아요순</A>
-    
+     -->
     <c:if test="${sessionScope.managerno != null}">
     <button type="button" class="btn btn-primary btn-sm" 
     onclick="location.href='./create.do?managerno=${sessionScope.managerno}'">등록
