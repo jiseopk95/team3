@@ -96,9 +96,9 @@ public class CalendarDAO {
       pstmt.setInt(2, memberno);
       
     } else {
-      sql.append(" SELECT reservationno, restype, resdate, label, title, content");
-      sql.append(" FROM " + table_name);
-      sql.append(" WHERE resdate=?");  // 2013-10-15
+      sql.append(" SELECT r.reservationno, r.restype, r.resdate, r.label, r.title, r.content, p.name");
+      sql.append(" FROM reservation r, pet p");
+      sql.append(" WHERE r.resdate=? AND r.petno = p.petno");  // 2013-10-15
       
       pstmt = con.prepareStatement(sql.toString());
       pstmt.setString(1, date);
@@ -120,7 +120,9 @@ public class CalendarDAO {
       calendarVO.setLabel(rs.getString("label"));
       calendarVO.setTitle(rs.getString("title"));
       calendarVO.setContent(rs.getString("content"));
-     
+      if(memberno == 1) {
+        calendarVO.setName(rs.getString("name"));
+      }
       list.add(calendarVO);
 
     }

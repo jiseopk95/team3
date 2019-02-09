@@ -81,7 +81,7 @@ String today = year + "-" + month;
   function update(reservationno, memberno, resdate) {
     
     var url = './update.do?reservationno=' + reservationno + '&memberno=' + memberno + '&resdate=' + resdate; 
-    var win = window.open(url, '예약 수정', 'width=1000px, height=500px');
+    var win = window.open(url, '예약 수정', 'width=1200px, height=700px');
     
     var x = (screen.width - 500) / 2; // 1000 - 500 = 500 / 2 = 250
     var y = (screen.height - 350) / 2; // 800 - 350 = 450 / 2 = 225
