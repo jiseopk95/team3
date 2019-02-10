@@ -244,6 +244,12 @@ var time_b = '<div class="class="form-group" id="time_b">'
   }
 
 </script>
+<style type="text/css">
+label {
+    font-size: 15px;
+    float: left;
+  }
+</style>
 </head>
 <body>
 <%
@@ -300,13 +306,13 @@ String date = year + "-" + month;
       <div class="form-group">   
         <label for="title" class="col-md-1 control-label">제목</label>
         <div class="col-md-11">
-          <input type='text' class="form-control input-lg" name='title' id='title' value='예약 타이틀' placeholder="예약내용 또는 스케줄의 제목을 입력해주세요" required="required" style='width: 80%;'>
+          <input type='text' class="form-control input-lg" name='title' id='title' value='예약 타이틀' placeholder="예약내용 또는 스케줄의 제목을 입력해주세요" required="required" >
         </div>
       </div>   
       <div class="form-group">   
         <label for="content" class="col-md-1 control-label">레이블</label>
         <div class="col-md-11">
-          <input type='text' class="form-control input-lg" name='label' id='label' value='예약 레이블'  placeholder="달력에 표시될 제목을 입력해주세요" required="required" style='width: 80%;'>
+          <input type='text' class="form-control input-lg" name='label' id='label' value='예약 레이블'  placeholder="달력에 표시될 제목을 입력해주세요" required="required">
         </div>
       </div>
       <div class="form-group">   

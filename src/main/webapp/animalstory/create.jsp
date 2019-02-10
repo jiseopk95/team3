@@ -20,8 +20,29 @@
 window.onload=function(){
   CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
 };
-</script>
 
+function check() {
+  if($('radio[name=anitype]').val() == "" ) {
+   	alert("글 분류를 선택해주세요");
+  } else if($('#title').val() == "") {
+    alert("제목을 작성해주세요");
+    $('#title').focus();
+  } else if($('#content').val() == "") {
+    alert("내용을 작성해주세요");
+    $('#content').focus();
+  } else if($('#filesMF').val() == "") {
+    alert("썸네일을 등록해주세요");
+  } else {
+    $('#frm').submit();
+  }
+};
+</script>
+<style type="text/css">
+label {
+    font-size: 15px;
+    float: left;
+  }
+</style>
 </head> 
 
 <body>
@@ -29,25 +50,15 @@ window.onload=function(){
 <DIV class='container'>
 <DIV class='content'  style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
 
-  <%-- <ASIDE style='float: left;'>
-      <A href='../category/list.do'>게시판 목록</A>  
-      >
-      <A href='./list.do?categoryno=${categoryVO.categoryno }'>${categoryVO.title }</A>
-  </ASIDE>
-  <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>등록</A>
-  </ASIDE>  --%>
-
   <div class="title_line">${title }</div>
-    <FORM name='frm' method='POST' action='./create.do'
+    <FORM name='frm' id="frm" method='POST' action='./create.do'
                enctype="multipart/form-data" class="form-horizontal">
                
       <input type="hidden" name="managerno" id="managerno" value="${managerno }">
       
-      <div class="form-group">   
-        <div class="col-md-12">
+      <div class="form-group" style="text-align: left;">   
+        <label for="anitype" class="col-md-1 control-label">글 분류</label>
+        <div class="col-md-11">
           <label class="radio-inline">
             <input type='radio' class='anitype' name='anitype' id='dog' value='1' checked>강아지
           </label>
@@ -59,7 +70,7 @@ window.onload=function(){
       <div class="form-group">   
         <label for="title" class="col-md-1 control-label">글 제목</label>
         <div class="col-md-11">
-          <input type='text' class="form-control input-lg" name='title' id='title' value='강아지 이야기' required="required" style='width: 80%;'>
+          <input type='text' class="form-control input-lg" name='title' id='title' value='강아지 이야기' required="required" >
         </div>
       </div>   
       <div class="form-group">   
@@ -78,7 +89,7 @@ window.onload=function(){
       </div>   
 
       <DIV style='text-align: right;'>
-        <button type="submit"class="btn btn-primary"  >등록</button>
+        <button type="button" class="btn btn-primary"  onclick="javascript:check();">등록</button>
         <button type="button" class="btn btn-primary"  onclick="location.href='./list.do?managerno=${managerno}'">취소[목록]</button>
       </DIV>
     </FORM>

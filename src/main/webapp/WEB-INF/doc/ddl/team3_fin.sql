@@ -336,7 +336,7 @@ COMMENT ON COLUMN animalstory.thumbs is '썸네일이름';
 COMMENT ON COLUMN animalstory.sizes is '파일크기';
 COMMENT ON COLUMN animalstory.rdate is '작성일';
 COMMENT ON COLUMN animalstory.managerno is '관리자번호';
-
+delete from animalstory
 2. 등록 
 INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
