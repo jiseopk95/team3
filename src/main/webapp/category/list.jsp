@@ -295,8 +295,8 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-<DIV class='container' style='width: 100%;'>
-<DIV class='content' style='width: 100%;'>
+<DIV class='container' >
+<DIV class='content' >
   
   <DIV id='main_panel'></DIV>
   

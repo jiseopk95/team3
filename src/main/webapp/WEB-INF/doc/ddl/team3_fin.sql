@@ -482,6 +482,11 @@ rdate                DATE  NOT NULL,
  FOREIGN KEY (categrpno) REFERENCES categrp (categrpno)
 );
 
+SELECT c.categrpno, c.name,
+    t.categoryno, t.categrpno, t.title,t.seqno, t.cnt
+    FROM categrp c, category t
+    WHERE c.categrpno = t.categrpno
+    ORDER BY c.categrpno ASC, t.seqno ASC
 
 COMMENT ON TABLE category is '카테고리';
 COMMENT ON COLUMN category.categoryno is '카테고리번호';
@@ -490,6 +495,8 @@ COMMENT ON COLUMN category.title is '게시판 이름';
 COMMENT ON COLUMN category.cnt is '등록된 글 수';
 COMMENT ON COLUMN category.seqno is '출력 순서';
 COMMENT ON COLUMN category.rdate is '등록날짜';
+
+
 
 -- 삽입
 INSERT INTO category(categoryno, categrpno, title, cnt, seqno, rdate)

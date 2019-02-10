@@ -8,10 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 등록 -->
   <insert id="create" parameterType="CategoryVO">
     INSERT INTO
-    category(categoryno, categrpno, title, cnt, rdate)
+    category(categoryno, categrpno, title, cnt, seqno, rdate)
     VALUES((SELECT NVL(MAX(categoryno), 0)+1 as categoryno FROM
     category),
-    #{categrpno}, #{title}, #{cnt}, sysdate)
+    #{categrpno}, #{title}, #{cnt} ,#{seqno}, sysdate)
   </insert>
 
   <!-- 목록 -->

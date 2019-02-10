@@ -44,9 +44,7 @@
           panel += "<TD style='text-align: center ;'>"+(index+1)+"</TD>";
           panel += "<TD style='text-align: center ;'>"+rdata[index].name+"</TD>";
           panel += "<TD style='text-align: center ;'>"+rdata[index].title+"</TD>";
-          panel += "<TD  style='text-align: center ;'>"+rdata[index].category_seqno+"</TD>";
-/*           panel += "<TD  style='text-align: center ;'>"+rdata[index].visible+"</TD>";
-          panel += "<TD>"+rdata[index].ids+"</TD>"; */
+          panel += "<TD  style='text-align: center ;'>"+rdata[index].seqno+"</TD>";
           panel += "<TD style='text-align: center;'>"; 
           panel += "  <A href=\"javascript:update("+rdata[index].categoryno+")\"><IMG src='./images/update.png' title='수정' style='width: 20px;'></A>";  
           panel += "  <A href=\"javascript:deleteOne("+rdata[index].categoryno+")\"><IMG src='./images/delete.png' title='삭제' style='width: 20px;'></A>";
@@ -210,7 +208,7 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-<DIV class='container' style='width: 100%;'>
+<DIV class='container' >
 <DIV class='content' >
   
   <DIV id='main_panel'></DIV>
@@ -245,8 +243,8 @@
       <input type='number' name='seqno' id='seqno' value='' required="required" style='width: 5%;'>
   
  
-      <button type="button" id='submit' onclick="create()">등록</button>
-      <button type="button" onclick="create_update_cancel()">취소</button>
+      <button type="button" class="btn btn-primary" id='submit' onclick="create()">등록</button>
+      <button type="button" class="btn btn-primary" onclick="create_update_cancel()">취소</button>
     </FORM>
   </DIV>
   
@@ -265,8 +263,8 @@
       <input type='number' name='seqno' id='seqno' value='' required="required" style='width: 5%;'>
   
  
-      <button type="button" id='submit' onclick="update_submit()">저장</button>
-      <button type="button" onclick="create_update_cancel()">취소</button>
+      <button type="button" id='submit' class="btn btn-primary" onclick="update_submit()">저장</button>
+      <button type="button" class="btn btn-primary" onclick="create_update_cancel()">취소</button>
     </FORM>
   </DIV>
   

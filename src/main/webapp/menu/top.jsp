@@ -90,7 +90,7 @@
                        </ul>
                    </li>
                    
-                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;  href="#">소식공간 <span class="caret"></span></a>
+                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;"  href="#">소식공간 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/search_paging.do?nowPage=">미용스타일</a></li>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/animalstory/list.do?content=&nowPage=">애니멀스토리</a></li>
