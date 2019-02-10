@@ -67,6 +67,7 @@ function create_proc() {
       for(index=0; index < rdata.msgs.length; index++) {
         panel += rdata.msgs[index]+'<br>';
       }
+      panel += "<br>";
       panel += "  <button type='btn btn-primary' onclick=\"$('#main_panel').hide();location.reload();\">닫기</button>";
       panel += "</DIV>";
    		
@@ -274,7 +275,7 @@ function create_update_cancel() {
     <input type='hidden' name='managerno' id='managerno' value=''>
   </FORM>
 
-  <DIV style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%;height:80px;text-align: center; ' id='main_panel' ></DIV> 
+  <DIV style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%;height:100px;text-align: center; ' id='main_panel' ></DIV> 
     
     
     

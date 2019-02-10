@@ -68,31 +68,31 @@
   <FORM name='frm' id='frm' method='POST' action='./update.do' 
               onsubmit="return send();" class="form-horizontal">
     <input type='hidden' name='memberno' id='memberno' value='${memberVO.memberno }'>          
-<br><br>
-      <label for="id" >아이디</label> ${memberVO.id }        
+<br><br><br>
+      <label for="id" >아이디</label> ${memberVO.id }
      <br><br>
     <%-- <input type='hidden' name='kind' id='kind' value='${memberVO.kind }'>   --%>             
 
      <label for="name" >성명</label> ${memberVO.name }   
-     
+     <input type='hidden' name='name' id='name' value='${memberVO.name }'>
      <br><br>
-    
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <label for="phone" >전화번호</label>    
         <input type='text'  name='phone' id='phone'
-                   value='${memberVO.phone }'required="required" style='width: 20%;' placeholder="전화번호">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   value='${memberVO.phone }'required="required" style='width: 15%;' placeholder="전화번호">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <br><br>
       
-      &nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <label for="email" >이메일</label>    
         <input type='text'  name='email' id='email'
-                   value='${memberVO.email }' required="required" style='width: 20%;' placeholder="이메일">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   value='${memberVO.email }' required="required" style='width: 15%;' placeholder="이메일">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <br><br>
       
-  &nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <label for="zipcode" >우편번호</label>    
     
         <input type='text' name='zipcode' id='zipcode' 
-                   value='${memberVO.zipcode }'required="required" style='width: 20%;' placeholder="우편번호">
+                   value='${memberVO.zipcode }'required="required" style='width: 15%;' placeholder="우편번호">
          &nbsp
         <input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
     <br><br>
@@ -100,12 +100,12 @@
       <label for="address1" >주소</label>    
       
         <input type='text'  name='address1' id='address1' 
-                   value='${memberVO.address1 }'rrequired="required" style='width: 35%;' placeholder="주소"> &nbsp
+                   value='${memberVO.address1 }'rrequired="required" style='width: 30%;' placeholder="주소"> &nbsp
     <br><br>
 
       <label for="address2" >상세 주소</label>    
         <input type='text' name='address2' id='address2' 
-                   value='${memberVO.address2 }'required="required" style='width: 35%;' placeholder="상세 주소"> &nbsp
+                   value='${memberVO.address2 }'required="required" style='width: 30%;' placeholder="상세 주소"> &nbsp
 <br><br>
 
 <!-- ----- DAUM 우편번호 API 시작 ----- -->

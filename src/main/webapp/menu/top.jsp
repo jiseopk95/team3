@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>Pet Doctor</title> <!-- 주소창 타이틀 -->
-    <link href="./css/style.css" rel='Stylesheet' type='text/css'>
+    <link href="${pageContext.request.contextPath}/css/style.css" rel='Stylesheet' type='text/css'>
     
     <script type="text/JavaScript"
           src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -58,7 +58,7 @@
           <c:when test="${sessionScope.managerno != null}">
             <li class="top-li">
                <a style="color: gray !important;">[ID: ${sessionScope.id }]</a>
-               <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/manager/read.do?managerno=${managerno}'>관리자페이지</a>
+               <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/manager/read.do?managerno=${managerno }'>MYPAGE</a>
                <a style="color: gray !important;" href=' ${pageContext.request.contextPath}/manager/logout.do'>Logout</a>
             </li>
           </c:when>
@@ -66,7 +66,7 @@
 </div>
 <!-- 나머지 카테고리나 메뉴들은 이 밑으로 정리해줘 색상은 #626262; 으로 -->
 <div style='text-align:center; margin-top: 2%;  margin-bottom: 2%;'>
-<a style="color: #8FD3E8; font-size: 60px;font-weight:bold; margin:0px auto; float: center; " href= '${pageContext.request.contextPath}/index.jsp'>Pet 24</a> <!-- 상단 왼쪽에 작게 나오는 이름 --><br>
+<a style="color: #8FD3E8 ; font-size: 60px;font-weight:bold; margin:0px auto; float: center; " href= '${pageContext.request.contextPath}/index.jsp'>Pet 24</a> <!-- 상단 왼쪽에 작게 나오는 이름 --><br>
  
  </div>
 <!--  <div class='menu_line' style="width: 90%; margin: 0px auto; border-style: 1px solid; "></div> -->
@@ -184,12 +184,7 @@
                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  style="color: #626262; font-size: 17px; font-weight:bold;"  href="#">소식공간 관리 <span class="caret"></span></a>
                        <ul class="dropdown-menu">
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/beauty/search_paging.do?nowPage=">미용스타일</a></li>
-                           <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></li>
-
-
-
-
-
+                         <%--  <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging_member.do?memberno=${memberno}">이벤트응모</a></li> --%>
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/event/search_paging.do?managerno=${managerno}">이벤트관리</a></li>   
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/present/list_all_present.do">이벤트상품</a></li>             
                            <li><a  style="color: #626262; font-size: 17px; font-weight:bold; " href="${pageContext.request.contextPath}/user/list_all_user.do">이벤트참여자보기</a></li>                    

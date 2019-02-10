@@ -23,7 +23,7 @@
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container' >
-<DIV class='content' > 
+<DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'> 
 <DIV class='title_line'>알림</DIV>
 
 <DIV class='message'>

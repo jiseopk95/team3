@@ -122,7 +122,7 @@ public class ReservationCont {
     mav.addObject("list_h", list_h); // 병원 예약되어있는 시간 리스트
     mav.addObject("list_b", list_b); // 미용 예약되어있는 시간 리스트
     mav.addObject("reservationVO", reservationVO); // 해당 글번호의 예약내용
-    
+    mav.addObject("title", "예약 수정");
     mav.setViewName("/reservation/update");
     
     return mav;
@@ -172,7 +172,6 @@ public class ReservationCont {
   public ResponseEntity deleteOne(int reservationno) {
     HttpHeaders responseHeaders = new HttpHeaders();
     ReservationVO reservationVO = reservationProc.read(reservationno);
-    
     JSONObject json = new JSONObject();
     json.put("name", reservationVO.getName());
     json.put("title", reservationVO.getTitle());

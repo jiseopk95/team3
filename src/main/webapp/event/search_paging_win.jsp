@@ -22,38 +22,14 @@
 </head>
 
 
-<DIV class='container'>
-<DIV class='title_line'>당첨확인
+<DIV class='container' style='width: 100%;'>
+<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%' ><!-- style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%' -->   
+<DIV class='title_line' style="margin-bottom:50px">당첨확인
  </DIV>
-<DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'><!-- style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%' -->   
-
   
-<!--     Modal
-  <div class="modal fade" id="modal_panel" role="dialog">
-    <div class="modal-dialog">
-    
-      Modal content
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4 class="modal-title" id='modal_title'></h4>
-        </div>
-        <div class="modal-body">
-          <p id='modal_content'></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div> Modal END -->
    <form name='frm' id='frm' method="get" action="./search_paging_win.do">
  <ASIDE style='float: left;'>
-    <%-- <A href='../category/list.do'>게시판 목록</A> 
-    >
-    <A href='./search_paging.do?categoryno=${beautyVO.categoryno }'>${beautyVO.title }</A>
- --%>
+
     <c:if test="${param.id.length() > 0}"> 
       >
       [${param.id}] 검색 목록(${search_count_win } 건) 
@@ -62,12 +38,7 @@
   </ASIDE>
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
-    
-    <!-- id가 어케 되는거지 일단 보류 -->
-   <%--  <c:if test="${sessionScope.id ne null }">
-      <span class='menu_divide' >│</span> 
-      <A href='./create.do?'>등록</A>
-    </c:if> --%>
+ 
 
      <span class='menu_divide' >│</span>
      <c:choose>
@@ -96,12 +67,12 @@
    </ASIDE>
     <table class="table table-striped" style='width: 100%;'>
         <colgroup>
-        <col style="width: 10%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 10%;"></col> 
-        <col style="width: 30%;"></col>
-        <col style="width: 30%;"></col>
-        <col style="width: 10%;"></col>
+        <col style="width: 13%;"></col>
+        <col style="width: 13%;"></col>
+        <col style="width: 14%;"></col> 
+        <col style="width: 25%;"></col>
+        <col style="width: 20%;"></col>
+        <col style="width: 15%;"></col>
  <%--        <col style="width: 15%;"></col> --%>
         
       </colgroup>
@@ -138,11 +109,6 @@
          </c:otherwise>
     </c:choose>
            </td>
-            <%-- <td style='vertical-align: middle; text-align: center;'><!-- 뷰티카테고리를 1번이라 임시지정, 마지막에 조인할 때 managerno도 들어가서 값 받을 수 있게끔 수정필요. -->
-             <a href="./create.do?managerno=${eventVO.managerno}"><img src="./images/create.png" title="등록" border='0' style='width: 20px; height: 20px;'/></a>
-              <a href="./update.do?eventno=${eventVO.eventno}&managerno=${eventVO.managerno}"><img src="./images/update.png" title="수정" border='0' style='width: 20px; height: 20px;'/></a>
-               <A href="javascript:delete_event(${eventVO.eventno});"><img src="./images/delete.png" title="삭제"  border='0' style='width: 20px; height: 20px;'/></a>
-            </td> --%>
     
           </tr>
         </c:forEach>

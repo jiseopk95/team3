@@ -73,7 +73,7 @@ function delete_style(styleno,categoryno) {
 <DIV class='container'>
 <DIV class='title_line'>미용스타일
  </DIV>
-<DIV class='content' >
+<DIV class='content' style='width: 100%; pagging-top:5%; padding-bottom:10%'>
 <!-- 좋아요수 증가 폼 -->
   <FORM name='frm_like1' id='frm_like1' method='post' action=''>
  <input type='hidden' name='styleno' id='styleno' value=''>

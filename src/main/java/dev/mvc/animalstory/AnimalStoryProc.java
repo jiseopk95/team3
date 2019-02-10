@@ -164,9 +164,6 @@ public class AnimalStoryProc implements AnimalStoryProcInter{
     String[] sizes_array = sizes.split("/"); // 파일 사이즈
  
     int count = sizes_array.length;
-    // System.out.println("sizes_array.length: " + sizes_array.length);
-    // System.out.println("sizes: " + sizes);
-    // System.out.println("files: " + files);
  
     if (files.length() > 0) {
       for (int index = 0; index < count; index++) {

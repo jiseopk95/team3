@@ -70,9 +70,8 @@ var time_b = '<div class="class="form-group" id="time_b">'
 		}
 	
 		/* DB에 등록된 예약동물의 이름이 selected되어라 */
-	  var pet_name = "${reservationVO.name }"; // DB에 저장된 예약동물 이름 
-	  $('#name').val(pet_name).prop("selected", true);
-
+	  var petno = "${reservationVO.petno }"; // DB에 저장된 예약동물 이름 
+	  $('#name').val(petno).prop("selected", true);
 	  
 	  for(var i = 0; i < time_h_array.length; i++) {
       time_h_array_copy[i] = time_h_array[i];
@@ -105,20 +104,6 @@ var time_b = '<div class="class="form-group" id="time_b">'
 		    time_b_array_copy.splice(index, 1);
 		  }
 		}
-		/* // time_array와 list_h의 겹치는 부분이 있다면 제거해라
-		for(var i = 0; i < list_h.length; i++) {
-		  index = time_h_array.indexOf(list_h[i]);
-		  if(index > -1) {
-		    time_h_array.splice(index, 1);
-		  }
-		}
-	// time_array와 list_b의 겹치는 부분이 있다면 제거해라
-		for(var i = 0; i < list_b.length; i++) {
-		  index = time_b_array.indexOf(list_b[i]);
-		  if(index > -1) {
-		    time_b_array.splice(index, 1);
-		  }
-		} */
 		
 		// time_h_array(예약된 시간이 제거된 리스트의 상태)를 option으로 추가해라
 		for(var i = 0; i < time_h_array_copy.length; i++) {
@@ -272,8 +257,8 @@ var time_b = '<div class="class="form-group" id="time_b">'
 </head>
 <body>
 <DIV class='container'>
-<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>
-<h1>예약수정</h1>
+<DIV class='content' >
+<div class="title_line">${title }</div>
   <FORM name='frm' id="frm" method='POST' action='./update.do'
                enctype="multipart/form-data" class="form-horizontal">
                
@@ -281,7 +266,8 @@ var time_b = '<div class="class="form-group" id="time_b">'
      <input type='hidden' name='memberno' id='memberno' value='${param.memberno }'>
       <input type='hidden' name='petno' id='petno' value='${reservationVO.petno }'>
       
-      <div class="form-group">   
+      <div class="form-group" style="text-align: left;">   
+        <label for="restype" class="col-md-1 control-label">예약 형식</label>
         <div class="col-md-11">
           <label class="radio-inline">
             <input type='radio' name='restype' id="restype1" value='1'>의료
@@ -297,12 +283,12 @@ var time_b = '<div class="class="form-group" id="time_b">'
       <div class="form-group">
         <div class="col-md-11">
           <label for="name">예약동물이름</label>
-          <select class="form-control" id="name" name="name">
+          <select class="form-control" id="name" name="petno">
             <option value="default">-- 예약동물이름 --</option>
             <c:forEach var="petVO" items="${list }">
-            <option value="${petVO.name }" id="pet_name">${petVO.name }</option>
+            <option value="${petVO.petno }" id="pet_name">${petVO.name }</option>
             </c:forEach>
-            <option value="개인">개인스케줄</option>
+            <option value="0">개인스케줄</option>
           </select>
         </div>
       </div>
@@ -325,14 +311,6 @@ var time_b = '<div class="class="form-group" id="time_b">'
         </div>
       </div>
       <div class="form-group" id="time_div">
-        <!-- <div class="class="form-group" id="time_h">
-          <label for="restime" class="col-md-1 control-label">예약시간</label>
-          <div class="col-md-11">
-            <select class="form-control" id="restime_h" name="restime">
-              <option value="default">-- 병원 예약 가능 시간 --</option>
-            </select>
-          </div>
-        </div> -->
       </div>
       <div class="form-group">   
         <label for="content" class="col-md-1 control-label">예약내용</label>

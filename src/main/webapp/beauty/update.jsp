@@ -28,7 +28,7 @@
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container' >
-<DIV class='content' style='width: 100%; margin:0px auto; margin-top: 10%; margin-bottom: 10%'>     
+<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>     
 
 <%--   <ASIDE style='float: left;'>
     <A href='../category/list.do'>게시판 목록</A>
@@ -55,7 +55,7 @@
         </div>
       </div>   
        <div class="form-group">   
-        <label for="content" class="col-md-1 control-label">스타일이름</label>
+        <label for="content" class="col-md-1 control-label">스타일<br>이름</label>
         <div class="col-md-11">
            <input type='text' class="form-control input-lg" name='name' id='name' value='${beautyVO.name }' required="required" style='width: 30%;'>
         </div>
@@ -119,8 +119,8 @@
 
 
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html> 

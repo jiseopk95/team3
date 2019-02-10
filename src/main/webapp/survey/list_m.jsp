@@ -108,7 +108,7 @@ function exit(){
   <thead>  
   <TR>
     <TH style='text-align: center ;'>순서</TH>
-    <TH style='text-align: center ;'>설문조사 타이틀</TH>
+    <TH style='text-align: left ;'>설문조사 타이틀</TH>
      <TH style='text-align: center ;'>선택지 수</TH>
     <TH style='text-align: center ;'>시작일</TH>
     <TH style='text-align: center ;'>종료일</TH>        
@@ -133,13 +133,13 @@ function exit(){
     <!-- end -->
     <c:choose>   
          <c:when test="${surveyVO.q_cnt!=0&&nowDate <=surveyVO.enddate}">
-          <button type="button" class="btn btn-primary btn-xs"onclick="test(3,${surveyVO.surveyno});">응시 가능</button>
+          <button type="button" class="btn btn-primary btn-sm"onclick="test(${memberno},${surveyVO.surveyno});">응시 가능</button>
          </c:when>
          <c:when test="${nowDate >surveyVO.enddate}">
          <IMG src='./images/end.png' style="width:35px; height:35px;">
          </c:when>
          <c:when test="${surveyVO.q_cnt==0}">
-          <button type="button" class="btn btn-danger btn-xs"onclick="exit()">응시 불가</button>
+          <button type="button" class="btn btn-danger btn-sm"onclick="exit()">응시 불가</button>
          </c:when>
  
 

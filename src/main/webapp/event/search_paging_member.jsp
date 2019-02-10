@@ -82,9 +82,9 @@ function delete_event(eventno) {
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
 <DIV class='container'>
-<DIV class='title_line'>이벤트응모
+<DIV class='content'   style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'><!-- style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%' -->   
+<DIV class='title_line' style="margin-bottom:50px">이벤트응모
  </DIV>
-<DIV class='content'  style='width: 100%; pagging-top:5%; padding-bottom:10%'><!-- style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%' -->   
 <input type='hidden' name='managerno' id='managerno' value=''>
 <c:forEach var="event_eventuserVO" items="${list }">
 <%-- <input type='text' name='win' id='win' value='${event_eventuserVO.win}'> --%>
@@ -96,11 +96,11 @@ function delete_event(eventno) {
   </FORM>
   
     <!-- Modal -->
-  <div class="modal fade" id="modal_panel" role="dialog">
-    <div class="modal-dialog">
+  <!-- <div class="modal fade" id="modal_panel" role="dialog">
+    <div class="modal-dialog"> -->
     
       <!-- Modal content-->
-      <div class="modal-content">
+   <!--    <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
           <h4 class="modal-title" id='modal_title'></h4>
@@ -114,7 +114,7 @@ function delete_event(eventno) {
       </div>
       
     </div>
-  </div> <!-- Modal END -->
+  </div> --> <!-- Modal END -->
    <form name='frm' id='frm' method="get" action="./search_paging_member.do">
  <ASIDE style='float: left;'>
     <%-- <A href='../category/list.do'>게시판 목록</A> 
@@ -139,11 +139,11 @@ function delete_event(eventno) {
      <span class='menu_divide' >│</span>
      <c:choose>
      <c:when test = " ${param.content != '' }">
-     <input type = 'text' name='content' id='content' value='${param.content}' style='width:35%;'>
+     <input type = 'text' name='content' id='content' value='${param.content}' placeholder='내용을 입력하세요'  style='width:40%;'>
        <input type = 'text' name='memberno' id='memberno' value='${param.memberno}'> 
      </c:when>
      <c:otherwise>
-     <input type ='text'  name = 'content' id='content' value='' style='width:35%;'>
+     <input type ='text'  name = 'content' id='content' value='' placeholder='내용을 입력하세요'  style='width:40%;'>
        <input type = 'hidden' name='memberno' id='memberno' value='${param.memberno}'> 
      </c:otherwise>
      </c:choose>

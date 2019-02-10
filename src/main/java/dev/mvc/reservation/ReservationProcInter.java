@@ -67,5 +67,12 @@ public interface ReservationProcInter {
    * @return
    */
   public int delete(int reservationno);
+  
+  /**
+   * 예약된 동물의 이름
+   * @param petno
+   * @return
+   */
+  public String pet_name(int petno);
 
 }

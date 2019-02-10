@@ -113,10 +113,10 @@ function delete_style(styleno) {
 
 <body id="page-top">
 <c:import url="/menu/top.jsp" /> <!--  top 부분 소스분리 -->
-<DIV class='container'>
-<DIV class='title_line'>미용스타일
+<DIV class='container' style='width:80%;'>
+<DIV class='content'  style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>   
+<DIV class='title_line' style="margin-bottom:50px">미용스타일
  </DIV>
-<DIV class='content' style='width: 100%; margin:0px auto; text-align: center; margin-top: 10%; margin-bottom: 10%'>   
 <!-- 좋아요수 증가 폼 -->
   <FORM name='frm_like1' id='frm_like1' method='post' action=''>
  <input type='hidden' name='styleno' id='styleno' value=''>
@@ -145,8 +145,8 @@ function delete_style(styleno) {
   </div> <!-- Modal END -->
    <form name='frm' id='frm' method="get" action="./search_paging.do">
  <ASIDE style='float: left;'>
-    <A href='../category/list.do'>게시판 목록</A> 
-    >
+   <!--  <A href='../category/list.do'>게시판 목록</A> 
+    > -->
 <%--     <A href='./search_paging.do?categoryno=${beautyVO.categoryno }'>${beautyVO.title }</A> --%>
 
     <c:if test="${param.title.length() > 0}"> 
@@ -167,10 +167,10 @@ function delete_style(styleno) {
      <span class='menu_divide' >│</span>
      <c:choose>
      <c:when test = " ${param.title != '' }">
-     <input type = 'text' name='title' id='title' value='${param.title}' style='width:35%;'>
+     <input type = 'text' name='title' id='title' value='${param.title}' placeholder='제목을 입력하세요' style='width:40%;'>
      </c:when>
      <c:otherwise>
-     <input type ='text'  name = 'title' id='title' value='' style='width:35%;'>
+     <input type ='text'  name = 'title' id='title' value='' placeholder='제목을 입력하세요' style='width:40%;'>
      </c:otherwise>
      </c:choose>
      <button type='submit' class="btn btn-primary btn-sm">검색</button>
@@ -185,10 +185,10 @@ function delete_style(styleno) {
 <input type='hidden' name='managerno' id='managerno' value='${sessionScope.managerno}'>
     
      <ASIDE style='float: right;'>
-      <A href="javascript:list_all_rdate();">최신순</A> |
+      <!-- <A href="javascript:list_all_rdate();">최신순</A> |
        <A href="javascript:list_all_cnt();">조회순</A> |
           <A href="javascript:list_all_like1();">좋아요순</A>
-    
+     -->
     <c:if test="${sessionScope.managerno != null}">
     <button type="button" class="btn btn-primary btn-sm" 
     onclick="location.href='./create.do?managerno=${sessionScope.managerno}'">등록

@@ -47,8 +47,8 @@
 </DIV>
 
 </DIV> <!-- content END -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </DIV> <!-- container END -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 
 </html> 
