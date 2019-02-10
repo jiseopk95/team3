@@ -613,14 +613,14 @@ VALUES((SELECT NVL(MAX(questionno), 0)+1 as questionno FROM question), '질문', s
 INSERT INTO question(questionno, title, rdate, contente, name, files, thumbs, filesize, num, passwd, visible , categoryno, memberno)
 VALUES((SELECT NVL(MAX(questionno), 0)+1 as questionno FROM question), '미용 관련 질문', sysdate, '미용 질문 내용.....',
              'fall.jpg','fall_m.jpg',  0, '' , 'Y', 0 , 3, 2 , 3);
-             
+         
+DROP TABLE answer;            
 /**********************************/
 /* Table Name: 댓글 */
 /**********************************/
 CREATE TABLE answer(
 answerno                      	NUMBER(10)	 NOT NULL	 PRIMARY KEY,
 reviewno                    	NUMBER(10)	 NULL ,
-title                         	VARCHAR2(100)	 NOT NULL,
 name                          	VARCHAR2(30)	 NOT NULL,
 emoticon                      	VARCHAR2(30)	 NULL ,
 content                       	CLOB	 NOT NULL,
@@ -630,10 +630,10 @@ memberno                     	NUMBER(10)	 NULL ,
   FOREIGN KEY (memberno) REFERENCES member (memberno)
 );
 
+
 COMMENT ON TABLE answer is '댓글';
 COMMENT ON COLUMN answer.answerno is '댓글번호';
 COMMENT ON COLUMN answer.reviewno is '후기번호';
-COMMENT ON COLUMN answer.title is '제목';
 COMMENT ON COLUMN answer.name is '글쓴이';
 COMMENT ON COLUMN answer.emoticon is '이모티콘';
 COMMENT ON COLUMN answer.content is '내용';

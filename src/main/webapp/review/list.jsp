@@ -36,7 +36,7 @@ $(function(){
     <A href='./list_by_category.do?categoryno=${categoryVO.categoryno }'>${categoryVO.title }</A> 
   </ASIDE> --%>
   
-  <DIV class='title_line'>후기 목록</DIV>
+  <DIV class='title_line'>${categoryVO.name} 후기 목록</DIV>
   
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>

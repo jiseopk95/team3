@@ -7,12 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="answer">
 
   <insert id="create" parameterType="AnswerVO">
-  INSERT INTO answer(answerno, reviewno,content, rdate,memberno)
-  VALUES((SELECT NVL(MAX(answerno), 0)+1 as answerno FROM answer), #{reviewno}, #{content}, sysdate, #{memberno} )
+  INSERT INTO answer(answerno, reviewno,content, rdate,memberno,name)
+  VALUES((SELECT NVL(MAX(answerno), 0)+1 as answerno FROM answer), #{reviewno}, #{content}, sysdate, #{memberno},#{name} )
   </insert>
   
 <select id="list" resultType="AnswerVO" >
-    SELECT answerno, reviewno, content, rdate
+    SELECT answerno, reviewno, content, rdate,name
     FROM answer
     WHERE reviewno=#{reviewno}
     ORDER BY answerno ASC
