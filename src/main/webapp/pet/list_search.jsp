@@ -63,10 +63,10 @@
   <table class="table" style='width: 100%;'>
   <%-- <caption>회원 목록</caption> --%>
   <colgroup>
+    <col style='width: 6%;'/>
+    <col style='width: 9%;'/>
     <col style='width: 8%;'/>
-    <col style='width: 11%;'/>
-    <col style='width: 8%;'/>
-    <col style='width: 8%;'/>
+    <col style='width: 10%;'/>
     <col style='width: 10%;'/>
     <col style='width: 10%;'/>
     <col style='width: 13%;'/>
@@ -75,23 +75,23 @@
     <col style='width: 20%;'/>
   </colgroup>
   <TR>
-    <TH class='th'>&nbsp&nbsp번호</TH>
-    <TH class='th'>&nbsp&nbsp회원번호</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp사진</TH>
-    <TH class='th'>&nbsp&nbsp이름</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp나이</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp성별</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp종류</TH>
-    <TH class='th'>&nbsp중성화여부</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp몸무게</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp기타</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp번호</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원번호</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp사진</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp이름</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp나이</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp성별</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp종류</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp중성화여부</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp몸무게</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp기타</TH>
   </TR>
   
   <c:forEach var="petVO" items="${list }">
   <c:set var="petno" value ="${petVO.petno }" />
   <TR>
     <TD class='td' style='padding-top: 3%'>${petno}</TD>
-    <TD class='td' style='padding-top: 3%'><A href="../member/read.do?memberno= ${petVO.memberno}">${petVO.memberno}</A></TD>
+    <TD class='td' style='padding-top: 3%'><A href="../member/read.do?memberno=${petVO.memberno}">${petVO.memberno}</A></TD>
     <td style='vertical-align: middle;'>
            <c:choose>
               <c:when test="${petVO.thumbs != ''}">
@@ -103,7 +103,7 @@
                </c:otherwise>
             </c:choose> 
     </td>
-    <TD class='td' style='padding-top: 3%'><A href="../pet/read.do?petno= ${petVO.petno}">${petVO.name}</A></TD>
+    <TD class='td' style='padding-top: 3%'><A href="../pet/read.do?petno=${petVO.petno}">${petVO.name}</A></TD>
     <TD class='td' style='padding-top: 3%'>${petVO.age}</TD>
     <TD class='td' style='padding-top: 3%'>${petVO.gender}</TD>
     <TD class='td' style='padding-top: 3%'>${petVO.pet_type}</TD>

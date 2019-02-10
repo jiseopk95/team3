@@ -109,8 +109,8 @@
     <TD class='td' style='padding-top: 3%'>${managerVO.phone}</TD>
     <TD class='td' style='padding-top: 3%'>
       <c:choose>
-        <c:when test="${managerVO.address1.length() > 6 }">
-          ${managerVO.address1.substring(0, 6) }...
+        <c:when test="${managerVO.address1.length() > 15 }">
+          ${managerVO.address1.substring(0, 15) }...
         </c:when>
         <c:otherwise>
           ${managerVO.address1}

@@ -32,10 +32,10 @@
 
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
    <form name='frm' id='frm' method="get" action="./list_search.do">
-  <DIV class='title_line' style='width: 20%;'>회원목록</DIV>
+  <DIV class='title_line' style='width: 20%;'>직원목록</DIV>
   
    <ASIDE style='float: right;'>
-    <A href='../manager/list.do'>전체 직원보기</A>
+    <A href='../manager/list_search.do'>전체 직원보기</A>
     <A href='./list_search.do?managerno=${managerVO.managerno }'>${managerVO.name }</A>
 
     <c:if test="${param.word.length() > 0}"> 
@@ -62,29 +62,29 @@
   <table class="table" style='width: 100%;'>
   <%-- <caption>회원 목록</caption> --%>
   <colgroup>
+    <col style='width: 5%;'/>
+    <col style='width: 6%;'/>
+    <col style='width: 5%;'/>
+    <col style='width: 6%;'/>
     <col style='width: 7%;'/>
     <col style='width: 9%;'/>
-    <col style='width: 7%;'/>
-    <col style='width: 9%;'/>
-    <col style='width: 10%;'/>
-    <col style='width: 16%;'/>
-    <col style='width: 14%;'/>
-    <col style='width: 7%;'/>
-    <col style='width: 12%;'/>
     <col style='width: 15%;'/>
+    <col style='width: 5%;'/>
+    <col style='width: 10%;'/>
+    <col style='width: 5%;'/>
     
   </colgroup>
   <TR>
-    <TH class='th'>&nbsp번호</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp사진</TH>
-    <TH class='th'>&nbsp&nbsp&nbspID</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp성명</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp직급</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp전화번호</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp주소</TH>
-    <TH class='th'>&nbsp권한</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp등록일</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp기타</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp번호</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp사진</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspID</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp성명</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp직급</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전화번호</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주소</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp권한</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일</TH>
+    <TH class='th'>&nbsp&nbsp기타</TH>
   </TR>
   
   <c:forEach var="managerVO" items="${list }">
@@ -110,8 +110,8 @@
     <TD class='td' style='padding-top: 3%'>${managerVO.phone}</TD>
     <TD class='td' style='padding-top: 3%'>
       <c:choose>
-        <c:when test="${managerVO.address1.length() > 6 }">
-          ${managerVO.address1.substring(0, 6) }...
+        <c:when test="${managerVO.address1.length() > 15 }">
+          ${managerVO.address1.substring(0, 15) }...
         </c:when>
         <c:otherwise>
           ${managerVO.address1}

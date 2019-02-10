@@ -49,13 +49,7 @@
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 
 <DIV class='title_line' >패스워드 변경</DIV>
-  <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./login.do'>로그인 &nbsp</A>
-  </ASIDE>
-  <br>
-  <div class='menu_line'></div>
+  
   <br>
 
   <!-- Modal -->

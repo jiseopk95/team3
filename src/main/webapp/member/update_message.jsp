@@ -46,7 +46,7 @@
           <li class='li_none'>수정 성공했습니다.</li>
           <li class='li_none'>
             <br>
-            <button type='button' onclick="location.href='../member/read.do?memberno=${memberno }'" >수정 확인</button>
+            <button type='button' onclick="location.href='./read.do?memberno=${param.memberno }'" >확인</button>
           </li>          
  
         </c:when>
