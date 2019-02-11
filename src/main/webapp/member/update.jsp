@@ -32,13 +32,6 @@
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 <DIV class='title_line' style='width: 20%;'>정보 수정</DIV>
   
-   <ASIDE style='float: right;'>
-   <A href="./passwd_update.do?memberno=${memberno}"><IMG src='./images/edit_info.png'  width="20" height="20" title='패스워드 변경' >&nbsp 패스워드 변경</A>
-    <span class='menu_divide' >│</span> 
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='../index.jsp'>HOME</A>
-  </ASIDE> 
 <br>
 
   <DIV id='main_panel'></DIV>
