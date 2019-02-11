@@ -47,8 +47,7 @@
           <li class='li_none'>동물 정보 수정에 성공했습니다.</li>
           <li class='li_none'>
             <br>
-            <button type='button' onclick="location.href='./list.do?petno=${param.petno}'">목록</button>
-            <button type='button' onclick="location.href='${pageContext.request.contextPath}'">홈</button>
+            <button type='button' onclick="location.href='./read.do?petno=${param.petno}'">확인</button>
           </li>          
  
         </c:when>

@@ -59,7 +59,7 @@
         </div>
       </div>   
        <div class="form-group">   
-        <label for="content" class="col-md-1 control-label">이벤트 내용</label>
+        <label for="content" class="col-md-1 control-label">이벤트<br>상세내용</label>
         <div class="col-md-11">
            <textarea class="form-control input-lg" name='content' id='content'  rows='10'>이벤트입니다.</textarea>
         </div>
@@ -106,7 +106,7 @@
         </div>
       </div>
       <div class="form-group">   
-        <label for="filesMF" class="col-md-1 control-label">업로드 파일</label>
+        <label for="filesMF" class="col-md-1 control-label">업로드<br>파일</label>
         <div class="col-md-11">
           <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple">
           <br>

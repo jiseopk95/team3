@@ -93,7 +93,7 @@
   <c:set var="petno" value ="${petVO.petno }" />
   <TR>
     <TD class='td' style='padding-top: 3%'>${petno}</TD>
-    <TD class='td' style='padding-top: 3%'><A href="../member/read.do?memberno= ${petVO.memberno}">${petVO.memberno}</A></TD>
+    <TD class='td' style='padding-top: 3%'><A href="../member/read.do?memberno=${petVO.memberno}">${petVO.memberno}</A></TD>
     <td style='vertical-align: middle;'>
            <c:choose>
               <c:when test="${petVO.thumbs != ''}">
@@ -105,7 +105,7 @@
                </c:otherwise>
             </c:choose> 
     </td>
-    <TD class='td' style='padding-top: 3%'><A href="../pet/read.do?petno= ${petVO.petno}">${petVO.name}</A></TD>
+    <TD class='td' style='padding-top: 3%'><A href="../pet/read.do?petno=${petVO.petno}">${petVO.name}</A></TD>
     <TD class='td' style='padding-top: 3%'>${petVO.age}</TD>
     <TD class='td' style='padding-top: 3%'>${petVO.gender}</TD>
     <TD class='td' style='padding-top: 3%'>${petVO.pet_type}</TD>

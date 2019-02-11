@@ -199,7 +199,7 @@
 
 <body>
  <c:import url="/menu/top.jsp"  /> 
-<DIV class='container' style='width: 100%;'>
+<DIV class='container' >
 <DIV class='content'>
   <!-- 우선 순위 증가 감소 폼 -->
   <FORM name='frm_seqno' id='frm_seqno' method='post' action=''>

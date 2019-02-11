@@ -37,12 +37,18 @@ $(function(){
     <A href='./list_by_category.do?categoryno=${categoryVO.categoryno }'>${categoryVO.title }</A> 
   </ASIDE> --%>
   
-  <DIV class='title_line'>질문 목록</DIV>
+  <DIV class='title_line'>${categoryVO.name} 질문 목록</DIV>
+  
+  
   
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do?categoryno=${categoryVO.categoryno }'>등록</A>
+    <c:if test="${sessionScope.memberno != null}">
+      <span class='menu_divide' >│</span> 
+      <A href='./create.do?categoryno=1'>등록</A>
+    </c:if>
+  <%--   <span class='menu_divide' >│</span> 
+    <A href='./create.do?categoryno=${categoryVO.categoryno }'>등록</A> --%>
     <input type='hidden' name='categoryno' id='categoryno' value='${param.categoryno }'> 
   </ASIDE> 
   <DIV class='menu_line' style='clear: both;'></DIV>  

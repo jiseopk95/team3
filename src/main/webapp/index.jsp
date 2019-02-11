@@ -67,7 +67,7 @@
   <div style=' float: right;width:25%; margin-top: 2%; '>
     <div style='font-weight: bold;text-align: CENTER; font-size: 20px; color: #000000;'>
        CUSTOMER SERVICE <br><br>
-      <a href=' ${pageContext.request.contextPath}/review/list.do'><img  style='width:35%;'  src="./css/images/qna.png"/></a>
+      <a href=' ${pageContext.request.contextPath}/question/list.do?categoryno=2'><img  style='width:35%;'  src="./css/images/qna.png"/></a>
       <img style='width:35%; margin-left: 3%;' src="./css/images/call.png"/>
     </div>
   </div>

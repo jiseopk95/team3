@@ -10,7 +10,7 @@ DROP TABLE chart CASCADE CONSTRAINTS;
 DROP TABLE reservation CASCADE CONSTRAINTS;
 
 -- 희원
-DROP TABLE eventuser CASCADE CONSTRAINTS;
+DROP TABLE eventusers CASCADE CONSTRAINTS;
 DROP TABLE event CASCADE CONSTRAINTS;
 DROP TABLE present CASCADE CONSTRAINTS;
 DROP TABLE style CASCADE CONSTRAINTS;
@@ -56,7 +56,7 @@ COMMENT ON COLUMN member.zipcode is '우편번호';
 COMMENT ON COLUMN member.address1 is '주소';
 COMMENT ON COLUMN member.address2 is '상세 주소';
 COMMENT ON COLUMN member.rdate is '가입 날짜';
-
+select * from member
 1) 회원등록
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
@@ -73,17 +73,6 @@ VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
 'user2', '1234', '왕눈이', '000-1456-5678', 'abc150@gmail.com','1215','서울시 서초구','솔데스크 545', sysdate);
-<<<<<<< HEAD
-
-	UPDATE member
-	SET id = 'test' 
-	WHERE id='master';
-	
-	select * from member;
-
-=======
-select memberno, id from member 
->>>>>>> branch 'master' of https://github.com/jiseopk95/team3
 
 /* manager */
 
@@ -122,7 +111,7 @@ COMMENT ON COLUMN manager.files is '이미지 파일';
 COMMENT ON COLUMN manager.thumbs is '미리보기 이미지';
 COMMENT ON COLUMN manager.filesizes is '이미지 사이즈';
 COMMENT ON COLUMN manager.rdate is '가입날짜';
-select id, passwd from manager 
+
 1) 등록
 INSERT INTO manager(managerno,kind, id, passwd, name,position, phone, email,zipcode,address1,address2,files,thumbs,filesizes,rdate)
 VALUES ((SELECT NVL(MAX(managerno), 0)+1 as managerno FROM manager),
@@ -245,7 +234,6 @@ CREATE TABLE reservation(
 		restime                       		VARCHAR2(50)		 NOT NULL,
 		content                       		CLOB		 NOT NULL,
 		restype                       		NUMBER(10)			 NOT NULL,
-		name													VARCHAR2(50)		 NOT NULL,
 		petno                         		NUMBER(10)		 NULL ,
 		memberno                      		NUMBER(10)		 NULL ,
   FOREIGN KEY (petno) REFERENCES pet (petno),
@@ -260,11 +248,10 @@ COMMENT ON COLUMN reservation.resdate is '예약날짜';
 COMMENT ON COLUMN reservation.restime is '예약시간';
 COMMENT ON COLUMN reservation.content is '내용';
 COMMENT ON COLUMN reservation.restype is '종류';
-COMMENT ON COLUMN reservation.name is '동물이름';
 COMMENT ON COLUMN reservation.petno is '동물번호';
 COMMENT ON COLUMN reservation.memberno is '회원번호';
 COMMENT ON COLUMN reservation.rdate is '입력날짜'; 
-
+select * from reservation
 1. 등록 
  INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
@@ -277,6 +264,7 @@ COMMENT ON COLUMN reservation.rdate is '입력날짜';
  INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
  							'춘향이 털밀기', '춘향이 미용', '2018-12-12', '오전 11:00', '몸쪽 털 짧게 다듬어주세요', 2, '아랑이', 1, 2,  sysdate);
+
 
 /* 진료차트 */
 CREATE TABLE chart(
@@ -309,7 +297,7 @@ COMMENT ON COLUMN chart.petname is '동물이름';
 COMMENT ON COLUMN chart.name is '보호자이름';
 COMMENT ON COLUMN chart.phone is '보호자 전화번호';
 COMMENT ON COLUMN chart.petno is '동물번호';
-select * from chart
+
 2. 등록 
 INSERT INTO chart(chartno, petno, petname, name, phone, title, sick, medicine, stay, etc, managerno, rdate)
 VALUES ((SELECT NVL(MAX(chartno), 0)+1 as chartno FROM chart),
@@ -324,7 +312,7 @@ VALUES ((SELECT NVL(MAX(chartno), 0)+1 as chartno FROM chart),
 3, '토토', '해', '000-5678-1234', '토토 진료차트', '감기', '감기약', 'N', 'ㅇㅇ약에 알러지반응', 3, 1, sysdate);
 
 /* 애니멀스토리 */
-drop table animalstory 
+
 CREATE TABLE animalstory(
 		anino                         		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		anitype                       		VARCHAR2(10)		 NOT NULL,
@@ -348,22 +336,22 @@ COMMENT ON COLUMN animalstory.thumbs is '썸네일이름';
 COMMENT ON COLUMN animalstory.sizes is '파일크기';
 COMMENT ON COLUMN animalstory.rdate is '작성일';
 COMMENT ON COLUMN animalstory.managerno is '관리자번호';
-
+delete from animalstory
 2. 등록 
-INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, cnt, managerno, rdate)
+INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
 '개', '산책만 나가면 아무거나 주워 먹는 강아지', 'Q. 아무거나 주워 먹는 강아지, 어떻게 해야 하나요? A. 대부분 타고난 식탐쟁이일 가능성이 높다. ', 
-'dog.jpg', 'dog_thumb.jpg', 0, 0, 1, sysdate);
+'dog.jpg', 'dog_thumb.jpg', 0, 1, sysdate);
 
-INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, cnt, managerno, rdate)
+INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
 '개', '분리불안증의 증상과 치료법', 'Q. 분리불안증의 원인 A. 개는 무리동물이다. ', 
-'dog2.jpg', 'dog2_thumb.jpg', 0, 2, 1, sysdate);
+'dog2.jpg', 'dog2_thumb.jpg', 0, 1, sysdate);
 
-INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, cnt, managerno, rdate)
+INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
 '고양이', '비싼 가구랑 소파를 막 긁어놔요', 'Q. 비싼 가구랑 소파를 막 긁어놔요 A. “집안의 모든 것은 고양이 용품!”, 발상 전환하기', 
-'cat.jpg', 'cat_thumb.jpg', 0, 0, 1, sysdate);
+'cat.jpg', 'cat_thumb.jpg', 0, 1, sysdate);
 
 
 /**********************************/
@@ -392,8 +380,8 @@ COMMENT ON COLUMN survey.enddate is '만료날';
 COMMENT ON COLUMN survey.rdate is '작성일자';
 COMMENT ON COLUMN survey.q_cnt is '문제수';
 COMMENT ON COLUMN survey.managerno is '관리자번호';
-2. 등록 
-             
+
+2. 등록     
 INSERT INTO survey(surveyno,managerno,survey_title,seqno,startdate,enddate,rdate)
 VALUES((SELECT NVL(max(surveyno),0)+1 as surveyno from survey),1,'당신의 강아지미용만족도에 대한 조사',1,'2018-01-02','2018-01-08',sysdate);	
 INSERT INTO survey(surveyno,managerno,survey_title,seqno,startdate,enddate,rdate)
@@ -480,7 +468,6 @@ VALUES((select NVL(max(categrpno),0)+1 as categrpno from categrp), 1, '의료', 1,
 INSERT INTO categrp(categrpno, classification, name, seqno, visible, rdate)
 VALUES((select NVL(max(categrpno),0)+1 as categrpno from categrp), 2, '미용', 2, 'Y', sysdate);
 
-SELECT categrpno, classification, nzme, seqno, visible, rdate
 
 /**********************************/
 /* Table Name: 카테고리 */
@@ -495,6 +482,11 @@ rdate                DATE  NOT NULL,
  FOREIGN KEY (categrpno) REFERENCES categrp (categrpno)
 );
 
+SELECT c.categrpno, c.name,
+    t.categoryno, t.categrpno, t.title,t.seqno, t.cnt
+    FROM categrp c, category t
+    WHERE c.categrpno = t.categrpno
+    ORDER BY c.categrpno ASC, t.seqno ASC
 
 COMMENT ON TABLE category is '카테고리';
 COMMENT ON COLUMN category.categoryno is '카테고리번호';
@@ -503,6 +495,8 @@ COMMENT ON COLUMN category.title is '게시판 이름';
 COMMENT ON COLUMN category.cnt is '등록된 글 수';
 COMMENT ON COLUMN category.seqno is '출력 순서';
 COMMENT ON COLUMN category.rdate is '등록날짜';
+
+
 
 -- 삽입
 INSERT INTO category(categoryno, categrpno, title, cnt, seqno, rdate)
@@ -619,14 +613,14 @@ VALUES((SELECT NVL(MAX(questionno), 0)+1 as questionno FROM question), '질문', s
 INSERT INTO question(questionno, title, rdate, contente, name, files, thumbs, filesize, num, passwd, visible , categoryno, memberno)
 VALUES((SELECT NVL(MAX(questionno), 0)+1 as questionno FROM question), '미용 관련 질문', sysdate, '미용 질문 내용.....',
              'fall.jpg','fall_m.jpg',  0, '' , 'Y', 0 , 3, 2 , 3);
-             
+         
+DROP TABLE answer;            
 /**********************************/
 /* Table Name: 댓글 */
 /**********************************/
 CREATE TABLE answer(
 answerno                      	NUMBER(10)	 NOT NULL	 PRIMARY KEY,
 reviewno                    	NUMBER(10)	 NULL ,
-title                         	VARCHAR2(100)	 NOT NULL,
 name                          	VARCHAR2(30)	 NOT NULL,
 emoticon                      	VARCHAR2(30)	 NULL ,
 content                       	CLOB	 NOT NULL,
@@ -636,10 +630,10 @@ memberno                     	NUMBER(10)	 NULL ,
   FOREIGN KEY (memberno) REFERENCES member (memberno)
 );
 
+
 COMMENT ON TABLE answer is '댓글';
 COMMENT ON COLUMN answer.answerno is '댓글번호';
 COMMENT ON COLUMN answer.reviewno is '후기번호';
-COMMENT ON COLUMN answer.title is '제목';
 COMMENT ON COLUMN answer.name is '글쓴이';
 COMMENT ON COLUMN answer.emoticon is '이모티콘';
 COMMENT ON COLUMN answer.content is '내용';
@@ -666,7 +660,6 @@ VALUES((SELECT NVL(MAX(answerno), 0)+1 as answerno FROM answer), 1, '답변', '관�
 /**********************************/
 CREATE TABLE style(
 		styleno                       		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
-		categoryno                    		NUMBER(10)		 NULL ,
 		managerno                     		NUMBER(10)		 NULL ,
 		title                         		VARCHAR2(50)		 NOT NULL,
 		name                          		VARCHAR2(50)		 NOT NULL,
@@ -682,13 +675,11 @@ CREATE TABLE style(
 		pay                           		NUMBER(10)		 NOT NULL,
 		times                         		NUMBER(10)		 NOT NULL,
 		rdate                         		DATE		 NOT NULL,
-  FOREIGN KEY (categoryno) REFERENCES category (categoryno),
   FOREIGN KEY (managerno) REFERENCES manager (managerno)
 );
 
 COMMENT ON TABLE style is '미용스타일';
 COMMENT ON COLUMN style.styleno is '스타일번호';
-COMMENT ON COLUMN style.categoryno is '카테고리번호';
 COMMENT ON COLUMN style.managerno is '관리자번호';
 COMMENT ON COLUMN style.title is '제목';
 COMMENT ON COLUMN style.name is '스타일이름';
@@ -706,11 +697,11 @@ COMMENT ON COLUMN style.times is '소요시간';
 COMMENT ON COLUMN style.rdate is '등록날짜';
 
 /*등록*/
- INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
+ INSERT INTO style(styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
 VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
 1,1,'미용사가 추천하는 곰돌이컷','곰돌이컷','미용사1',0,'beauty@naver.com','곰돌이 컷 너무 귀여워요',0, 'bear.jpg', 'bear01.jpg', 'bear_m.jpg',0, 50000, 3, sysdate);
 
-INSERT INTO style(styleno, categoryno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
+INSERT INTO style(styleno, managerno, title, name, rname, like1, email, content,cnt,image,image_name,thumb,sizes,pay,times,rdate)
 VALUES ((SELECT NVL(MAX(styleno), 0)+1 as styleno FROM style),
 1,2,'사자가 떠오르는 귀여운 사자컷','곰돌이컷','미용사2',0,'beauty2@naver.com','몸의 털은 밀고 머리털만 남겨주어 사자의 갈기를 떠올리게 하는 컷입니다',0, 'cut.jpg', 'cut01.jpg', 'cut_m.jpg',0, 60000, 3, sysdate);
 

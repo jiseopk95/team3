@@ -227,10 +227,6 @@ public class AnimalStoryCont {
     hashMap.put("anitype", anitype);
     hashMap.put("nowPage", nowPage);
     
-      mav.setViewName("/animalstory/list_anitype");
-    
-   
-    
     // 검색 목록
     List<AnimalStoryVO> list = aniProc.list_by_search_paging_anitype(hashMap);
     
@@ -271,6 +267,8 @@ public class AnimalStoryCont {
     mav.addObject("anitype", anitype);
     mav.addObject("managerno", managerno);
     mav.addObject("nowPage", nowPage);
+    
+    mav.setViewName("/animalstory/list_anitype");
     return mav;
   }
   
@@ -288,7 +286,7 @@ public class AnimalStoryCont {
     mav.addObject("aniVO", aniVO);
 
     ArrayList<AniFileVO> file_list = aniProc.getThumbs(aniVO);
-    
+   
     mav.addObject("file_list", file_list);
     
     mav.setViewName("/animalstory/read"); // /webapp/contents/read.jsp

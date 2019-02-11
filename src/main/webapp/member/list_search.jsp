@@ -75,14 +75,14 @@
     
   </colgroup>
   <TR>
-    <TH class='th'>&nbsp&nbsp번호</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspID</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp성명</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전화번호</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주소</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp번호</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspID</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp성명</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전화번호</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주소</TH>
     <!-- <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp권한</TH> -->
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일</TH>
-    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp기타</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp등록일</TH>
+    <TH class='th'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp기타</TH>
   </TR>
   
   
@@ -107,7 +107,6 @@
     </TD>
     <TD class='td'>${memberVO.rdate.substring(0, 10)}</TD> <!-- 년월일 -->
     <TD class='td'>
-      <A href="./passwd_update.do?memberno=${memberno}"><IMG src='./images/edit_info.png'  width="20" height="20" title='패스워드 변경' ></A>
       <A href="./update.do?memberno=${memberno}"><IMG src='./images/update.png'  width="20" height="20"  title='수정'></A>
       <A href="./delete.do?memberno=${memberno}"><IMG src='./images/delete.png'  width="20" height="20"  title='삭제'></A>
     </TD>

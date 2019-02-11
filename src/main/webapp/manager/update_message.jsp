@@ -25,8 +25,7 @@
 <body>
 <c:import url="/menu/top.jsp" />
 <DIV class='container'>
-<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>%;'>
- 
+<DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 <DIV class='title_line'>알림</DIV>
  
 <DIV class='message'>
@@ -46,8 +45,7 @@
           <li class='li_none'>수정 성공했습니다.</li>
           <li class='li_none'>
             <br>
-            <button type='button' onclick="location.href='./list.do'">수정 확인</button>
-            <button type='button' onclick="location.href='${pageContext.request.contextPath}'">홈</button>
+            <button type='button' onclick="location.href='./read.do?managerno=${param.managerno }'" >확인</button>
           </li>          
  
         </c:when>

@@ -32,8 +32,7 @@
       </c:choose>
       <LI class='li_none' style="text-align:center">
         <br>
-        <button type='button' onclick="location.href='./create.do'">새로운 카테고리 그룹 등록</button>
-        <button type='button' onclick="location.href='./list.do'">목록</button>
+        <button type='button' class="btn btn-primary" onclick="location.href='./list.do'">목록</button>
       </LI>
      </UL>  
   </fieldset>

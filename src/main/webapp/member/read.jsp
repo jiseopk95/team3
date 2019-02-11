@@ -166,9 +166,9 @@
 <br><br>
     
         <!-- <button type="submit" class="btn btn-primary">수정</button> -->
-        <button type="button" onclick="location.href='./update.do?memberno=${memberno}'" class="btn btn-primary">정보 수정</button>
-        <button type="button" onclick="location.href='./passwd_update.do?memberno=${memberno}" class="btn btn-secondary">패스워드 변경</button>
-        <button type="button" onclick="location.href='./delete.do?memberno=${memberno}" class="btn btn-secondary">회원 탈퇴</button>
+        <button type="button" onclick="location.href='./update.do?memberno=${memberVO.memberno }'" class="btn btn-primary">정보 수정</button>
+        <button type="button" onclick="location.href='./passwd_update.do?memberno=${memberVO.memberno }'" class="btn btn-secondary">패스워드 변경</button>
+        <button type="button" onclick="location.href='./delete.do?memberno=${memberVO.memberno }'" class="btn btn-secondary">회원 탈퇴</button>
   </FORM>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->

@@ -36,13 +36,16 @@ $(function(){
     <A href='./list_by_category.do?categoryno=${categoryVO.categoryno }'>${categoryVO.title }</A> 
   </ASIDE> --%>
   
-  <DIV class='title_line'>후기 목록</DIV>
+  <DIV class='title_line'>${categoryVO.name} 후기 목록</DIV>
   
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do?categoryno=1'>등록</A>&nbsp
+    <c:if test="${sessionScope.memberno != null}">
+      <span class='menu_divide' >│</span> 
+      <A href='./create.do?categoryno=${categoryVO.categoryno }'>등록</A>
+    </c:if>
     <input type='hidden' name='categoryno' id='categoryno' value='${categoryVO.categoryno }'>
+     <span class='menu_divide' >│</span> 
     <c:choose>
       <c:when test="${param.title != '' }">
         <input type='text' name='title' id='title' value='${param.title }' style='width: 35%;'>
@@ -51,8 +54,8 @@ $(function(){
         <input type='text' name='title' id='title' value='' style='width: 35%;'>
       </c:otherwise>
     </c:choose>
-    <button type='submit'>검색</button>
-    <button type='button' 
+    <button type='submit' class='btn btn-primary'>검색</button>
+    <button type='button' class='btn btn-primary'
                  onclick="location.href='./list.do?categoryno=${categoryVO.categoryno }'">전체 보기</button>
   </ASIDE> 
   </form>

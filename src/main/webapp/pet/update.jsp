@@ -19,12 +19,26 @@
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
+
+$(function() {
+  var gender='${petVO.gender}';
+  if(gender=="수컷") {
+    $("input:radio[name='gender']:radio[value='수컷']").prop('checked', true); // 선택하기
+  } else {
+    $("input:radio[name='gender']:radio[value='암컷']").prop('checked', true); // 선택하기
+  }
   
+  var neutralization='${petVO.neutralization}';
+  if(neutralization=="Y") {
+    $("input:radio[name='neutralization']:radio[value='Y']").prop('checked', true); // 선택하기
+  } else {
+    $("input:radio[name='neutralization']:radio[value='N']").prop('checked', true); // 선택하기
+  }
+});
+
 </script>
 
-
 </head> 
-
 
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
@@ -96,8 +110,8 @@
     <br><br>
 
     <label for="gender" >성별</label> &nbsp 
-      <label><input type="radio" name="gender" id='gender1' value='수컷'  />수컷&nbsp</label>
-      <label><input type="radio" name="gender" id='gender2' value='암컷' />암컷</label>
+      <label><input type="radio" name="gender" value='수컷'  />수컷&nbsp</label>
+      <label><input type="radio" name="gender" value='암컷' />암컷</label>
     <br><br>
     
     <!-- <div class="form-group">
@@ -113,8 +127,8 @@
 <br><br>
 
     <label for="neutralization" >중성화 여부</label> &nbsp
-      <input type="radio" name="neutralization" id='neutralization1' value='N'  > N 
-      <input type="radio" name="neutralization" id='neutralization2' value='Y' > Y
+      <input type="radio" name="neutralization" value='N'  > N 
+      <input type="radio" name="neutralization" value='Y' > Y
       <br><br>
     <!-- <div class="form-group">
       <label for="neutralization" class="col-md-2 control-label">중성화 여부</label>    
@@ -133,18 +147,19 @@
           <c:if test="${file_list.size() > 0 }">
               <DIV>
                 <c:forEach var ="fileVO"  items="${file_list }">
-                  <A href="javascript: panel_img('${fileVO.files }')"><IMG src='./storage/${fileVO.thumbs }' style='margin-top: 2px;'></A>
+                  <A href="javascript: panel_img('${fileVO.files }')"><%-- <IMG src='./storage/${fileVO.thumbs }' style='margin-top: 2px;'> --%></A>
                 </c:forEach>
               </DIV>
             </c:if>
         </div>
       </div>     
        <div class="form-group">   
-        <label for="files" class="col-md-1 control-label">업로드 파일</label>
-        <div class="col-md-11">
-          <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple">
+        <label for="files" class="col-md-1 control-label" style="text-align: center !important ; width: 100%; margin: 0px auto; margin-bottom: 3%; color: #000000; font-weight: bold;">반려동물 사진 첨부</label>
+        <div class="col-md-11" style="margin-left: 3%;">
+          <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple" style="width: 80%; margin: 0px auto;">
+          
           <br>
-        
+         
         </div>
       </div>
    

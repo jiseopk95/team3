@@ -20,12 +20,15 @@
   window.onload=function(){
     CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
   }; */
-
-	  
-/* 	  var info = "${event_presentVO.info }"; 
-	  $("#present").val(info).prop("selected", true); */
-
-	  
+/*  var info = $("#presentno").find(":selected").val();
+  $('#info').val(info).prop("selected", true);
+  var info = $("select[name=presentno]").val();
+  $('#info').val(info).prop("selected", true); */
+  $(function(){//화면로딩즉시 실행되는놈 
+<%-- <%=keyword.equals("민사")?" selected":""%> --%>
+  var presentno = ${eventVO.presentno};
+$("#presentno").val(presentno);
+  });
 	  </script>
 
 </head> 
@@ -62,7 +65,7 @@
         </div>
       </div>   
        <div class="form-group">   
-        <label for="content" class="col-md-1 control-label">이벤트 내용</label>
+        <label for="content" class="col-md-1 control-label">이벤트<br>내용</label>
         <div class="col-md-11">
            <textarea class="form-control input-lg" name='content' id='content'  rows='10'>${eventVO.content}</textarea>
         </div>
@@ -70,12 +73,13 @@
            <div class="form-group">   
         <label for="presentno" class="col-md-1 control-label">선물</label>
         <div class="col-md-11">
-     <select class="form-control" id="present" name="presentno" onchange="selCh(this)">
+     <select class="form-control" id="presentno" name="presentno">
                  <option value="default">--선물 리스트--</option>
                 <c:forEach var="event_presentVO" items="${list_present }">
-            <option value="${event_presentVO.presentno }">${event_presentVO.info }</option>
+            <option value="${event_presentVO.presentno }" id="info">${event_presentVO.info }</option>
             </c:forEach><!-- 내가 안나온 이유 - controller에 등록get에서 이거 나오게 값을 안설정해줌 추가를 안해줌. -->
           </select>
+          
         </div>
       </div>
       <div class="form-group">   
@@ -121,7 +125,7 @@
         </div>
       </div>
       <div class="form-group">   
-        <label for="filesMF" class="col-md-1 control-label">업로드 파일</label>
+        <label for="filesMF" class="col-md-1 control-label">업로드<br>파일</label>
         <div class="col-md-11">
           <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple">
           <br>

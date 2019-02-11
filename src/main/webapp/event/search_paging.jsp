@@ -155,11 +155,11 @@ function delete_event(eventno) {
      <span class='menu_divide' >│</span>
      <c:choose>
      <c:when test = " ${param.content != '' }">
-     <input type = 'text' name='content' id='content' value='${param.content}' style='width:35%;'>
+     <input type = 'text' name='content' id='content' value='${param.content}' placeholder='내용을 입력하세요' style='width:35%;'>
         <input type = 'text' name='managerno' id='managerno' value='${param.managerno}'> 
      </c:when>
      <c:otherwise>
-     <input type ='text'  name = 'content' id='content' value='' style='width:35%;'>
+     <input type ='text'  name = 'content' id='content' value='' placeholder='내용을 입력하세요' style='width:35%;'>
         <input type = 'hidden' name='managerno' id='managerno' value='${param.managerno}'> 
      </c:otherwise>
      </c:choose>

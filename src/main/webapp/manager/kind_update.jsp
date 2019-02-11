@@ -19,7 +19,20 @@
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
-  
+$(function() {
+var kind='${managerVO.kind}';
+if(kind=='M') {
+  $("input:radio[name='kind']:radio[value='M']").prop('checked', true); // 선택하기
+} else if(kind=='B') {
+  $("input:radio[name='kind']:radio[value='B']").prop('checked', true); // 선택하기
+} else if(kind=='D') {
+  $("input:radio[name='kind']:radio[value='D']").prop('checked', true); // 선택하기
+} else if(kind=='A') {
+  $("input:radio[name='kind']:radio[value='A']").prop('checked', true); // 선택하기
+} else if(kind=='N') {
+  $("input:radio[name='kind']:radio[value='N']").prop('checked', true); // 선택하기
+}
+});
 </script>
 
 
@@ -87,11 +100,11 @@
     
     <div class="list_search_form">
     <br>
-      <label class=kind_font><input type="radio" name="kind" id='kind1' value='N'  />&nbsp&nbsp N 인증 되지 않은 회원</label> <br> <br>
-      <label class=kind_font ><input type="radio" name="kind" id='kind2' value='B' />&nbsp&nbsp B 미용관계자</label> <br> <br>
-      <label class=kind_font ><input type="radio" name="kind" id='kind3' value='D' />&nbsp&nbsp D 병원관계자</label> <br> <br>
-      <label class=kind_font ><input type="radio" name="kind" id='kind4' value='A' />&nbsp&nbsp A 질의응답사원</label> <br> <br>
-      <label class=kind_font ><input type="radio" name="kind" id='kind5' value='M' />&nbsp&nbsp M 최상위 관계자</label> <br> <br>
+      <label class=kind_font><input type="radio" name="kind" value='N'  />&nbsp&nbsp N 인증 되지 않은 회원</label> <br> <br>
+      <label class=kind_font ><input type="radio" name="kind" value='B' />&nbsp&nbsp B 미용관계자</label> <br> <br>
+      <label class=kind_font ><input type="radio" name="kind" value='D' />&nbsp&nbsp D 병원관계자</label> <br> <br>
+      <label class=kind_font ><input type="radio" name="kind" value='A' />&nbsp&nbsp A 질의응답사원</label> <br> <br>
+      <label class=kind_font ><input type="radio" name="kind" value='M' />&nbsp&nbsp M 최상위 관계자</label> <br> <br>
     </div>
     
     <%-- <input type='hidden' name='phone' id='phone' value='${managerVO.phone }'> 

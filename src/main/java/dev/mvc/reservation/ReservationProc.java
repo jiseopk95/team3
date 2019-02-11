@@ -95,6 +95,10 @@ public class ReservationProc implements ReservationProcInter{
     return reservationDAO.delete(reservationno);
   }
 
-  
+  @Override
+  public String pet_name(int petno) {
+    
+    return reservationDAO.pet_name(petno);
+  }
 
 }

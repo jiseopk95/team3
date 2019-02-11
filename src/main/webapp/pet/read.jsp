@@ -31,14 +31,9 @@
 <DIV class='container' style='width: 100%;'>
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 <DIV class='title_line' style='width: 20%;'>등록 동물 조회</DIV>
-  
-   <ASIDE style='float: right;'>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='../index.jsp'>HOME</A>
-  </ASIDE> 
+ 
 <br>
-  <div class='menu_line'></div>
+
   <DIV id='main_panel'></DIV>
 
   <!-- Modal -->
@@ -103,7 +98,8 @@
     <br><br>
     
         <!-- <button type="submit" class="btn btn-primary">수정</button> -->
-        <button type="button" onclick="history.go(-1);" class="btn btn-secondary">목록</button>
+        <button type="button" onclick="location.href='./update.do?petno=${petVO.petno }'" class="btn btn-primary">반려동물 정보 수정</button>
+        <button type="button" onclick="location.href='./delete.do?petno=${petVO.petno }'" class="btn btn-primary">반려동물 정보 삭제</button>
 
   </FORM>
 

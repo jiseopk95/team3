@@ -49,7 +49,7 @@
     <FORM name='frm' method='POST' action='./create.do'
                enctype="multipart/form-data" class="form-horizontal">
                
-      <input type='hidden' name='categoryno' id='categoryno' value='${param.categoryno }'>
+      <input type='hidden' name='categoryno' id='categoryno' value='1'>
       <input type='hidden' name='memberno' id='memberno' value='1'>
       <br>
       <div class="form-group">   

@@ -108,7 +108,7 @@ function exit(){
   <thead>  
   <TR>
     <TH style='text-align: center ;'>순서</TH>
-    <TH style='text-align: center ;'>설문조사 타이틀</TH>
+    <TH style='text-align: left ;'>설문조사 타이틀</TH>
      <TH style='text-align: center ;'>선택지 수</TH>
     <TH style='text-align: center ;'>시작일</TH>
     <TH style='text-align: center ;'>종료일</TH>        

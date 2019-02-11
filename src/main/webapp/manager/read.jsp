@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -33,15 +34,9 @@
 <DIV class='content' style='padding-top:5%; width: 80%; padding-bottom: 10%;'>
 <DIV class='title_line' style='width: 20%;'>관리자 정보 조회</DIV>
   
-   <ASIDE style='float: right;'>
-   <A href="./passwd_update.do?managerno=${managerno}"><IMG src='./images/edit_info.png'  width="20" height="20" title='패스워드 변경' >&nbsp 패스워드 변경</A>
-    <span class='menu_divide' >│</span> 
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='../index.jsp'>HOME</A>
-  </ASIDE> 
+   
 <br>
-  <div class='menu_line'></div>
+
   <DIV id='main_panel'></DIV>
 
   <!-- Modal -->
@@ -84,10 +79,21 @@
               onsubmit="return send();" class="form-horizontal">
     <input type='hidden' name='managerno' id='managerno' value='${managerVO.managerno }'>    
     <br>      
+
+           <%-- <c:choose>
+              <c:when test="${petVO.thumbs != ''}">
+                <IMG style='border-radius: 50%' id='files' src='./storage/${managerVO.files }'> <br> <br><br>
+                </c:when>
+                <c:otherwise>
+                 <!-- 파일이 존재하지 않는 경우 -->
+                 <!-- <IMG src='./images/none1.jpg' style='width: 120px; height: 80px;'> -->
+               </c:otherwise>
+            </c:choose>  --%>
+    
     <IMG style='border-radius: 50%' id='files' src='./storage/${managerVO.files }'> <br> <br><br>
     
     <label for="id" >아이디</label> ${managerVO.id }    <br><br>    
-    <input type='hidden' name='kind' id='kind' value='${managerVO.kind }'>              
+      <label for="kind" >권한</label>    ${managerVO.kind } <br><br>    
       <label for="name" >성명</label>    ${managerVO.name } <br><br>
       <label for="position" >직급</label>    ${managerVO.position } <br><br>
       <label for="phone" >전화번호</label>    ${managerVO.phone } <br><br>
@@ -169,8 +175,9 @@
 <br>
     
         <!-- <button type="submit" class="btn btn-primary">수정</button> -->
-        <button type="button" onclick="location.href='./update.do?managerno=${managerno}'" class="btn btn-secondary">수정</button>
-
+        <button type="button" onclick="location.href='./update.do?managerno=${managerVO.managerno}'" class="btn btn-primary">수정</button>
+        <button type="button" onclick="location.href='./passwd_update.do?managerno=${managerVO.managerno }'" class="btn btn-secondary">패스워드 변경</button>
+        <button type="button" onclick="location.href='./delete.do?managerno=${managerVO.managerno }'" class="btn btn-secondary">탈퇴</button>
   </FORM>
 
 </DIV> <!-- content END -->

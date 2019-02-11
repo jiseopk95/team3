@@ -40,7 +40,7 @@
  
         for(index=0; index < rdata.length; index++) {
           panel += "<TR>";
-          panel += "<TD style='text-align: right ;'>익명</TD>";
+          panel += "<TD style='text-align: right ;'>"+rdata[index].name+"</TD>";
           panel += "<TD style='text-align: left ;'>"+rdata[index].rdate.substring(0,10);
           panel += "<br>"+rdata[index].content+"</TD>";
           panel += "<TD ></TD>";
@@ -131,17 +131,20 @@
       <!-- 
       <input type='hidden' name='categrpno' id='categrpno' value='1'>
        -->
-        <input type='hidden' name='memberno' id='memberno' value='1'>
+        <input type='hidden' name='memberno' id='memberno' value='${sessionScope.memberno }'>
         <input type='hidden' name='reviewno' id='reviewno' value='${param.reviewno }'>
        <br><br>
         <div>
             <div class="text-left">
                 <span><strong>Comments</strong></span> 
+                <input name='name' id='name' value='${sessionScope.name }'>
             </div>
             <div>
                 <table class="table">                    
                     <tr>
+
                         <td>
+                           
                             <textarea style="width: 1100px" rows="3" cols="30" id="content" name="content" value=''  placeholder="댓글을 입력하세요"></textarea>
                             <br>
                             <button type="button" id='submit'  class='btn btn-primary pull-right'  onclick="create()">등록</button>
@@ -167,7 +170,7 @@
   <colgroup>
 <%--     <col style='width: 10%;'/>
     <col style='width: 10%;'/> --%>
-    <col style='width: 5%;'/>
+    <col style='width: 10%;'/>
     <col style='width: 30%;'/>
     <col style='width: 20%;'/>
     <col style='width: 30%;'/>

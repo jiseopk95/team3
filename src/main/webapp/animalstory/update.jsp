@@ -37,7 +37,12 @@
     CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
   };
 </script>
-
+<style type="text/css">
+label {
+    font-size: 15px;
+    float: left;
+  }
+</style>
 </head> 
 
 <body>
@@ -52,7 +57,8 @@
       <input type='hidden' class='anino' name='anino' id='anino' value='${aniVO.anino}'>
       <input type='hidden' class='managerno' name='managerno' id='managerno' value='${aniVO.managerno}'>
                      
-      <div class="form-group">   
+      <div class="form-group" style="text-align: left;">   
+        <label for="anitype" class="col-md-1 control-label">글 분류</label>
         <div class="col-md-11">
           <label class="radio-inline">
             <input type='radio' class='anitype' name='anitype' id='dog' value='1' >강아지

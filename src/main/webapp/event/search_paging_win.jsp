@@ -27,32 +27,9 @@
 <DIV class='title_line' style="margin-bottom:50px">당첨확인
  </DIV>
   
-<!--     Modal
-  <div class="modal fade" id="modal_panel" role="dialog">
-    <div class="modal-dialog">
-    
-      Modal content
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4 class="modal-title" id='modal_title'></h4>
-        </div>
-        <div class="modal-body">
-          <p id='modal_content'></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div> Modal END -->
    <form name='frm' id='frm' method="get" action="./search_paging_win.do">
  <ASIDE style='float: left;'>
-    <%-- <A href='../category/list.do'>게시판 목록</A> 
-    >
-    <A href='./search_paging.do?categoryno=${beautyVO.categoryno }'>${beautyVO.title }</A>
- --%>
+
     <c:if test="${param.id.length() > 0}"> 
       >
       [${param.id}] 검색 목록(${search_count_win } 건) 
@@ -61,12 +38,7 @@
   </ASIDE>
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
-    
-    <!-- id가 어케 되는거지 일단 보류 -->
-   <%--  <c:if test="${sessionScope.id ne null }">
-      <span class='menu_divide' >│</span> 
-      <A href='./create.do?'>등록</A>
-    </c:if> --%>
+ 
 
      <span class='menu_divide' >│</span>
      <c:choose>

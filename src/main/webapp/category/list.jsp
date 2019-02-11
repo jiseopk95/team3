@@ -42,14 +42,25 @@
           // panel += "<TD style='text-align: center ;'>"+rdata[index].categoryno+"</TD>";
           panel += "<TD style='text-align: center ;'>"+(index+1)+"</TD>";
           panel += "<TD style='text-align: center ;'>"+rdata[index].name+"</TD>";
+          if(rdata[index].name=="동물진료" && rdata[index].title == "후기"){
           panel += "<TD style='text-align: center ;'><A href='../review/list.do?categoryno="+rdata[index].categoryno+"'>"+rdata[index].title+"</A></TD>";
+          }
+          else if(rdata[index].name=="동물진료" && rdata[index].title == "QnA"){
+            panel += "<TD style='text-align: center ;'><A href='../question/list.do?categoryno="+rdata[index].categoryno+"'>"+rdata[index].title+"</A></TD>";
+            }
+          else if(rdata[index].name=="동물미용" && rdata[index].title == "후기"){
+            panel += "<TD style='text-align: center ;'><A href='../review/list.do?categoryno="+rdata[index].categoryno+"'>"+rdata[index].title+"</A></TD>";
+            }
+          else if(rdata[index].name=="동물미용" && rdata[index].title == "QnA"){
+            panel += "<TD style='text-align: center ;'><A href='../question/list.do?categoryno="+rdata[index].categoryno+"'>"+rdata[index].title+"</A></TD>";
+            }
           panel += "<TD  style='text-align: center ;'>"+rdata[index].seqno+"</TD>";
           panel += "<TD style='text-align: center;'>"; 
           panel += "  <A href='../review/create.do?categoryno="+rdata[index].categoryno+"'><IMG src='./images/create.png' title='등록' style='width: 20px;'></A>";
           panel += "  <A href=\"javascript:update("+rdata[index].categoryno+")\"><IMG src='./images/update.png' title='수정' style='width: 20px;'></A>";  
           panel += "  <A href=\"javascript:deleteForm("+rdata[index].categoryno+")\"><IMG src='./images/delete.png' title='삭제' style='width: 20px;'></A>";
-          panel += "  <A href=\"javascript:seqnoUp("+rdata[index].categoryno+")\"><IMG src='./images/up.png' title='우선 순위 높임' style='width: 20px;'></A>";
-          panel += "  <A href=\"javascript:seqnoDown("+rdata[index].categoryno+")\"><IMG src='./images/down.png' title='우선 순위 감소' style='width: 20px;'></A>"; 
+         /*  panel += "  <A href=\"javascript:seqnoUp("+rdata[index].categoryno+")\"><IMG src='./images/up.png' title='우선 순위 높임' style='width: 20px;'></A>";
+          panel += "  <A href=\"javascript:seqnoDown("+rdata[index].categoryno+")\"><IMG src='./images/down.png' title='우선 순위 감소' style='width: 20px;'></A>";  */
           panel += "</TD>";
           panel += "</TR>";
         }
@@ -295,8 +306,8 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-<DIV class='container' style='width: 100%;'>
-<DIV class='content' style='width: 100%;'>
+<DIV class='container' >
+<DIV class='content' >
   
   <DIV id='main_panel'></DIV>
   

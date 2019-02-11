@@ -56,7 +56,7 @@
   </colgroup>
   <TR>
     <TH class='th'style='text-align: center;'>&nbsp로그인번호</TH>
-    <TH class='th'style='text-align: center;'>회원번호</TH>
+    <TH class='th'style='text-align: center;'>관리자번호</TH>
     <TH class='th'style='text-align: center;'>IP 주소</TH>
     <TH class='th'style='text-align: center;'>날짜</TH>
     <TH class='th'style='text-align: center;'>기타</TH>

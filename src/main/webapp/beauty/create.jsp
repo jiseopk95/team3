@@ -54,7 +54,7 @@
         </div>
       </div>   
        <div class="form-group">   
-        <label for="content" class="col-md-1 control-label">스타일이름</label>
+        <label for="content" class="col-md-1 control-label">스타일<br>이름</label>
         <div class="col-md-11">
            <input type='text' class="form-control input-lg" name='name' id='name' value='곰돌이컷' required="required" style='width: 30%;'>
         </div>
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="form-group">   
-        <label for="filesMF" class="col-md-1 control-label">업로드 파일</label>
+        <label for="filesMF" class="col-md-1 control-label">업로드<br>파일</label>
         <div class="col-md-11">
           <input type="file" class="form-control input-lg" name='filesMF' id='filesMF' size='40' multiple="multiple">
           <br>

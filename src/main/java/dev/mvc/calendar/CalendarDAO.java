@@ -39,7 +39,7 @@ public class CalendarDAO {
 
     sql = new StringBuffer();
 
-    sql.append(" SELECT reservationno, restype, name, resdate, label, title, content ");
+    sql.append(" SELECT reservationno, restype, resdate, label, title, content ");
     sql.append(" FROM " + table_name);
     sql.append(" WHERE memberno = " + memberno);
     sql.append(" ORDER BY reservationno DESC;");
@@ -57,7 +57,6 @@ public class CalendarDAO {
         calendarVO.setRestype("¹Ì¿ë");
       }
       calendarVO.setReservationno(rs.getInt("reservationno"));// DBMS --> JAVA
-      calendarVO.setName(rs.getString("name"));
       calendarVO.setMemberno(rs.getInt("memberno"));
       calendarVO.setResdate(rs.getString("resdate"));
       calendarVO.setLabel(rs.getString("label"));
@@ -88,7 +87,7 @@ public class CalendarDAO {
     ArrayList list = new ArrayList();
     
     if(memberno != 1) {
-      sql.append(" SELECT reservationno, restype, name, resdate, label, title, content");
+      sql.append(" SELECT reservationno, restype, resdate, label, title, content");
       sql.append(" FROM " + table_name);
       sql.append(" WHERE resdate=? AND memberno=?");  // 2013-10-15
       
@@ -97,9 +96,9 @@ public class CalendarDAO {
       pstmt.setInt(2, memberno);
       
     } else {
-      sql.append(" SELECT reservationno, restype, name, resdate, label, title, content");
-      sql.append(" FROM " + table_name);
-      sql.append(" WHERE resdate=?");  // 2013-10-15
+      sql.append(" SELECT r.reservationno, r.restype, r.resdate, r.label, r.title, r.content, p.name");
+      sql.append(" FROM reservation r, pet p");
+      sql.append(" WHERE r.resdate=? AND r.petno = p.petno");  // 2013-10-15
       
       pstmt = con.prepareStatement(sql.toString());
       pstmt.setString(1, date);
@@ -117,12 +116,13 @@ public class CalendarDAO {
       }
       
       calendarVO.setReservationno(rs.getInt("reservationno"));// DBMS --> JAVA
-      calendarVO.setName(rs.getString("name"));
       calendarVO.setResdate(rs.getString("resdate"));
       calendarVO.setLabel(rs.getString("label"));
       calendarVO.setTitle(rs.getString("title"));
       calendarVO.setContent(rs.getString("content"));
-
+      if(memberno == 1) {
+        calendarVO.setName(rs.getString("name"));
+      }
       list.add(calendarVO);
 
     }
