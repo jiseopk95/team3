@@ -56,7 +56,7 @@ COMMENT ON COLUMN member.zipcode is '우편번호';
 COMMENT ON COLUMN member.address1 is '주소';
 COMMENT ON COLUMN member.address2 is '상세 주소';
 COMMENT ON COLUMN member.rdate is '가입 날짜';
-select * from member
+
 1) 회원등록
 INSERT INTO member(memberno,id, passwd, name, phone, email, zipcode,address1,address2, rdate)
 VALUES ((SELECT NVL(MAX(memberno), 0)+1 as memberno FROM member),
@@ -251,7 +251,7 @@ COMMENT ON COLUMN reservation.restype is '종류';
 COMMENT ON COLUMN reservation.petno is '동물번호';
 COMMENT ON COLUMN reservation.memberno is '회원번호';
 COMMENT ON COLUMN reservation.rdate is '입력날짜'; 
-select * from reservation
+
 1. 등록 
  INSERT INTO reservation(reservationno, title, label, resdate, restime, content, restype, name, petno, memberno, rdate) 
  VALUES ((SELECT NVL(MAX(reservationno), 0)+1 as reservationno FROM reservation),
@@ -336,7 +336,7 @@ COMMENT ON COLUMN animalstory.thumbs is '썸네일이름';
 COMMENT ON COLUMN animalstory.sizes is '파일크기';
 COMMENT ON COLUMN animalstory.rdate is '작성일';
 COMMENT ON COLUMN animalstory.managerno is '관리자번호';
-delete from animalstory
+
 2. 등록 
 INSERT INTO animalstory(anino, anitype, title, content, files, thumbs, sizes, managerno, rdate)
 VALUES ((SELECT NVL(MAX(anino), 0)+1 as anino FROM animalstory),
@@ -444,13 +444,12 @@ values((select NVL(max(surveypartyno),0)+1 as surveypartyno from surveyparty),12
 /**********************************/
 /* Table Name: 카테고리 그룹 */
 /**********************************/
-
 CREATE TABLE categrp(
     categrpno                         NUMBER(10)     NOT NULL    PRIMARY KEY,
-    classification                    VARCHAR2(1)    DEFAULT 1     NOT NULL,
+    classification                    CHAR(1)    DEFAULT 1     NOT NULL,
     name                              VARCHAR2(50)     NOT NULL,
     seqno                             NUMBER(7)    DEFAULT 0     NOT NULL,
-    visible                           VARCHAR2(1)    DEFAULT 'Y'     NOT NULL,
+    visible                           CHAR(1)    DEFAULT 'Y'     NOT NULL,
     rdate                             DATE     NOT NULL
 );
 
@@ -461,12 +460,6 @@ COMMENT ON COLUMN categrp.name is '이름';
 COMMENT ON COLUMN categrp.seqno is '출력 순서';
 COMMENT ON COLUMN categrp.visible is '출력 모드';
 COMMENT ON COLUMN categrp.rdate is '그룹 생성일';
-
-INSERT INTO categrp(categrpno, classification, name, seqno, visible, rdate)
-VALUES((select NVL(max(categrpno),0)+1 as categrpno from categrp), 1, '의료', 1, 'Y', sysdate);
-
-INSERT INTO categrp(categrpno, classification, name, seqno, visible, rdate)
-VALUES((select NVL(max(categrpno),0)+1 as categrpno from categrp), 2, '미용', 2, 'Y', sysdate);
 
 
 /**********************************/
@@ -482,11 +475,6 @@ rdate                DATE  NOT NULL,
  FOREIGN KEY (categrpno) REFERENCES categrp (categrpno)
 );
 
-SELECT c.categrpno, c.name,
-    t.categoryno, t.categrpno, t.title,t.seqno, t.cnt
-    FROM categrp c, category t
-    WHERE c.categrpno = t.categrpno
-    ORDER BY c.categrpno ASC, t.seqno ASC
 
 COMMENT ON TABLE category is '카테고리';
 COMMENT ON COLUMN category.categoryno is '카테고리번호';
@@ -496,14 +484,12 @@ COMMENT ON COLUMN category.cnt is '등록된 글 수';
 COMMENT ON COLUMN category.seqno is '출력 순서';
 COMMENT ON COLUMN category.rdate is '등록날짜';
 
-
-
 -- 삽입
-INSERT INTO category(categoryno, categrpno, title, cnt, seqno, rdate)
-VALUES((select NVL(max(categoryno),0)+1 as categoryno from category), 1, '동물병원', 0, 1, sysdate);
+INSERT INTO category(categoryno, title,rdate)
+VALUES(1, '동물병원',sysdate);
              
-INSERT INTO category(categoryno, categrpno, title, cnt, seqno, rdate)
-VALUES((select NVL(max(categoryno),0)+1 as categoryno from category), 2, '동물미용', 0, 2, sysdate);
+INSERT INTO category(categoryno, title,rdate)
+VALUES(2, '동물미용',sysdate);
 
 /**********************************/
 /* Table Name: 후기 */
@@ -555,7 +541,7 @@ INSERT INTO review(reviewno, name, title, contents, rdate, files, filesize, thum
 VALUES((SELECT NVL(MAX(reviewno), 0)+1 as reviewno FROM review), '왕눈이', '의사선생님이 너무 친절해요', '내용 내용 내용',sysdate,
              '', 0, '', 0 , 5, 1 , 3);
              
-             /**********************************/
+/**********************************/
 /* Table Name: 질문 */
 /**********************************/
 CREATE TABLE question(
@@ -568,14 +554,13 @@ files                         	VARCHAR2(30)	 NULL ,
 filesize                      	VARCHAR2(1000)	 NULL ,
 num                           	NUMBER(10)	       NULL,
 passwd                            	VARCHAR2(30)	 NULL ,
-visible                           	 VARCHAR2(1)    DEFAULT 'Y' NOT NULL,
+visible                           	 CHAR(1)    DEFAULT 'Y' NOT NULL,
 replycnt              NUMBER(7)        DEFAULT 0       NOT NULL,
 grpno                 NUMBER(7)                              NOT NULL,
 indent                NUMBER(2)        DEFAULT 0       NOT NULL,
 ansnum              NUMBER(5)        DEFAULT 0       NOT NULL,
 categoryno                    	NUMBER(10)	 NULL ,
 memberno                      	NUMBER(10)	 NULL ,
-managerno                      	NUMBER(10)	 NULL ,
   FOREIGN KEY (categoryno) REFERENCES category (categoryno),
   FOREIGN KEY (memberno) REFERENCES member (memberno),
   FOREIGN KEY (managerno) REFERENCES manager (managerno)
@@ -597,14 +582,13 @@ COMMENT ON COLUMN question.grpno is '그룹번호';
 COMMENT ON COLUMN question.indent is '답변차수';
 COMMENT ON COLUMN question.ansnum is '답변 순서';
 COMMENT ON COLUMN question.categoryno is '카테고리번호';
-COMMENT ON COLUMN question.managerno is '매니저번호';
 COMMENT ON COLUMN question.memberno is '회원번호';
 
 
 -- 질문 등록
 INSERT INTO question(questionno, title, rdate, contente, name, files, thumbs, filesize, num, passwd, visible , categoryno, memberno)
 VALUES((SELECT NVL(MAX(questionno), 0)+1 as questionno FROM question), '공휴일 진료 시간이 어떻게 되나요', sysdate, '정말친절한.....',
-             'fall.jpg','fall_m.jpg',  0, '' , 'Y', 0 , 3, 1, 1);
+             'fall.jpg','fall_m.jpg',  0, '' , 'Y', 0 , 3, 1 , 1);
              
 INSERT INTO question(questionno, title, rdate, contente, name, files, thumbs, filesize, num, passwd, visible , categoryno, memberno)
 VALUES((SELECT NVL(MAX(questionno), 0)+1 as questionno FROM question), '질문', sysdate, '질문내용',
@@ -614,7 +598,6 @@ INSERT INTO question(questionno, title, rdate, contente, name, files, thumbs, fi
 VALUES((SELECT NVL(MAX(questionno), 0)+1 as questionno FROM question), '미용 관련 질문', sysdate, '미용 질문 내용.....',
              'fall.jpg','fall_m.jpg',  0, '' , 'Y', 0 , 3, 2 , 3);
          
-DROP TABLE answer;            
 /**********************************/
 /* Table Name: 댓글 */
 /**********************************/
@@ -630,7 +613,6 @@ memberno                     	NUMBER(10)	 NULL ,
   FOREIGN KEY (memberno) REFERENCES member (memberno)
 );
 
-
 COMMENT ON TABLE answer is '댓글';
 COMMENT ON COLUMN answer.answerno is '댓글번호';
 COMMENT ON COLUMN answer.reviewno is '후기번호';
@@ -640,7 +622,7 @@ COMMENT ON COLUMN answer.content is '내용';
 COMMENT ON COLUMN answer.rdate is '날짜';
 COMMENT ON COLUMN answer.memberno is '회원번호';
 
--- 답변 등록
+
 INSERT INTO answer(answerno, questionno, title, name, emoticon, content, rdate, managerno)
 VALUES((SELECT NVL(MAX(answerno), 0)+1 as answerno FROM answer), 1, '답변', '관리자',
              'emoticon.jpg','질문에 대한 답변입니다.', sysdate, 1);
@@ -665,7 +647,7 @@ CREATE TABLE style(
 		name                          		VARCHAR2(50)		 NOT NULL,
 		rname                         		VARCHAR2(20)		 NOT NULL,
 		like1                         		NUMBER(10)		 NOT NULL,
-		email                         		VARCHAR2(20)		 NULL ,
+		email                         		VARCHAR2(20)		 NULL ,  
 		content                       		CLOB		 NOT NULL,
 		cnt                           		NUMBER(10)		 DEFAULT 0		 NOT NULL,
 		image                         		VARCHAR2(1000)		 NULL ,
