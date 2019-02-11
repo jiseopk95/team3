@@ -79,29 +79,17 @@
               onsubmit="return send();" class="form-horizontal">
     <input type='hidden' name='managerno' id='managerno' value='${managerVO.managerno }'>    
     <br>      
-
-           <%-- <c:choose>
-              <c:when test="${petVO.thumbs != ''}">
-                <IMG style='border-radius: 50%' id='files' src='./storage/${managerVO.files }'> <br> <br><br>
-                </c:when>
-                <c:otherwise>
-                 <!-- 파일이 존재하지 않는 경우 -->
-                 <!-- <IMG src='./images/none1.jpg' style='width: 120px; height: 80px;'> -->
-               </c:otherwise>
-            </c:choose>  --%>
     
     <IMG style='border-radius: 50%' id='files' src='./storage/${managerVO.files }'> <br> <br><br>
     
     <label for="id" >아이디</label> ${managerVO.id }    <br><br>    
-      <label for="kind" >권한</label>    ${managerVO.kind } <br><br>    
+      <label for="kind" >권한</label>    ${managerVO.kind } <br> <button type="button" onclick="location.href='./kind_update.do?managerno=${managerVO.managerno }'" class="btn btn-danger">권한 변경</button> <br><br> 
       <label for="name" >성명</label>    ${managerVO.name } <br><br>
       <label for="position" >직급</label>    ${managerVO.position } <br><br>
       <label for="phone" >전화번호</label>    ${managerVO.phone } <br><br>
       <label for="email" > 이메일</label>    ${managerVO.email } <br><br>
       <label for="zipcode" >우편번호</label>    ${managerVO.zipcode } <br><br>
-
       <label for="address1" >주소</label>    ${managerVO.address1 } <br><br>
-
       <label for="address2" >상세 주소</label>   ${managerVO.address2 }  <br><br>
     
 

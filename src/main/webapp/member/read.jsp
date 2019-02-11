@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -166,9 +167,25 @@
 <br><br>
     
         <!-- <button type="submit" class="btn btn-primary">수정</button> -->
+        <c:choose>
+          <c:when test="${sessionScope.memberno == null}">
         <button type="button" onclick="location.href='./update.do?memberno=${memberVO.memberno }'" class="btn btn-primary">정보 수정</button>
-        <button type="button" onclick="location.href='./passwd_update.do?memberno=${memberVO.memberno }'" class="btn btn-secondary">패스워드 변경</button>
-        <button type="button" onclick="location.href='./delete.do?memberno=${memberVO.memberno }'" class="btn btn-secondary">회원 탈퇴</button>
+        <button type="button" onclick="location.href='./delete.do?memberno=${memberVO.memberno }'" class="btn btn-secondary">삭제</button>
+        </c:when>
+      </c:choose>
+      
+      <c:choose>
+          <c:when test="${sessionScope.managerno == null}">
+        <button type="button" onclick="location.href='./update.do?memberno=${memberVO.memberno }'" class="btn btn-primary">정보 수정</button>
+        <button type="button" onclick="location.href='./delete.do?memberno=${memberVO.memberno }'" class="btn btn-secondary">회원탈퇴</button>
+        </c:when>
+      </c:choose>
+      
+        <c:choose>
+          <c:when test="${sessionScope.managerno == null}">
+        <button type="button" onclick="location.href='./passwd_update.do?memberno=${memberVO.memberno }'" class="btn btn-secondary">패스워드 변경</button>        
+          </c:when>
+      </c:choose>
   </FORM>
 </DIV> <!-- content END -->
 </DIV> <!-- container END -->
