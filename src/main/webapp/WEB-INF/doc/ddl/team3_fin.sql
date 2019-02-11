@@ -647,7 +647,7 @@ CREATE TABLE style(
 		name                          		VARCHAR2(50)		 NOT NULL,
 		rname                         		VARCHAR2(20)		 NOT NULL,
 		like1                         		NUMBER(10)		 NOT NULL,
-		email                         		VARCHAR2(20)		 NULL ,
+		email                         		VARCHAR2(20)		 NULL ,  
 		content                       		CLOB		 NOT NULL,
 		cnt                           		NUMBER(10)		 DEFAULT 0		 NOT NULL,
 		image                         		VARCHAR2(1000)		 NULL ,
