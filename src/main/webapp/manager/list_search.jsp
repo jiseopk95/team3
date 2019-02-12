@@ -117,8 +117,9 @@
           ${managerVO.address1}
         </c:otherwise>
       </c:choose>
-      <TD class='td' style='padding-top: 3%'><A href="./kind_update.do?managerno=${managerno}">${managerVO.kind}</A></TD>
-
+     <TD class='td' ><A href="./kind_update.do?managerno=${managerno}">${managerVO.kind}</A>&nbsp
+      <button type="button" onclick="location.href='./kind_update.do?managerno=${managerVO.managerno }'" class="btn btn-danger">권한 변경</button>
+    </TD>
     <TD class='td' style='padding-top: 3%'>${managerVO.rdate.substring(0, 10)}</TD> <!-- 년월일 -->
     <TD class='td' style='padding-top: 3%'>
       <%-- <A href="./passwd_update.do?managerno=${managerno}"><IMG src='./images/edit_info.png'  width="20" height="20" title='패스워드 변경' ></A> --%>
