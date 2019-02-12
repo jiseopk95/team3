@@ -45,7 +45,34 @@
       </constraint>
       <sourceConnections/>
       <targetConnections/>
-      <children/>
+      <children>
+        <net.java.amateras.uml.usecasediagram.model.UsecaseModel>
+          <backgroundColor reference="../../../../../backgroundColor"/>
+          <foregroundColor reference="../../../../../foregroundColor"/>
+          <showIcon>true</showIcon>
+          <parent class="net.java.amateras.uml.usecasediagram.model.SystemModel" reference="../../.."/>
+          <listeners serialization="custom">
+            <java.beans.PropertyChangeSupport>
+              <default>
+                <source class="net.java.amateras.uml.usecasediagram.model.UsecaseModel" reference="../../../.."/>
+                <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+              </default>
+              <null/>
+            </java.beans.PropertyChangeSupport>
+          </listeners>
+          <constraint>
+            <height>131</height>
+            <width>153</width>
+            <x>78</x>
+            <y>34</y>
+          </constraint>
+          <sourceConnections/>
+          <targetConnections/>
+          <children/>
+          <filterProperty/>
+          <name>usecase</name>
+        </net.java.amateras.uml.usecasediagram.model.UsecaseModel>
+      </children>
       <filterProperty/>
       <name>예약 관련</name>
     </net.java.amateras.uml.usecasediagram.model.SystemModel>
@@ -66,8 +93,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>186</x>
-        <y>97</y>
+        <x>194</x>
+        <y>119</y>
       </constraint>
       <sourceConnections/>
       <targetConnections/>
