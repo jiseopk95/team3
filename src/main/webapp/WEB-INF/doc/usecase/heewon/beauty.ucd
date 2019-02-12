@@ -367,8 +367,8 @@
                             <constraint>
                               <height>-1</height>
                               <width>-1</width>
-                              <x>27</x>
-                              <y>394</y>
+                              <x>28</x>
+                              <y>398</y>
                             </constraint>
                             <sourceConnections>
                               <net.java.amateras.uml.usecasediagram.model.UsecaseRelationModel>
